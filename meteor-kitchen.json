@@ -263,10 +263,7 @@
 
 		"copy_files": [
 			{ "source": "files/start", "dest": "OUTPUT_DIR/start" },
-			{ "source": "files/settings.json", "dest": "SETTINGS_DIR/settings.json" },
-			{ "source": "../../install/install.sh", "dest": "PRIVATE_DIR/install.sh" },
-			{ "source": "../../install/install_linux.tar.gz", "dest": "PUBLIC_DIR/install/install_linux.tar.gz" },
-			{ "source": "../../install/install_mac.tar.gz", "dest": "PUBLIC_DIR/install/install_mac.tar.gz" }
+			{ "source": "files/settings.json", "dest": "SETTINGS_DIR/settings.json" }
 		],
 
 		"packages": {
