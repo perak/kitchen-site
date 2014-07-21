@@ -1,0 +1,3 @@
+#!/bin/sh
+
+mrt --settings ./settings/settings.json

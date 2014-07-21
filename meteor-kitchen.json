@@ -1,0 +1,281 @@
+{
+	"application": {
+		"title": "Meteor Kitchen",
+		"template": "bootstrap",
+		"theme": "bootswatch-amelia",
+		"footer_text": "Meteor Kitchen &copy; 2014 Petar Korponaić All Rights Reserved",
+		"collections": [
+		],
+
+		"public_zone": {
+			"pages":[
+				{ 
+					"name": "home_public", 
+					"title": "",
+					"components": [
+						{
+							"name": "home_jumbotron",
+							"title": "Meteor Kitchen",
+							"type": "jumbotron",
+							"dest_position": "before",
+							"text": "<b><a href=\"https://www.meteor.com\" target=\"_blank\">Meteor</a> application code generator</b><br />Less coding = more code",
+							"button_title": "Get started &raquo;",
+							"button_route": "getting_started"
+						},
+						{
+							"name": "features_top_row",
+							"type": "div",
+							"class": "row",
+							"components": [
+								{
+									"name": "features_top_col",
+									"type": "div",
+									"class": "col-md-12",
+									"components": [
+										{
+											"name": "features_top",
+											"type": "markdown",
+											"source_file": "files/features_top.md"
+										}
+									]
+								}
+							]
+						},
+
+						{
+							"name": "features_detail_row_1",
+							"type": "div",
+							"class": "row",
+							"components": [
+								{
+									"name": "features_detail_col_1",
+									"type": "div",
+									"class": "col-md-6",
+									"components": [
+										{
+											"name": "features_detail_1",
+											"type": "markdown",
+											"source_file": "files/features_detail_1.md"
+										}
+									]
+								},
+								{
+									"name": "features_detail_col_2",
+									"type": "div",
+									"class": "col-md-6",
+									"components": [
+										{
+											"name": "features_detail_2",
+											"type": "markdown",
+											"source_file": "files/features_detail_2.md"
+										}
+									]
+								}
+							]
+						},
+
+						{
+							"name": "features_detail_row_2",
+							"type": "div",
+							"class": "row",
+							"components": [
+								{
+									"name": "features_detail_col_3",
+									"type": "div",
+									"class": "col-md-6",
+									"components": [
+										{
+											"name": "features_detail_3",
+											"type": "markdown",
+											"source_file": "files/features_detail_3.md"
+										}
+									]
+								},
+								{
+									"name": "features_detail_col_4",
+									"type": "div",
+									"class": "col-md-6",
+									"components": [
+										{
+											"name": "features_detail_4",
+											"type": "markdown",
+											"source_file": "files/features_detail_4.md"
+										}
+									]
+								}
+							]
+						},
+
+						{
+							"name": "features_bottom_row",
+							"type": "div",
+							"class": "row",
+							"components": [
+								{
+									"name": "features_bottom_col",
+									"type": "div",
+									"class": "col-md-12",
+									"components": [
+										{
+											"name": "features_bottom",
+											"type": "markdown",
+											"source_file": "files/features_bottom.md"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{ "name": "login", "template": "login.html" },
+				{ "name": "register", "template": "register.html" },
+				{ "name": "forgot_password", "template": "forgot_password.html" },
+				{ "name": "reset_password", "template": "reset_password.html" },
+				{ 
+					"name": "getting_started",
+					"template": "page_subcontent_sidenav.html",
+					"components": [
+						{
+							"name": "content",
+							"type": "markdown",
+							"source_file": "files/getting_started.md",
+							"dest_selector": "#subcontent"
+						}
+					],
+					"menus": [
+						{
+							"name": "sidebar",
+							"class": "nav nav-pills nav-stacked",
+							"dest_selector": "#menu",
+							"scroll_spy_selector": "",
+							"items": [
+								{ "title": "Download", 				"url": "#download" },
+								{ "title": "CLI", 					"url": "#cli" },
+								{ "title": "Input File", 			"url": "#input-file" },
+								{ "title": "Pages and Menus", 		"url": "#pages-and-menus" },
+								{ "title": "Subpages", 				"url": "#subpages" },
+								{ "title": "Visual Themes",			"url": "#visual-themes" },
+								{ "title": "Components", 			"url": "#components" },
+								{ "title": "Collections", 			"url": "#collections" },
+								{ "title": "DataView Component",	"url": "#dataview-component" },
+								{ "title": "Form Component", 		"url": "#form-component" },
+								{ "title": "Route Params", 			"url": "#route-params" },
+								{ "title": "Server Side Routes", 	"url": "#server-side-routes" },
+								{ "title": "Plugins", 				"url": "#plugins" },
+								{ "title": "User Roles",			"url": "#user-roles" }
+							]
+						}
+					]
+				},
+				{ 
+					"name": "object_reference",
+					"template": "page_subcontent_sidenav.html",
+					"template_rendered_code": "$('table').addClass('table');",
+					"components": [
+						{
+							"name": "content",
+							"type": "markdown",
+							"source_file": "files/object_reference.md",
+							"dest_selector": "#subcontent"
+						}
+					],
+					"menus": [
+						{
+							"name": "sidebar",
+							"class": "nav nav-pills nav-stacked",
+							"dest_selector": "#menu",
+							"scroll_spy_selector": "",
+							"items": [
+								{ "title": "application",	"url": "#application" },
+								{ "title": "collection",	"url": "#collection" },
+								{ "title": "component",		"url": "#component" },
+								{ "title": "dataview",		"url": "#dataview" },
+								{ "title": "field",			"url": "#field" },
+								{ "title": "file_pair",		"url": "#file_pair" },
+								{ "title": "form",			"url": "#form" },
+								{ "title": "jumbotron",		"url": "#jumbotron" },
+								{ "title": "markdown",		"url": "#markdown" },
+								{ "title": "menu",			"url": "#menu" },
+								{ "title": "menu_item",		"url": "#menu_item" },
+								{ "title": "page",			"url": "#page" },
+								{ "title": "query",			"url": "#query" },
+								{ "title": "route_param",	"url": "#route_param" },
+								{ "title": "server_side_route",	"url": "#server_side_route" },
+								{ "title": "zone",			"url": "#zone" }
+							]
+						}
+					]
+				}
+			],
+			"menus": [
+				{
+					"name": "left_menu",
+					"class": "nav navbar-nav",
+					"dest_selector": "#menu",
+					"items": [
+						{ "title": "Home", "route": "home_public" },
+						{ "title": "Getting started", "route": "getting_started" },
+						{ "title": "Object Reference", "route": "object_reference" }
+					]
+				},
+
+				{
+					"name": "right_menu",
+					"class": "nav navbar-nav navbar-right",
+					"dest_selector": "#menu",
+					"items": [
+						{ "title": "Register", "route": "register" },
+						{ "title": "Login", "route": "login" }
+					]
+				}
+			]
+		},
+
+		"private_zone": {
+			"pages": [
+				{ "name": "home_private", "title": "Welcome {{userFullName}}!", "text": "This page is under construction." },
+				{ "name": "logout", "template": "logout.html", "action_code": "App.logout();" }
+			],
+
+			"menus": [
+				{
+					"name": "left_menu",
+					"class": "nav navbar-nav",
+					"dest_selector": "#menu",
+					"items": [
+						{ "title": "Home", "route": "home_private" }
+					]
+				},
+				{
+					"name": "right_menu",
+					"class": "nav navbar-nav navbar-right",
+					"dest_selector": "#menu",
+					"items": [
+						{ "title": "Logout", "route": "logout" }
+					]
+				}
+			]
+		},
+
+		"server_side_routes": [
+			{ "name": "install", "source_file": "files/route_install.js" }
+		],
+
+		"copy_files": [
+			{ "source": "files/start", "dest": "OUTPUT_DIR/start" },
+			{ "source": "files/settings.json", "dest": "SETTINGS_DIR/settings.json" },
+			{ "source": "../../install/install.sh", "dest": "PRIVATE_DIR/install.sh" },
+			{ "source": "../../install/install_linux.tar.gz", "dest": "PUBLIC_DIR/install/install_linux.tar.gz" },
+			{ "source": "../../install/install_mac.tar.gz", "dest": "PUBLIC_DIR/install/install_mac.tar.gz" }
+		],
+
+		"packages": {
+			"meteor": [],
+			"mrt": ["iron-router-ga", "spiderable"]
+		},
+
+		"router_config": {
+			"trackPageView": true
+		}
+	}
+}
