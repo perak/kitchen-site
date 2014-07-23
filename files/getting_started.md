@@ -24,7 +24,7 @@ meteor-kitchen comes with command line interface only (**GUI** is under construc
 meteor-kitchen
 ```
 
-Common usage is:
+Common usage:
 
 ```
 meteor-kitchen <input_file.json> <output_directory>
@@ -33,7 +33,7 @@ meteor-kitchen <input_file.json> <output_directory>
 Input file
 ===========
 
-Input file is JSON containing application description. Depending on would your app use user account system or not, minimal input file structure is one of:
+Input file is a JSON file containing application description. You can start with one of the minimal templates below, depending on whether you need user account system in your app or not:
 
 **Application without user account system**:
 
@@ -129,14 +129,14 @@ Copy & paste it into your text editor, save it as "example-minimal.json" and run
 meteor-kitchen example-minimal.json ./example-minimal
 ```
 
-That will produce simple application with navbar and two pages. See <a href="http://generator-minimal.meteor.com" target="_blank">live example</a>.
+That will produce a simple application with navbar and two pages. See <a href="http://generator-minimal.meteor.com" target="_blank">live example</a>.
 
-Looking at input file structure: **page** object has **name** and **title** properties. In generated application page named "home" will produce files "home.html", "home.js" and "home\_controller.js" with template named "Home". 
-Page named "about" in the same fashion: **filenames and route names are allways in lower-case with underscores, template name is allways in camel-case with upper-case first letter.**
+Notice a pattern in input file structure: **page** object has **name** and **title** properties. If a page is named "home" in description file, generator will produce a template named "Home" along with the following files: "home.html", "home.js", "home\_controller.js".
+In short, **filenames and route names are always in lower-case with underscores, template name is always in camel-case with capitalized first letter.**
 
 **menu** object has **name**, **class** and **items** properties. Each component must have **name** (menu is component, more about components later). 
 Property **class** will be applied to menu's `<ul>` html element.
-Each menu item has **title** and **route**. Property **title** is string displayed in menu, **route** is route name of page on which the link points to.
+Each menu item has **title** and **route**. Property **title** is menu's label, **route** is name of the route you want this menu item to link to.
 
 
 Subpages
@@ -177,7 +177,7 @@ In previous example:
 - "subpage\_1" route name is "home.subpage\_1"
 - "subsub\_1" route name is "home.subpage\_1.subsub\_1"
 
-Now, to access subpages add menu into parent **page** object with items pointing to subpages:
+Now we can have new menu items linking to the newly-created subpages:
 
 ```
 ...
@@ -216,13 +216,13 @@ Now, to access subpages add menu into parent **page** object with items pointing
 ```
 
 ### Subpages example
-Generator has several built-in examples, you can run:
+Generator has several built-in examples. You can run:
 
 ```
 meteor-kitchen --example-subpages ./example-subpages
 ```
 
-That will produce application with pages and subpages. You can see live example <a href="http://generator-subpages.meteor.com" target="_blank">here</a>.
+This will produce an application with pages and subpages. You can see live example <a href="http://generator-subpages.meteor.com" target="_blank">here</a>.
 
 
 Visual Themes
@@ -258,8 +258,8 @@ In this example, application will use "bootswatch-amelia" theme. You can see lis
 Components
 ==========
 
-Application with empty pages is not very useful :) Components are predefined and customizable visual elements which can be inserted into pages - they are building blocks of your application.
-Generator comes with several built-in components. Also, you can write your own components called "plugins" (more about plugins later).
+Application with empty pages is not very useful :). You can add Components (predefined and customizable visual elements which can be inserted into pages). They are building blocks of your application.
+Generator comes with several built-in components. Also, you can write your own components (which we call "plugins". More about plugins later).
 
 You can insert components into pages by adding **components** array into any **page** object:
 ```
@@ -290,8 +290,8 @@ Minimal structure of any **component** object is:
 }
 ```
 
-- **name** - used by generator to construct component template name: parent template name + component name (will be in upper-camel-case).
-- **type** - used by generator to determine component type. If type is not one of built-in component types, generator will try to execute plugin with that name (more about plugins later).
+- **name** - used by generator to construct component template name: parent template name + component name (will be in capitalized camel-case).
+- **type** - used by generator to determine component type. If type is not one of the built-in component types, generator will try to find and execute a plugin with that name (more about plugins later).
 
 ### Jumbotron component
 
@@ -384,7 +384,7 @@ Following example shows how to add bootstrap row with two columns into page:
 ...
 ```
 
-Components **dataview** and **form** are using collections so we will talk about them later. Now, let's see how to add some mongo collections into your program.
+Before we continue with components **dataview** and **form**, let's add some mongo collections into your program:
 
 Collections
 ===========
@@ -413,7 +413,7 @@ To define collections, add **collections** array to your **application** object:
 }
 
 ```
-That will create server publications, client subscriptions and other code related to collections.
+Server publication, client subscription and other necessary code related to the collection are also created for you.
 
 Also, you can define collection fields:
 
@@ -443,9 +443,9 @@ Fields are used by components such as **form** and **dataview** (generator will 
 Dataview Component
 ==================
 
-Component of type **dataview** is used to show data from database inside table with search and sort functions (other view styles are under construction e.g. "list" and "gallery").
+Component of type **dataview** is used to show data from database inside table with search and sort functions (other view styles such as "list" and "gallery" are under construction).
 
-Minimal application with **dataview** component should look like this:
+A minimal application with **dataview** component should look like this:
 
 ```
 {
@@ -520,7 +520,7 @@ In this example we have collection "customers" and component of type "dataview" 
 Some of "dataview" component properties are:
 
 - **text\_if\_empty** - text to be shown instead of empty table if collection is empty.
-- **query** - query used to filter data from collection. Must have "name", "collection" - existing collection name and "filter" - mongo query being passed as param to `collection.find()`.
+- **query** - query used to filter data from collection. Must have "name", "collection" (existing collection name) and "filter" (mongo query being passed as param to `collection.find()`).
 - **insert\_route** - route name of existing page (usually containing form component) which will be opened when user clicks "insert" button.
 - **edit\_route** - route name of existing page (usually containing form component) which will be opened when user clicks "edit" icon.
 - **details\_route** - route name of existing page which will be opened when user clicks item.
@@ -665,12 +665,11 @@ You can see **live example** <a href="http://generator-dataview.meteor.com" targ
 Route params
 ============
 
-Sometimes you need to pass route parameters via page URL. 
-Example of that can be edit form: imagine you have a page with customers list at URL "/customers". 
-When user clicks "edit" button you want to open page with edit form at URL "/customers/edit", but you need to specify ID of customer that will be edited in form. 
-You can do that by adding customer ID into URL: "/customers/edit/DEb2iodREGQcwiZGm" and use that param inside your form component.
+Sometimes you need to pass route parameters via page URL. For example, let's say we have a page for listing all customers.
+On this page you want to implement an Edit button for each customer, which points to something like:
+`/customers/edit/[customer_id_here]`
 
-To add route parameter add "route\_params" property to your **page** object:
+To do this, first let's add "route\_params" property to your **page** object:
 
 ```
 ...
@@ -697,11 +696,9 @@ To add route parameter add "route\_params" property to your **page** object:
 ```
 **Note:** property "route\_params" is array of strings.
 
-In this example **page** object has param named "customerId" and we are using it inside **form** component's **query** filter: `:customerId`.
+In this example **page** object has a param named "customerId" and we are using it inside **form** component's **query** filter: `:customerId`.
 
-Now, when we are reffering to page with params from another page, we need to pass param values.
-
-Example of that is **dataview** component's "edit\_route" and "edit\_route\_params" property:
+Now, let's pass this param to our **dataview** component via "edit\_route" and "edit\_route\_params" properties:
 
 ```
 {
@@ -732,7 +729,7 @@ Property "edit\_route\_params" is list of parameters to be passed to "edit\_rout
 - **value** is parameter value
 
 
-Now, let's see full example with "insert" and "update" forms:
+Here is a full example with "insert" and "update" forms:
 
 ```
 {
