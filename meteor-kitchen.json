@@ -205,6 +205,16 @@
 							]
 						}
 					]
+				},
+				{
+					"name": "contribute",
+					"components": [
+						{
+							"name": "content",
+							"type": "markdown",
+							"source_file": "files/contribute.md"
+						}
+					]
 				}
 			],
 			"menus": [
@@ -215,7 +225,8 @@
 					"items": [
 						{ "title": "Home", "route": "home_public" },
 						{ "title": "Getting started", "route": "getting_started" },
-						{ "title": "Object Reference", "route": "object_reference" }
+						{ "title": "Object Reference", "route": "object_reference" },
+						{ "title": "Contribute", "route": "contribute" }
 					]
 				},
 
