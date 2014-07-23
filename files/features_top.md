@@ -1,7 +1,7 @@
 What is "Meteor Kitchen"?
 =========================
 
-"Meteor Kitchen" is meteor application code generator. Describe your application in simple JSON file and use meteor-kitchen to build (almost) complete meteor application:
+"Meteor Kitchen" is a meteor application code generator. Just describe your application in simple JSON file and use meteor-kitchen to build an (almost) complete meteor application with:
 
 - Directory structure
 - Router and route controllers
@@ -10,9 +10,9 @@ What is "Meteor Kitchen"?
 - Pages (with content)
 - Menus
 - Forms (with validations)
-- DataViews (components showing data from collections with search & sort functions)
+- DataViews (components you can use to show data from collections with search & sort functions)
 
-**And more:** in addition with built-in components, you can write your own **plugins** in javascript and expand generator to the ulimited.
+**And more:** in addition with built-in components, you can write your own **plugins** in javascript and expand generator to the unlimited.
 
 ### Did you know?
-This site is meteor application automatically generated without manual coding.
+This site is a meteor application generated automatically without any manual code.
