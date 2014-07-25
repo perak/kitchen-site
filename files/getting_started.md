@@ -129,7 +129,11 @@ Copy & paste it into your text editor, save it as "example-minimal.json" and run
 meteor-kitchen example-minimal.json ./example-minimal
 ```
 
-That will produce a simple application with navbar and two pages. See <a href="http://generator-minimal.meteor.com" target="_blank">live example</a>.
+That will produce a simple application with navbar and two pages. 
+
+<span class="fa fa-graduation-cap"></span> You can see live example <a href="http://generator-minimal.meteor.com" target="_blank">here</a>. 
+
+**Note:** Source code for all examples you can find <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>.
 
 Notice a pattern in input file structure: **page** object has **name** and **title** properties. If a page is named "home" in description file, generator will produce a template named "Home" along with the following files: "home.html", "home.js", "home\_controller.js".
 In short, **filenames and route names are always in lower-case with underscores, template name is always in camel-case with capitalized first letter.**
@@ -222,7 +226,11 @@ Generator has several built-in examples. You can run:
 meteor-kitchen --example-subpages ./example-subpages
 ```
 
-This will produce an application with pages and subpages. You can see live example <a href="http://generator-subpages.meteor.com" target="_blank">here</a>.
+This will produce an application with pages and subpages. 
+
+<span class="fa fa-graduation-cap"></span> You can see live example <a href="http://generator-subpages.meteor.com" target="_blank">here</a>.
+
+**Note:** Source code for all examples you can find <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>.
 
 
 Visual Themes
@@ -527,7 +535,9 @@ Some of "dataview" component properties are:
 
 Each page route can receive params such as document _id. More about that later.
 
-You can see **live example** (also with form components) <a href="http://generator-dataview.meteor.com" target="_blank">here</a>.
+<span class="fa fa-graduation-cap"></span> You can see **live example** (also with form components) <a href="http://generator-dataview.meteor.com" target="_blank">here</a>.
+
+**Note:** Source code for all examples you can find <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>.
 
 
 Form Component
@@ -659,7 +669,9 @@ Now look:
 
 Form has defined query "customers_empty": this is insert form and we don't need any data from this query - query is used just to point generator on which collection to use for insert.
 
-You can see **live example** <a href="http://generator-dataview.meteor.com" target="_blank">here</a>.
+<span class="fa fa-graduation-cap"></span> You can see **live example** <a href="http://generator-dataview.meteor.com" target="_blank">here</a>.
+
+**Note:** Source code for all examples you can find <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>.
 
 
 Route params
@@ -954,7 +966,9 @@ Method **setOutput()** will pass "html" and "js" strings to generator and those 
 This is really trivial example that shows how to write custom component. Note that you can add any custom properties to component object inside input file and use them inside plugin.
 
 
-You can see live application that uses two example plugins <a href="http://generator-plugins.meteor.com" target="_blank">here</a>.
+<span class="fa fa-graduation-cap"></span> You can see live application that uses two example plugins <a href="http://generator-plugins.meteor.com" target="_blank">here</a>.
+
+**Note:** Source code for all examples you can find <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>.
 
 
 User Roles
