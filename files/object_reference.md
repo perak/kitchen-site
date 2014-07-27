@@ -362,6 +362,7 @@ query | [query](#query) | Query to be created as Template's data context
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
 text | string | Text to be shown in jumbotron
+image\_url | string | Picture URL
 button\_title | string | Jumbotron button title
 button\_route | string | Destination route name
 button\_route\_params | array of [route\_param](#route\_param) | Parameters to be passed to destination route
@@ -387,6 +388,7 @@ button\_class | string | CSS class to be added to jumbotron button
 	],
 	"template_rendered_code": "",
 	"text": "",
+	"image_url": "",
 	"button_title": "",
 	"button_route": "",
 	"button_route_params": [

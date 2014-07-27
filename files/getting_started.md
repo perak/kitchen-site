@@ -5,14 +5,14 @@ Download
 Open your terminal and type:
 
 ```
-curl http://www.meteorkitchen.com/install | sh
+curl http://www.meteorkitchen.com/install | /bin/sh
 ```
 
 You also need <a href="http://www.meteor.com" target="_blank">Meteor</a> and <a href="https://atmospherejs.com/docs/installing" target="_blank">Meteorite</a> package manager.
 
 ### Windows
 Meteor kitchen uses "meteorite" package manager which is not yet available for Windows. 
-However, you can download generator for Windows <a href="#">here.</a>
+However, you can download generator for Windows <a href="/install/install_win.zip" target="_blank">here.</a>
 
 
 CLI

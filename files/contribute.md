@@ -10,3 +10,4 @@ Contributors
 
 <a href="https://github.com/npvn" target="_blank"><b>Phúc Nguyễn</b></a> - improving docs
 
+<a href="#" target="_blank"><b>Daniel Zec</b></a> - super cool logo design

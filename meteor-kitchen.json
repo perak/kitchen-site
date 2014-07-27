@@ -19,6 +19,7 @@
 							"type": "jumbotron",
 							"dest_position": "before",
 							"text": "<b><a href=\"https://www.meteor.com\" target=\"_blank\">Meteor</a> application code generator</b><br />Less coding = more code",
+							"image_url": "images/cupcakes.svg",
 							"button_title": "Get started &raquo;",
 							"button_route": "getting_started"
 						},
@@ -274,7 +275,8 @@
 
 		"copy_files": [
 			{ "source": "files/start", "dest": "OUTPUT_DIR/start" },
-			{ "source": "files/settings.json", "dest": "SETTINGS_DIR/settings.json" }
+			{ "source": "files/settings.json", "dest": "SETTINGS_DIR/settings.json" },
+			{ "source": "files/cupcakes.svg", "dest": "PUBLIC_DIR/images/cupcakes.svg" }
 		],
 
 		"packages": {
