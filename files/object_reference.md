@@ -3,6 +3,7 @@
 Property | Type | Description
 ---------|------|------------
 title | string | Application title
+description | string | Default meta description
 template | string | Default: "bootstrap" (you can expect more templates in the future).
 theme | string | Visual theme name. With "bootstrap" template, theme can be one of bootswatch themes (e.g. "bootswatch-amelia", "bootswatch-cyborg" etc.).
 footer\_text | string | Text to show in page footer
@@ -19,6 +20,7 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 ```
 {
 	"title": "",
+	"description": "",
 	"template": "",
 	"theme": "",
 	"footer_text": "",
@@ -26,6 +28,7 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	],
 	"free_zone": {
 		"class": "",
+		"description": "",
 		"menus": [
 		],
 		"pages": [
@@ -50,6 +53,7 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 ```
 {
 	"title": "",
+	"description": "",
 	"template": "",
 	"theme": "",
 	"footer_text": "",
@@ -57,6 +61,7 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	],
 	"public_zone": {
 		"class": "",
+		"description": "",
 		"menus": [
 		],
 		"pages": [
@@ -64,6 +69,7 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	},
 	"private_zone": {
 		"class": "",
+		"description": "",
 		"menus": [
 		],
 		"pages": [
@@ -531,6 +537,7 @@ title | string | Component title
 query | [query](#query) | Query to be created as Template's data context
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
+description | string | meta description
 text | string | Text to be inserted into page
 route\_params | array of string | Route params to be passed via URL
 close\_route | string | If specified, page will have close button routing to this route
@@ -556,6 +563,7 @@ pages | array of [page](#page) | Subpages
 	"components": [
 	],
 	"template_rendered_code": "",
+	"description": "",
 	"text": "",
 	"route_params": [
 	],
@@ -634,6 +642,7 @@ Property | Type | Description
 class | string | CSS class name to be added to component
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
+description | string | meta description
 menus | array of [menu](#menu) | Menus to be inserted into this page
 pages | array of [page](#page) | Subpages
 
@@ -641,6 +650,7 @@ pages | array of [page](#page) | Subpages
 ```
 {
 	"class": "",
+	"description": "",
 	"menus": [
 	],
 	"pages": [
