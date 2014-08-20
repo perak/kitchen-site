@@ -1,7 +1,12 @@
 How to contribute?
 ==================
 
-**Meteor Kitchen** is under developement, its new and not well tested yet. If you find this project interesting, please feel free to ask questions, report issues, request features or just spit me into face on this <a href="https://github.com/perak/kitchen-site/issues" target="_blank">GitHub page</a> :)
+**Meteor Kitchen** is under developement, its new and not well tested yet. If you find this project interesting, please feel free to:
+
+- Report issues or request features at this <a href="https://github.com/perak/kitchen-site/issues" target="_blank">GitHub page</a>.
+
+- Ask questions and discuss in <a href="https://groups.google.com/forum/#!topic/meteor-talk/zXgP7ddCdHk" target="_blank">meteor-talk</a> forum.
+
 
 Contributors
 ============

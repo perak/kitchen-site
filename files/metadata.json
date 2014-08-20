@@ -1,0 +1,805 @@
+{
+	"classList": [
+		{
+			"objectType": "root",
+			"derivedFrom": [
+			],
+			"members": [
+				{
+					"name": "application",
+					"title": "Application",
+					"type": "application",
+					"subType": "",
+					"input": ""
+				}
+			]
+		},
+		{
+			"objectType": "object",
+			"derivedFrom": [
+			],
+			"members": [
+				{
+					"name": "name",
+					"title": "Name",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				}
+			]
+		},
+		{
+			"objectType": "field",
+			"derivedFrom": [
+				"object"
+			],
+			"members": [
+				{
+					"name": "title",
+					"title": "Title",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "type",
+					"title": "Type",
+					"type": "string",
+					"subType": "",
+					"input": "radio",
+					"choice_items": [
+						"string",
+						"integer",
+						"float",
+						"date",
+						"bool",
+						"array"
+					]
+				},
+				{
+					"name": "default",
+					"title": "Default",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "required",
+					"title": "Required",
+					"type": "bool",
+					"subType": "",
+					"input": "checkbox"
+				},
+				{
+					"name": "searchable",
+					"title": "Searchable",
+					"type": "bool",
+					"subType": "",
+					"input": "checkbox"
+				},
+				{
+					"name": "sortable",
+					"title": "Sortable",
+					"type": "bool",
+					"subType": "",
+					"input": "checkbox"
+				},
+				{
+					"name": "input",
+					"title": "Input",
+					"type": "string",
+					"subType": "",
+					"input": "radio",
+					"choice_items": [
+						"text",
+						"textarea",
+						"radio",
+						"checkbox",
+						"select",
+						"select_multi"
+					]
+				}
+			]
+		},
+		{
+			"objectType": "collection",
+			"derivedFrom": [
+				"object"
+			],
+			"members": [
+				{
+					"name": "fields",
+					"title": "Fields",
+					"type": "array",
+					"subType": "field",
+					"input": ""
+				}
+			]
+		},
+		{
+			"objectType": "query",
+			"derivedFrom": [
+				"object"
+			],
+			"members": [
+				{
+					"name": "collection",
+					"title": "Collection",
+					"type": "string",
+					"subType": "",
+					"input": "select"
+				},
+				{
+					"name": "find_one",
+					"title": "Find one",
+					"type": "bool",
+					"subType": "",
+					"input": "checkbox"
+				},
+				{
+					"name": "filter",
+					"title": "Filter",
+					"type": "object",
+					"subType": "",
+					"input": "JSON"
+				}
+			]
+		},
+		{
+			"objectType": "component",
+			"derivedFrom": [
+				"object"
+			],
+			"members": [
+				{
+					"name": "type",
+					"title": "Type",
+					"type": "string",
+					"subType": "",
+					"input": "static"
+				},
+				{
+					"name": "template",
+					"title": "Template",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "dest_selector",
+					"title": "Dest. selector",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "dest_position",
+					"title": "Dest. position",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "class",
+					"title": "CSS class",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "title",
+					"title": "Title",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "query",
+					"title": "Query",
+					"type": "query",
+					"subType": "",
+					"input": ""
+				},
+				{
+					"name": "components",
+					"title": "Components",
+					"type": "array",
+					"subType": "component",
+					"input": ""
+				},
+				{
+					"name": "template_rendered_code",
+					"title": "Template rendered code",
+					"type": "string",
+					"subType": "",
+					"input": "textarea"
+				}
+			]
+		},
+		{
+			"objectType": "plugin",
+			"derivedFrom": [
+				"component"
+			],
+			"members": [
+			]
+		},
+		{
+			"objectType": "route_param",
+			"derivedFrom": [
+			],
+			"members": [
+				{
+					"name": "name",
+					"title": "Name",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "value",
+					"title": "Value",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				}
+			]
+		},
+		{
+			"objectType": "server_side_route",
+			"derivedFrom": [
+				"object"
+			],
+			"members": [
+				{
+					"name": "path",
+					"title": "Path",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "source_file",
+					"title": "Source file",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				}
+			]
+		},
+		{
+			"objectType": "page",
+			"derivedFrom": [
+				"component"
+			],
+			"members": [
+				{
+					"name": "text",
+					"title": "Text",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "route_params",
+					"title": "Route params",
+					"type": "array",
+					"subType": "string",
+					"input": "textarea"
+				},
+				{
+					"name": "close_route",
+					"title": "Close route",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "close_route_params",
+					"title": "Close route params",
+					"type": "array",
+					"subType": "route_param",
+					"input": ""
+				},
+				{
+					"name": "roles",
+					"title": "Roles",
+					"type": "array",
+					"subType": "string",
+					"input": "textarea"
+				},
+				{
+					"name": "menus",
+					"title": "Menus",
+					"type": "array",
+					"subType": "menu",
+					"input": ""
+				},
+				{
+					"name": "pages",
+					"title": "Pages",
+					"type": "array",
+					"subType": "page",
+					"input": ""
+				}
+			]
+		},
+		{
+			"objectType": "zone",
+			"derivedFrom": [
+				"page"
+			],
+			"members": [
+			]
+		},
+		{
+			"objectType": "file_pair",
+			"derivedFrom": [
+			],
+			"members": [
+				{
+					"name": "source",
+					"title": "Source",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "dest",
+					"title": "Dest.",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				}
+			]
+		},
+		{
+			"objectType": "packages",
+			"derivedFrom": [
+			],
+			"members": [
+				{
+					"name": "meteor",
+					"title": "Meteor",
+					"type": "array",
+					"subType": "string",
+					"input": "textarea"
+				},
+				{
+					"name": "mrt",
+					"title": "Meteorite",
+					"type": "array",
+					"subType": "string",
+					"input": "textarea"
+				}
+			]
+		},
+		{
+			"objectType": "application",
+			"derivedFrom": [
+				"object"
+			],
+			"members": [
+				{
+					"name": "title",
+					"title": "Title",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "description",
+					"title": "Description",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "template",
+					"title": "Template",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "theme",
+					"title": "Theme",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "footer_text",
+					"title": "Footer text",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "collections",
+					"title": "Collections",
+					"type": "array",
+					"subType": "collection",
+					"input": ""
+				},
+				{
+					"name": "free_zone",
+					"title": "Free zone",
+					"type": "zone",
+					"subType": "",
+					"input": ""
+				},
+				{
+					"name": "public_zone",
+					"title": "Public zone",
+					"type": "zone",
+					"subType": "",
+					"input": ""
+				},
+				{
+					"name": "private_zone",
+					"title": "Private zone",
+					"type": "zone",
+					"subType": "",
+					"input": ""
+				},
+				{
+					"name": "server_startup_code",
+					"title": "Server startup code",
+					"type": "string",
+					"subType": "",
+					"input": "textarea"
+				},
+				{
+					"name": "client_startup_code",
+					"title": "Client startup code",
+					"type": "string",
+					"subType": "",
+					"input": "textarea"
+				},
+				{
+					"name": "server_startup_source_file",
+					"title": "Server startup source file",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "client_startup_source_file",
+					"title": "Client startup source file",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "server_side_routes",
+					"title": "Server side routes",
+					"type": "array",
+					"subType": "server_side_route",
+					"input": ""
+				},
+				{
+					"name": "copy_files",
+					"title": "Copy files",
+					"type": "array",
+					"subType": "file_pair",
+					"input": ""
+				},
+				{
+					"name": "packages",
+					"title": "Packages",
+					"type": "packages",
+					"subType": "",
+					"input": ""
+				},
+				{
+					"name": "router_config",
+					"title": "Router config.",
+					"type": "object",
+					"subType": "",
+					"input": ""
+				}
+			]
+		},
+		{
+			"objectType": "menu_item",
+			"derivedFrom": [
+				"object"
+			],
+			"members": [
+				{
+					"name": "title",
+					"title": "Title",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "route",
+					"title": "Route",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "url",
+					"title": "URL",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "class",
+					"title": "Class",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "items",
+					"title": "Sub items",
+					"type": "array",
+					"subType": "menu_item",
+					"input": ""
+				}
+			]
+		},
+		{
+			"objectType": "menu",
+			"derivedFrom": [
+				"component"
+			],
+			"members": [
+				{
+					"name": "items",
+					"title": "Sub items",
+					"type": "array",
+					"subType": "menu_item",
+					"input": ""
+				},
+				{
+					"name": "scroll_spy_selector",
+					"title": "ScrollSpy selector",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				}
+			]
+		},
+		{
+			"objectType": "jumbotron",
+			"derivedFrom": [
+				"component"
+			],
+			"members": [
+				{
+					"name": "text",
+					"title": "Text",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "image_url",
+					"title": "Image URL",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "button_title",
+					"title": "Button title",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "button_route",
+					"title": "Button route",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "button_route_params",
+					"title": "Button route params",
+					"type": "array",
+					"subType": "route_param",
+					"input": ""
+				},
+				{
+					"name": "button_class",
+					"title": "Button CSS class",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				}
+			]
+		},
+		{
+			"objectType": "form",
+			"derivedFrom": [
+				"component"
+			],
+			"members": [
+				{
+					"name": "mode",
+					"title": "Mode",
+					"type": "string",
+					"subType": "",
+					"input": "radio",
+					"choice_items": [
+						"insert",
+						"update",
+						"read_only"
+					]
+				},
+				{
+					"name": "submit_route",
+					"title": "Submit route",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "cancel_route",
+					"title": "Cancel route",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "close_route",
+					"title": "Close route",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "submit_route_params",
+					"title": "Submit route params",
+					"type": "array",
+					"subType": "route_param",
+					"input": ""
+				},
+				{
+					"name": "cancel_route_params",
+					"title": "Cancel route params",
+					"type": "array",
+					"subType": "route_param",
+					"input": ""
+				},
+				{
+					"name": "close_route_params",
+					"title": "Close route params",
+					"type": "array",
+					"subType": "route_param",
+					"input": ""
+				},
+				{
+					"name": "fields",
+					"title": "Fields",
+					"type": "array",
+					"subType": "field",
+					"input": ""
+				}
+			]
+		},
+		{
+			"objectType": "dataview",
+			"derivedFrom": [
+				"component"
+			],
+			"members": [
+				{
+					"name": "text_if_empty",
+					"title": "Text if empty",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "text_if_not_found",
+					"title": "Text if not found",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "insert_route",
+					"title": "Insert route",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "details_route",
+					"title": "Details route",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "edit_route",
+					"title": "Edit route",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "delete_route",
+					"title": "Delete route",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				},
+				{
+					"name": "insert_route_params",
+					"title": "Insert route params",
+					"type": "array",
+					"subType": "route_param",
+					"input": ""
+				},
+				{
+					"name": "details_route_params",
+					"title": "Details route params",
+					"type": "array",
+					"subType": "route_param",
+					"input": ""
+				},
+				{
+					"name": "edit_route_params",
+					"title": "Edit route params",
+					"type": "array",
+					"subType": "route_param",
+					"input": ""
+				},
+				{
+					"name": "delete_route_params",
+					"title": "Delete route params",
+					"type": "array",
+					"subType": "route_param",
+					"input": ""
+				},
+				{
+					"name": "views",
+					"title": "View styles",
+					"type": "array",
+					"subType": "string",
+					"input": "text"
+				},
+				{
+					"name": "fields",
+					"title": "Fields",
+					"type": "array",
+					"subType": "field",
+					"input": ""
+				}
+			]
+		},
+		{
+			"objectType": "markdown",
+			"derivedFrom": [
+				"component"
+			],
+			"members": [
+				{
+					"name": "source_file",
+					"title": "Source file",
+					"type": "string",
+					"subType": "",
+					"input": "text"
+				}
+			]
+		},
+		{
+			"objectType": "div",
+			"derivedFrom": [
+				"component"
+			],
+			"members": [
+			]
+		}
+	],
+	"version": 1
+}

@@ -1,11 +1,22 @@
 {
 	"application": {
-		"title": "Meteor Kitchen",
-		"description": "Application code generator for Meteor.js",
+		"title": "Meteor Generator",
+		"description": "Meteor application generator",
 		"template": "bootstrap",
 		"theme": "bootswatch-amelia",
 		"footer_text": "Meteor Kitchen &copy; 2014 Petar Korponaić All Rights Reserved",
 		"collections": [
+			{
+				"name": "metadata"
+			},
+			{
+				"name": "applications",
+				"ownerField": "ownerId",
+				"fields": [
+					{ "name": "name", "title": "Application name", "type": "string", "required": true }
+				],
+				"before_insert_source_file": "files/applications_before_insert.js"
+			}
 		],
 
 		"public_zone": {
@@ -169,6 +180,17 @@
 						}
 					]
 				},
+				{
+					"name": "examples",
+					"description": "Example applications created with meteor-kitchen",
+					"components": [
+						{
+							"name": "content",
+							"type": "markdown",
+							"source_file": "files/examples.md"
+						}
+					]
+				},
 				{ 
 					"name": "object_reference",
 					"description": "Object reference for Meteor.js code generator",
@@ -229,6 +251,7 @@
 					"items": [
 						{ "title": "Home", "route": "home_public" },
 						{ "title": "Getting started", "route": "getting_started" },
+						{ "title": "Examples", "route": "examples" },
 						{ "title": "Object Reference", "route": "object_reference" },
 						{ "title": "Contribute", "route": "contribute" }
 					]
@@ -248,7 +271,16 @@
 
 		"private_zone": {
 			"pages": [
-				{ "name": "home_private", "title": "Welcome {{userFullName}}!", "text": "This page is under construction." },
+				{ 
+					"name": "home_private", 
+					"title": "Welcome {{userFullName}}!", 
+					"text": "This page is under construction."
+				},
+                {
+                	"name": "applications",
+                	"title": "My applications",
+					"text": "This page is under construction."
+                },
 				{ "name": "logout", "template": "logout.html", "action_code": "App.logout();" }
 			],
 
@@ -258,7 +290,8 @@
 					"class": "nav navbar-nav",
 					"dest_selector": "#menu",
 					"items": [
-						{ "title": "Home", "route": "home_private" }
+						{ "title": "Home", "route": "home_private" },
+						{ "title": "My applications", "route": "applications" }
 					]
 				},
 				{
@@ -276,10 +309,21 @@
 			{ "name": "install", "source_file": "files/route_install.js" }
 		],
 
+		"server_startup_source_file": "files/startup_server.js",
+
 		"copy_files": [
 			{ "source": "files/start", "dest": "OUTPUT_DIR/start" },
 			{ "source": "files/settings.json", "dest": "SETTINGS_DIR/settings.json" },
-			{ "source": "files/cupcakes.svg", "dest": "PUBLIC_DIR/images/cupcakes.svg" }
+			{ "source": "files/cupcakes.svg", "dest": "PUBLIC_DIR/images/cupcakes.svg" },
+
+			{ "source": "files/example-minimal.png", "dest": "PUBLIC_DIR/images/example-minimal.png" },
+			{ "source": "files/example-subpages.png", "dest": "PUBLIC_DIR/images/example-subpages.png" },
+			{ "source": "files/example-dataview.png", "dest": "PUBLIC_DIR/images/example-dataview.png" },
+			{ "source": "files/example-accounts.png", "dest": "PUBLIC_DIR/images/example-accounts.png" },
+			{ "source": "files/example-plugins.png", "dest": "PUBLIC_DIR/images/example-plugins.png" },
+
+			{ "source": "files/metadata.json", "dest": "PRIVATE_DIR/metadata.json" }
+			{ "source": "../../install/install.sh", "dest": "PRIVATE_DIR/install.sh" }
 		],
 
 		"packages": {

@@ -11,6 +11,10 @@ collections | array of [collection](#collection) | Mongo database collections
 free\_zone | [zone](#zone) | Free zone (for application without user account system)
 public\_zone | [zone](#zone) | Public zone (for app with user account system). Pages inside this zone are accessible only for non-authenticeted users.
 private\_zone | [zone](#zone) | Private zone (for app with user account system). Pages inside this zone are accessible only for authenticeted users.
+server\_startup\_code | string | javascript code to execute at server startup
+client\_startup\_code | string | javascript code to execute at client startup
+server\_startup\_source\_file | string | File that contains javascript code to execute at server startup (relative to input file)
+client\_startup\_source\_file | string | File that contains javascript code to execute at client startup (relative to input file)
 server\_side\_routes | array of [server\_side\_route](#server\_side\_route) | List of server side routes.
 copy\_files | array of [file\_pair](#file\_pair) | List of files to copy into destination directory.
 packages | [packages](#packages) | List of optional meteor and meteorite packages
@@ -32,8 +36,13 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 		"menus": [
 		],
 		"pages": [
-		]
+		],
+		"force_yield_subpages": true
 	},
+	"server_startup_code": "",
+	"client_startup_code": "",
+	"server_startup_source_file": "",
+	"client_startup_source_file": "",
 	"server_side_routes": [
 	],
 	"copy_files": [
@@ -65,7 +74,8 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 		"menus": [
 		],
 		"pages": [
-		]
+		],
+		"force_yield_subpages": true
 	},
 	"private_zone": {
 		"class": "",
@@ -73,8 +83,13 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 		"menus": [
 		],
 		"pages": [
-		]
+		],
+		"force_yield_subpages": true
 	},
+	"server_startup_code": "",
+	"client_startup_code": "",
+	"server_startup_source_file": "",
+	"client_startup_source_file": "",
 	"server_side_routes": [
 	],
 	"copy_files": [
@@ -97,13 +112,25 @@ Property | Type | Description
 ---------|------|------------
 name | string | Object name
 fields | array of [field](#field) | Field list. Not mandatory, used by components such as form, dataview etc.
+before\_insert\_code | string | 
+before\_update\_code | string | 
+before\_remove\_code | string | 
+before\_insert\_source\_file | string | 
+before\_update\_source\_file | string | 
+before\_remove\_source\_file | string | 
 
 *Example:*
 ```
 {
 	"name": "",
 	"fields": [
-	]
+	],
+	"before_insert_code": "",
+	"before_update_code": "",
+	"before_remove_code": "",
+	"before_insert_source_file": "",
+	"before_update_source_file": "",
+	"before_remove_source_file": ""
 }
 ```
 
@@ -545,6 +572,7 @@ close\_route\_params | array of [route\_param](#route\_param) | Params to be pas
 roles | array of string | User roles allowed to access this page
 menus | array of [menu](#menu) | Menus to be inserted into this page
 pages | array of [page](#page) | Subpages
+force\_yield\_subpages | bool | Subpages will be rendered in "subcontent" area even if this page doesn't contains menu pointing to subpages
 
 *Example:*
 ```
@@ -575,7 +603,8 @@ pages | array of [page](#page) | Subpages
 	"menus": [
 	],
 	"pages": [
-	]
+	],
+	"force_yield_subpages": true
 }
 ```
 
@@ -645,6 +674,7 @@ template\_rendered\_code | string | Code to be executed once template is rendere
 description | string | meta description
 menus | array of [menu](#menu) | Menus to be inserted into this page
 pages | array of [page](#page) | Subpages
+force\_yield\_subpages | bool | Subpages will be rendered in "subcontent" area even if this page doesn't contains menu pointing to subpages
 
 *Example:*
 ```
@@ -654,7 +684,8 @@ pages | array of [page](#page) | Subpages
 	"menus": [
 	],
 	"pages": [
-	]
+	],
+	"force_yield_subpages": true
 }
 ```
 
