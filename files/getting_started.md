@@ -8,7 +8,7 @@ Open your terminal and type:
 curl http://www.meteorkitchen.com/install | /bin/sh
 ```
 
-You **need** to have [Meteor](https://www.meteor.com) and [Meteorite](https://atmospherejs.com/docs/installing) installed.
+You **need** to have <a href="https://www.meteor.com" target="_blank">Meteor</a> and <a href="https://atmospherejs.com/docs/installing" target="_blank">Meteorite</a> installed.
 
 
 ### Windows
@@ -37,7 +37,16 @@ or, if you prefer **CoffeeScript**:
 meteor-kitchen <input_file.json> <output_directory> --coffee
 ```
 
-With the `--coffee` option the generator will convert all js files to coffee. For this, you need the [js2coffee](http://js2coffee.org/) converter to be installed.
+With the `--coffee` option the generator will convert all js files to coffee. For this, you need the <a href="http://js2coffee.org/" target="_blank">js2coffee</a> converter to be installed.
+
+
+For <a href="http://jade-lang.com/" target="_blank">Jade</a> lovers, use `--jade` switch and generator will convert html files to jade:
+
+```
+meteor-kitchen <input_file.json> <output_directory> --jade
+```
+
+Jade converter is experimental (I wrote it in rush). It's not 100% syntaticaly clean and will be improved in future. At least, it's super fast (long live good old friend: C++).
 
 
 Input file
@@ -141,9 +150,9 @@ meteor-kitchen example-minimal.json ./example-minimal
 
 That will produce a simple application with a navbar and two pages. 
 
-You can see a live example [here](http://generator-minimal.meteor.com)
+You can see a live example <a href="http://generator-minimal.meteor.com" target="_blank">here</a>
 
-**Note:** You can find the source code for all examples [here](https://github.com/perak/kitchen-examples)
+**Note:** You can find the source code for all examples <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>
 
 ###Here is the pattern for the input file structure:
 
@@ -246,17 +255,17 @@ meteor-kitchen --example-subpages ./example-subpages
 
 This will produce an application with pages and subpages. 
 
-You can see a live example [here](http://generator-subpages.meteor.com)
+You can see a live example <a href="http://generator-subpages.meteor.com" target="_blank">here</a>
 
-**Note:** The source code for all examples caan be found [here](https://github.com/perak/kitchen-examples)
+**Note:** The source code for all examples caan be found <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>
 
 
 Visual Themes
 =============
 
-Currently, the generator will produce markup compatible with [bootstrap](http://getbootstrap.com) and uses the [bootstrap-less](https://github.com/simison/bootstrap3-less) package from atmosphere.
+Currently, the generator will produce markup compatible with <a href="http://getbootstrap.com" target="_blank">bootstrap</a> and uses the <a href="https://github.com/simison/bootstrap3-less" target="_blank">bootstrap-less</a> package from atmosphere.
 
-Also, it comes with [bootswatch](http://bootswatch.com/) visual themes.
+Also, it comes with <a href="http://bootswatch.com/" target="_blank">bootswatch</a> visual themes.
 
 You can easily choose a theme for your application by adding the "theme" property:
 
@@ -279,7 +288,7 @@ You can easily choose a theme for your application by adding the "theme" propert
 	}
 }
 ```
-In this example, the application will use "bootswatch-amelia" theme. You can see a list of bootswatch themes [here](http://bootswatch.com/)
+In this example, the application will use "bootswatch-amelia" theme. You can see a list of bootswatch themes <a href="http://bootswatch.com/" target="_blank">here</a>
 
 
 Components
@@ -350,7 +359,7 @@ In this example jumbotron will be shown at home page. Properties `"title"`, `"te
 
 ### Markdown component
 
-The easiest way to add formated content into pages is to write text with [markdown](http://daringfireball.net/projects/markdown/), save it into separate a file and then insert thee component of type `"markdown"` into your page.
+The easiest way to add formated content into pages is to write text with <a href="http://daringfireball.net/projects/markdown/" target="_blank">markdown</a>, save it into separate a file and then insert thee component of type `"markdown"` into your page.
 
 A page object with the `markdown` component should look like this:
 
@@ -555,9 +564,9 @@ Some of `"dataview"` component properties are:
 
 Each page route can receive params such as document `_id`. More about that later.
 
-You can see  **live example** (also with form components) [here](http://generator-dataview.meteor.com)
+You can see  **live example** (also with form components) <a href="http://generator-dataview.meteor.com" target="_blank">here</a>
 
-**Note:** The source code for all examples can be found [here](https://github.com/perak/kitchen-examples)
+**Note:** The source code for all examples can be found <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>
 
 
 Form Component
@@ -689,9 +698,9 @@ Now look:
 
 Form has defined query `"customers_empty"`: this is insert form and we don't need any data from this query - `query` is used just to point generator on which collection to use for insert.
 
-You can see **live example** [here] (http://generator-dataview.meteor.com)
+You can see **live example** <a href="http://generator-dataview.meteor.com" target="_blank">here</a>
 
-**Note:** Source code for all examples you can find [here](https://github.com/perak/kitchen-examples)
+**Note:** Source code for all examples you can find <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>
 
 
 Route params
@@ -986,9 +995,9 @@ Method `setOutput()` will pass "html" and "js" strings to generator and those wi
 This is a really trivial example that shows how to write custom component. Note that you can add any custom properties to component object inside input file and use them inside plugin.
 
 
-You can see a live application that uses two example plugins [here](http://generator-plugins.meteor.com)
+You can see a live application that uses two example plugins <a href="http://generator-plugins.meteor.com" target="_blank">here</a>
 
-**Note:** Source code for all examples you can find [here](https://github.com/perak/kitchen-examples )
+**Note:** Source code for all examples you can find <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>
 
 
 User Roles

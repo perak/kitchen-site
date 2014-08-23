@@ -13,6 +13,8 @@ Contributors
 
 <a href="https://github.com/perak" target="_blank"><b>Petar Korponaić</b></a> - original author
 
+<a href="https://github.com/jimbog" target="_blank"><b>Jimmy Garzon</b></a> - improving docs
+
 <a href="https://github.com/npvn" target="_blank"><b>Phúc Nguyễn</b></a> - improving docs
 
 <a href="#" target="_blank"><b>Daniel Zec</b></a> - super cool logo design
