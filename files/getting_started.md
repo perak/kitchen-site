@@ -8,18 +8,18 @@ Open your terminal and type:
 curl http://www.meteorkitchen.com/install | /bin/sh
 ```
 
-You also need <a href="https://www.meteor.com" target="_blank">Meteor</a> and <a href="https://atmospherejs.com/docs/installing" target="_blank">Meteorite</a> package manager.
+You **need** to have [Meteor](https://www.meteor.com) and [Meteorite](https://atmospherejs.com/docs/installing) installed.
 
 
 ### Windows
-Meteor kitchen uses "meteorite" package manager which is not yet available for Windows. 
-However, you can download generator for Windows <a href="/install/install_win.zip" target="_blank">here.</a>
+Meteor kitchen uses the "meteorite" package manager which is not yet available for Windows. 
+However, you can download the meteor-kitchen generator for Windows <a href="/install/install_win.zip" target="_blank">here.</a>
 
 
 CLI
 ===
 
-meteor-kitchen comes with command line interface only (**GUI** is under construction). You can run generator by typing:
+meteor-kitchen comes with command line interface only (**GUI** is under construction). You can run the generator by typing:
 
 ```
 meteor-kitchen
@@ -37,13 +37,13 @@ or, if you prefer **CoffeeScript**:
 meteor-kitchen <input_file.json> <output_directory> --coffee
 ```
 
-With `--coffee` option, generator will convert all js files to coffee. You need <a href="http://js2coffee.org/" target="_blank">js2coffee</a> converter to be installed.
+With the `--coffee` option the generator will convert all js files to coffee. For this, you need the [js2coffee](http://js2coffee.org/) converter to be installed.
 
 
 Input file
 ===========
 
-Input is a JSON file containing application description. You can start with one of the minimal templates below, depending on whether you need user account system in your app or not:
+The input is just a JSON file containing the application's description. You can start with one of the minimal templates below, depending on whether you need a user account system in your app or not:
 
 **Application without user account system**:
 
@@ -96,10 +96,10 @@ Or:
 }
 ```
 
-As you can see, **application** object is in root and contains **free\_zone** or both **public\_zone** and **private\_zone**:
+As you can see, the **application** object is at the root and contains **free\_zone** or both **public\_zone** and **private\_zone**:
 
-- If application object has only **free\_zone** then generator will create code without user account system and all pages will be accessible to users.
-- If application object has both **public\_zone** and **private\_zone**, pages under **public\_zone** will be accessible only for non-authenticated users, and pages under **private\_zone** will be accessible only for authenticated users.
+- If the application object has only **free\_zone** then the generator will create code without a user account system and all pages will be accessible to all users.
+- If the application object has both **public\_zone** and **private\_zone**, pages under **public\_zone** will be accessible only for non-authenticated users, and pages under **private\_zone** will be accessible only for authenticated users.
 
 Each zone has **pages** and **menus** arrays containing descriptions of top-level pages and menus under that zone.
  
@@ -139,25 +139,32 @@ Copy & paste it into your text editor, save it as "example-minimal.json" and run
 meteor-kitchen example-minimal.json ./example-minimal
 ```
 
-That will produce a simple application with navbar and two pages. 
+That will produce a simple application with a navbar and two pages. 
 
-You can see live example <a href="http://generator-minimal.meteor.com" target="_blank">here</a>. 
+You can see a live example [here](http://generator-minimal.meteor.com)
 
-**Note:** Source code for all examples you can find <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>.
+**Note:** You can find the source code for all examples [here](https://github.com/perak/kitchen-examples)
 
-Notice a pattern in input file structure: **page** object has **name** and **title** properties. If a page is named "home" in description file, generator will produce a template named "Home" along with the following files: "home.html", "home.js", "home\_controller.js".
-In short, **filenames and route names are always in lower-case with underscores, template name is always in camel-case with capitalized first letter.**
+###Here is the pattern for the input file structure:
 
-**menu** object has **name**, **class** and **items** properties. Each component must have **name** (menu is component, more about components later). 
-Property **class** will be applied to menu's `<ul>` html element.
-Each menu item has **title** and **route**. Property **title** is menu's label, **route** is name of the route you want this menu item to link to.
+* The **page** object has **name** and **title** properties. If a page is named "home" in the description file, the generator will produce a template named "Home" along with the following files: `"home.html"`, `"home.js"`, `"home\_controller.js"`.
+
+* **filenames** and **route names** are always written in `snake_case` (lower_case with underscores)
+
+* **template names** are always in `CamelCase` with the first letter capitalized.
+
+* The **menu** object has **name**, **class** and **items** properties. Each component must have a **name** property (menu is a component, more about components later).
+
+* The property **class** will be applied to the menu's `<ul>` html element.
+
+* Each menu item has **title** and **route** properties. The **title** property is the menu's label, while the **route** property is the name of the route you want this menu item to link to.
 
 
 Subpages
 ========
 
-Each page can have subpages: e.g. top level page can have sidebar or tab-menu with links to subpages. 
-Also, subpage can have subpages and so on - to the unlimited depth.
+Each page can have subpages: e.g. top level page can have sidebar or tab-menu with links to subpages.
+Also, a subpage can have subpages and so on - to the unlimited depth.
 
 To produce this, add **pages** array to any **page** object - in the same way as in **zone** objects:
 
@@ -184,8 +191,9 @@ To produce this, add **pages** array to any **page** object - in the same way as
 }
 ...
 ```
-Subpages will have route name constructed from parent page's route name and subpage name separated with dot. 
-In previous example:
+Subpages will have the route name constructed from its parent's page route name and subpage name separated with dot. 
+
+In the previous example:
 
 - "home" route name is "home"
 - "subpage\_1" route name is "home.subpage\_1"
@@ -230,7 +238,7 @@ Now we can have new menu items linking to the newly-created subpages:
 ```
 
 ### Subpages example
-Generator has several built-in examples. You can run:
+The generator has several built-in examples. To try them out, you just run:
 
 ```
 meteor-kitchen --example-subpages ./example-subpages
@@ -238,18 +246,19 @@ meteor-kitchen --example-subpages ./example-subpages
 
 This will produce an application with pages and subpages. 
 
-You can see live example <a href="http://generator-subpages.meteor.com" target="_blank">here</a>.
+You can see a live example [here](http://generator-subpages.meteor.com)
 
-**Note:** Source code for all examples you can find <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>.
+**Note:** The source code for all examples caan be found [here](https://github.com/perak/kitchen-examples)
 
 
 Visual Themes
 =============
 
-Currently, generator will produce markup compatible with <a href="http://getbootstrap.com" target="_blank">bootstrap</a> and uses <a href="https://github.com/simison/bootstrap3-less" target="_blank">bootstrap-less</a> package from atmosphere.
-Also, it comes with <a href="http://bootswatch.com/" target="_blank">bootswatch</a> visual themes.
+Currently, the generator will produce markup compatible with [bootstrap](http://getbootstrap.com) and uses the [bootstrap-less](https://github.com/simison/bootstrap3-less) package from atmosphere.
 
-You can easy choose your application theme by adding "theme" property:
+Also, it comes with [bootswatch](http://bootswatch.com/) visual themes.
+
+You can easily choose a theme for your application by adding the "theme" property:
 
 ```
 {
@@ -270,14 +279,15 @@ You can easy choose your application theme by adding "theme" property:
 	}
 }
 ```
-In this example, application will use "bootswatch-amelia" theme. You can see list of bootswatch themes <a href="http://bootswatch.com/" target="_blank">here</a>.
+In this example, the application will use "bootswatch-amelia" theme. You can see a list of bootswatch themes [here](http://bootswatch.com/)
 
 
 Components
 ==========
 
-Application with empty pages is not very useful :). You can add Components (predefined and customizable visual elements which can be inserted into pages). They are building blocks of your application.
-Generator comes with several built-in components. Also, you can write your own components (which we call "plugins". More about plugins later).
+An application with empty pages is not very useful :). That's why Meteor kitchen allows you to ad **Components**. Which are predefined and customizable visual elements that can be inserted into pages. They are building the blocks of your application.
+
+The generator comes with several built-in components. And you can also write **your own** components (which we call "plugins". More about plugins later).
 
 You can insert components into pages by adding **components** array into any **page** object:
 ```
@@ -290,14 +300,14 @@ You can insert components into pages by adding **components** array into any **p
 }
 ```
 
-List of built-in components currently implemented into generator:
+The list of built-in components currently implemented into generator:
 
-- **jumbotron** - cool big heading text with button (usually found in home pages)
-- **markdown** - styled text written in <a href="http://daringfireball.net/projects/markdown/" target="_blank">markdown</a>
-- **dataview** - shows data from collections (with search and sort functions)
-- **form** - for inserting/updating data (with validations)
+- `jumbotron` - cool big heading text with button (usually found in home pages)
+- `markdown` - styled text written in <a href="http://daringfireball.net/projects/markdown/" target="_blank">markdown</a>
+- `dataview` - shows data from collections (with search and sort functions)
+- `form` - for inserting/updating data (with validations)
 
-Minimal structure of any **component** object is:
+The minimal structure of any **component** object is:
 
 ```
 {
@@ -308,12 +318,12 @@ Minimal structure of any **component** object is:
 }
 ```
 
-- **name** - used by generator to construct component template name: parent template name + component name (will be in capitalized camel-case).
-- **type** - used by generator to determine component type. If type is not one of the built-in component types, generator will try to find and execute a plugin with that name (more about plugins later).
+- `name` - used by generator to construct component template name: parent template name + component name (will be in capitalized camel-case).
+- `type` - used by the generator to determine the component's type. If type is not one of the built-in component types, the generator will try to find and execute a plugin with that name (more about plugins later).
 
 ### Jumbotron component
 
-Page object with jumbotron component should look like this:
+A page object with a `jumbotron` component should look like this:
 
 ```
 ...
@@ -336,13 +346,13 @@ Page object with jumbotron component should look like this:
 ...
 ```
 
-In this example jumbotron will be shown at home page. Properties "title", "text", "button\_title" and "button\_route" are specific to component of type "jumbotron".
+In this example jumbotron will be shown at home page. Properties `"title"`, `"text"`, `"button\_title"` and `"button\_route"` are specific to the component of type `"jumbotron"`.
 
 ### Markdown component
 
-Easiest way to add formated content into pages is to write text with <a href="http://daringfireball.net/projects/markdown/" target="_blank">markdown</a> syntax, save it into separate file and then insert component of type "markdown" into your page.
+The easiest way to add formated content into pages is to write text with [markdown](http://daringfireball.net/projects/markdown/), save it into separate a file and then insert thee component of type `"markdown"` into your page.
 
-Page object with markdown component should look like this:
+A page object with the `markdown` component should look like this:
 
 ```
 ...
@@ -361,13 +371,13 @@ Page object with markdown component should look like this:
 }
 ...
 ```
-Property "source\_file" is path to markdown file (relative to input JSON file).
+Property `"source\_file"` is thee path to the markdown file (relative to the input JSON file).
 
 ### Div component
 
-Component of type "div" is just a simple html div tag that will be inserted into your page (or component).
+The component of type `"div"` is just a simple html div tag that will be inserted into your page (or component).
 
-Following example shows how to add bootstrap row with two columns into page:
+The following example shows how to add a bootstrap row with two columns into a page:
 
 ```
 ...
@@ -402,7 +412,7 @@ Following example shows how to add bootstrap row with two columns into page:
 ...
 ```
 
-Before we continue with components **dataview** and **form**, let's add some mongo collections into your program:
+Before we continue with components `dataview` and `form`, let's add some **mongo** collections into your program:
 
 Collections
 ===========
@@ -446,24 +456,24 @@ Also, you can define collection fields:
 }
 ```
 
-Fields are used by components such as **form** and **dataview** (generator will "know" what input fields to generate in forms, what columns to show in dataview etc.).
+Fields are used by components such as `form` and `dataview` (generator will "know" what input fields to generate in forms, what columns to show in dataview etc.).
 
-- **name** - field name
-- **title** - field title shown in form labels, table headers etc.
-- **required** - used in form validations
-- **default** - default value in insert forms
-- **type** - field datatype - used in form validations
+- `name` - field name
+- `title` - field title shown in form labels, table headers etc.
+- `required` - used in form validations
+- `default` - default value in insert forms
+- `type` - field datatype - used in form validations
 
 
-**Note** that defining fields at collection level is not mandatory - fields can be set/overriden inside **form** and **dataview** components.
+**Note** that defining fields at collection level is not mandatory - fields can be set/overriden inside the `form` and `dataview` components.
 
 
 Dataview Component
 ==================
 
-Component of type **dataview** is used to show data from database inside table with search and sort functions (other view styles such as "list" and "gallery" are under construction).
+The component of type `dataview` is used to show data from the database's collection with search and sort functions (other view styles such as "list" and "gallery" are under construction).
 
-A minimal application with **dataview** component should look like this:
+A minimal application with `dataview` component should look like this:
 
 ```
 {
@@ -533,27 +543,27 @@ A minimal application with **dataview** component should look like this:
 }
 ```
 
-In this example we have collection "customers" and component of type "dataview" inside "home" page.
+In this example we have collection `"customers"` and component of type `"dataview"` inside `"home"` page.
 
-Some of "dataview" component properties are:
+Some of `"dataview"` component properties are:
 
-- **text\_if\_empty** - text to be shown instead of empty table if collection is empty.
-- **query** - query used to filter data from collection. Must have "name", "collection" (existing collection name) and "filter" (mongo query being passed as param to `collection.find()`).
-- **insert\_route** - route name of existing page (usually containing form component) which will be opened when user clicks "insert" button.
-- **edit\_route** - route name of existing page (usually containing form component) which will be opened when user clicks "edit" icon.
-- **details\_route** - route name of existing page which will be opened when user clicks item.
+- `text\_if\_empty` - text to be shown instead of empty table if collection is empty.
+- `query` - query used to filter data from collection. Must have "name", "collection" (existing collection name) and "filter" (mongo query being passed as param to `collection.find()`).
+- `insert\_route` - route name of existing page (usually containing form component) which will be opened when user clicks "insert" button.
+- `edit\_route` - route name of existing page (usually containing form component) which will be opened when user clicks "edit" icon.
+- `details\_route` - route name of existing page which will be opened when user clicks item.
 
-Each page route can receive params such as document _id. More about that later.
+Each page route can receive params such as document `_id`. More about that later.
 
-You can see **live example** (also with form components) <a href="http://generator-dataview.meteor.com" target="_blank">here</a>.
+You can see  **live example** (also with form components) [here](http://generator-dataview.meteor.com)
 
-**Note:** Source code for all examples you can find <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>.
+**Note:** The source code for all examples can be found [here](https://github.com/perak/kitchen-examples)
 
 
 Form Component
 ==============
 
-Form component has following structure:
+The `form` component has the following structure:
 
 ```
 {
@@ -574,13 +584,13 @@ Form component has following structure:
 }
 ```
 
-- **mode** - can be "insert", "update" or "read\_only"
-- **query** - query used in "update" and "read\_only" mode forms to filter particular document from collection to be modified/displayed
-- **submit\_route** - route name of existing page to be opened when user hits "submit" button
-- **cancel\_route** - route name of existing page to be opened when user hits "cancel" button
+- `mode` - `"insert"`, `"update"` or `"read\_only"`
+- `query` - query used in `"update"` and `"read\_only"` mode forms to filter particular document from collection to be modified/displayed
+- `submit\_route` - route name of existing page to be opened when user hits "submit" button
+- `cancel\_route` - route name of existing page to be opened when user hits "cancel" button
 
-**Common usage** of form component is to put subpage into page containing **dataview** component, add **form** into that subpage and then in dataview component specify "insert\_route", "edit\_route" or "details\_route" to point to subpage containing form.
-To be more clear let's see example application with dataview and insert form:
+**Common usage** of form component is to put subpage into page containing `dataview` component, add `form` into that subpage and then in dataview component specify `"insert\_route"`, `"edit\_route"` or `"details\_route"` to point to subpage containing form.
+To make it more clear let's see an example application with dataview and insert form:
 
 ```
 {
@@ -669,19 +679,19 @@ To be more clear let's see example application with dataview and insert form:
 }
 ```
 
-In this example we have page named "home" with **dataview** component and subpage named "insert". 
-Subpage "insert" has **form** component named "insert_form".
+In this example we have a page named `"home"` with a `dataview` component and subpage named `"insert"`. 
+Subpage `"insert"` has `form` component named `"insert_form"`.
 
 Now look:
 
-- **dataview** component: "insert_route" property is set to "home.insert" (subpage containing form).
-- **form** component: "submit\_route" and "cancel\_route" properties are set to "home" (parent page).
+- `dataview` component: `"insert_route"` property is set to `"home.insert"` (subpage containing form).
+- `form` component: `"submit\_route"` and `"cancel\_route"` properties are set to `"home"` (parent page).
 
-Form has defined query "customers_empty": this is insert form and we don't need any data from this query - query is used just to point generator on which collection to use for insert.
+Form has defined query `"customers_empty"`: this is insert form and we don't need any data from this query - `query` is used just to point generator on which collection to use for insert.
 
-You can see **live example** <a href="http://generator-dataview.meteor.com" target="_blank">here</a>.
+You can see **live example** [here] (http://generator-dataview.meteor.com)
 
-**Note:** Source code for all examples you can find <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>.
+**Note:** Source code for all examples you can find [here](https://github.com/perak/kitchen-examples)
 
 
 Route params
@@ -689,9 +699,9 @@ Route params
 
 Sometimes you need to pass route parameters via page URL. For example, let's say we have a page for listing all customers.
 On this page you want to implement an Edit button for each customer, which points to something like:
-`/customers/edit/[customer_id_here]`
+`/customers/edit/<customer_id_here>`
 
-To do this, first let's add "route\_params" property to your **page** object:
+To do this, first let's add the `"route\_params"` property to your `page` object:
 
 ```
 ...
@@ -716,11 +726,11 @@ To do this, first let's add "route\_params" property to your **page** object:
 }
 ...
 ```
-**Note:** property "route\_params" is array of strings.
+**Note:** property `"route\_params"` is an array of strings.
 
-In this example **page** object has a param named "customerId" and we are using it inside **form** component's **query** filter: `:customerId`.
+In this example the `page` object has a param named `"customerId"` and we are using it inside `form` component's `query` filter: `:customerId`.
 
-Now, let's pass this param to our **dataview** component via "edit\_route" and "edit\_route\_params" properties:
+Now, let's pass this param to our `dataview` component via `"edit\_route"` and `"edit\_route\_params"` properties:
 
 ```
 {
@@ -745,13 +755,13 @@ Now, let's pass this param to our **dataview** component via "edit\_route" and "
 
 ```
 
-Property "edit\_route\_params" is list of parameters to be passed to "edit\_route":
+Property` "edit\_route\_params"` is a list of parameters to be passed to `"edit\_route"`:
 
-- **name** is parameter name
-- **value** is parameter value
+- `name` is parameter name
+- `value` is parameter value
 
 
-Here is a full example with "insert" and "update" forms:
+Here is a full example with `"insert"` and `"update"` forms:
 
 ```
 {
@@ -864,7 +874,7 @@ Here is a full example with "insert" and "update" forms:
 Server Side Routes
 ==================
 
-You can add array "server\_side\_routes" to your **application** object and generator will add router.map and route controllers:
+You can add array `"server\_side\_routes"` to your `application` object and the generator will add router.map and route controllers:
 
 ```
 {
@@ -887,23 +897,23 @@ You can add array "server\_side\_routes" to your **application** object and gene
 	]
 }
 ```
-- **name** is route name. Example: "api.show.some_data".
-- **path** is route path. Example: "/api/show/some_data". If you leave this blank, path will be automatically created from route name.
-- **source_file** is path to .js file (relative to input JSON) which will be inserted into controller **action** function. Not mandatory.
+- `name` is route name. Example: `"api.show.some_data"`.
+- `path` is route path. Example: `"/api/show/some_data"`. If you leave this blank, path will be automatically created from route name.
+- `source_file` is the path to the .js file (relative to input JSON) which will be inserted into controller `action` function (not mandatory).
 
 
 Plugins
 =======
 
-In addition with built-in components (such as "form", "dataview" etc.) you can write your own components called "plugins" using javascript (node.js).
+In addition with built-in components (such as `"form"`, `"dataview"` etc.) you can write your own components called **"plugins"** using javascript (node.js).
 
-Plugins are stored in "plugins" subdirectory inside meteor-kitchen installation dir. By default it is located in:
+Plugins are stored in the `"plugins"` subdirectory inside the meteor-kitchen installation dir. By default it is located in:
 
 ```
 ~/.meteor-kitchen/plugins/
 ```
 
-You can create subdirectory there and name it as you wish - directory name will be used as component type.
+You can create a subdirectory there and name it as you wish - directory name will be used as component type.
 
 Meteor kitchen comes with two example plugins. Please navigate to first example plugin directory:
 
@@ -913,8 +923,8 @@ cd ~/.meteor-kitchen/plugins/example1/
 
 Directory contains two files: 
 
-- **plugin.js** is javascript code that is passed to node.js and executed. It should create html and js that generator will insert into page.
-- **plugin.json** is JSON file with plugin settings: here you can specify which meteor and mrt packages your plugin is using.
+- `plugin.js` is javascript code that is passed to node.js and executed. It should create html and js that generator will insert into page.
+- `plugin.json` is JSON file with plugin settings: here you can specify which meteor and mrt packages your plugin is using.
 
 You can use plugin in your application by adding component into page and set component type to the same name as plugin directory:
 
@@ -933,12 +943,12 @@ You can use plugin in your application by adding component into page and set com
 }
 ...
 ```
-Component type is set to "example1". This type is unknown to generator and it will search plugins directory for subdirectory named "example1" that contains file named "plugin.js". 
-If file "plugins/example1/plugin.js" is found, generator will pass that file to "node.js" and file is executed. File will produce html and js content that will be inserted into page.
+Component type is set to `"example1"`. This type is unknown to generator and it will search plugins directory for subdirectory named `"example1"` that contains file named `"plugin.js"`. 
+If a file `"plugins/example1/plugin.js"` is found, the generator will pass that file to "node.js" and file is executed. File will produce html and js content that will be inserted into page.
 
-Our "example1" plugin.js file contains following code:
+Our "example1" `plugin.js` file contains following code:
 
-```
+```javascript
 var kitchen = require("meteor-kitchen");
 
 // read input
@@ -954,12 +964,12 @@ component.js = "";
 kitchen.setOutput(component);
 ```
 
-Object "kitchen" is bridge between generator and plugin code. It has two methods:
+Object "kitchen" is the bridge between generator and plugin code. It has two methods:
 
-- **getInput**
-- **setOutput**
+- `getInput`
+- `setOutput`
 
-Method **getInput()** returns component description - javascript object extracted from input file, in our example that is:
+Method `getInput()` returns component description - javascript object extracted from input file, in our example that is:
 
 ```
 {
@@ -969,16 +979,16 @@ Method **getInput()** returns component description - javascript object extracte
 	"js": ""
 }
 ```
-Properties "html", and "js" are automatically added by generator. Those are output strings that our plugin code should fill with content. 
+Properties `"html"`, and `"js"` are automatically added by generator. Those are output strings that our plugin code should fill with content. 
 
-Method **setOutput()** will pass "html" and "js" strings to generator and those will be inserted into page. 
+Method `setOutput()` will pass "html" and "js" strings to generator and those will be inserted into page. 
 
-This is really trivial example that shows how to write custom component. Note that you can add any custom properties to component object inside input file and use them inside plugin.
+This is a really trivial example that shows how to write custom component. Note that you can add any custom properties to component object inside input file and use them inside plugin.
 
 
-You can see live application that uses two example plugins <a href="http://generator-plugins.meteor.com" target="_blank">here</a>.
+You can see a live application that uses two example plugins [here](http://generator-plugins.meteor.com)
 
-**Note:** Source code for all examples you can find <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>.
+**Note:** Source code for all examples you can find [here](https://github.com/perak/kitchen-examples )
 
 
 User Roles
