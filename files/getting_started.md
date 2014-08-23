@@ -948,7 +948,7 @@ If a file `"plugins/example1/plugin.js"` is found, the generator will pass that 
 
 Our "example1" `plugin.js` file contains following code:
 
-```
+```javascript
 var kitchen = require("meteor-kitchen");
 
 // read input
