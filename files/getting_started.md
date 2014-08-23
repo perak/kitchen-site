@@ -156,11 +156,11 @@ You can see a live example <a href="http://generator-minimal.meteor.com" target=
 
 ###Here is the pattern for the input file structure:
 
-* The **page** object has **name** and **title** properties. If a page is named "home" in the description file, the generator will produce a template named "Home" along with the following files: `"home.html"`, `"home.js"`, `"home\_controller.js"`.
+* The **page** object has **name** and **title** properties. If a page is named "home" in the description file, the generator will produce a template named "Home" along with the following files: `home.html`, `home.js`, `home_controller.js`.
 
-* **filenames** and **route names** are always written in `snake_case` (lower_case with underscores)
+* **filenames** and **route names** are always written in **snake_case** (lower_case with underscores)
 
-* **template names** are always in `CamelCase` with the first letter capitalized.
+* **template names** are always in **CamelCase** with the first letter capitalized.
 
 * The **menu** object has **name**, **class** and **items** properties. Each component must have a **name** property (menu is a component, more about components later).
 
@@ -355,11 +355,11 @@ A page object with a `jumbotron` component should look like this:
 ...
 ```
 
-In this example jumbotron will be shown at home page. Properties `"title"`, `"text"`, `"button\_title"` and `"button\_route"` are specific to the component of type `"jumbotron"`.
+In this example jumbotron will be shown at home page. Properties `title`, `text`, `button_title` and `button_route` are specific to the component of type `jumbotron`.
 
 ### Markdown component
 
-The easiest way to add formated content into pages is to write text with <a href="http://daringfireball.net/projects/markdown/" target="_blank">markdown</a>, save it into separate a file and then insert thee component of type `"markdown"` into your page.
+The easiest way to add formated content into pages is to write text with <a href="http://daringfireball.net/projects/markdown/" target="_blank">markdown</a>, save it into separate a file and then insert thee component of type `markdown` into your page.
 
 A page object with the `markdown` component should look like this:
 
@@ -380,11 +380,11 @@ A page object with the `markdown` component should look like this:
 }
 ...
 ```
-Property `"source\_file"` is thee path to the markdown file (relative to the input JSON file).
+Property `source_file` is thee path to the markdown file (relative to the input JSON file).
 
 ### Div component
 
-The component of type `"div"` is just a simple html div tag that will be inserted into your page (or component).
+The component of type `div` is just a simple html div tag that will be inserted into your page (or component).
 
 The following example shows how to add a bootstrap row with two columns into a page:
 
@@ -552,15 +552,15 @@ A minimal application with `dataview` component should look like this:
 }
 ```
 
-In this example we have collection `"customers"` and component of type `"dataview"` inside `"home"` page.
+In this example we have collection `customers` and component of type `dataview` inside `home` page.
 
-Some of `"dataview"` component properties are:
+Some of `dataview` component properties are:
 
-- `text\_if\_empty` - text to be shown instead of empty table if collection is empty.
+- `text_if_empty` - text to be shown instead of empty table if collection is empty.
 - `query` - query used to filter data from collection. Must have "name", "collection" (existing collection name) and "filter" (mongo query being passed as param to `collection.find()`).
-- `insert\_route` - route name of existing page (usually containing form component) which will be opened when user clicks "insert" button.
-- `edit\_route` - route name of existing page (usually containing form component) which will be opened when user clicks "edit" icon.
-- `details\_route` - route name of existing page which will be opened when user clicks item.
+- `insert_route` - route name of existing page (usually containing form component) which will be opened when user clicks "insert" button.
+- `edit_route` - route name of existing page (usually containing form component) which will be opened when user clicks "edit" icon.
+- `details_route` - route name of existing page which will be opened when user clicks item.
 
 Each page route can receive params such as document `_id`. More about that later.
 
@@ -593,12 +593,12 @@ The `form` component has the following structure:
 }
 ```
 
-- `mode` - `"insert"`, `"update"` or `"read\_only"`
-- `query` - query used in `"update"` and `"read\_only"` mode forms to filter particular document from collection to be modified/displayed
-- `submit\_route` - route name of existing page to be opened when user hits "submit" button
-- `cancel\_route` - route name of existing page to be opened when user hits "cancel" button
+- `mode` - `insert`, `update` or `read_only`
+- `query` - query used in `update` and `read_only` mode forms to filter particular document from collection to be modified/displayed
+- `submit_route` - route name of existing page to be opened when user hits "submit" button
+- `cancel_route` - route name of existing page to be opened when user hits "cancel" button
 
-**Common usage** of form component is to put subpage into page containing `dataview` component, add `form` into that subpage and then in dataview component specify `"insert\_route"`, `"edit\_route"` or `"details\_route"` to point to subpage containing form.
+**Common usage** of form component is to put subpage into page containing `dataview` component, add `form` into that subpage and then in dataview component specify `insert_route`, `edit_route` or `details_route` to point to subpage containing form.
 To make it more clear let's see an example application with dataview and insert form:
 
 ```
@@ -688,15 +688,15 @@ To make it more clear let's see an example application with dataview and insert 
 }
 ```
 
-In this example we have a page named `"home"` with a `dataview` component and subpage named `"insert"`. 
-Subpage `"insert"` has `form` component named `"insert_form"`.
+In this example we have a page named `home` with a `dataview` component and subpage named `insert`. 
+Subpage `insert` has `form` component named `insert_form`.
 
 Now look:
 
-- `dataview` component: `"insert_route"` property is set to `"home.insert"` (subpage containing form).
-- `form` component: `"submit\_route"` and `"cancel\_route"` properties are set to `"home"` (parent page).
+- `dataview` component: `insert_route` property is set to `home.insert` (subpage containing form).
+- `form` component: `submit_route` and `cancel_route` properties are set to `home` (parent page).
 
-Form has defined query `"customers_empty"`: this is insert form and we don't need any data from this query - `query` is used just to point generator on which collection to use for insert.
+Form has defined query `customers_empty`: this is insert form and we don't need any data from this query - `query` is used just to point generator on which collection to use for insert.
 
 You can see **live example** <a href="http://generator-dataview.meteor.com" target="_blank">here</a>
 
@@ -710,7 +710,7 @@ Sometimes you need to pass route parameters via page URL. For example, let's say
 On this page you want to implement an Edit button for each customer, which points to something like:
 `/customers/edit/<customer_id_here>`
 
-To do this, first let's add the `"route\_params"` property to your `page` object:
+To do this, first let's add the `route_params` property to your `page` object:
 
 ```
 ...
@@ -735,11 +735,11 @@ To do this, first let's add the `"route\_params"` property to your `page` object
 }
 ...
 ```
-**Note:** property `"route\_params"` is an array of strings.
+**Note:** property `route_params` is an array of strings.
 
-In this example the `page` object has a param named `"customerId"` and we are using it inside `form` component's `query` filter: `:customerId`.
+In this example the `page` object has a param named `customerId` and we are using it inside `form` component's `query` filter: `:customerId`.
 
-Now, let's pass this param to our `dataview` component via `"edit\_route"` and `"edit\_route\_params"` properties:
+Now, let's pass this param to our `dataview` component via `edit_route` and `edit_route_params` properties:
 
 ```
 {
@@ -764,13 +764,13 @@ Now, let's pass this param to our `dataview` component via `"edit\_route"` and `
 
 ```
 
-Property` "edit\_route\_params"` is a list of parameters to be passed to `"edit\_route"`:
+Property `edit_route_params` is a list of parameters to be passed to `edit_route`:
 
 - `name` is parameter name
 - `value` is parameter value
 
 
-Here is a full example with `"insert"` and `"update"` forms:
+Here is a full example with `insert` and `update` forms:
 
 ```
 {
@@ -883,7 +883,7 @@ Here is a full example with `"insert"` and `"update"` forms:
 Server Side Routes
 ==================
 
-You can add array `"server\_side\_routes"` to your `application` object and the generator will add router.map and route controllers:
+You can add array `server_side_routes` to your `application` object and the generator will add router.map and route controllers:
 
 ```
 {
@@ -906,17 +906,17 @@ You can add array `"server\_side\_routes"` to your `application` object and the 
 	]
 }
 ```
-- `name` is route name. Example: `"api.show.some_data"`.
-- `path` is route path. Example: `"/api/show/some_data"`. If you leave this blank, path will be automatically created from route name.
+- `name` is route name. Example: `api.show.some_data`.
+- `path` is route path. Example: `/api/show/some_data`. If you leave this blank, path will be automatically created from route name.
 - `source_file` is the path to the .js file (relative to input JSON) which will be inserted into controller `action` function (not mandatory).
 
 
 Plugins
 =======
 
-In addition with built-in components (such as `"form"`, `"dataview"` etc.) you can write your own components called **"plugins"** using javascript (node.js).
+In addition with built-in components (such as `form`, `dataview` etc.) you can write your own components called **plugins** using javascript (node.js).
 
-Plugins are stored in the `"plugins"` subdirectory inside the meteor-kitchen installation dir. By default it is located in:
+Plugins are stored in the `plugins` subdirectory inside the meteor-kitchen installation dir. By default it is located in:
 
 ```
 ~/.meteor-kitchen/plugins/
@@ -952,8 +952,8 @@ You can use plugin in your application by adding component into page and set com
 }
 ...
 ```
-Component type is set to `"example1"`. This type is unknown to generator and it will search plugins directory for subdirectory named `"example1"` that contains file named `"plugin.js"`. 
-If a file `"plugins/example1/plugin.js"` is found, the generator will pass that file to "node.js" and file is executed. File will produce html and js content that will be inserted into page.
+Component type is set to `example1`. This type is unknown to generator and it will search plugins directory for subdirectory named `example1` that contains file named `plugin.js`. 
+If a file `plugins/example1/plugin.js` is found, the generator will pass that file to "node.js" and file is executed. File will produce html and js content that will be inserted into page.
 
 Our "example1" `plugin.js` file contains following code:
 
@@ -988,7 +988,7 @@ Method `getInput()` returns component description - javascript object extracted 
 	"js": ""
 }
 ```
-Properties `"html"`, and `"js"` are automatically added by generator. Those are output strings that our plugin code should fill with content. 
+Properties `html`, and `js` are automatically added by generator. Those are output strings that our plugin code should fill with content. 
 
 Method `setOutput()` will pass "html" and "js" strings to generator and those will be inserted into page. 
 
