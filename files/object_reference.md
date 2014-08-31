@@ -3,7 +3,8 @@
 Property | Type | Description
 ---------|------|------------
 title | string | Application title
-description | string | Default meta description
+meta\_title | string | Default meta\_title for pages without meta\_title
+meta\_description | string | Default meta\_description for pages without meta\_description
 template | string | Default: "bootstrap" (you can expect more templates in the future).
 theme | string | Visual theme name. With "bootstrap" template, theme can be one of bootswatch themes (e.g. "bootswatch-amelia", "bootswatch-cyborg" etc.).
 footer\_text | string | Text to show in page footer
@@ -24,7 +25,8 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 ```
 {
 	"title": "",
-	"description": "",
+	"meta_title": "",
+	"meta_description": "",
 	"template": "",
 	"theme": "",
 	"footer_text": "",
@@ -32,12 +34,13 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	],
 	"free_zone": {
 		"class": "",
-		"description": "",
+		"meta_description": "",
+		"meta_title": "",
 		"menus": [
 		],
 		"pages": [
 		],
-		"force_yield_subpages": true
+		"force_yield_subpages": false
 	},
 	"server_startup_code": "",
 	"client_startup_code": "",
@@ -62,7 +65,8 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 ```
 {
 	"title": "",
-	"description": "",
+	"meta_title": "",
+	"meta_description": "",
 	"template": "",
 	"theme": "",
 	"footer_text": "",
@@ -70,21 +74,23 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	],
 	"public_zone": {
 		"class": "",
-		"description": "",
+		"meta_description": "",
+		"meta_title": "",
 		"menus": [
 		],
 		"pages": [
 		],
-		"force_yield_subpages": true
+		"force_yield_subpages": false
 	},
 	"private_zone": {
 		"class": "",
-		"description": "",
+		"meta_description": "",
+		"meta_title": "",
 		"menus": [
 		],
 		"pages": [
 		],
-		"force_yield_subpages": true
+		"force_yield_subpages": false
 	},
 	"server_startup_code": "",
 	"client_startup_code": "",
@@ -112,9 +118,12 @@ Property | Type | Description
 ---------|------|------------
 name | string | Object name
 fields | array of [field](#field) | Field list. Not mandatory, used by components such as form, dataview etc.
-before\_insert\_code | string | 
-before\_update\_code | string | 
-before\_remove\_code | string | 
+owner\_field | string | Field name used to store user ID of document owner. Only for apps using user accounts. Value of this field will be set automatically by "before insert" hook.
+read\_owner\_only | bool | If OwnerField specified, user can fetch/view only own documents.
+write\_owner\_only | bool | If Owner field specified, document can be updated or removed only by owner.
+before\_insert\_code | string | Code to be executed before new document is inserted into collection. Should be only body of a function with args: (userId, doc). See <a href="https://github.com/matb33/meteor-collection-hooks" target="\_blank">meteor-collection-hooks</a> package for more details.
+before\_update\_code | string | Code to be executed before document is updated. Should be only body of a function with args: (userId, doc, fieldNames, modifier, options)
+before\_remove\_code | string | Code to be executed before document is removed. Should be only body of a function with args: (userId, doc)
 before\_insert\_source\_file | string | 
 before\_update\_source\_file | string | 
 before\_remove\_source\_file | string | 
@@ -125,6 +134,9 @@ before\_remove\_source\_file | string |
 	"name": "",
 	"fields": [
 	],
+	"owner_field": "",
+	"read_owner_only": false,
+	"write_owner_only": false,
 	"before_insert_code": "",
 	"before_update_code": "",
 	"before_remove_code": "",
@@ -300,7 +312,7 @@ input | string | Form input control type: "text", "read-only", "select", "checkb
 	"title": "",
 	"type": "",
 	"default": "",
-	"required": true,
+	"required": false,
 	"searchable": true,
 	"sortable": true,
 	"input": ""
@@ -519,7 +531,7 @@ Property | Type | Description
 title | string | Item title as appears in menu
 route | string | Route name of destination page
 url | string | URL (for external links. You can use only one of "route" or "url" properties, not both)
-class | string | CSS class name to be added to item \<li\> element
+class | string | CSS class name to be added to item `li` element
 items | array of [menu\_item](#menu\_item) | Subitems
 
 *Example:*
@@ -564,7 +576,8 @@ title | string | Component title
 query | [query](#query) | Query to be created as Template's data context
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
-description | string | meta description
+meta\_description | string | Meta description
+meta\_title | string | Head title tag and meta title
 text | string | Text to be inserted into page
 route\_params | array of string | Route params to be passed via URL
 close\_route | string | If specified, page will have close button routing to this route
@@ -591,7 +604,8 @@ force\_yield\_subpages | bool | Subpages will be rendered in "subcontent" area e
 	"components": [
 	],
 	"template_rendered_code": "",
-	"description": "",
+	"meta_description": "",
+	"meta_title": "",
 	"text": "",
 	"route_params": [
 	],
@@ -604,7 +618,7 @@ force\_yield\_subpages | bool | Subpages will be rendered in "subcontent" area e
 	],
 	"pages": [
 	],
-	"force_yield_subpages": true
+	"force_yield_subpages": false
 }
 ```
 
@@ -671,7 +685,8 @@ Property | Type | Description
 class | string | CSS class name to be added to component
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
-description | string | meta description
+meta\_description | string | Meta description
+meta\_title | string | Head title tag and meta title
 menus | array of [menu](#menu) | Menus to be inserted into this page
 pages | array of [page](#page) | Subpages
 force\_yield\_subpages | bool | Subpages will be rendered in "subcontent" area even if this page doesn't contains menu pointing to subpages
@@ -680,12 +695,13 @@ force\_yield\_subpages | bool | Subpages will be rendered in "subcontent" area e
 ```
 {
 	"class": "",
-	"description": "",
+	"meta_description": "",
+	"meta_title": "",
 	"menus": [
 	],
 	"pages": [
 	],
-	"force_yield_subpages": true
+	"force_yield_subpages": false
 }
 ```
 

@@ -10,8 +10,12 @@
 					"title": "Application",
 					"type": "application",
 					"subType": "",
+					"default": "",
+					"required": true,
 					"input": ""
 				}
+			],
+			"hide_members": [
 			]
 		},
 		{
@@ -24,8 +28,12 @@
 					"title": "Name",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": true,
 					"input": "text"
 				}
+			],
+			"hide_members": [
 			]
 		},
 		{
@@ -39,6 +47,8 @@
 					"title": "Title",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -46,6 +56,8 @@
 					"title": "Type",
 					"type": "string",
 					"subType": "",
+					"default": "string",
+					"required": true,
 					"input": "radio",
 					"choice_items": [
 						"string",
@@ -61,6 +73,8 @@
 					"title": "Default",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -68,6 +82,8 @@
 					"title": "Required",
 					"type": "bool",
 					"subType": "",
+					"default": "false",
+					"required": false,
 					"input": "checkbox"
 				},
 				{
@@ -75,6 +91,8 @@
 					"title": "Searchable",
 					"type": "bool",
 					"subType": "",
+					"default": "true",
+					"required": false,
 					"input": "checkbox"
 				},
 				{
@@ -82,6 +100,8 @@
 					"title": "Sortable",
 					"type": "bool",
 					"subType": "",
+					"default": "true",
+					"required": false,
 					"input": "checkbox"
 				},
 				{
@@ -89,6 +109,8 @@
 					"title": "Input",
 					"type": "string",
 					"subType": "",
+					"default": "text",
+					"required": false,
 					"input": "radio",
 					"choice_items": [
 						"text",
@@ -99,6 +121,8 @@
 						"select_multi"
 					]
 				}
+			],
+			"hide_members": [
 			]
 		},
 		{
@@ -112,8 +136,93 @@
 					"title": "Fields",
 					"type": "array",
 					"subType": "field",
+					"default": "",
+					"required": false,
 					"input": ""
+				},
+				{
+					"name": "owner_field",
+					"title": "Owner field",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "read_owner_only",
+					"title": "Only owner can read",
+					"type": "bool",
+					"subType": "",
+					"default": "false",
+					"required": false,
+					"input": "checkbox"
+				},
+				{
+					"name": "write_owner_only",
+					"title": "Only owner can update/remove",
+					"type": "bool",
+					"subType": "",
+					"default": "false",
+					"required": false,
+					"input": "checkbox"
+				},
+				{
+					"name": "before_insert_code",
+					"title": "Before insert code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "textarea"
+				},
+				{
+					"name": "before_update_code",
+					"title": "Before update code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "textarea"
+				},
+				{
+					"name": "before_remove_code",
+					"title": "Before remove code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "textarea"
+				},
+				{
+					"name": "before_insert_source_file",
+					"title": "Before insert source file",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "before_update_source_file",
+					"title": "Before update source file",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "before_remove_source_file",
+					"title": "Before remove source file",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
 				}
+			],
+			"hide_members": [
 			]
 		},
 		{
@@ -127,6 +236,8 @@
 					"title": "Collection",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": true,
 					"input": "select"
 				},
 				{
@@ -134,6 +245,8 @@
 					"title": "Find one",
 					"type": "bool",
 					"subType": "",
+					"default": "false",
+					"required": false,
 					"input": "checkbox"
 				},
 				{
@@ -141,8 +254,12 @@
 					"title": "Filter",
 					"type": "object",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "JSON"
 				}
+			],
+			"hide_members": [
 			]
 		},
 		{
@@ -156,6 +273,8 @@
 					"title": "Type",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": true,
 					"input": "static"
 				},
 				{
@@ -163,6 +282,8 @@
 					"title": "Template",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -170,6 +291,8 @@
 					"title": "Dest. selector",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -177,6 +300,8 @@
 					"title": "Dest. position",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -184,6 +309,8 @@
 					"title": "CSS class",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -191,6 +318,8 @@
 					"title": "Title",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -198,6 +327,8 @@
 					"title": "Query",
 					"type": "query",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": ""
 				},
 				{
@@ -205,6 +336,8 @@
 					"title": "Components",
 					"type": "array",
 					"subType": "component",
+					"default": "",
+					"required": false,
 					"input": ""
 				},
 				{
@@ -212,8 +345,12 @@
 					"title": "Template rendered code",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "textarea"
 				}
+			],
+			"hide_members": [
 			]
 		},
 		{
@@ -222,6 +359,8 @@
 				"component"
 			],
 			"members": [
+			],
+			"hide_members": [
 			]
 		},
 		{
@@ -234,6 +373,8 @@
 					"title": "Name",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": true,
 					"input": "text"
 				},
 				{
@@ -241,8 +382,12 @@
 					"title": "Value",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": true,
 					"input": "text"
 				}
+			],
+			"hide_members": [
 			]
 		},
 		{
@@ -256,6 +401,8 @@
 					"title": "Path",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": true,
 					"input": "text"
 				},
 				{
@@ -263,8 +410,12 @@
 					"title": "Source file",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				}
+			],
+			"hide_members": [
 			]
 		},
 		{
@@ -278,13 +429,17 @@
 					"title": "Text",
 					"type": "string",
 					"subType": "",
-					"input": "text"
+					"default": "",
+					"required": false,
+					"input": "textarea"
 				},
 				{
 					"name": "route_params",
 					"title": "Route params",
 					"type": "array",
 					"subType": "string",
+					"default": "",
+					"required": false,
 					"input": "textarea"
 				},
 				{
@@ -292,6 +447,8 @@
 					"title": "Close route",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -299,6 +456,8 @@
 					"title": "Close route params",
 					"type": "array",
 					"subType": "route_param",
+					"default": "",
+					"required": false,
 					"input": ""
 				},
 				{
@@ -306,6 +465,8 @@
 					"title": "Roles",
 					"type": "array",
 					"subType": "string",
+					"default": "",
+					"required": false,
 					"input": "textarea"
 				},
 				{
@@ -313,15 +474,33 @@
 					"title": "Menus",
 					"type": "array",
 					"subType": "menu",
+					"default": "",
+					"required": false,
 					"input": ""
 				},
 				{
 					"name": "pages",
-					"title": "Pages",
+					"title": "Subpages",
 					"type": "array",
 					"subType": "page",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
+				{
+					"name": "force_yield_subpages",
+					"title": "Force yield subpages",
+					"type": "bool",
+					"subType": "",
+					"default": "false",
+					"required": false,
 					"input": ""
 				}
+			],
+			"hide_members": [
+				"type",
+				"dest_selector",
+				"dest_position"
 			]
 		},
 		{
@@ -330,6 +509,21 @@
 				"page"
 			],
 			"members": [
+			],
+			"hide_members": [
+				"name",
+				"template",
+				"class",
+				"dest_selector",
+				"dest_position",
+				"title",
+				"text",
+				"type",
+				"query",
+				"route_params",
+				"close_route",
+				"close_route_params",
+				"roles"
 			]
 		},
 		{
@@ -342,6 +536,8 @@
 					"title": "Source",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": true,
 					"input": "text"
 				},
 				{
@@ -349,8 +545,12 @@
 					"title": "Dest.",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": true,
 					"input": "text"
 				}
+			],
+			"hide_members": [
 			]
 		},
 		{
@@ -363,6 +563,8 @@
 					"title": "Meteor",
 					"type": "array",
 					"subType": "string",
+					"default": "",
+					"required": false,
 					"input": "textarea"
 				},
 				{
@@ -370,8 +572,12 @@
 					"title": "Meteorite",
 					"type": "array",
 					"subType": "string",
+					"default": "",
+					"required": false,
 					"input": "textarea"
 				}
+			],
+			"hide_members": [
 			]
 		},
 		{
@@ -385,13 +591,26 @@
 					"title": "Title",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
-					"name": "description",
-					"title": "Description",
+					"name": "meta_description",
+					"title": "Meta Description",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "meta_title",
+					"title": "Meta Title",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -399,6 +618,8 @@
 					"title": "Template",
 					"type": "string",
 					"subType": "",
+					"default": "bootstrap",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -406,6 +627,8 @@
 					"title": "Theme",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -413,6 +636,8 @@
 					"title": "Footer text",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -420,6 +645,8 @@
 					"title": "Collections",
 					"type": "array",
 					"subType": "collection",
+					"default": "",
+					"required": false,
 					"input": ""
 				},
 				{
@@ -427,6 +654,8 @@
 					"title": "Free zone",
 					"type": "zone",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": ""
 				},
 				{
@@ -434,6 +663,8 @@
 					"title": "Public zone",
 					"type": "zone",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": ""
 				},
 				{
@@ -441,6 +672,8 @@
 					"title": "Private zone",
 					"type": "zone",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": ""
 				},
 				{
@@ -448,6 +681,8 @@
 					"title": "Server startup code",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "textarea"
 				},
 				{
@@ -455,6 +690,8 @@
 					"title": "Client startup code",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "textarea"
 				},
 				{
@@ -462,6 +699,8 @@
 					"title": "Server startup source file",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -469,6 +708,8 @@
 					"title": "Client startup source file",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -476,6 +717,8 @@
 					"title": "Server side routes",
 					"type": "array",
 					"subType": "server_side_route",
+					"default": "",
+					"required": false,
 					"input": ""
 				},
 				{
@@ -483,6 +726,8 @@
 					"title": "Copy files",
 					"type": "array",
 					"subType": "file_pair",
+					"default": "",
+					"required": false,
 					"input": ""
 				},
 				{
@@ -490,6 +735,8 @@
 					"title": "Packages",
 					"type": "packages",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": ""
 				},
 				{
@@ -497,8 +744,13 @@
 					"title": "Router config.",
 					"type": "object",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": ""
 				}
+			],
+			"hide_members": [
+				"name"
 			]
 		},
 		{
@@ -512,6 +764,8 @@
 					"title": "Title",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -519,6 +773,8 @@
 					"title": "Route",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -526,6 +782,8 @@
 					"title": "URL",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -533,6 +791,8 @@
 					"title": "Class",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -540,8 +800,13 @@
 					"title": "Sub items",
 					"type": "array",
 					"subType": "menu_item",
+					"default": "",
+					"required": false,
 					"input": ""
 				}
+			],
+			"hide_members": [
+				"name"
 			]
 		},
 		{
@@ -555,6 +820,8 @@
 					"title": "Sub items",
 					"type": "array",
 					"subType": "menu_item",
+					"default": "",
+					"required": false,
 					"input": ""
 				},
 				{
@@ -562,8 +829,12 @@
 					"title": "ScrollSpy selector",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				}
+			],
+			"hide_members": [
 			]
 		},
 		{
@@ -577,13 +848,17 @@
 					"title": "Text",
 					"type": "string",
 					"subType": "",
-					"input": "text"
+					"default": "",
+					"required": false,
+					"input": "textarea"
 				},
 				{
 					"name": "image_url",
 					"title": "Image URL",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -591,6 +866,8 @@
 					"title": "Button title",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -598,6 +875,8 @@
 					"title": "Button route",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -605,6 +884,8 @@
 					"title": "Button route params",
 					"type": "array",
 					"subType": "route_param",
+					"default": "",
+					"required": false,
 					"input": ""
 				},
 				{
@@ -612,8 +893,12 @@
 					"title": "Button CSS class",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				}
+			],
+			"hide_members": [
 			]
 		},
 		{
@@ -627,6 +912,8 @@
 					"title": "Mode",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "radio",
 					"choice_items": [
 						"insert",
@@ -639,6 +926,8 @@
 					"title": "Submit route",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -646,6 +935,8 @@
 					"title": "Cancel route",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -653,6 +944,8 @@
 					"title": "Close route",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -660,6 +953,8 @@
 					"title": "Submit route params",
 					"type": "array",
 					"subType": "route_param",
+					"default": "",
+					"required": false,
 					"input": ""
 				},
 				{
@@ -667,6 +962,8 @@
 					"title": "Cancel route params",
 					"type": "array",
 					"subType": "route_param",
+					"default": "",
+					"required": false,
 					"input": ""
 				},
 				{
@@ -674,6 +971,8 @@
 					"title": "Close route params",
 					"type": "array",
 					"subType": "route_param",
+					"default": "",
+					"required": false,
 					"input": ""
 				},
 				{
@@ -681,8 +980,12 @@
 					"title": "Fields",
 					"type": "array",
 					"subType": "field",
+					"default": "",
+					"required": false,
 					"input": ""
 				}
+			],
+			"hide_members": [
 			]
 		},
 		{
@@ -696,6 +999,8 @@
 					"title": "Text if empty",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -703,6 +1008,8 @@
 					"title": "Text if not found",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -710,6 +1017,8 @@
 					"title": "Insert route",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -717,6 +1026,8 @@
 					"title": "Details route",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -724,6 +1035,8 @@
 					"title": "Edit route",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -731,6 +1044,8 @@
 					"title": "Delete route",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -738,6 +1053,8 @@
 					"title": "Insert route params",
 					"type": "array",
 					"subType": "route_param",
+					"default": "",
+					"required": false,
 					"input": ""
 				},
 				{
@@ -745,6 +1062,8 @@
 					"title": "Details route params",
 					"type": "array",
 					"subType": "route_param",
+					"default": "",
+					"required": false,
 					"input": ""
 				},
 				{
@@ -752,6 +1071,8 @@
 					"title": "Edit route params",
 					"type": "array",
 					"subType": "route_param",
+					"default": "",
+					"required": false,
 					"input": ""
 				},
 				{
@@ -759,6 +1080,8 @@
 					"title": "Delete route params",
 					"type": "array",
 					"subType": "route_param",
+					"default": "",
+					"required": false,
 					"input": ""
 				},
 				{
@@ -766,6 +1089,8 @@
 					"title": "View styles",
 					"type": "array",
 					"subType": "string",
+					"default": "",
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -773,8 +1098,12 @@
 					"title": "Fields",
 					"type": "array",
 					"subType": "field",
+					"default": "",
+					"required": false,
 					"input": ""
 				}
+			],
+			"hide_members": [
 			]
 		},
 		{
@@ -788,8 +1117,12 @@
 					"title": "Source file",
 					"type": "string",
 					"subType": "",
+					"default": "",
+					"required": false,
 					"input": "text"
 				}
+			],
+			"hide_members": [
 			]
 		},
 		{
@@ -798,8 +1131,10 @@
 				"component"
 			],
 			"members": [
+			],
+			"hide_members": [
 			]
 		}
 	],
-	"version": 1
+	"version": 4
 }

@@ -3,8 +3,7 @@
 	}
 
 	if(_.isObject(doc.data)) {
-		// !!! should find newest version - not first record!
-		var metaData = Metadata.findOne({});
+		var metaData = Metadata.findOne({}, { sort: { version: -1 } });
 		if(!metaData) {
 			return;
 		}

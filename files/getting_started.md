@@ -164,7 +164,7 @@ You can see a live example <a href="http://generator-minimal.meteor.com" target=
 
 * The **menu** object has **name**, **class** and **items** properties. Each component must have a **name** property (menu is a component, more about components later).
 
-* The property **class** will be applied to the menu's `<ul>` html element.
+* The property **class** will be applied to the menu's `ul` html element.
 
 * Each menu item has **title** and **route** properties. The **title** property is the menu's label, while the **route** property is the name of the route you want this menu item to link to.
 
