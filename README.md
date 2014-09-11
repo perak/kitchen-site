@@ -6,7 +6,7 @@ This is input file for meteor-kitchen that produces site <a href="http://www.met
 Usage
 -----
 
-With "Meteor Kitchen" previously installed, inside this directory type:
+With meteor-kitchen previously installed, inside this directory type:
 
 ```
 meteor-kitchen ./meteor-kitchen.json ./meteor-kitchen 

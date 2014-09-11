@@ -8,6 +8,8 @@ meta\_description | string | Default meta\_description for pages without meta\_d
 template | string | Default: "bootstrap" (you can expect more templates in the future).
 theme | string | Visual theme name. With "bootstrap" template, theme can be one of bootswatch themes (e.g. "bootswatch-amelia", "bootswatch-cyborg" etc.).
 footer\_text | string | Text to show in page footer
+roles | array of string | List of user roles
+default\_role | string | Default role for new users
 collections | array of [collection](#collection) | Mongo database collections
 free\_zone | [zone](#zone) | Free zone (for application without user account system)
 public\_zone | [zone](#zone) | Public zone (for app with user account system). Pages inside this zone are accessible only for non-authenticeted users.
@@ -30,6 +32,9 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	"template": "",
 	"theme": "",
 	"footer_text": "",
+	"roles": [
+	],
+	"default_role": "",
 	"collections": [
 	],
 	"free_zone": {
@@ -70,6 +75,9 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	"template": "",
 	"theme": "",
 	"footer_text": "",
+	"roles": [
+	],
+	"default_role": "",
 	"collections": [
 	],
 	"public_zone": {
@@ -118,15 +126,25 @@ Property | Type | Description
 ---------|------|------------
 name | string | Object name
 fields | array of [field](#field) | Field list. Not mandatory, used by components such as form, dataview etc.
-owner\_field | string | Field name used to store user ID of document owner. Only for apps using user accounts. Value of this field will be set automatically by "before insert" hook.
-read\_owner\_only | bool | If OwnerField specified, user can fetch/view only own documents.
-write\_owner\_only | bool | If Owner field specified, document can be updated or removed only by owner.
+owner\_field | string | Field name used to store user ID of document owner. Only for apps using user accounts. Value of this field will be set automatically by "before.insert" hook.
+read\_owner\_only | bool | If "owner\_field" specified, user can fetch/view only own documents.
+write\_owner\_only | bool | If "owner\_field" specified, document can be updated or removed only by owner.
+roles\_allowed\_to\_read | array of string | List of user roles that can subscribe to this collection.
+roles\_allowed\_to\_insert | array of string | List of user roles that can insert documents into this collection.
+roles\_allowed\_to\_update | array of string | List of user roles that can update documents.
+roles\_allowed\_to\_delete | array of string | List of user roles that can delete documents.
 before\_insert\_code | string | Code to be executed before new document is inserted into collection. Should be only body of a function with args: (userId, doc). See <a href="https://github.com/matb33/meteor-collection-hooks" target="\_blank">meteor-collection-hooks</a> package for more details.
 before\_update\_code | string | Code to be executed before document is updated. Should be only body of a function with args: (userId, doc, fieldNames, modifier, options)
 before\_remove\_code | string | Code to be executed before document is removed. Should be only body of a function with args: (userId, doc)
-before\_insert\_source\_file | string | 
-before\_update\_source\_file | string | 
-before\_remove\_source\_file | string | 
+before\_insert\_source\_file | string | File that contains code to be executed before new document is inserted (relative to input JSON file). See "before\_insert\_code".
+before\_update\_source\_file | string | File that contains code to be executed before document is updated (relative to input JSON file). See "before\_update\_code".
+before\_remove\_source\_file | string | File that contains code to be executed before document is removed (relative to input JSON file). See "before\_remove\_code".
+after\_insert\_code | string | Code to be executed after new document is inserted into collection. Should be only body of a function with args: (userId, doc). See <a href="https://github.com/matb33/meteor-collection-hooks" target="\_blank">meteor-collection-hooks</a> package for more details.
+after\_update\_code | string | Code to be executed after document is updated. Should be only body of a function with args: (userId, doc, fieldNames, modifier, options)
+after\_remove\_code | string | Code to be executed after document is removed. Should be only body of a function with args: (userId, doc)
+after\_insert\_source\_file | string | File that contains code to be executed after new document is inserted (relative to input JSON file). See "after\_insert\_code".
+after\_update\_source\_file | string | File that contains code to be executed after document is updated (relative to input JSON file). See "after\_update\_code".
+after\_remove\_source\_file | string | File that contains code to be executed after document is removed (relative to input JSON file). See "after\_remove\_code".
 
 *Example:*
 ```
@@ -137,12 +155,26 @@ before\_remove\_source\_file | string |
 	"owner_field": "",
 	"read_owner_only": false,
 	"write_owner_only": false,
+	"roles_allowed_to_read": [
+	],
+	"roles_allowed_to_insert": [
+	],
+	"roles_allowed_to_update": [
+	],
+	"roles_allowed_to_delete": [
+	],
 	"before_insert_code": "",
 	"before_update_code": "",
 	"before_remove_code": "",
 	"before_insert_source_file": "",
 	"before_update_source_file": "",
-	"before_remove_source_file": ""
+	"before_remove_source_file": "",
+	"after_insert_code": "",
+	"after_update_code": "",
+	"after_remove_code": "",
+	"after_insert_source_file": "",
+	"after_update_source_file": "",
+	"after_remove_source_file": ""
 }
 ```
 
@@ -304,6 +336,14 @@ required | bool | Is field input required? Default: false
 searchable | bool | Is field searchable? Default: true
 sortable | bool | Is field sortable? Default: true
 input | string | Form input control type: "text", "read-only", "select", "checkbox", "textarea"
+input\_items | array of [field\_item](#field\_item) | Item list for input type "radio" and "select"
+lookup\_query | [query](#query) | Lookup query - item source for input type "select"
+lookup\_key | string | Field name from lookup\_query used as option value in input type "select"
+lookup\_field | string | Field name from lookup\_query used as option title in input type "select"
+show\_in\_dataview | bool | If set to "false", field will not be shown in dataview components. Default: true
+show\_in\_insert\_form | bool | If set to "false", field will not be included in forms with mode "insert". Default: true
+show\_in\_update\_form | bool | If set to "false", field will not be included in forms with mode "update". Default: true
+show\_in\_read\_only\_form | bool | If set to "false", field will not be included in forms with mode "read\_only". Default: true
 
 *Example:*
 ```
@@ -315,7 +355,38 @@ input | string | Form input control type: "text", "read-only", "select", "checkb
 	"required": false,
 	"searchable": true,
 	"sortable": true,
-	"input": ""
+	"input": "",
+	"input_items": [
+	],
+	"lookup_query": {
+		"name": "",
+		"collection": "",
+		"find_one": false,
+		"filter": {
+		}
+	},
+	"lookup_key": "",
+	"lookup_field": "",
+	"show_in_dataview": true,
+	"show_in_insert_form": true,
+	"show_in_update_form": true,
+	"show_in_read_only_form": true
+}
+```
+
+
+# field_item
+
+Property | Type | Description
+---------|------|------------
+value | string | 
+title | string | 
+
+*Example:*
+```
+{
+	"value": "",
+	"title": ""
 }
 ```
 
@@ -353,10 +424,13 @@ mode | string | "insert", "update" or "read\_only"
 submit\_route | string | Route name of page to navigate after successfull submit
 cancel\_route | string | Route name of page to navigate on form cancelation
 close\_route | string | Route name of page to navigate when user clicks "OK" button in "read\_only" form
+back\_route | string | Route name of page to navigate on form back button
 submit\_route\_params | array of [route\_param](#route\_param) | Route params to be passed to "submit\_route"
 cancel\_route\_params | array of [route\_param](#route\_param) | Route params to be passed to "cancel\_route"
 close\_route\_params | array of [route\_param](#route\_param) | Route params to be passed to "close\_route"
+back\_route\_params | array of [route\_param](#route\_param) | Route params to be passed to "back\_route"
 fields | array of [field](#field) | Defainition of form fields. If empty, generator will use fields defined at collection level.
+hidden\_fields | array of [hidden\_field](#hidden\_field) | Fields (not shown in a form) that will be automatically written on submit.
 
 *Example:*
 ```
@@ -381,14 +455,35 @@ fields | array of [field](#field) | Defainition of form fields. If empty, genera
 	"submit_route": "",
 	"cancel_route": "",
 	"close_route": "",
+	"back_route": "",
 	"submit_route_params": [
 	],
 	"cancel_route_params": [
 	],
 	"close_route_params": [
 	],
+	"back_route_params": [
+	],
 	"fields": [
+	],
+	"hidden_fields": [
 	]
+}
+```
+
+
+# hidden_field
+
+Property | Type | Description
+---------|------|------------
+name | string | 
+value | string | 
+
+*Example:*
+```
+{
+	"name": "",
+	"value": ""
 }
 ```
 

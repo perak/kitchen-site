@@ -120,6 +120,60 @@
 						"select",
 						"select_multi"
 					]
+				},
+				{
+					"name": "input_items",
+					"title": "Input items",
+					"type": "array",
+					"subType": "input_item",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
+				{
+					"name": "lookup_query",
+					"title": "Items query",
+					"type": "query",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
+				{
+					"name": "show_in_dataview",
+					"title": "Show in dataviews",
+					"type": "bool",
+					"subType": "",
+					"default": "true",
+					"required": false,
+					"input": "checkbox"
+				},
+				{
+					"name": "show_in_insert_form",
+					"title": "Show in insert forms",
+					"type": "bool",
+					"subType": "",
+					"default": "true",
+					"required": false,
+					"input": "checkbox"
+				},
+				{
+					"name": "show_in_update_form",
+					"title": "Show in update forms",
+					"type": "bool",
+					"subType": "",
+					"default": "true",
+					"required": false,
+					"input": "checkbox"
+				},
+				{
+					"name": "show_in_read_only_form",
+					"title": "Show in read-only forms",
+					"type": "bool",
+					"subType": "",
+					"default": "true",
+					"required": false,
+					"input": "checkbox"
 				}
 			],
 			"hide_members": [
@@ -166,6 +220,42 @@
 					"default": "false",
 					"required": false,
 					"input": "checkbox"
+				},
+				{
+					"name": "roles_allowed_to_read",
+					"title": "Roles allowed to Read",
+					"type": "array",
+					"subType": "string",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
+				{
+					"name": "roles_allowed_to_insert",
+					"title": "Roles allowed to Insert",
+					"type": "array",
+					"subType": "string",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
+				{
+					"name": "roles_allowed_to_update",
+					"title": "Roles allowed to Update",
+					"type": "array",
+					"subType": "string",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
+				{
+					"name": "roles_allowed_to_delete",
+					"title": "Roles allowed to Delete",
+					"type": "array",
+					"subType": "string",
+					"default": "",
+					"required": false,
+					"input": ""
 				},
 				{
 					"name": "before_insert_code",
@@ -215,6 +305,60 @@
 				{
 					"name": "before_remove_source_file",
 					"title": "Before remove source file",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "after_insert_code",
+					"title": "After insert code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "textarea"
+				},
+				{
+					"name": "after_update_code",
+					"title": "After update code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "textarea"
+				},
+				{
+					"name": "after_remove_code",
+					"title": "After remove code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "textarea"
+				},
+				{
+					"name": "after_insert_source_file",
+					"title": "After insert source file",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "after_update_source_file",
+					"title": "After update source file",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "after_remove_source_file",
+					"title": "After remove source file",
 					"type": "string",
 					"subType": "",
 					"default": "",
@@ -425,6 +569,24 @@
 			],
 			"members": [
 				{
+					"name": "meta_description",
+					"title": "Meta Description",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "meta_title",
+					"title": "Meta Title",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
 					"name": "text",
 					"title": "Text",
 					"type": "string",
@@ -634,6 +796,24 @@
 				{
 					"name": "footer_text",
 					"title": "Footer text",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "roles",
+					"title": "Roles",
+					"type": "array",
+					"subType": "string",
+					"default": "",
+					"required": false,
+					"input": "textarea"
+				},
+				{
+					"name": "default_role",
+					"title": "Default role for new users",
 					"type": "string",
 					"subType": "",
 					"default": "",
@@ -949,6 +1129,15 @@
 					"input": "text"
 				},
 				{
+					"name": "back_route",
+					"title": "Back route",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
 					"name": "submit_route_params",
 					"title": "Submit route params",
 					"type": "array",
@@ -976,10 +1165,28 @@
 					"input": ""
 				},
 				{
+					"name": "back_route_params",
+					"title": "Back route params",
+					"type": "array",
+					"subType": "route_param",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
+				{
 					"name": "fields",
 					"title": "Fields",
 					"type": "array",
 					"subType": "field",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
+				{
+					"name": "hidden_fields",
+					"title": "Hidden fields",
+					"type": "array",
+					"subType": "hidden_field",
 					"default": "",
 					"required": false,
 					"input": ""
@@ -1136,5 +1343,5 @@
 			]
 		}
 	],
-	"version": 4
+	"version": 7
 }
