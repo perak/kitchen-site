@@ -8,12 +8,11 @@ Open your terminal and type:
 curl http://www.meteorkitchen.com/install | /bin/sh
 ```
 
-You **need** to have <a href="https://www.meteor.com" target="_blank">Meteor</a> and <a href="https://atmospherejs.com/docs/installing" target="_blank">Meteorite</a> installed.
+You **need** to have <a href="https://www.meteor.com" target="_blank">Meteor</a> installed.
 
 
 ### Windows
-Meteor kitchen uses the "meteorite" package manager which is not yet available for Windows. 
-However, you can download the meteor-kitchen generator for Windows <a href="/install/install_win.zip" target="_blank">here.</a>
+I paused work on version for Windows. You can download some old version <a href="/install/install_win.zip" target="_blank">here.</a>
 
 
 CLI
@@ -1003,5 +1002,180 @@ You can see a live application that uses two example plugins <a href="http://gen
 User Roles
 ==========
 
-(under construction)
+In applications that use user account system, you can define multiple user roles and restrict access to any page to any set of user roles. Also, you can restrict access to collections.
 
+First, you need to add `roles` array to application object:
+
+```
+{
+	"application": {
+
+		"title": "Hello world!",
+
+		"roles": ["admin", "user"],
+		"default_role": "user",
+
+		"public_zone": {
+
+			"pages": [
+			],
+
+			"menus": [
+			]
+		},
+
+		"private_zone": {
+
+			"pages": [
+			],
+
+			"menus": [
+			]
+		}
+	}
+}
+```
+
+By default, meteor kitchen will add `roles` array to user document. If you specify `default_role`, that role will be added to new users. Each user can have multiple roles (`roles` is array of strings).
+
+**Restrict pages to set of user roles**
+
+You can restrict any page inside private zone to any set of user roles by adding `roles` array to your page object. **Note**: `home_private` page should be accessible to all authenticated users (don't restrict private home page to any role).
+
+
+```
+{
+	"application": {
+
+		"title": "Hello world!",
+
+		"roles": ["admin", "user"],
+		"default_role": "user",
+
+		"public_zone": {
+
+			"pages": [
+				{ "name": "home_public", "title": "Public home page" },
+				{ "name": "login", "template": "login.html" },
+				{ "name": "register", "template": "register.html" },
+				{ "name": "forgot_password", "template": "forgot_password.html" },
+				{ "name": "reset_password", "template": "reset_password.html" }
+			],
+
+			"menus": [
+				{
+					"name": "left_menu",
+					"class": "nav navbar-nav",
+					"dest_selector": "#menu",
+					"items": [
+						{ "title": "Home", "route": "home_public" }
+					]
+				},
+
+				{
+					"name": "right_menu",
+					"class": "nav navbar-nav navbar-right",
+					"dest_selector": "#menu",
+					"items": [
+						{ "title": "Register", "route": "register" },
+						{ "title": "Login", "route": "login" }
+					]
+				}
+			]
+		},
+
+		"private_zone": {
+
+			"pages": [
+				{ "name": "home_private", "title": "Private home page" },
+				{
+					"name": "admin_panel",
+					"title": "Admin panel",
+					"roles": ["admin"]
+				},
+				{ "name": "logout", "template": "logout.html", "action_code": "App.logout();" }
+			],
+
+			"menus": [
+				{
+					"name": "left_menu",
+					"class": "nav navbar-nav",
+					"dest_selector": "#menu",
+					"items": [
+						{ "title": "Home", "route": "home_private" },
+						{ "title": "Admin", "route": "admin_panel" }
+					]
+				},
+				{
+					"name": "right_menu",
+					"class": "nav navbar-nav navbar-right",
+					"dest_selector": "#menu",
+					"items": [
+						{ "title": "Logout", "route": "logout" }
+					]
+				}
+			]
+		}
+	}
+}
+```
+
+In this example we have page "admin_panel" that is restricted to role "admin" - regular users (users with role "user") cannot access this page. 
+If you try this example, when you login into application you will not see "Admin panel" page because you are in role "user". Use mongo shell to add "admin" to `roles` array:
+
+```
+db.users.update({ _id: "YOUR_USER_ID" }, { $set: { roles: ["admin"] } })
+```
+
+**Restrict collections to set of user roles**
+
+You can choose which user roles are allowed to read, update, insert and delete documents from collection:
+
+```
+{
+	"application": {
+
+		"title": "Hello world!",
+
+		"roles": ["admin", "manager", "user"],
+		"default_role": "user",
+
+		"collections": [
+			{
+				"name": "customers",
+				"roles_allowed_to_read": [],
+				"roles_allowed_to_insert": ["admin", "manager"],
+				"roles_allowed_to_update": ["admin", "manager"],
+				"roles_allowed_to_delete": ["admin"],
+			}
+		],
+
+		"public_zone": {
+
+			"pages": [
+			],
+
+			"menus": [
+			]
+		},
+
+		"private_zone": {
+
+			"pages": [
+			],
+
+			"menus": [
+			]
+		}
+	}
+}
+```
+
+In this example we have application with three user roles ("admin", "manager" and "user") and we defined "customers" collection with fine grained access rights:
+
+- **read**: everybody (empty array means "everybody")
+- **insert** and **update**: "admin" and "manager"
+- **delete**: "admin" only
+
+
+To be continued...
