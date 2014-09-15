@@ -875,6 +875,24 @@
 					"input": "textarea"
 				},
 				{
+					"name": "on_user_created_code",
+					"title": "On user created code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "textarea"
+				},
+				{
+					"name": "on_user_logged_code",
+					"title": "On user logged code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "textarea"
+				},
+				{
 					"name": "server_startup_source_file",
 					"title": "Server startup source file",
 					"type": "string",
@@ -886,6 +904,24 @@
 				{
 					"name": "client_startup_source_file",
 					"title": "Client startup source file",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "on_user_created_source_file",
+					"title": "On user created source file",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "on_user_logged_source_file",
+					"title": "On user logged source file",
 					"type": "string",
 					"subType": "",
 					"default": "",
@@ -1343,5 +1379,5 @@
 			]
 		}
 	],
-	"version": 7
+	"version": 8
 }

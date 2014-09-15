@@ -16,8 +16,12 @@ public\_zone | [zone](#zone) | Public zone (for app with user account system). P
 private\_zone | [zone](#zone) | Private zone (for app with user account system). Pages inside this zone are accessible only for authenticeted users.
 server\_startup\_code | string | javascript code to execute at server startup
 client\_startup\_code | string | javascript code to execute at client startup
+on\_user\_created\_code | string | javascript code to execute when new user is created (Accounts.onCreateUser)
+on\_user\_logged\_code | string | javascript code to execute when user is logged in (Accounts.onLogin)
 server\_startup\_source\_file | string | File that contains javascript code to execute at server startup (relative to input file)
 client\_startup\_source\_file | string | File that contains javascript code to execute at client startup (relative to input file)
+on\_user\_created\_source\_file | string | File that contains javascript code to execute when new user is created (relative to input file)
+on\_user\_logged\_source\_file | string | File that contains javascript code to execute when user is logged in (relative to input file)
 server\_side\_routes | array of [server\_side\_route](#server\_side\_route) | List of server side routes.
 copy\_files | array of [file\_pair](#file\_pair) | List of files to copy into destination directory.
 packages | [packages](#packages) | List of optional meteor and meteorite packages
@@ -32,9 +36,6 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	"template": "",
 	"theme": "",
 	"footer_text": "",
-	"roles": [
-	],
-	"default_role": "",
 	"collections": [
 	],
 	"free_zone": {
@@ -44,8 +45,7 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 		"menus": [
 		],
 		"pages": [
-		],
-		"force_yield_subpages": false
+		]
 	},
 	"server_startup_code": "",
 	"client_startup_code": "",
@@ -87,8 +87,7 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 		"menus": [
 		],
 		"pages": [
-		],
-		"force_yield_subpages": false
+		]
 	},
 	"private_zone": {
 		"class": "",
@@ -97,13 +96,16 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 		"menus": [
 		],
 		"pages": [
-		],
-		"force_yield_subpages": false
+		]
 	},
 	"server_startup_code": "",
 	"client_startup_code": "",
+	"on_user_created_code": "",
+	"on_user_logged_code": "",
 	"server_startup_source_file": "",
 	"client_startup_source_file": "",
+	"on_user_created_source_file": "",
+	"on_user_logged_source_file": "",
 	"server_side_routes": [
 	],
 	"copy_files": [
@@ -185,7 +187,8 @@ Property | Type | Description
 ---------|------|------------
 name | string | Object name
 type | string | Component type name
-template | string | html and js template file name (without extension)
+template | string | built-in html and js template file name (without extension) contained in kitchen templates directory.
+custom\_template | string | custom html and js template file name (without extension). Path is relative to input JSON file.
 dest\_selector | string | destination html element selector. Only three simple formats are supported: "tagname", "#element\_id", ".class\_name"
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
@@ -200,6 +203,7 @@ template\_rendered\_code | string | Code to be executed once template is rendere
 	"name": "",
 	"type": "",
 	"template": "",
+	"custom_template": "",
 	"dest_selector": "",
 	"dest_position": "",
 	"class": "",
@@ -224,6 +228,7 @@ Property | Type | Description
 ---------|------|------------
 name | string | Object name
 type | string | Component type name
+custom\_template | string | custom html and js template file name (without extension). Path is relative to input JSON file.
 dest\_selector | string | destination html element selector. Only three simple formats are supported: "tagname", "#element\_id", ".class\_name"
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
@@ -249,6 +254,7 @@ views | array of string | View styles: "table", "list" or "gallery". Default: "t
 {
 	"name": "",
 	"type": "dataview",
+	"custom_template": "",
 	"dest_selector": "",
 	"dest_position": "",
 	"class": "",
@@ -291,7 +297,8 @@ Property | Type | Description
 ---------|------|------------
 name | string | Object name
 type | string | Component type name
-template | string | html and js template file name (without extension)
+template | string | built-in html and js template file name (without extension) contained in kitchen templates directory.
+custom\_template | string | custom html and js template file name (without extension). Path is relative to input JSON file.
 dest\_selector | string | destination html element selector. Only three simple formats are supported: "tagname", "#element\_id", ".class\_name"
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
@@ -306,6 +313,7 @@ template\_rendered\_code | string | Code to be executed once template is rendere
 	"name": "",
 	"type": "div",
 	"template": "",
+	"custom_template": "",
 	"dest_selector": "",
 	"dest_position": "",
 	"class": "",
@@ -413,6 +421,7 @@ Property | Type | Description
 ---------|------|------------
 name | string | Object name
 type | string | Component type name
+custom\_template | string | custom html and js template file name (without extension). Path is relative to input JSON file.
 dest\_selector | string | destination html element selector. Only three simple formats are supported: "tagname", "#element\_id", ".class\_name"
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
@@ -437,6 +446,7 @@ hidden\_fields | array of [hidden\_field](#hidden\_field) | Fields (not shown in
 {
 	"name": "",
 	"type": "form",
+	"custom_template": "",
 	"dest_selector": "",
 	"dest_position": "",
 	"class": "",
@@ -494,6 +504,7 @@ Property | Type | Description
 ---------|------|------------
 name | string | Object name
 type | string | Component type name
+custom\_template | string | custom html and js template file name (without extension). Path is relative to input JSON file.
 dest\_selector | string | destination html element selector. Only three simple formats are supported: "tagname", "#element\_id", ".class\_name"
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
@@ -513,6 +524,7 @@ button\_class | string | CSS class to be added to jumbotron button
 {
 	"name": "",
 	"type": "jumbotron",
+	"custom_template": "",
 	"dest_selector": "",
 	"dest_position": "",
 	"class": "",
@@ -544,6 +556,7 @@ Property | Type | Description
 ---------|------|------------
 name | string | Object name
 type | string | Component type name
+custom\_template | string | custom html and js template file name (without extension). Path is relative to input JSON file.
 dest\_selector | string | destination html element selector. Only three simple formats are supported: "tagname", "#element\_id", ".class\_name"
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
@@ -558,6 +571,7 @@ source\_file | string | Path to file containing markup (relative to input file)
 {
 	"name": "",
 	"type": "markdown",
+	"custom_template": "",
 	"dest_selector": "",
 	"dest_position": "",
 	"class": "",
@@ -583,6 +597,7 @@ Property | Type | Description
 ---------|------|------------
 name | string | Object name
 type | string | Component type name
+custom\_template | string | custom html and js template file name (without extension). Path is relative to input JSON file.
 dest\_selector | string | destination html element selector. Only three simple formats are supported: "tagname", "#element\_id", ".class\_name"
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
@@ -598,6 +613,7 @@ scroll\_spy\_selector | string | "scrollspy" selector for menus with anchor link
 {
 	"name": "",
 	"type": "menu",
+	"custom_template": "",
 	"dest_selector": "",
 	"dest_position": "",
 	"class": "",
@@ -665,7 +681,8 @@ mrt | array of string | List of meteorite (atmosphere) packages
 Property | Type | Description
 ---------|------|------------
 name | string | Object name
-template | string | html and js template file name (without extension)
+template | string | built-in html and js template file name (without extension) contained in kitchen templates directory.
+custom\_template | string | custom html and js template file name (without extension). Path is relative to input JSON file.
 class | string | CSS class name to be added to component
 title | string | Component title
 query | [query](#query) | Query to be created as Template's data context
@@ -687,6 +704,7 @@ force\_yield\_subpages | bool | Subpages will be rendered in "subcontent" area e
 {
 	"name": "",
 	"template": "",
+	"custom_template": "",
 	"class": "",
 	"title": "",
 	"query": {
@@ -784,7 +802,6 @@ meta\_description | string | Meta description
 meta\_title | string | Head title tag and meta title
 menus | array of [menu](#menu) | Menus to be inserted into this page
 pages | array of [page](#page) | Subpages
-force\_yield\_subpages | bool | Subpages will be rendered in "subcontent" area even if this page doesn't contains menu pointing to subpages
 
 *Example:*
 ```
@@ -795,8 +812,7 @@ force\_yield\_subpages | bool | Subpages will be rendered in "subcontent" area e
 	"menus": [
 	],
 	"pages": [
-	],
-	"force_yield_subpages": false
+	]
 }
 ```
 

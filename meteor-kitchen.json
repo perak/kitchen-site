@@ -336,8 +336,8 @@
 		],
 
 		"packages": {
-			"meteor": [],
-			"mrt": ["iron-router-ga"]
+			"meteor": ["reywood:iron-router-ga"],
+			"mrt": []
 		},
 
 		"router_config": {
