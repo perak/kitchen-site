@@ -7,6 +7,8 @@ How to contribute?
 
 - Ask questions and discuss in <a href="https://groups.google.com/forum/#!topic/meteor-talk/zXgP7ddCdHk" target="_blank">meteor-talk</a> forum.
 
+- You can support my hard work with a <a href="{{pathFor 'donate'}}">donation</a>.
+
 
 Contributors
 ============

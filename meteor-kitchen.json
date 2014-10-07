@@ -252,6 +252,18 @@
 							"source_file": "files/contribute.md"
 						}
 					]
+				},
+				{
+					"name": "donate",
+					"meta_title": "Donate",
+					"meta_description": "Support Meteor.js code generator",
+					"components": [
+						{
+							"name": "content",
+							"type": "markdown",
+							"source_file": "files/donate.md"
+						}
+					]
 				}
 			],
 			"menus": [
@@ -264,7 +276,8 @@
 						{ "title": "Getting started", "route": "getting_started" },
 						{ "title": "Examples", "route": "examples" },
 						{ "title": "Object Reference", "route": "object_reference" },
-						{ "title": "Contribute", "route": "contribute" }
+						{ "title": "Contribute", "route": "contribute" },
+						{ "title": "Donate", "route": "donate" }
 					]
 				},
 
@@ -331,6 +344,7 @@
 			{ "source": "files/example-dataview.png", "dest": "PUBLIC_DIR/images/example-dataview.png" },
 			{ "source": "files/example-accounts.png", "dest": "PUBLIC_DIR/images/example-accounts.png" },
 			{ "source": "files/example-plugins.png", "dest": "PUBLIC_DIR/images/example-plugins.png" },
+			{ "source": "files/ribbon-donate-bitcoin.png", "dest": "PUBLIC_DIR/images/ribbon-donate-bitcoin.png" },
 
 			{ "source": "files/metadata.json", "dest": "PRIVATE_DIR/metadata.json" }
 		],

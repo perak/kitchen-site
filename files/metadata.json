@@ -650,6 +650,15 @@
 					"input": ""
 				},
 				{
+					"name": "queries",
+					"title": "Queries",
+					"type": "array",
+					"subType": "query",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
+				{
 					"name": "force_yield_subpages",
 					"title": "Force yield subpages",
 					"type": "bool",
@@ -1379,5 +1388,5 @@
 			]
 		}
 	],
-	"version": 8
+	"version": 9
 }

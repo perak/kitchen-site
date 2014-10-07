@@ -6,9 +6,9 @@ title | string | Application title
 meta\_title | string | Default meta\_title for pages without meta\_title
 meta\_description | string | Default meta\_description for pages without meta\_description
 template | string | Default: "bootstrap" (you can expect more templates in the future).
-theme | string | Visual theme name. With "bootstrap" template, theme can be one of bootswatch themes (e.g. "bootswatch-amelia", "bootswatch-cyborg" etc.).
+theme | string | Visual theme name. With "bootstrap" template, theme can be one of <a href="http://bootswatch.com/" target="\_blank">bootswatch</a> themes: bootswatch-amelia, bootswatch-cerulean, bootswatch-cosmo, bootswatch-cyborg, bootswatch-darkly, bootswatch-flatly, bootswatch-journal, bootswatch-lumen, bootswatch-readable, bootswatch-simplex, bootswatch-slate, bootswatch-spacelab, bootswatch-superhero, bootswatch-united, bootswatch-yeti
 footer\_text | string | Text to show in page footer
-roles | array of string | List of user roles
+roles | array of string | List of user roles for applications with user account system
 default\_role | string | Default role for new users
 collections | array of [collection](#collection) | Mongo database collections
 free\_zone | [zone](#zone) | Free zone (for application without user account system)
@@ -23,8 +23,8 @@ client\_startup\_source\_file | string | File that contains javascript code to e
 on\_user\_created\_source\_file | string | File that contains javascript code to execute when new user is created (relative to input file)
 on\_user\_logged\_source\_file | string | File that contains javascript code to execute when user is logged in (relative to input file)
 server\_side\_routes | array of [server\_side\_route](#server\_side\_route) | List of server side routes.
-copy\_files | array of [file\_pair](#file\_pair) | List of files to copy into destination directory.
-packages | [packages](#packages) | List of optional meteor and meteorite packages
+copy\_files | array of [file\_pair](#file\_pair) | List of files to copy into destination directory. You can use directory aliases. See <a href="#file\_pair">file\_pair</a> for more details.
+packages | [packages](#packages) | List of additional meteor and meteorite packages that will be automatically added by generator
 router\_config | jsonobject | Optional parameter passed to Router.config()
 
 *Example without user account system:*
@@ -40,8 +40,6 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	],
 	"free_zone": {
 		"class": "",
-		"meta_description": "",
-		"meta_title": "",
 		"menus": [
 		],
 		"pages": [
@@ -82,8 +80,6 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	],
 	"public_zone": {
 		"class": "",
-		"meta_description": "",
-		"meta_title": "",
 		"menus": [
 		],
 		"pages": [
@@ -91,8 +87,6 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	},
 	"private_zone": {
 		"class": "",
-		"meta_description": "",
-		"meta_title": "",
 		"menus": [
 		],
 		"pages": [
@@ -193,7 +187,7 @@ dest\_selector | string | destination html element selector. Only three simple f
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
 title | string | Component title
-query | [query](#query) | Query to be created as Template's data context
+query | [query](#query) | Query to be added to Template data context
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
 
@@ -233,7 +227,7 @@ dest\_selector | string | destination html element selector. Only three simple f
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
 title | string | Component title
-query | [query](#query) | Query to be created as Template's data context
+query | [query](#query) | Query to be added to Template data context
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
 text\_if\_empty | string | Text to show if collection is empty.
@@ -303,7 +297,7 @@ dest\_selector | string | destination html element selector. Only three simple f
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
 title | string | Component title
-query | [query](#query) | Query to be created as Template's data context
+query | [query](#query) | Query to be added to Template data context
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
 
@@ -343,9 +337,10 @@ default | string | Default value
 required | bool | Is field input required? Default: false
 searchable | bool | Is field searchable? Default: true
 sortable | bool | Is field sortable? Default: true
-input | string | Form input control type: "text", "read-only", "select", "checkbox", "textarea"
+format | string | Currently used only with type="time". Contains time format such as "hh:mm:ss"
+input | string | Form input control type: "text", "password", "read-only", "textarea", "radio", "checkbox", "select"
 input\_items | array of [field\_item](#field\_item) | Item list for input type "radio" and "select"
-lookup\_query | [query](#query) | Lookup query - item source for input type "select"
+lookup\_query | [query](#query) | Lookup query - data source for input type "select" items
 lookup\_key | string | Field name from lookup\_query used as option value in input type "select"
 lookup\_field | string | Field name from lookup\_query used as option title in input type "select"
 show\_in\_dataview | bool | If set to "false", field will not be shown in dataview components. Default: true
@@ -363,6 +358,7 @@ show\_in\_read\_only\_form | bool | If set to "false", field will not be include
 	"required": false,
 	"searchable": true,
 	"sortable": true,
+	"format": "",
 	"input": "",
 	"input_items": [
 	],
@@ -387,8 +383,8 @@ show\_in\_read\_only\_form | bool | If set to "false", field will not be include
 
 Property | Type | Description
 ---------|------|------------
-value | string | 
-title | string | 
+value | string | select, radio or checkbox item title shown to user
+title | string | select, radio or checkbox item value written on submit
 
 *Example:*
 ```
@@ -404,7 +400,7 @@ title | string |
 Property | Type | Description
 ---------|------|------------
 source | string | Source file to copy. Path is relative to input JSON.
-dest | string | Destination file. You can use directory alias "OUTPUT\_DIR" inside path. Example: "OUTPUT\_DIR/public/images/"
+dest | string | Destination file. You can use directory aliases: OUTPUT\_DIR, CLIENT\_DIR, CLIENT\_LIB\_DIR, CLIENT\_STYLES\_DIR, CLIENT\_STYLES\_DEFAULT\_DIR, CLIENT\_VIEWS\_DIR, CLIENT\_VIEWS\_NOT\_FOUND\_DIR, CLIENT\_VIEWS\_LOADING\_DIR, LIB\_DIR, SETTINGS\_DIR, BOTH\_DIR, BOTH\_LIB\_DIR, BOTH\_COLLECTIONS\_DIR, BOTH\_ROUTER\_DIR, PUBLIC\_DIR, PUBLIC\_IMAGES\_DIR, PRIVATE\_DIR, SERVER\_DIR, SERVER\_LIB\_DIR, SERVER\_COLLECTIONS\_DIR, SERVER\_PUBLISH\_DIR, SERVER\_CONTROLLERS\_DIR, SERVER\_METHODS\_DIR
 
 *Example:*
 ```
@@ -426,7 +422,7 @@ dest\_selector | string | destination html element selector. Only three simple f
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
 title | string | Component title
-query | [query](#query) | Query to be created as Template's data context
+query | [query](#query) | Query to be added to Template data context
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
 mode | string | "insert", "update" or "read\_only"
@@ -486,8 +482,8 @@ hidden\_fields | array of [hidden\_field](#hidden\_field) | Fields (not shown in
 
 Property | Type | Description
 ---------|------|------------
-name | string | 
-value | string | 
+name | string | Field name
+value | string | Field value
 
 *Example:*
 ```
@@ -509,7 +505,7 @@ dest\_selector | string | destination html element selector. Only three simple f
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
 title | string | Component title
-query | [query](#query) | Query to be created as Template's data context
+query | [query](#query) | Query to be added to Template data context
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
 text | string | Text to be shown in jumbotron
@@ -561,7 +557,7 @@ dest\_selector | string | destination html element selector. Only three simple f
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
 title | string | Component title
-query | [query](#query) | Query to be created as Template's data context
+query | [query](#query) | Query to be added to Template data context
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
 source\_file | string | Path to file containing markup (relative to input file)
@@ -602,7 +598,7 @@ dest\_selector | string | destination html element selector. Only three simple f
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
 title | string | Component title
-query | [query](#query) | Query to be created as Template's data context
+query | [query](#query) | Query to be added to Template data context
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
 items | array of [menu\_item](#menu\_item) | Menu items
@@ -685,7 +681,7 @@ template | string | built-in html and js template file name (without extension) 
 custom\_template | string | custom html and js template file name (without extension). Path is relative to input JSON file.
 class | string | CSS class name to be added to component
 title | string | Component title
-query | [query](#query) | Query to be created as Template's data context
+query | [query](#query) | Query to be added to Template data context
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
 meta\_description | string | Meta description
@@ -697,6 +693,7 @@ close\_route\_params | array of [route\_param](#route\_param) | Params to be pas
 roles | array of string | User roles allowed to access this page
 menus | array of [menu](#menu) | Menus to be inserted into this page
 pages | array of [page](#page) | Subpages
+queries | array of [query](#query) | List of queries to add into template data context
 force\_yield\_subpages | bool | Subpages will be rendered in "subcontent" area even if this page doesn't contains menu pointing to subpages
 
 *Example:*
@@ -730,6 +727,8 @@ force\_yield\_subpages | bool | Subpages will be rendered in "subcontent" area e
 	"menus": [
 	],
 	"pages": [
+	],
+	"queries": [
 	],
 	"force_yield_subpages": false
 }
@@ -798,8 +797,6 @@ Property | Type | Description
 class | string | CSS class name to be added to component
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
-meta\_description | string | Meta description
-meta\_title | string | Head title tag and meta title
 menus | array of [menu](#menu) | Menus to be inserted into this page
 pages | array of [page](#page) | Subpages
 
@@ -807,8 +804,6 @@ pages | array of [page](#page) | Subpages
 ```
 {
 	"class": "",
-	"meta_description": "",
-	"meta_title": "",
 	"menus": [
 	],
 	"pages": [
