@@ -105,6 +105,15 @@
 					"input": "checkbox"
 				},
 				{
+					"name": "exportable",
+					"title": "Exportable",
+					"type": "bool",
+					"subType": "",
+					"default": "false",
+					"required": false,
+					"input": "checkbox"
+				},
+				{
 					"name": "input",
 					"title": "Input",
 					"type": "string",
@@ -1388,5 +1397,5 @@
 			]
 		}
 	],
-	"version": 9
+	"version": 11
 }

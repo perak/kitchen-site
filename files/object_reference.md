@@ -39,7 +39,6 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	"collections": [
 	],
 	"free_zone": {
-		"class": "",
 		"menus": [
 		],
 		"pages": [
@@ -79,14 +78,12 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	"collections": [
 	],
 	"public_zone": {
-		"class": "",
 		"menus": [
 		],
 		"pages": [
 		]
 	},
 	"private_zone": {
-		"class": "",
 		"menus": [
 		],
 		"pages": [
@@ -122,7 +119,7 @@ Property | Type | Description
 ---------|------|------------
 name | string | Object name
 fields | array of [field](#field) | Field list. Not mandatory, used by components such as form, dataview etc.
-owner\_field | string | Field name used to store user ID of document owner. Only for apps using user accounts. Value of this field will be set automatically by "before.insert" hook.
+owner\_field | string | Field name used to store user ID of document owner. Only for apps using user accounts. Value of this field will be automatically set server side by "before.insert" hook.
 read\_owner\_only | bool | If "owner\_field" specified, user can fetch/view only own documents.
 write\_owner\_only | bool | If "owner\_field" specified, document can be updated or removed only by owner.
 roles\_allowed\_to\_read | array of string | List of user roles that can subscribe to this collection.
@@ -337,8 +334,9 @@ default | string | Default value
 required | bool | Is field input required? Default: false
 searchable | bool | Is field searchable? Default: true
 sortable | bool | Is field sortable? Default: true
-format | string | Currently used only with type="time". Contains time format such as "hh:mm:ss"
-input | string | Form input control type: "text", "password", "read-only", "textarea", "radio", "checkbox", "select"
+exportable | bool | If true field will be exported to CSV/JSON (used in dataview component). Default: false
+format | string | Currently used only with data types "date" and "time". Contains date or time format such as "MM/DD/YYYY" or "hh:mm:ss"
+input | string | Form input control type: "text", "password", "datepicker", "read-only", "textarea", "radio", "checkbox", "select"
 input\_items | array of [field\_item](#field\_item) | Item list for input type "radio" and "select"
 lookup\_query | [query](#query) | Lookup query - data source for input type "select" items
 lookup\_key | string | Field name from lookup\_query used as option value in input type "select"
@@ -358,6 +356,7 @@ show\_in\_read\_only\_form | bool | If set to "false", field will not be include
 	"required": false,
 	"searchable": true,
 	"sortable": true,
+	"exportable": true,
 	"format": "",
 	"input": "",
 	"input_items": [
@@ -794,7 +793,6 @@ source\_file | string | path to external file containing route action code (rela
 
 Property | Type | Description
 ---------|------|------------
-class | string | CSS class name to be added to component
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
 menus | array of [menu](#menu) | Menus to be inserted into this page
@@ -803,7 +801,6 @@ pages | array of [page](#page) | Subpages
 *Example:*
 ```
 {
-	"class": "",
 	"menus": [
 	],
 	"pages": [

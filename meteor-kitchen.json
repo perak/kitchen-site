@@ -242,6 +242,18 @@
 					]
 				},
 				{
+					"name": "version_history",
+					"meta_title": "What's Up",
+					"meta_description": "Meteor.js code generator version history",
+					"components": [
+						{
+							"name": "content",
+							"type": "markdown",
+							"source_file": "files/version_history.md"
+						}
+					]
+				},
+				{
 					"name": "contribute",
 					"meta_title": "Contribute",
 					"meta_description": "Contribute to Meteor.js code generator",
@@ -276,6 +288,7 @@
 						{ "title": "Getting started", "route": "getting_started" },
 						{ "title": "Examples", "route": "examples" },
 						{ "title": "Object Reference", "route": "object_reference" },
+						{ "title": "What's Up?", "route": "version_history" },
 						{ "title": "Contribute", "route": "contribute" },
 						{ "title": "Donate", "route": "donate" }
 					]

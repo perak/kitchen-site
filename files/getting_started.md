@@ -15,6 +15,16 @@ You **need** to have <a href="https://www.meteor.com" target="_blank">Meteor</a>
 I paused work on version for Windows. You can download some old version <a href="/install/install_win.zip" target="_blank">here.</a>
 
 
+### Current version is 0.7.4
+
+Click <a href="{{pathFor 'version_history'}}">here</a> to see version history.
+
+
+### Upgrade to latest version
+
+Just install it again.
+
+
 CLI
 ===
 
