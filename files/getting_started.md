@@ -8,14 +8,14 @@ Open your terminal and type:
 curl http://www.meteorkitchen.com/install | /bin/sh
 ```
 
-You **need** to have <a href="https://www.meteor.com" target="_blank">Meteor</a> installed.
+You **need** to have <a href="https://www.meteor.com" target="_blank">Meteor >=1.0</a> installed.
 
 
 ### Windows
 I paused work on version for Windows. You can download some old version <a href="/install/install_win.zip" target="_blank">here.</a>
 
 
-### Current version is 0.7.4
+### Current version is 0.7.5
 
 Click <a href="{{pathFor 'version_history'}}">here</a> to see version history.
 
@@ -272,7 +272,7 @@ You can see a live example <a href="http://generator-subpages.meteor.com" target
 Visual Themes
 =============
 
-Currently, the generator will produce markup compatible with <a href="http://getbootstrap.com" target="_blank">bootstrap</a> and uses the <a href="https://github.com/simison/bootstrap3-less" target="_blank">bootstrap-less</a> package from atmosphere.
+Currently, the generator will produce markup compatible with <a href="http://getbootstrap.com" target="_blank">bootstrap</a>.
 
 Also, it comes with <a href="http://bootswatch.com/" target="_blank">bootswatch</a> visual themes.
 
@@ -320,10 +320,18 @@ You can insert components into pages by adding **components** array into any **p
 
 The list of built-in components currently implemented into generator:
 
-- `jumbotron` - cool big heading text with button (usually found in home pages)
-- `markdown` - styled text written in <a href="http://daringfireball.net/projects/markdown/" target="_blank">markdown</a>
-- `dataview` - shows data from collections (with search and sort functions)
+- `menu` - navbars, navs, side-menus and tab-menus
+
 - `form` - for inserting/updating data (with validations)
+
+- `dataview` - shows data from collections (with search and sort functions)
+
+- `jumbotron` - cool big heading text with button (usually found in home pages)
+
+- `markdown` - styled text written in <a href="http://daringfireball.net/projects/markdown/" target="_blank">markdown</a>
+
+- `div` - simple div element
+
 
 The minimal structure of any **component** object is:
 
@@ -337,7 +345,7 @@ The minimal structure of any **component** object is:
 ```
 
 - `name` - used by generator to construct component template name: parent template name + component name (will be in capitalized camel-case).
-- `type` - used by the generator to determine the component's type. If type is not one of the built-in component types, the generator will try to find and execute a plugin with that name (more about plugins later).
+- `type` - used by the generator to determine the component's type. If type is not one of the built-in component types, the generator will try to find and execute a plugin with that name (more about plugins later). You can write custom component by specifying "custom" here. In that case you need to provide your custom html and js files. See "custom components" below.
 
 ### Jumbotron component
 

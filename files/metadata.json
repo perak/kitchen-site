@@ -149,6 +149,33 @@
 					"input": ""
 				},
 				{
+					"name": "lookup_key",
+					"title": "Lookup key",
+					"type": "string",
+					"subType": "",
+					"default": "text",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "lookup_field",
+					"title": "Lookup field",
+					"type": "string",
+					"subType": "",
+					"default": "text",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "display_helper",
+					"title": "Display helper",
+					"type": "string",
+					"subType": "",
+					"default": "text",
+					"required": false,
+					"input": "text"
+				},
+				{
 					"name": "show_in_dataview",
 					"title": "Show in dataviews",
 					"type": "bool",
@@ -405,6 +432,15 @@
 				{
 					"name": "filter",
 					"title": "Filter",
+					"type": "object",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "JSON"
+				},
+				{
+					"name": "options",
+					"title": "Options",
 					"type": "object",
 					"subType": "",
 					"default": "",
@@ -1156,6 +1192,15 @@
 					]
 				},
 				{
+					"name": "layout",
+					"title": "Layout",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
 					"name": "submit_route",
 					"title": "Submit route",
 					"type": "string",
@@ -1397,5 +1442,5 @@
 			]
 		}
 	],
-	"version": 11
+	"version": 12
 }

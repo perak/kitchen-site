@@ -1,6 +1,19 @@
 Version History
 ===============
 
+0.7.5
+-----
+
+- Meteor 1.0 support
+
+- Query object now has "options" member (second argument to collection.find and collection.findOne). See <a href="http://www.meteorkitchen.com/object_reference#query">query</a> object.
+
+- You can specify date format for "datepicker" form controls. See <a href="http://www.meteorkitchen.com/object_reference#field">field</a> object, property "format".
+
+- Collection field "default" property now can be "today" (current date) and "now" (current date and time).
+
+- Fixed some bugs in HTML parser and improved parsing performance.
+
 
 0.7.4
 -----
