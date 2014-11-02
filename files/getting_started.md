@@ -15,7 +15,7 @@ You **need** to have <a href="https://www.meteor.com" target="_blank">Meteor >=1
 I paused work on version for Windows. You can download some old version <a href="/install/install_win.zip" target="_blank">here.</a>
 
 
-### Current version is 0.7.5
+### Current version is 0.7.6
 
 Click <a href="{{pathFor 'version_history'}}">here</a> to see version history.
 
@@ -37,13 +37,13 @@ meteor-kitchen
 Common usage:
 
 ```
-meteor-kitchen <input_file.json> <output_directory>
+meteor-kitchen <input_file_or_url> <output_directory>
 ```
 
 or, if you prefer **CoffeeScript**:
 
 ```
-meteor-kitchen <input_file.json> <output_directory> --coffee
+meteor-kitchen <input_file_or_url> <output_directory> --coffee
 ```
 
 With the `--coffee` option the generator will convert all js files to coffee. For this, you need the <a href="http://js2coffee.org/" target="_blank">js2coffee</a> converter to be installed.
@@ -52,7 +52,7 @@ With the `--coffee` option the generator will convert all js files to coffee. Fo
 For <a href="http://jade-lang.com/" target="_blank">Jade</a> lovers, use `--jade` switch and generator will convert html files to jade:
 
 ```
-meteor-kitchen <input_file.json> <output_directory> --jade
+meteor-kitchen <input_file_or_url> <output_directory> --jade
 ```
 
 Jade converter is experimental (I wrote it in rush). It's not 100% syntaticaly clean and will be improved in future. At least, it's super fast (long live good old friend: C++).
@@ -896,36 +896,48 @@ Here is a full example with `insert` and `update` forms:
 }
 ```
 
+Custom components
+=================
 
-Server Side Routes
-==================
+You can write your own components and add them into pages. 
 
-You can add array `server_side_routes` to your `application` object and the generator will add router.map and route controllers:
+**Note**: This is only for simple components (components that doesn't require special processing while generating application). If you need advanced, complex components write <a href="#plugins">plugin</a> instead.
+
+Add custom component into page and write your own HTML and JS code, like this:
 
 ```
 {
-	"application": {
-
-		"title": "Hello world!",
-
-		"free_zone": {
-
-			"pages": [
-			],
-
-			"menus": [
-			]
-		}
-	},
-
-	"server_side_routes": [
-		{ "name": "example", "path": "/example", "source_file": "path_to_source_file.js" }
-	]
+  "name": "my_component",
+  "title": "My cool component",
+  "type": "custom",
+  "custom_template": "something"
+  "query": {
+    "name": "some_query",
+    "collection": "some_collection",
+    "filter": {}
+  }
 }
 ```
-- `name` is route name. Example: `api.show.some_data`.
-- `path` is route path. Example: `/api/show/some_data`. If you leave this blank, path will be automatically created from route name.
-- `source_file` is the path to the .js file (relative to input JSON) which will be inserted into controller `action` function (not mandatory).
+
+- `type` is set to `custom`. That requires you to provide custom HTML and JS templates.
+
+- In this example `custom_template` is set to `something`. That is path to template HTML and JS files without extension - you need to provide `something.html` and `something.js`. Path is relative to input json file.
+
+Your HTML and JS file can contain anything. Your component can contain other components, can use query - the same as any other built in component.
+
+If you want your component to be reusable in multiple pages, then you should use tokens instead of hard-coded template name, title and similar.
+
+Following special tokens inside HTML and JS files will be replaced by generator:
+
+```
+TEMPLATE_NAME
+COMPONENT_TITLE
+COMPONENT_CLASS
+COMPONENT_ID
+QUERY_VAR
+COLLECTION_VAR
+APP_TITLE
+```
 
 
 Plugins
@@ -1015,6 +1027,40 @@ This is a really trivial example that shows how to write custom component. Note 
 You can see a live application that uses two example plugins <a href="http://generator-plugins.meteor.com" target="_blank">here</a>
 
 **Note:** Source code for all examples you can find <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>
+
+
+Server Side Routes
+==================
+
+You can add array `server_side_routes` to your `application` object and the generator will add router.map and route controllers:
+
+```
+{
+	"application": {
+
+		"title": "Hello world!",
+
+		"free_zone": {
+
+			"pages": [
+			],
+
+			"menus": [
+			]
+		}
+	},
+
+	"server_side_routes": [
+		{ "name": "example", "path": "/example", "source_file": "path_to_source_file.js" }
+	]
+}
+```
+
+- `name` is route name. Example: `api.show.some_data`.
+
+- `path` is route path. Example: `/api/show/some_data`. If you leave this blank, path will be automatically created from route name.
+
+- `source_file` is the path to the .js file (relative to input JSON) which will be inserted into controller `action` function (not mandatory).
 
 
 User Roles
@@ -1144,6 +1190,7 @@ If you try this example, when you login into application you will not see "Admin
 ```
 db.users.update({ _id: "YOUR_USER_ID" }, { $set: { roles: ["admin"] } })
 ```
+
 
 **Restrict collections to set of user roles**
 

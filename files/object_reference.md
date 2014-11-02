@@ -129,12 +129,12 @@ roles\_allowed\_to\_delete | array of string | List of user roles that can delet
 before\_insert\_code | string | Code to be executed before new document is inserted into collection. Should be only body of a function with args: (userId, doc). See <a href="https://github.com/matb33/meteor-collection-hooks" target="\_blank">meteor-collection-hooks</a> package for more details.
 before\_update\_code | string | Code to be executed before document is updated. Should be only body of a function with args: (userId, doc, fieldNames, modifier, options)
 before\_remove\_code | string | Code to be executed before document is removed. Should be only body of a function with args: (userId, doc)
-before\_insert\_source\_file | string | File that contains code to be executed before new document is inserted (relative to input JSON file). See "before\_insert\_code".
-before\_update\_source\_file | string | File that contains code to be executed before document is updated (relative to input JSON file). See "before\_update\_code".
-before\_remove\_source\_file | string | File that contains code to be executed before document is removed (relative to input JSON file). See "before\_remove\_code".
 after\_insert\_code | string | Code to be executed after new document is inserted into collection. Should be only body of a function with args: (userId, doc). See <a href="https://github.com/matb33/meteor-collection-hooks" target="\_blank">meteor-collection-hooks</a> package for more details.
 after\_update\_code | string | Code to be executed after document is updated. Should be only body of a function with args: (userId, doc, fieldNames, modifier, options)
 after\_remove\_code | string | Code to be executed after document is removed. Should be only body of a function with args: (userId, doc)
+before\_insert\_source\_file | string | File that contains code to be executed before new document is inserted (relative to input JSON file). See "before\_insert\_code".
+before\_update\_source\_file | string | File that contains code to be executed before document is updated (relative to input JSON file). See "before\_update\_code".
+before\_remove\_source\_file | string | File that contains code to be executed before document is removed (relative to input JSON file). See "before\_remove\_code".
 after\_insert\_source\_file | string | File that contains code to be executed after new document is inserted (relative to input JSON file). See "after\_insert\_code".
 after\_update\_source\_file | string | File that contains code to be executed after document is updated (relative to input JSON file). See "after\_update\_code".
 after\_remove\_source\_file | string | File that contains code to be executed after document is removed (relative to input JSON file). See "after\_remove\_code".
@@ -159,12 +159,12 @@ after\_remove\_source\_file | string | File that contains code to be executed af
 	"before_insert_code": "",
 	"before_update_code": "",
 	"before_remove_code": "",
-	"before_insert_source_file": "",
-	"before_update_source_file": "",
-	"before_remove_source_file": "",
 	"after_insert_code": "",
 	"after_update_code": "",
 	"after_remove_code": "",
+	"before_insert_source_file": "",
+	"before_update_source_file": "",
+	"before_remove_source_file": "",
 	"after_insert_source_file": "",
 	"after_update_source_file": "",
 	"after_remove_source_file": ""

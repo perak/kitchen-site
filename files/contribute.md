@@ -3,11 +3,17 @@ How to contribute?
 
 **Meteor Kitchen** is under developement, its new and not well tested yet. If you find this project interesting, please feel free to:
 
-- Report issues or request features at this <a href="https://github.com/perak/kitchen-site/issues" target="_blank">GitHub page</a>.
+- **Report issues or request features** to this <a href="https://github.com/perak/kitchen-site/issues" target="_blank">GitHub page</a>.
 
-- Ask questions and discuss in <a href="https://groups.google.com/forum/#!topic/meteor-talk/zXgP7ddCdHk" target="_blank">meteor-talk</a> forum.
+- **Ask questions and discuss** in <a href="https://groups.google.com/forum/#!topic/meteor-talk/zXgP7ddCdHk" target="_blank">meteor-talk</a> forum.
 
-- You can support my hard work with a <a href="{{pathFor 'donate'}}">donation</a>.
+- **Spread the word** - on your favourite tech blog, twitter, facebook... etc.
+
+- If you can help with **English spelling & grammar** corrections for this site, clone this <a href="https://github.com/perak/kitchen-site" target="_blank">repository</a> and send me a pull request.
+
+- That would be cool if someone **create screencast video** with native English speaker explaining how to create simple app using meteor-kitchen.
+
+- You can support meteor-kitchen with a <a href="{{pathFor 'donate'}}">donation</a>.
 
 
 Contributors

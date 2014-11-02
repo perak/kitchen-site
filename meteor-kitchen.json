@@ -177,8 +177,9 @@
 								{ "title": "DataView Component",	"url": "#dataview-component" },
 								{ "title": "Form Component", 		"url": "#form-component" },
 								{ "title": "Route Params", 			"url": "#route-params" },
-								{ "title": "Server Side Routes", 	"url": "#server-side-routes" },
+								{ "title": "Custom components", 	"url": "#custom-components" },
 								{ "title": "Plugins", 				"url": "#plugins" },
+								{ "title": "Server Side Routes", 	"url": "#server-side-routes" },
 								{ "title": "User Roles",			"url": "#user-roles" }
 							]
 						}
@@ -359,7 +360,9 @@
 			{ "source": "files/example-dataview.png", "dest": "PUBLIC_DIR/images/example-dataview.png" },
 			{ "source": "files/example-accounts.png", "dest": "PUBLIC_DIR/images/example-accounts.png" },
 			{ "source": "files/example-plugins.png", "dest": "PUBLIC_DIR/images/example-plugins.png" },
-			{ "source": "files/ribbon-donate-bitcoin.png", "dest": "PUBLIC_DIR/images/ribbon-donate-bitcoin.png" }
+			{ "source": "files/ribbon-donate-bitcoin.png", "dest": "PUBLIC_DIR/images/ribbon-donate-bitcoin.png" },
+
+			{ "source": "files/metadata.json", "dest": "PRIVATE_DIR/metadata.json" }
 		],
 
 		"packages": {
