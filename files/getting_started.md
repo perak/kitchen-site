@@ -303,9 +303,9 @@ In this example, the application will use "bootswatch-amelia" theme. You can see
 Components
 ==========
 
-An application with empty pages is not very useful :). That's why Meteor kitchen allows you to ad **Components**. Which are predefined and customizable visual elements that can be inserted into pages. They are building the blocks of your application.
+An application with empty pages is not very useful :). That's why Meteor kitchen allows you to add **Components**. Which are predefined and customizable visual elements that can be inserted into pages. They are building the blocks of your application.
 
-The generator comes with several built-in components. And you can also write **your own** components (which we call "plugins". More about plugins later).
+The generator comes with several built-in components. And you can also write **your own** components, which we call "plugins" (more about plugins later).
 
 You can insert components into pages by adding **components** array into any **page** object:
 ```
@@ -397,7 +397,7 @@ A page object with the `markdown` component should look like this:
 }
 ...
 ```
-Property `source_file` is thee path to the markdown file (relative to the input JSON file).
+Property `source_file` is the path to the markdown file (relative to the input JSON file).
 
 ### Div component
 
@@ -443,7 +443,7 @@ Before we continue with components `dataview` and `form`, let's add some **mongo
 Collections
 ===========
 
-To define collections, add **collections** array to your **application** object: 
+To define collections, add the **collections** array to your **application** object: 
 
 ```
 {
