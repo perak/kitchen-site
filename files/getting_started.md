@@ -15,12 +15,14 @@ You **need** to have <a href="https://www.meteor.com" target="_blank">Meteor >=1
 I paused work on version for Windows. You can download some old version <a href="/install/install_win.zip" target="_blank">here.</a>
 
 
-### Current version is 0.7.6
+Current version is 0.8.0
+========================
 
 Click <a href="{{pathFor 'version_history'}}">here</a> to see version history.
 
 
-### Upgrade to latest version
+Upgrade to latest version
+=========================
 
 Just install it again.
 
@@ -40,14 +42,20 @@ Common usage:
 meteor-kitchen <input_file_or_url> <output_directory>
 ```
 
-or, if you prefer **CoffeeScript**:
+Input file can be <a href="http://www.json.org/" target="_blank">JSON</a> or <a href="http://www.yaml.org/" target="_blank">YAML</a>. If you preffer YAML, you need to install <a href="https://www.npmjs.org/package/yaml2json" target="_blank">yaml2json</a> converter.
+
+
+CoffeeScript
+------------
+
+With the `--coffee` option the generator will convert all js files to coffee. For this, you need the <a href="http://js2coffee.org/" target="_blank">js2coffee</a> converter to be installed:
 
 ```
 meteor-kitchen <input_file_or_url> <output_directory> --coffee
 ```
 
-With the `--coffee` option the generator will convert all js files to coffee. For this, you need the <a href="http://js2coffee.org/" target="_blank">js2coffee</a> converter to be installed.
-
+Jade
+----
 
 For <a href="http://jade-lang.com/" target="_blank">Jade</a> lovers, use `--jade` switch and generator will convert html files to jade:
 
@@ -61,7 +69,7 @@ Jade converter is experimental (I wrote it in rush). It's not 100% syntaticaly c
 Input file
 ===========
 
-The input is just a JSON file containing the application's description. You can start with one of the minimal templates below, depending on whether you need a user account system in your app or not:
+The input is just a JSON or YAML file containing the application's description. You can start with one of the minimal templates below, depending on whether you need a user account system in your app or not:
 
 **Application without user account system**:
 
@@ -925,9 +933,7 @@ Add custom component into page and write your own HTML and JS code, like this:
 
 Your HTML and JS file can contain anything. Your component can contain other components, can use query - the same as any other built in component.
 
-If you want your component to be reusable in multiple pages, then you should use tokens instead of hard-coded template name, title and similar.
-
-Following special tokens inside HTML and JS files will be replaced by generator:
+If you want your component to be reusable in multiple pages, then you should use special tokens instead of hard-coded template name, title and similar. Following special tokens inside HTML and JS files will be replaced by generator:
 
 ```
 TEMPLATE_NAME

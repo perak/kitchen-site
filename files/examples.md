@@ -9,6 +9,7 @@ Minimal
 
 <a href="http://generator-minimal.meteor.com" target="_blank" class="btn btn-success">Live example</a> <a href="https://github.com/perak/kitchen-examples/tree/master/example-minimal" target="_blank" class="btn btn-default">Source code</a>
 
+
 Subpages
 --------
 
@@ -25,12 +26,20 @@ DataView & Forms
 <a href="http://generator-dataview.meteor.com" target="_blank" class="btn btn-success">Live example</a> <a href="https://github.com/perak/kitchen-examples/tree/master/example-dataview" target="_blank" class="btn btn-default">Source code</a>
 
 
-Accounts
---------
+User Accounts
+-------------
 
 <a href="http://generator-accounts.meteor.com" target="_blank"><img src="images/example-accounts.png" alt="accounts" class="example-img"></a>
 
 <a href="http://generator-accounts.meteor.com" target="_blank" class="btn btn-success">Live example</a> <a href="https://github.com/perak/kitchen-examples/tree/master/example-accounts" target="_blank" class="btn btn-default">Source code</a>
+
+
+Invoices
+--------
+
+<a href="http://generator-invoices.meteor.com" target="_blank"><img src="images/example-invoices.png" alt="invoices" class="example-img"></a>
+
+<a href="http://generator-invoices.meteor.com" target="_blank" class="btn btn-success">Live example</a> <a href="https://github.com/perak/kitchen-examples/tree/master/example-invoices" target="_blank" class="btn btn-default">Source code</a>
 
 
 Plugins

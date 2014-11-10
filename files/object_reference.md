@@ -6,7 +6,7 @@ title | string | Application title
 meta\_title | string | Default meta\_title for pages without meta\_title
 meta\_description | string | Default meta\_description for pages without meta\_description
 template | string | Default: "bootstrap" (you can expect more templates in the future).
-theme | string | Visual theme name. With "bootstrap" template, theme can be one of <a href="http://bootswatch.com/" target="\_blank">bootswatch</a> themes: bootswatch-amelia, bootswatch-cerulean, bootswatch-cosmo, bootswatch-cyborg, bootswatch-darkly, bootswatch-flatly, bootswatch-journal, bootswatch-lumen, bootswatch-readable, bootswatch-simplex, bootswatch-slate, bootswatch-spacelab, bootswatch-superhero, bootswatch-united, bootswatch-yeti
+theme | string | Visual theme name. With "bootstrap" template, theme can be one of <a href="http://bootswatch.com/" target="\_blank">bootswatch</a> themes: bootswatch-amelia, bootswatch-cerulean, bootswatch-cosmo, bootswatch-cyborg, bootswatch-darkly, bootswatch-flatly, bootswatch-journal, bootswatch-lumen, bootswatch-paper, bootswatch-readable, bootswatch-simplex, bootswatch-slate, bootswatch-spacelab, bootswatch-superhero, bootswatch-united, bootswatch-yeti
 footer\_text | string | Text to show in page footer
 roles | array of string | List of user roles for applications with user account system
 default\_role | string | Default role for new users
@@ -177,9 +177,9 @@ after\_remove\_source\_file | string | File that contains code to be executed af
 Property | Type | Description
 ---------|------|------------
 name | string | Object name
-type | string | Component type name. Built-in component types are: "menu", "jumbotron", "form", "dataview", "markdown" and "div". You can write custom component by specifying "custom" here and write your html and js templates (see "custom\_template" member).
+type | string | Component type name.
 template | string | Built-in html and js template file name (without extension) contained in kitchen templates directory.
-custom\_template | string | Custom html and js template filename (without extension). Path is relative to input JSON file. For example: if you specify type "custom" and wrote "foo.html" and "foo.js" then you need to enter "foo" here.
+custom\_template | string | Custom html and js template filename (without extension). Path is relative to input JSON file.
 dest\_selector | string | destination html element selector. Similar to jQuery selector, but only three simple formats are supported: "tagname", "#element\_id" and ".class\_name".
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
@@ -220,8 +220,8 @@ template\_rendered\_code | string | Code to be executed once template is rendere
 Property | Type | Description
 ---------|------|------------
 name | string | Object name
-type | string | Component type name. Built-in component types are: "menu", "jumbotron", "form", "dataview", "markdown" and "div". You can write custom component by specifying "custom" here and write your html and js templates (see "custom\_template" member).
-custom\_template | string | Custom html and js template filename (without extension). Path is relative to input JSON file. For example: if you specify type "custom" and wrote "foo.html" and "foo.js" then you need to enter "foo" here.
+type | string | Component type name.
+custom\_template | string | Custom html and js template filename (without extension). Path is relative to input JSON file.
 dest\_selector | string | destination html element selector. Similar to jQuery selector, but only three simple formats are supported: "tagname", "#element\_id" and ".class\_name".
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
@@ -291,9 +291,9 @@ views | array of string | View styles: "table", "list" or "gallery". Default: "t
 Property | Type | Description
 ---------|------|------------
 name | string | Object name
-type | string | Component type name. Built-in component types are: "menu", "jumbotron", "form", "dataview", "markdown" and "div". You can write custom component by specifying "custom" here and write your html and js templates (see "custom\_template" member).
+type | string | Component type name.
 template | string | Built-in html and js template file name (without extension) contained in kitchen templates directory.
-custom\_template | string | Custom html and js template filename (without extension). Path is relative to input JSON file. For example: if you specify type "custom" and wrote "foo.html" and "foo.js" then you need to enter "foo" here.
+custom\_template | string | Custom html and js template filename (without extension). Path is relative to input JSON file.
 dest\_selector | string | destination html element selector. Similar to jQuery selector, but only three simple formats are supported: "tagname", "#element\_id" and ".class\_name".
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
@@ -425,8 +425,8 @@ dest | string | Destination file. You can use directory aliases: OUTPUT\_DIR, CL
 Property | Type | Description
 ---------|------|------------
 name | string | Object name
-type | string | Component type name. Built-in component types are: "menu", "jumbotron", "form", "dataview", "markdown" and "div". You can write custom component by specifying "custom" here and write your html and js templates (see "custom\_template" member).
-custom\_template | string | Custom html and js template filename (without extension). Path is relative to input JSON file. For example: if you specify type "custom" and wrote "foo.html" and "foo.js" then you need to enter "foo" here.
+type | string | Component type name.
+custom\_template | string | Custom html and js template filename (without extension). Path is relative to input JSON file.
 dest\_selector | string | destination html element selector. Similar to jQuery selector, but only three simple formats are supported: "tagname", "#element\_id" and ".class\_name".
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
@@ -512,8 +512,8 @@ value | string | Field value
 Property | Type | Description
 ---------|------|------------
 name | string | Object name
-type | string | Component type name. Built-in component types are: "menu", "jumbotron", "form", "dataview", "markdown" and "div". You can write custom component by specifying "custom" here and write your html and js templates (see "custom\_template" member).
-custom\_template | string | Custom html and js template filename (without extension). Path is relative to input JSON file. For example: if you specify type "custom" and wrote "foo.html" and "foo.js" then you need to enter "foo" here.
+type | string | Component type name.
+custom\_template | string | Custom html and js template filename (without extension). Path is relative to input JSON file.
 dest\_selector | string | destination html element selector. Similar to jQuery selector, but only three simple formats are supported: "tagname", "#element\_id" and ".class\_name".
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
@@ -566,8 +566,8 @@ button\_class | string | CSS class to be added to jumbotron button
 Property | Type | Description
 ---------|------|------------
 name | string | Object name
-type | string | Component type name. Built-in component types are: "menu", "jumbotron", "form", "dataview", "markdown" and "div". You can write custom component by specifying "custom" here and write your html and js templates (see "custom\_template" member).
-custom\_template | string | Custom html and js template filename (without extension). Path is relative to input JSON file. For example: if you specify type "custom" and wrote "foo.html" and "foo.js" then you need to enter "foo" here.
+type | string | Component type name.
+custom\_template | string | Custom html and js template filename (without extension). Path is relative to input JSON file.
 dest\_selector | string | destination html element selector. Similar to jQuery selector, but only three simple formats are supported: "tagname", "#element\_id" and ".class\_name".
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
@@ -609,8 +609,8 @@ source\_file | string | Path to file containing markup (relative to input file)
 Property | Type | Description
 ---------|------|------------
 name | string | Object name
-type | string | Component type name. Built-in component types are: "menu", "jumbotron", "form", "dataview", "markdown" and "div". You can write custom component by specifying "custom" here and write your html and js templates (see "custom\_template" member).
-custom\_template | string | Custom html and js template filename (without extension). Path is relative to input JSON file. For example: if you specify type "custom" and wrote "foo.html" and "foo.js" then you need to enter "foo" here.
+type | string | Component type name.
+custom\_template | string | Custom html and js template filename (without extension). Path is relative to input JSON file.
 dest\_selector | string | destination html element selector. Similar to jQuery selector, but only three simple formats are supported: "tagname", "#element\_id" and ".class\_name".
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
@@ -656,6 +656,7 @@ Property | Type | Description
 ---------|------|------------
 title | string | Item title as appears in menu
 route | string | Route name of destination page
+route\_params | array of [route\_param](#route\_param) | Parameters to be passed to "route"
 url | string | URL (for external links. You can use only one of "route" or "url" properties, not both)
 class | string | CSS class name to be added to item `li` element
 items | array of [menu\_item](#menu\_item) | Subitems
@@ -665,6 +666,8 @@ items | array of [menu\_item](#menu\_item) | Subitems
 {
 	"title": "",
 	"route": "",
+	"route_params": [
+	],
 	"url": "",
 	"class": "",
 	"items": [
@@ -697,7 +700,7 @@ Property | Type | Description
 ---------|------|------------
 name | string | Object name
 template | string | Built-in html and js template file name (without extension) contained in kitchen templates directory.
-custom\_template | string | Custom html and js template filename (without extension). Path is relative to input JSON file. For example: if you specify type "custom" and wrote "foo.html" and "foo.js" then you need to enter "foo" here.
+custom\_template | string | Custom html and js template filename (without extension). Path is relative to input JSON file.
 class | string | CSS class name to be added to component
 title | string | Component title
 query | [query](#query) | Query to be added to Template data context

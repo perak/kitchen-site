@@ -321,33 +321,6 @@
 					"input": "textarea"
 				},
 				{
-					"name": "before_insert_source_file",
-					"title": "Before insert source file",
-					"type": "string",
-					"subType": "",
-					"default": "",
-					"required": false,
-					"input": "text"
-				},
-				{
-					"name": "before_update_source_file",
-					"title": "Before update source file",
-					"type": "string",
-					"subType": "",
-					"default": "",
-					"required": false,
-					"input": "text"
-				},
-				{
-					"name": "before_remove_source_file",
-					"title": "Before remove source file",
-					"type": "string",
-					"subType": "",
-					"default": "",
-					"required": false,
-					"input": "text"
-				},
-				{
 					"name": "after_insert_code",
 					"title": "After insert code",
 					"type": "string",
@@ -373,6 +346,33 @@
 					"default": "",
 					"required": false,
 					"input": "textarea"
+				},
+				{
+					"name": "before_insert_source_file",
+					"title": "Before insert source file",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "before_update_source_file",
+					"title": "Before update source file",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "before_remove_source_file",
+					"title": "Before remove source file",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
 				},
 				{
 					"name": "after_insert_source_file",
@@ -1048,6 +1048,15 @@
 					"input": "text"
 				},
 				{
+					"name": "route_params",
+					"title": "Route params",
+					"type": "array",
+					"subType": "route_param",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
+				{
 					"name": "url",
 					"title": "URL",
 					"type": "string",
@@ -1391,6 +1400,15 @@
 					"input": ""
 				},
 				{
+					"name": "insert_button_title",
+					"title": "Insert button title",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
 					"name": "views",
 					"title": "View styles",
 					"type": "array",
@@ -1442,5 +1460,5 @@
 			]
 		}
 	],
-	"version": 12
+	"version": 14
 }

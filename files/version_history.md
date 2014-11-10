@@ -1,6 +1,36 @@
 Version History
 ===============
 
+0.8.0
+-----
+
+- Added new example: simple invoicing application. See it <a href="http://generator-invoices.meteor.com" target="_blank">live</a>, source is <a href="https://github.com/perak/kitchen-examples/tree/master/example-invoices" target="_blank">here</a>.
+
+- Fixed some bugs
+
+
+0.7.9
+-----
+
+- Added "bootswatch-paper" theme
+
+
+0.7.8
+-----
+
+- First run is now much faster - meteor-kitchen now adds all packages in a single "meteor add ..." command.
+
+- Added "route_params" property to MenuItem object.
+
+
+0.7.7
+-----
+
+- Input file now can be in <a href="http://www.yaml.org/" target="_blank">YAML</a> format. Input YAML file must have extension ".yml" or ".yaml". You need to install <a href="https://www.npmjs.org/package/yaml2json" target="_blank">yaml2json</a>.
+
+- Fixed few bugs
+
+
 0.7.6
 -----
 

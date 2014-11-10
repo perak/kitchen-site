@@ -248,9 +248,35 @@
 					"meta_description": "Meteor.js code generator version history",
 					"components": [
 						{
-							"name": "content",
-							"type": "markdown",
-							"source_file": "files/version_history.md"
+							"name": "row",
+							"type": "div",
+							"class": "row",
+							"components": [
+								{
+									"name": "left",
+									"type": "div",
+									"class": "col-sm-6",
+									"components": [
+										{
+											"name": "version_history",
+											"type": "markdown",
+											"source_file": "files/version_history.md"
+										}
+									]
+								},
+								{
+									"name": "right",
+									"type": "div",
+									"class": "col-sm-6",
+									"components": [
+										{
+											"name": "events",
+											"type": "markdown",
+											"source_file": "files/events.md"
+										}
+									]
+								}
+							]
 						}
 					]
 				},
@@ -359,6 +385,7 @@
 			{ "source": "files/example-subpages.png", "dest": "PUBLIC_DIR/images/example-subpages.png" },
 			{ "source": "files/example-dataview.png", "dest": "PUBLIC_DIR/images/example-dataview.png" },
 			{ "source": "files/example-accounts.png", "dest": "PUBLIC_DIR/images/example-accounts.png" },
+			{ "source": "files/example-invoices.png", "dest": "PUBLIC_DIR/images/example-invoices.png" },
 			{ "source": "files/example-plugins.png", "dest": "PUBLIC_DIR/images/example-plugins.png" },
 			{ "source": "files/ribbon-donate-bitcoin.png", "dest": "PUBLIC_DIR/images/ribbon-donate-bitcoin.png" },
 

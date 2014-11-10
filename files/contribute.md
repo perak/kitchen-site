@@ -21,6 +21,8 @@ Contributors
 
 <a href="https://github.com/perak" target="_blank"><b>Petar Korponaić</b></a> - original author
 
+<a href="https://github.com/benstr" target="_blank"><b>Ben Strahan</b></a> - excellent presentation at World Wide Meteor Day in Chicago. Video is <a href="http://www.youtube.com/watch?v=0njX2e7GwDs" target="_blank">here</a>.
+
 <a href="https://github.com/jimbog" target="_blank"><b>Jimmy Garzon</b></a> - improving docs
 
 <a href="https://github.com/npvn" target="_blank"><b>Phúc Nguyễn</b></a> - improving docs
