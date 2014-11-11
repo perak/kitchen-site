@@ -234,7 +234,7 @@ text\_if\_not\_found | string | Text to show if search string is not found.
 fields | array of [field](#field) | Defainition of table columns. If empty, generator will use fields defined at collection level.
 insert\_route | string | Route name of page containing insert form
 details\_route | string | Route name of page showing selected item details (usually page containing form of type "read\_only").
-edit\_route | string | Route name of page containing edit form
+edit\_route | string | Route name of page containing edit form. Makes edit\_route\_params field mandatory in most cases to be functional
 delete\_route | string | Route name to execute when user clicks "delete". Not mandatory - generator will automatically produce code for delete operation.
 insert\_route\_params | array of [route\_param](#route\_param) | Parameters to be passed to "insert\_route"
 details\_route\_params | array of [route\_param](#route\_param) | Parameters to be passed to "details\_route"
@@ -345,8 +345,8 @@ format | string | Currently used only with data types "date" and "time". Contain
 input | string | Form input control type: "text", "password", "datepicker", "read-only", "textarea", "radio", "checkbox", "select"
 input\_items | array of [field\_item](#field\_item) | Item list for input type "radio" and "select"
 lookup\_query | [query](#query) | Lookup query - data source for input type "select" items
-lookup\_key | string | Field name from lookup\_query used as option value in input type "select"
-lookup\_field | string | Field name from lookup\_query used as option title in input type "select"
+lookup\_key | string | Field name from lookup\_query used as option value in input type "select". Mandatory field if lookup query is defined
+lookup\_field | string | Field name from lookup\_query used as option title in input type "select". Mandatory field if lookup query is defined
 display\_helper | string | Helper name used to display value from this field (used in DataView, Forms etc.)
 show\_in\_dataview | bool | If set to "false", field will not be shown in dataview components. Default: true
 show\_in\_insert\_form | bool | If set to "false", field will not be included in forms with mode "insert". Default: true
@@ -436,10 +436,10 @@ components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
 mode | string | "insert", "update" or "read\_only"
 layout | string | "default", "horizontal" or "inline"
-submit\_route | string | Route name of page to navigate after successfull submit
-cancel\_route | string | Route name of page to navigate on form cancelation
-close\_route | string | Route name of page to navigate when user clicks "OK" button in "read\_only" form
-back\_route | string | Route name of page to navigate on form back button
+submit\_route | string | Route name of page to navigate after successfull submit. Mandatory field for submit button to appear
+cancel\_route | string | Route name of page to navigate on form cancelation. Mandatory field for cancel button to appear
+close\_route | string | Route name of page to navigate when user clicks "OK" button in "read\_only" form. Mandatory field for close button to appear
+back\_route | string | Route name of page to navigate on form back button. Mandatory field for back button to appear
 submit\_route\_params | array of [route\_param](#route\_param) | Route params to be passed to "submit\_route"
 cancel\_route\_params | array of [route\_param](#route\_param) | Route params to be passed to "cancel\_route"
 close\_route\_params | array of [route\_param](#route\_param) | Route params to be passed to "close\_route"
@@ -763,7 +763,7 @@ force\_yield\_subpages | bool | Subpages will be rendered in "subcontent" area e
 
 Property | Type | Description
 ---------|------|------------
-name | string | Object name
+name | string | Object name. Must be unique per given set of parameters
 collection | string | Name of existing collection
 find\_one | bool | If set to true query will return single document: collection.findOne(). Default: false
 filter | jsonobject | Mongo query expression. Will be passed as parameter to collection.find(). Can contain route params in form ":paramName".
