@@ -15,7 +15,7 @@ You **need** to have <a href="https://www.meteor.com" target="_blank">Meteor >=1
 I paused work on version for Windows. You can download some old version <a href="/install/install_win.zip" target="_blank">here.</a>
 
 
-Current version is 0.8.0
+Current version is 0.9.0
 ========================
 
 Click <a href="{{pathFor 'version_history'}}">here</a> to see version history.
@@ -30,7 +30,7 @@ Just install it again.
 CLI
 ===
 
-meteor-kitchen comes with command line interface only (**GUI** is under construction). You can run the generator by typing:
+You can run the generator by typing:
 
 ```
 meteor-kitchen
@@ -69,7 +69,9 @@ Jade converter is experimental (I wrote it in rush). It's not 100% syntaticaly c
 Input file
 ===========
 
-The input is just a JSON or YAML file containing the application's description. You can start with one of the minimal templates below, depending on whether you need a user account system in your app or not:
+The input is just a JSON or YAML file containing the application's description. You can write it manually using your favorite editor or use <a href="{{urlFor 'login'}}">kitchen-GUI</a> - visual application generator.
+
+You can start with one of the minimal templates below, depending on whether you need a user account system in your app or not:
 
 **Application without user account system**:
 

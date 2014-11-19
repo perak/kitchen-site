@@ -6,6 +6,7 @@
 		"template": "bootstrap",
 		"theme": "bootswatch-amelia",
 		"footer_text": "Meteor Kitchen &copy; 2014 Petar Korponaić All Rights Reserved",
+
 		"collections": [
 			{
 				"name": "metadata"
@@ -16,7 +17,21 @@
 				"read_owner_only": true,
 				"write_owner_only": true,
 				"fields": [
-					{ "name": "name", "title": "Application name", "type": "string", "required": true }
+					{ "name": "name", "title": "Application name", "type": "string", "required": true },
+					{
+						"name": "withUserAccounts",
+						"title": "User accounts?",
+						"type": "integer",
+						"input": "radio",
+						"input_items": [
+							{ "title": "No user account system", "value": 0 },
+							{ "title": "With user account system", "value": 1 }
+						],
+						"show_in_dataview": false,
+						"show_in_insert_form": true,
+						"show_in_update_form": false,
+						"show_in_read_only_form": false
+					}
 				],
 				"before_insert_source_file": "files/applications_before_insert.js"
 			}
@@ -32,7 +47,7 @@
 							"title": "Meteor Kitchen",
 							"type": "jumbotron",
 							"dest_position": "before",
-							"text": "<b><a href=\"https://www.meteor.com\" target=\"_blank\">Meteor</a> application code generator</b><br />Less coding = more code",
+							"text": "<b>Code generator for <a href=\"https://www.meteor.com\" target=\"_blank\">Meteor.js</a></b><br />Less coding = more code",
 							"image_url": "images/cupcakes.svg",
 							"button_title": "Get started &raquo;",
 							"button_route": "getting_started"
@@ -337,14 +352,296 @@
 			"pages": [
 				{ 
 					"name": "home_private", 
-					"title": "Welcome {{userFullName}}!", 
-					"text": "This page is under construction."
+					"title": "{{userFullName}}, welcome to Meteor Kitchen!",
+					"components": [
+						{
+							"name": "dashboard",
+							"type": "markdown",
+							"source_file": "files/dashboard.md"
+						}
+					]
 				},
-                {
-                	"name": "applications",
-                	"title": "My applications",
-					"text": "This page is under construction."
-                },
+
+
+				{
+					"name": "applications",
+					"components": [
+						{
+							"name": "view",
+							"type": "dataview",
+							"title": "My applications",
+							"text_if_empty": "No applications here",
+							"query": {
+								"name": "applications",
+								"collection": "applications",
+								"filter": {}
+							},
+							"insert_route": "applications.insert",
+
+							"edit_route": "applications.edit",
+							"edit_route_params": [
+								{ "name": "applicationId", "value": "this._id" }
+							],
+
+							"details_route": "applications.details",
+							"details_route_params": [
+								{ "name": "applicationId", "value": "this._id" },
+								{ "name": "objectId", "value": null },
+								{ "name": "propertyName", "value": null}
+							]
+						}
+					],
+					"pages": [
+						{
+							"name": "insert",
+							"components": [
+								{
+									"name": "insert_form",
+									"type": "form",
+									"mode": "insert",
+									"title": "New application",
+									"query": {
+										"name": "applications_empty",
+										"collection": "applications",
+										"filter": {"_id": null}
+									},
+									"submit_route": "applications.details",
+									"submit_route_params": [
+										{ "name": "applicationId", "value": "newId" },
+										{ "name": "objectId", "value": null },
+										{ "name": "propertyName", "value": null }
+									],
+									"cancel_route": "applications"
+								}
+							]
+						},
+
+						{
+							"name": "edit",
+							"route_params": ["applicationId"],
+							"components": [
+								{
+									"name": "edit_form",
+									"type": "form",
+									"mode": "update",
+									"title": "Edit",
+									"submit_route": "applications",
+									"cancel_route": "applications",
+									"query": {
+										"name": "application",
+										"collection": "applications",
+										"filter": { "_id": ":applicationId" }
+									}
+								}
+							]
+						},
+
+						{
+							"name": "details",
+							"template": "page_empty",
+							"title": "{{application.name}}",
+							"class": "app-editor-container",
+							"route_params": [ "applicationId", "objectId", "propertyName" ],
+							"query": {
+								"name": "application",
+								"collection": "applications",
+								"find_one": true,
+								"filter": { "_id": ":applicationId" }
+							},
+
+							"pages": [
+								{
+									"name" : "form_view",
+									"class": "app-editor",
+
+									"query": {
+										"name": "application",
+										"collection": "applications",
+										"find_one": true,
+										"filter": { "_id": ":applicationId" }
+									},
+
+									"queries": [
+										{
+											"name": "metadata",
+											"collection": "metadata",
+											"find_one": true,
+											"options": { "sort": { "version": -1} }
+										}
+									],
+
+									"components": [
+										{
+											"name": "content_row",
+											"type": "div",
+											"class": "row",
+											"components": [
+												{
+													"name": "left_col",
+													"type": "div",
+													"class": "col-md-4",
+													"components": [
+														{
+															"name": "tree",
+															"type": "object_tree",
+															"query": {
+																"name": "application",
+																"collection": "applications",
+																"find_one": true,
+																"filter": { "_id": ":applicationId" }
+															},
+															"root_id_field": "_id",
+															"data_field": "data",
+															"metadata_query_name": "metadata",
+															"metadata_field": "data",
+
+															"select_object_route": "applications.details.form_view",
+															"select_object_route_params": [
+																{ "name": "applicationId", "value": "this.rootId" },
+																{ "name": "objectId", "value": "objectId" },
+																{ "name": "propertyName", "value": null }
+															],
+
+															"select_array_route": "applications.details.form_view",
+															"select_array_route_params": [
+																{ "name": "applicationId", "value": "this.rootId" },
+																{ "name": "objectId", "value": "objectId" },
+																{ "name": "propertyName", "value": "propertyName" }
+															]
+														}
+													]
+												},
+												{
+													"name": "right_col",
+													"type": "div",
+													"class": "col-md-8",
+													"components": [
+														{
+															"name": "form",
+															"title": "{{title}}",
+															"type": "object_editor",
+															"query": {
+																"name": "application",
+																"collection": "applications",
+																"find_one": true,
+																"filter": { "_id": ":applicationId" }
+															},
+															"data_field": "data",
+															"metadata_query_name": "metadata",
+															"metadata_field": "data",
+															"object_id": ":objectId",
+															"property_name": ":propertyName",
+															"select_object_route": "applications.details.form_view",
+															"select_object_route_params": [
+																{ "name": "applicationId", "value": "this.rootId" },
+																{ "name": "objectId", "value": "this.objectId" },
+																{ "name": "propertyName", "value": null }
+															]
+														}
+													]
+												}
+											]
+										}
+									]
+
+								},
+
+								{
+									"name" : "json_view",
+									"class": "app-editor",
+									"text": "This page is under construction (will contain JSON editor).",
+
+									"query": {
+										"name": "application",
+										"collection": "applications",
+										"find_one": true,
+										"filter": { "_id": ":applicationId" }
+									},
+
+									"queries": [
+										{
+											"name": "metadata",
+											"collection": "metadata",
+											"find_one": true,
+											"options": { "sort": { "version": -1} }
+										}
+									],
+
+									"components": [
+									]
+								}
+							],
+
+							"components": [
+								{
+									"name": "build_info",
+									"dest_selector": "#title_row",
+									"dest_position": "after",
+									"type": "div",
+									"class": "alert alert-info alert-dismissible build-info",
+									"text": "<button type=\"button\" class=\"close toggle-build-info\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>",
+									"components": [
+										{
+											"name": "text",
+											"type": "markdown",
+											"source_file": "files/build_info.md"
+										}
+									]
+								}
+							],
+
+							"menus": [
+								{
+									"name": "editor_menu",
+									"class": "nav nav-pills",
+									"dest_selector": "#page_menu",
+									"items": [
+										{
+											"title": "View",
+											"items": [
+												{
+													"title": "Tree/Form",
+													"route": "applications.details.form_view",
+													"route_params": [
+														{ "name": "applicationId", "value": "application._id" },
+														{ "name": "objectId", "value": null },
+														{ "name": "propertyName", "value": null }
+													]
+												},
+												{
+													"title": "Source (JSON)",
+													"route": "applications.details.json_view",
+													"route_params": [
+														{ "name": "applicationId", "value": "application._id" },
+														{ "name": "objectId", "value": null },
+														{ "name": "propertyName", "value": null }
+													]
+												}
+											]
+										},
+										{
+											"title": "Build",
+											"url": "#",
+											"class": "toggle-build-info"
+										},
+										{
+											"title": "Download",
+											"url": "{{urlFor 'api.getapp.json' applicationId=application._id}}",
+											"target": "_blank"
+										}
+									]
+								}
+							],
+
+							"events_code": "
+								\"click .toggle-build-info\": function(e, t) {
+									$(\".alert.build-info\").toggle();
+								}
+							"
+						}
+					]
+				},
+
 				{ "name": "logout", "template": "logout.html", "action_code": "App.logout();" }
 			],
 
@@ -370,13 +667,19 @@
 		},
 
 		"server_side_routes": [
-			{ "name": "install", "source_file": "files/route_install.js" }
+			{ "name": "install", "source_file": "files/route_install.js" },
+			{
+				"name": "api.getapp.json",
+				"route_params": ["applicationId"],
+				"source_file": "files/route_getapp_json.js"
+			}
 		],
 
 		"server_startup_source_file": "files/startup_server.js",
 
 		"copy_files": [
 			{ "source": "files/start", "dest": "OUTPUT_DIR/start" },
+			{ "source": "files/styles.less", "dest": "CLIENT_STYLES_DIR/styles.less" },
 			{ "source": "files/analytics.js", "dest": "CLIENT_DIR/analytics.js" },
 
 			{ "source": "files/cupcakes.svg", "dest": "PUBLIC_DIR/images/cupcakes.svg" },
@@ -388,6 +691,9 @@
 			{ "source": "files/example-invoices.png", "dest": "PUBLIC_DIR/images/example-invoices.png" },
 			{ "source": "files/example-plugins.png", "dest": "PUBLIC_DIR/images/example-plugins.png" },
 			{ "source": "files/ribbon-donate-bitcoin.png", "dest": "PUBLIC_DIR/images/ribbon-donate-bitcoin.png" },
+
+			{ "source": "files/template-simple.json", "dest": "PRIVATE_DIR/template-simple.json" },
+			{ "source": "files/template-accounts.json", "dest": "PRIVATE_DIR/template-accounts.json" },
 
 			{ "source": "files/metadata.json", "dest": "PRIVATE_DIR/metadata.json" }
 		],

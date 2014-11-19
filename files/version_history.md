@@ -1,10 +1,17 @@
 Version History
 ===============
 
+0.9.0
+-----
+
+- Added <a href="{{urlFor 'login'}}">kitchen-GUI</a> - visual application generator. Built (of course) with meteor-kitchen itself. Just <a href="{{urlFor 'login'}}">login</a> and enjoy! :)
+
+- Fixed some bugs with HTML parser
+
 0.8.0
 -----
 
-- Added new example: simple invoicing application. See it <a href="http://generator-invoices.meteor.com" target="_blank">live</a>, source is <a href="https://github.com/perak/kitchen-examples/tree/master/example-invoices" target="_blank">here</a>.
+- Added new example: simple **invoicing application**. See it <a href="http://generator-invoices.meteor.com" target="_blank">live</a>, source is <a href="https://github.com/perak/kitchen-examples/tree/master/example-invoices" target="_blank">here</a>.
 
 - Fixed some bugs
 

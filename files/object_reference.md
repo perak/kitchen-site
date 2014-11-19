@@ -39,6 +39,8 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	"collections": [
 	],
 	"free_zone": {
+		"events_code": "",
+		"helpers_code": "",
 		"menus": [
 		],
 		"pages": [
@@ -78,12 +80,16 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	"collections": [
 	],
 	"public_zone": {
+		"events_code": "",
+		"helpers_code": "",
 		"menus": [
 		],
 		"pages": [
 		]
 	},
 	"private_zone": {
+		"events_code": "",
+		"helpers_code": "",
 		"menus": [
 		],
 		"pages": [
@@ -184,6 +190,8 @@ dest\_selector | string | destination html element selector. Similar to jQuery s
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
 title | string | Component title
+events\_code | string | Content of `Template.TEMLATE\_NAME.events({ ... });`
+helpers\_code | string | Content of `Template.TEMLATE\_NAME.helpers({ ... });`
 query | [query](#query) | Query to be added to Template data context
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
@@ -199,6 +207,8 @@ template\_rendered\_code | string | Code to be executed once template is rendere
 	"dest_position": "",
 	"class": "",
 	"title": "",
+	"events_code": "",
+	"helpers_code": "",
 	"query": {
 		"name": "",
 		"collection": "",
@@ -226,6 +236,8 @@ dest\_selector | string | destination html element selector. Similar to jQuery s
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
 title | string | Component title
+events\_code | string | Content of `Template.TEMLATE\_NAME.events({ ... });`
+helpers\_code | string | Content of `Template.TEMLATE\_NAME.helpers({ ... });`
 query | [query](#query) | Query to be added to Template data context
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
@@ -234,12 +246,13 @@ text\_if\_not\_found | string | Text to show if search string is not found.
 fields | array of [field](#field) | Defainition of table columns. If empty, generator will use fields defined at collection level.
 insert\_route | string | Route name of page containing insert form
 details\_route | string | Route name of page showing selected item details (usually page containing form of type "read\_only").
-edit\_route | string | Route name of page containing edit form. Makes edit\_route\_params field mandatory in most cases to be functional
+edit\_route | string | Route name of page containing edit form. Makes edit\\_route\\_params field mandatory in most cases to be functional.
 delete\_route | string | Route name to execute when user clicks "delete". Not mandatory - generator will automatically produce code for delete operation.
 insert\_route\_params | array of [route\_param](#route\_param) | Parameters to be passed to "insert\_route"
 details\_route\_params | array of [route\_param](#route\_param) | Parameters to be passed to "details\_route"
 edit\_route\_params | array of [route\_param](#route\_param) | Parameters to be passed to "edit\_route"
 delete\_route\_params | array of [route\_param](#route\_param) | Parameters to be passed to "delete\_route"
+insert\_button\_title | string | Insert button title
 views | array of string | View styles: "table", "list" or "gallery". Default: "table".
 
 *Example:*
@@ -252,6 +265,8 @@ views | array of string | View styles: "table", "list" or "gallery". Default: "t
 	"dest_position": "",
 	"class": "",
 	"title": "",
+	"events_code": "",
+	"helpers_code": "",
 	"query": {
 		"name": "",
 		"collection": "",
@@ -280,6 +295,7 @@ views | array of string | View styles: "table", "list" or "gallery". Default: "t
 	],
 	"delete_route_params": [
 	],
+	"insert_button_title": "",
 	"views": [
 	]
 }
@@ -298,9 +314,12 @@ dest\_selector | string | destination html element selector. Similar to jQuery s
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
 title | string | Component title
+events\_code | string | Content of `Template.TEMLATE\_NAME.events({ ... });`
+helpers\_code | string | Content of `Template.TEMLATE\_NAME.helpers({ ... });`
 query | [query](#query) | Query to be added to Template data context
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
+text | string | 
 
 *Example:*
 ```
@@ -313,6 +332,8 @@ template\_rendered\_code | string | Code to be executed once template is rendere
 	"dest_position": "",
 	"class": "",
 	"title": "",
+	"events_code": "",
+	"helpers_code": "",
 	"query": {
 		"name": "",
 		"collection": "",
@@ -324,7 +345,8 @@ template\_rendered\_code | string | Code to be executed once template is rendere
 	},
 	"components": [
 	],
-	"template_rendered_code": ""
+	"template_rendered_code": "",
+	"text": ""
 }
 ```
 
@@ -343,9 +365,9 @@ sortable | bool | Is field sortable? Default: true
 exportable | bool | If true field will be exported to CSV/JSON (used in dataview component). Default: false
 format | string | Currently used only with data types "date" and "time". Contains date or time format such as "MM/DD/YYYY" or "hh:mm:ss"
 input | string | Form input control type: "text", "password", "datepicker", "read-only", "textarea", "radio", "checkbox", "select"
-input\_items | array of [field\_item](#field\_item) | Item list for input type "radio" and "select"
+input\_items | array of [input\_item](#input\_item) | Item list for input type "radio" and "select"
 lookup\_query | [query](#query) | Lookup query - data source for input type "select" items
-lookup\_key | string | Field name from lookup\_query used as option value in input type "select". Mandatory field if lookup query is defined
+lookup\_key | string | Field name from lookup\_query used as option value in input type "select". Mandatory field if lookup\_query is defined
 lookup\_field | string | Field name from lookup\_query used as option title in input type "select". Mandatory field if lookup query is defined
 display\_helper | string | Helper name used to display value from this field (used in DataView, Forms etc.)
 show\_in\_dataview | bool | If set to "false", field will not be shown in dataview components. Default: true
@@ -388,22 +410,6 @@ show\_in\_read\_only\_form | bool | If set to "false", field will not be include
 ```
 
 
-# field_item
-
-Property | Type | Description
----------|------|------------
-value | string | select, radio or checkbox item title shown to user
-title | string | select, radio or checkbox item value written on submit
-
-*Example:*
-```
-{
-	"value": "",
-	"title": ""
-}
-```
-
-
 # file_pair
 
 Property | Type | Description
@@ -431,6 +437,8 @@ dest\_selector | string | destination html element selector. Similar to jQuery s
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
 title | string | Component title
+events\_code | string | Content of `Template.TEMLATE\_NAME.events({ ... });`
+helpers\_code | string | Content of `Template.TEMLATE\_NAME.helpers({ ... });`
 query | [query](#query) | Query to be added to Template data context
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
@@ -457,6 +465,8 @@ hidden\_fields | array of [hidden\_field](#hidden\_field) | Fields (not shown in
 	"dest_position": "",
 	"class": "",
 	"title": "",
+	"events_code": "",
+	"helpers_code": "",
 	"query": {
 		"name": "",
 		"collection": "",
@@ -507,6 +517,22 @@ value | string | Field value
 ```
 
 
+# input_item
+
+Property | Type | Description
+---------|------|------------
+value | string | select, radio or checkbox item title shown to user
+title | string | select, radio or checkbox item value written on submit
+
+*Example:*
+```
+{
+	"value": "",
+	"title": ""
+}
+```
+
+
 # jumbotron
 
 Property | Type | Description
@@ -518,6 +544,8 @@ dest\_selector | string | destination html element selector. Similar to jQuery s
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
 title | string | Component title
+events\_code | string | Content of `Template.TEMLATE\_NAME.events({ ... });`
+helpers\_code | string | Content of `Template.TEMLATE\_NAME.helpers({ ... });`
 query | [query](#query) | Query to be added to Template data context
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
@@ -538,6 +566,8 @@ button\_class | string | CSS class to be added to jumbotron button
 	"dest_position": "",
 	"class": "",
 	"title": "",
+	"events_code": "",
+	"helpers_code": "",
 	"query": {
 		"name": "",
 		"collection": "",
@@ -572,6 +602,8 @@ dest\_selector | string | destination html element selector. Similar to jQuery s
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
 title | string | Component title
+events\_code | string | Content of `Template.TEMLATE\_NAME.events({ ... });`
+helpers\_code | string | Content of `Template.TEMLATE\_NAME.helpers({ ... });`
 query | [query](#query) | Query to be added to Template data context
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
@@ -587,6 +619,8 @@ source\_file | string | Path to file containing markup (relative to input file)
 	"dest_position": "",
 	"class": "",
 	"title": "",
+	"events_code": "",
+	"helpers_code": "",
 	"query": {
 		"name": "",
 		"collection": "",
@@ -615,6 +649,8 @@ dest\_selector | string | destination html element selector. Similar to jQuery s
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
 title | string | Component title
+events\_code | string | Content of `Template.TEMLATE\_NAME.events({ ... });`
+helpers\_code | string | Content of `Template.TEMLATE\_NAME.helpers({ ... });`
 query | [query](#query) | Query to be added to Template data context
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
@@ -631,6 +667,8 @@ scroll\_spy\_selector | string | "scrollspy" selector for menus with anchor link
 	"dest_position": "",
 	"class": "",
 	"title": "",
+	"events_code": "",
+	"helpers_code": "",
 	"query": {
 		"name": "",
 		"collection": "",
@@ -659,6 +697,7 @@ route | string | Route name of destination page
 route\_params | array of [route\_param](#route\_param) | Parameters to be passed to "route"
 url | string | URL (for external links. You can use only one of "route" or "url" properties, not both)
 class | string | CSS class name to be added to item `li` element
+target | string | Anchor "target" attribute value e.g. "\_blank"
 items | array of [menu\_item](#menu\_item) | Subitems
 
 *Example:*
@@ -670,6 +709,7 @@ items | array of [menu\_item](#menu\_item) | Subitems
 	],
 	"url": "",
 	"class": "",
+	"target": "",
 	"items": [
 	]
 }
@@ -703,6 +743,8 @@ template | string | Built-in html and js template file name (without extension) 
 custom\_template | string | Custom html and js template filename (without extension). Path is relative to input JSON file.
 class | string | CSS class name to be added to component
 title | string | Component title
+events\_code | string | Content of `Template.TEMLATE\_NAME.events({ ... });`
+helpers\_code | string | Content of `Template.TEMLATE\_NAME.helpers({ ... });`
 query | [query](#query) | Query to be added to Template data context
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
@@ -726,6 +768,8 @@ force\_yield\_subpages | bool | Subpages will be rendered in "subcontent" area e
 	"custom_template": "",
 	"class": "",
 	"title": "",
+	"events_code": "",
+	"helpers_code": "",
 	"query": {
 		"name": "",
 		"collection": "",
@@ -763,7 +807,7 @@ force\_yield\_subpages | bool | Subpages will be rendered in "subcontent" area e
 
 Property | Type | Description
 ---------|------|------------
-name | string | Object name. Must be unique per given set of parameters
+name | string | Object name
 collection | string | Name of existing collection
 find\_one | bool | If set to true query will return single document: collection.findOne(). Default: false
 filter | jsonobject | Mongo query expression. Will be passed as parameter to collection.find(). Can contain route params in form ":paramName".
@@ -804,13 +848,16 @@ value | string | Parameter value
 Property | Type | Description
 ---------|------|------------
 name | string | Object name
-path | string | Route path. Not mandatory: if ommited path is constructed from route name.
+route\_params | array of string | Route params to be passed via URL
+path | string | Route path. Not mandatory: if ommited path is constructed from route name and route\_params.
 source\_file | string | path to external file containing route action code (relative to input JSON file).
 
 *Example:*
 ```
 {
 	"name": "",
+	"route_params": [
+	],
 	"path": "",
 	"source_file": ""
 }
@@ -821,6 +868,8 @@ source\_file | string | path to external file containing route action code (rela
 
 Property | Type | Description
 ---------|------|------------
+events\_code | string | Content of `Template.TEMLATE\_NAME.events({ ... });`
+helpers\_code | string | Content of `Template.TEMLATE\_NAME.helpers({ ... });`
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
 menus | array of [menu](#menu) | Menus to be inserted into this page
@@ -829,6 +878,8 @@ pages | array of [page](#page) | Subpages
 *Example:*
 ```
 {
+	"events_code": "",
+	"helpers_code": "",
 	"menus": [
 	],
 	"pages": [

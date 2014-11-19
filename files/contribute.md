@@ -25,6 +25,8 @@ Contributors
 
 <a href="https://github.com/jimbog" target="_blank"><b>Jimmy Garzon</b></a> - improving docs
 
+<a href="https://github.com/TheAncientGoat" target="_blank"><b>Ryan Swart</b></a> - improving docs
+
 <a href="https://github.com/npvn" target="_blank"><b>Phúc Nguyễn</b></a> - improving docs
 
 <a href="http://danielonum.crevado.com/about" target="_blank"><b>Daniel Zec</b></a> - super cool logo design

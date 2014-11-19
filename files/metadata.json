@@ -15,7 +15,11 @@
 					"input": ""
 				}
 			],
+			"override_members": [
+			],
 			"hide_members": [
+			],
+			"hide_derived_classes": [
 			]
 		},
 		{
@@ -33,7 +37,11 @@
 					"input": "text"
 				}
 			],
+			"override_members": [
+			],
 			"hide_members": [
+			],
+			"hide_derived_classes": [
 			]
 		},
 		{
@@ -87,6 +95,15 @@
 					"input": "checkbox"
 				},
 				{
+					"name": "format",
+					"title": "Format",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
 					"name": "searchable",
 					"title": "Searchable",
 					"type": "bool",
@@ -123,6 +140,9 @@
 					"input": "radio",
 					"choice_items": [
 						"text",
+						"password",
+						"datepicker",
+						"read-only",
 						"textarea",
 						"radio",
 						"checkbox",
@@ -150,19 +170,19 @@
 				},
 				{
 					"name": "lookup_key",
-					"title": "Lookup key",
+					"title": "Lookup value field",
 					"type": "string",
 					"subType": "",
-					"default": "text",
+					"default": "",
 					"required": false,
 					"input": "text"
 				},
 				{
 					"name": "lookup_field",
-					"title": "Lookup field",
+					"title": "Lookup title field",
 					"type": "string",
 					"subType": "",
-					"default": "text",
+					"default": "",
 					"required": false,
 					"input": "text"
 				},
@@ -171,7 +191,7 @@
 					"title": "Display helper",
 					"type": "string",
 					"subType": "",
-					"default": "text",
+					"default": "",
 					"required": false,
 					"input": "text"
 				},
@@ -212,7 +232,73 @@
 					"input": "checkbox"
 				}
 			],
+			"override_members": [
+			],
 			"hide_members": [
+			],
+			"hide_derived_classes": [
+			]
+		},
+		{
+			"objectType": "hidden_field",
+			"derivedFrom": [
+			],
+			"members": [
+				{
+					"name": "name",
+					"title": "Name",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": true,
+					"input": "text"
+				},
+				{
+					"name": "value",
+					"title": "Value",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": true,
+					"input": "text"
+				}
+			],
+			"override_members": [
+			],
+			"hide_members": [
+			],
+			"hide_derived_classes": [
+			]
+		},
+		{
+			"objectType": "input_item",
+			"derivedFrom": [
+			],
+			"members": [
+				{
+					"name": "value",
+					"title": "Value",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": true,
+					"input": "text"
+				},
+				{
+					"name": "title",
+					"title": "Title",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": true,
+					"input": "text"
+				}
+			],
+			"override_members": [
+			],
+			"hide_members": [
+			],
+			"hide_derived_classes": [
 			]
 		},
 		{
@@ -264,7 +350,7 @@
 					"subType": "string",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "stringlist"
 				},
 				{
 					"name": "roles_allowed_to_insert",
@@ -273,7 +359,7 @@
 					"subType": "string",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "stringlist"
 				},
 				{
 					"name": "roles_allowed_to_update",
@@ -282,7 +368,7 @@
 					"subType": "string",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "stringlist"
 				},
 				{
 					"name": "roles_allowed_to_delete",
@@ -291,7 +377,7 @@
 					"subType": "string",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "stringlist"
 				},
 				{
 					"name": "before_insert_code",
@@ -402,7 +488,11 @@
 					"input": "text"
 				}
 			],
+			"override_members": [
+			],
 			"hide_members": [
+			],
+			"hide_derived_classes": [
 			]
 		},
 		{
@@ -413,16 +503,16 @@
 			"members": [
 				{
 					"name": "collection",
-					"title": "Collection",
+					"title": "Collection name",
 					"type": "string",
 					"subType": "",
 					"default": "",
 					"required": true,
-					"input": "select"
+					"input": "text"
 				},
 				{
 					"name": "find_one",
-					"title": "Find one",
+					"title": "FindOne",
 					"type": "bool",
 					"subType": "",
 					"default": "false",
@@ -436,7 +526,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "JSON"
+					"input": "json"
 				},
 				{
 					"name": "options",
@@ -445,10 +535,14 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "JSON"
+					"input": "json"
 				}
 			],
+			"override_members": [
+			],
 			"hide_members": [
+			],
+			"hide_derived_classes": [
 			]
 		},
 		{
@@ -462,9 +556,9 @@
 					"title": "Type",
 					"type": "string",
 					"subType": "",
-					"default": "",
+					"default": "component",
 					"required": true,
-					"input": "static"
+					"input": "text"
 				},
 				{
 					"name": "template",
@@ -491,7 +585,14 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "select",
+					"choice_items": [
+						"",
+						"top",
+						"bottom",
+						"before",
+						"after"
+					]
 				},
 				{
 					"name": "class",
@@ -510,6 +611,24 @@
 					"default": "",
 					"required": false,
 					"input": "text"
+				},
+				{
+					"name": "events_code",
+					"title": "Events",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "textarea"
+				},
+				{
+					"name": "helpers_code",
+					"title": "Helpers",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "textarea"
 				},
 				{
 					"name": "query",
@@ -539,7 +658,13 @@
 					"input": "textarea"
 				}
 			],
+			"override_members": [
+			],
 			"hide_members": [
+			],
+			"hide_derived_classes": [
+				"page",
+				"plugin"
 			]
 		},
 		{
@@ -549,7 +674,11 @@
 			],
 			"members": [
 			],
+			"override_members": [
+			],
 			"hide_members": [
+			],
+			"hide_derived_classes": [
 			]
 		},
 		{
@@ -576,7 +705,11 @@
 					"input": "text"
 				}
 			],
+			"override_members": [
+			],
 			"hide_members": [
+			],
+			"hide_derived_classes": [
 			]
 		},
 		{
@@ -586,12 +719,21 @@
 			],
 			"members": [
 				{
+					"name": "route_params",
+					"title": "Route params",
+					"type": "array",
+					"subType": "string",
+					"default": "",
+					"required": false,
+					"input": "stringlist"
+				},
+				{
 					"name": "path",
 					"title": "Path",
 					"type": "string",
 					"subType": "",
 					"default": "",
-					"required": true,
+					"required": false,
 					"input": "text"
 				},
 				{
@@ -604,7 +746,11 @@
 					"input": "text"
 				}
 			],
+			"override_members": [
+			],
 			"hide_members": [
+			],
+			"hide_derived_classes": [
 			]
 		},
 		{
@@ -647,11 +793,11 @@
 					"subType": "string",
 					"default": "",
 					"required": false,
-					"input": "textarea"
+					"input": "stringlist"
 				},
 				{
 					"name": "close_route",
-					"title": "Close route",
+					"title": "Close button route",
 					"type": "string",
 					"subType": "",
 					"default": "",
@@ -674,7 +820,7 @@
 					"subType": "string",
 					"default": "",
 					"required": false,
-					"input": "textarea"
+					"input": "stringlist"
 				},
 				{
 					"name": "menus",
@@ -713,10 +859,53 @@
 					"input": ""
 				}
 			],
+			"override_members": [
+				{
+					"name": "type",
+					"title": "Type",
+					"type": "string",
+					"subType": "",
+					"default": "page",
+					"required": false,
+					"input": "static"
+				},
+				{
+					"name": "template",
+					"title": "Template",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "select",
+					"choice_items": [
+						"",
+						"page_empty",
+						"page_subcontent_sidenav",
+						"page_subcontent_tabnav",
+						"change_pass",
+						"forgot_password",
+						"login",
+						"logout",
+						"register",
+						"reset_password"
+					]
+				},
+				{
+					"name": "title",
+					"title": "Page title",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				}
+			],
 			"hide_members": [
-				"type",
 				"dest_selector",
 				"dest_position"
+			],
+			"hide_derived_classes": [
+				"zone"
 			]
 		},
 		{
@@ -726,6 +915,17 @@
 			],
 			"members": [
 			],
+			"override_members": [
+				{
+					"name": "type",
+					"title": "Type",
+					"type": "string",
+					"subType": "",
+					"default": "zone",
+					"required": false,
+					"input": "static"
+				}
+			],
 			"hide_members": [
 				"name",
 				"template",
@@ -734,12 +934,18 @@
 				"dest_position",
 				"title",
 				"text",
-				"type",
 				"query",
 				"route_params",
 				"close_route",
 				"close_route_params",
-				"roles"
+				"roles",
+				"events_code",
+				"helpers_code",
+				"template_rendered_code",
+				"meta_title",
+				"meta_description"
+			],
+			"hide_derived_classes": [
 			]
 		},
 		{
@@ -749,7 +955,7 @@
 			"members": [
 				{
 					"name": "source",
-					"title": "Source",
+					"title": "Source file",
 					"type": "string",
 					"subType": "",
 					"default": "",
@@ -758,7 +964,7 @@
 				},
 				{
 					"name": "dest",
-					"title": "Dest.",
+					"title": "Destination file",
 					"type": "string",
 					"subType": "",
 					"default": "",
@@ -766,7 +972,11 @@
 					"input": "text"
 				}
 			],
+			"override_members": [
+			],
 			"hide_members": [
+			],
+			"hide_derived_classes": [
 			]
 		},
 		{
@@ -781,7 +991,7 @@
 					"subType": "string",
 					"default": "",
 					"required": false,
-					"input": "textarea"
+					"input": "stringlist"
 				},
 				{
 					"name": "mrt",
@@ -790,10 +1000,14 @@
 					"subType": "string",
 					"default": "",
 					"required": false,
-					"input": "textarea"
+					"input": "stringlist"
 				}
 			],
+			"override_members": [
+			],
 			"hide_members": [
+			],
+			"hide_derived_classes": [
 			]
 		},
 		{
@@ -836,7 +1050,10 @@
 					"subType": "",
 					"default": "bootstrap",
 					"required": false,
-					"input": "text"
+					"input": "select",
+					"choice_items": [
+						"bootstrap"
+					]
 				},
 				{
 					"name": "theme",
@@ -845,7 +1062,26 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "select",
+					"choice_items": [
+						"",
+						"bootswatch-amelia",
+						"bootswatch-cerulean",
+						"bootswatch-cosmo",
+						"bootswatch-cyborg",
+						"bootswatch-darkly",
+						"bootswatch-flatly",
+						"bootswatch-journal",
+						"bootswatch-lumen",
+						"bootswatch-paper",
+						"bootswatch-readable",
+						"bootswatch-simplex",
+						"bootswatch-slate",
+						"bootswatch-spacelab",
+						"bootswatch-superhero",
+						"bootswatch-united",
+						"bootswatch-yeti"
+					]
 				},
 				{
 					"name": "footer_text",
@@ -858,12 +1094,12 @@
 				},
 				{
 					"name": "roles",
-					"title": "Roles",
+					"title": "User roles",
 					"type": "array",
 					"subType": "string",
 					"default": "",
 					"required": false,
-					"input": "textarea"
+					"input": "stringlist"
 				},
 				{
 					"name": "default_role",
@@ -1011,16 +1247,20 @@
 				},
 				{
 					"name": "router_config",
-					"title": "Router config.",
+					"title": "Router configuration",
 					"type": "object",
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "json"
 				}
+			],
+			"override_members": [
 			],
 			"hide_members": [
 				"name"
+			],
+			"hide_derived_classes": [
 			]
 		},
 		{
@@ -1066,6 +1306,15 @@
 					"input": "text"
 				},
 				{
+					"name": "target",
+					"title": "Set HTML target attr value",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
 					"name": "class",
 					"title": "Class",
 					"type": "string",
@@ -1084,8 +1333,12 @@
 					"input": ""
 				}
 			],
+			"override_members": [
+			],
 			"hide_members": [
 				"name"
+			],
+			"hide_derived_classes": [
 			]
 		},
 		{
@@ -1113,7 +1366,29 @@
 					"input": "text"
 				}
 			],
+			"override_members": [
+				{
+					"name": "type",
+					"title": "Type",
+					"type": "string",
+					"subType": "",
+					"default": "menu",
+					"required": false,
+					"input": "static"
+				},
+				{
+					"name": "template",
+					"title": "Template",
+					"type": "string",
+					"subType": "",
+					"default": "menu",
+					"required": false,
+					"input": "static"
+				}
+			],
 			"hide_members": [
+			],
+			"hide_derived_classes": [
 			]
 		},
 		{
@@ -1177,7 +1452,29 @@
 					"input": "text"
 				}
 			],
+			"override_members": [
+				{
+					"name": "type",
+					"title": "Type",
+					"type": "string",
+					"subType": "",
+					"default": "jumbotron",
+					"required": false,
+					"input": "static"
+				},
+				{
+					"name": "template",
+					"title": "Template",
+					"type": "string",
+					"subType": "",
+					"default": "jumbotron",
+					"required": false,
+					"input": "static"
+				}
+			],
 			"hide_members": [
+			],
+			"hide_derived_classes": [
 			]
 		},
 		{
@@ -1191,7 +1488,7 @@
 					"title": "Mode",
 					"type": "string",
 					"subType": "",
-					"default": "",
+					"default": "insert",
 					"required": false,
 					"input": "radio",
 					"choice_items": [
@@ -1202,12 +1499,17 @@
 				},
 				{
 					"name": "layout",
-					"title": "Layout",
+					"title": "Form layout",
 					"type": "string",
 					"subType": "",
-					"default": "",
+					"default": "default",
 					"required": false,
-					"input": "text"
+					"input": "radio",
+					"choice_items": [
+						"default",
+						"horizontal",
+						"inline"
+					]
 				},
 				{
 					"name": "submit_route",
@@ -1300,7 +1602,29 @@
 					"input": ""
 				}
 			],
+			"override_members": [
+				{
+					"name": "type",
+					"title": "Type",
+					"type": "string",
+					"subType": "",
+					"default": "form",
+					"required": false,
+					"input": "static"
+				},
+				{
+					"name": "template",
+					"title": "Template",
+					"type": "string",
+					"subType": "",
+					"default": "form",
+					"required": false,
+					"input": "static"
+				}
+			],
 			"hide_members": [
+			],
+			"hide_derived_classes": [
 			]
 		},
 		{
@@ -1314,7 +1638,7 @@
 					"title": "Text if empty",
 					"type": "string",
 					"subType": "",
-					"default": "",
+					"default": "No data here",
 					"required": false,
 					"input": "text"
 				},
@@ -1415,7 +1739,7 @@
 					"subType": "string",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "stringlist"
 				},
 				{
 					"name": "fields",
@@ -1427,7 +1751,29 @@
 					"input": ""
 				}
 			],
+			"override_members": [
+				{
+					"name": "type",
+					"title": "Type",
+					"type": "string",
+					"subType": "",
+					"default": "dataview",
+					"required": false,
+					"input": "static"
+				},
+				{
+					"name": "template",
+					"title": "Template",
+					"type": "string",
+					"subType": "",
+					"default": "dataview",
+					"required": false,
+					"input": "static"
+				}
+			],
 			"hide_members": [
+			],
+			"hide_derived_classes": [
 			]
 		},
 		{
@@ -1438,7 +1784,7 @@
 			"members": [
 				{
 					"name": "source_file",
-					"title": "Source file",
+					"title": "Markdown source file",
 					"type": "string",
 					"subType": "",
 					"default": "",
@@ -1446,7 +1792,33 @@
 					"input": "text"
 				}
 			],
+			"override_members": [
+				{
+					"name": "type",
+					"title": "Type",
+					"type": "string",
+					"subType": "",
+					"default": "markdown",
+					"required": false,
+					"input": "static"
+				},
+				{
+					"name": "template",
+					"title": "Template",
+					"type": "string",
+					"subType": "",
+					"default": "markdown",
+					"required": false,
+					"input": "static"
+				}
+			],
 			"hide_members": [
+				"class",
+				"events_code",
+				"helpers_code",
+				"template_rendered_code"
+			],
+			"hide_derived_classes": [
 			]
 		},
 		{
@@ -1455,10 +1827,44 @@
 				"component"
 			],
 			"members": [
+				{
+					"name": "text",
+					"title": "Text",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "textarea"
+				}
+			],
+			"override_members": [
+				{
+					"name": "type",
+					"title": "Type",
+					"type": "string",
+					"subType": "",
+					"default": "div",
+					"required": false,
+					"input": "static"
+				},
+				{
+					"name": "template",
+					"title": "Template",
+					"type": "string",
+					"subType": "",
+					"default": "div",
+					"required": false,
+					"input": "static"
+				}
 			],
 			"hide_members": [
+				"events_code",
+				"helpers_code",
+				"template_rendered_code"
+			],
+			"hide_derived_classes": [
 			]
 		}
 	],
-	"version": 14
+	"version": 17
 }
