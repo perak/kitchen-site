@@ -15,7 +15,7 @@ You **need** to have <a href="https://www.meteor.com" target="_blank">Meteor >=1
 I paused work on version for Windows. You can download some old version <a href="/install/install_win.zip" target="_blank">here.</a>
 
 
-Current version is 0.9.0
+Current version is 0.9.1
 ========================
 
 Click <a href="{{pathFor 'version_history'}}">here</a> to see version history.
@@ -1131,7 +1131,7 @@ You can restrict any page inside private zone to any set of user roles by adding
 				{ "name": "login", "template": "login.html" },
 				{ "name": "register", "template": "register.html" },
 				{ "name": "forgot_password", "template": "forgot_password.html" },
-				{ "name": "reset_password", "template": "reset_password.html" }
+				{ "name": "reset_password", "template": "reset_password.html", "route_params": ["resetPasswordToken"] }
 			],
 
 			"menus": [

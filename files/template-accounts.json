@@ -13,7 +13,7 @@
 				{ "name": "login", "template": "login" },
 				{ "name": "register", "template": "register" },
 				{ "name": "forgot_password", "template": "forgot_password" },
-				{ "name": "reset_password", "template": "reset_password" }
+				{ "name": "reset_password", "template": "reset_password.html", "route_params": ["resetPasswordToken"] }
 			],
 
 			"menus": [

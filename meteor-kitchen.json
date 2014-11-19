@@ -160,7 +160,7 @@
 				{ "name": "login", "template": "login.html" },
 				{ "name": "register", "template": "register.html" },
 				{ "name": "forgot_password", "template": "forgot_password.html" },
-				{ "name": "reset_password", "template": "reset_password.html" },
+				{ "name": "reset_password", "template": "reset_password.html", "route_params": ["resetPasswordToken"] },
 				{ 
 					"name": "getting_started",
 					"meta_title": "Getting started",
@@ -642,6 +642,23 @@
 					]
 				},
 
+				{
+					"name": "user_settings",
+					"pages": [
+						{ "name": "change_pass", "template": "change_pass.html" }
+					],
+
+					"menus": [
+						{
+							"name": "side_menu",
+							"class": "nav nav-stacked nav-pills",
+							"items": [
+								{ "title": "Change password", "route": "user_settings.change_pass" }
+							]
+						}
+					]
+				},
+
 				{ "name": "logout", "template": "logout.html", "action_code": "App.logout();" }
 			],
 
@@ -655,12 +672,19 @@
 						{ "title": "My applications", "route": "applications" }
 					]
 				},
+
 				{
 					"name": "right_menu",
 					"class": "nav navbar-nav navbar-right",
 					"dest_selector": "#menu",
 					"items": [
-						{ "title": "Logout", "route": "logout" }
+						{ 
+							"title": "{{userEmail}}",
+							"items": [
+								{ "title": "Settings", "route": "user_settings" },
+								{ "title": "Logout", "route": "logout" }
+							]
+						}
 					]
 				}
 			]

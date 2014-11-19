@@ -1,12 +1,21 @@
 Version History
 ===============
 
+0.9.1
+-----
+
+- Reset password form was broken. It's fixed now.
+
+- GUI - object properties form: while form submit is in progress, button is now in disabled state.
+
+
 0.9.0
 -----
 
 - Added <a href="{{urlFor 'login'}}">kitchen-GUI</a> - visual application generator. Built (of course) with meteor-kitchen itself. Just <a href="{{urlFor 'login'}}">login</a> and enjoy! :)
 
 - Fixed some bugs with HTML parser
+
 
 0.8.0
 -----
