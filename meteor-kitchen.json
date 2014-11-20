@@ -374,7 +374,8 @@
 							"query": {
 								"name": "applications",
 								"collection": "applications",
-								"filter": {}
+								"filter": {},
+								"options": { "sort": { "name": 1} }
 							},
 							"insert_route": "applications.insert",
 
@@ -490,24 +491,26 @@
 																"find_one": true,
 																"filter": { "_id": ":applicationId" }
 															},
-															"root_id_field": "_id",
-															"data_field": "data",
-															"metadata_query_name": "metadata",
-															"metadata_field": "data",
+															"properties": {
+																"root_id_field": "_id",
+																"data_field": "data",
+																"metadata_query_name": "metadata",
+																"metadata_field": "data",
 
-															"select_object_route": "applications.details.form_view",
-															"select_object_route_params": [
-																{ "name": "applicationId", "value": "this.rootId" },
-																{ "name": "objectId", "value": "objectId" },
-																{ "name": "propertyName", "value": null }
-															],
+																"select_object_route": "applications.details.form_view",
+																"select_object_route_params": [
+																	{ "name": "applicationId", "value": "this.rootId" },
+																	{ "name": "objectId", "value": "objectId" },
+																	{ "name": "propertyName", "value": null }
+																],
 
-															"select_array_route": "applications.details.form_view",
-															"select_array_route_params": [
-																{ "name": "applicationId", "value": "this.rootId" },
-																{ "name": "objectId", "value": "objectId" },
-																{ "name": "propertyName", "value": "propertyName" }
-															]
+																"select_array_route": "applications.details.form_view",
+																"select_array_route_params": [
+																	{ "name": "applicationId", "value": "this.rootId" },
+																	{ "name": "objectId", "value": "objectId" },
+																	{ "name": "propertyName", "value": "propertyName" }
+																]
+															}
 														}
 													]
 												},
@@ -518,7 +521,6 @@
 													"components": [
 														{
 															"name": "form",
-															"title": "{{title}}",
 															"type": "object_editor",
 															"query": {
 																"name": "application",
@@ -526,17 +528,19 @@
 																"find_one": true,
 																"filter": { "_id": ":applicationId" }
 															},
-															"data_field": "data",
-															"metadata_query_name": "metadata",
-															"metadata_field": "data",
-															"object_id": ":objectId",
-															"property_name": ":propertyName",
-															"select_object_route": "applications.details.form_view",
-															"select_object_route_params": [
-																{ "name": "applicationId", "value": "this.rootId" },
-																{ "name": "objectId", "value": "this.objectId" },
-																{ "name": "propertyName", "value": null }
-															]
+															"properties": {
+																"data_field": "data",
+																"metadata_query_name": "metadata",
+																"metadata_field": "data",
+																"object_id": ":objectId",
+																"property_name": ":propertyName",
+																"select_object_route": "applications.details.form_view",
+																"select_object_route_params": [
+																	{ "name": "applicationId", "value": "this.rootId" },
+																	{ "name": "objectId", "value": "this.objectId" },
+																	{ "name": "propertyName", "value": null }
+																]
+															}
 														}
 													]
 												}
@@ -563,7 +567,7 @@
 											"name": "metadata",
 											"collection": "metadata",
 											"find_one": true,
-											"options": { "sort": { "version": -1} }
+											"options": { "sort": { "version": -1 } }
 										}
 									],
 

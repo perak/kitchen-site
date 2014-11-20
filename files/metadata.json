@@ -20,7 +20,8 @@
 			"hide_members": [
 			],
 			"hide_derived_classes": [
-			]
+			],
+			"hide_this": false
 		},
 		{
 			"objectType": "object",
@@ -42,7 +43,8 @@
 			"hide_members": [
 			],
 			"hide_derived_classes": [
-			]
+			],
+			"hide_this": false
 		},
 		{
 			"objectType": "field",
@@ -237,7 +239,8 @@
 			"hide_members": [
 			],
 			"hide_derived_classes": [
-			]
+			],
+			"hide_this": false
 		},
 		{
 			"objectType": "hidden_field",
@@ -268,7 +271,8 @@
 			"hide_members": [
 			],
 			"hide_derived_classes": [
-			]
+			],
+			"hide_this": false
 		},
 		{
 			"objectType": "input_item",
@@ -299,7 +303,8 @@
 			"hide_members": [
 			],
 			"hide_derived_classes": [
-			]
+			],
+			"hide_this": false
 		},
 		{
 			"objectType": "collection",
@@ -493,7 +498,8 @@
 			"hide_members": [
 			],
 			"hide_derived_classes": [
-			]
+			],
+			"hide_this": false
 		},
 		{
 			"objectType": "query",
@@ -543,7 +549,8 @@
 			"hide_members": [
 			],
 			"hide_derived_classes": [
-			]
+			],
+			"hide_this": false
 		},
 		{
 			"objectType": "component",
@@ -568,6 +575,33 @@
 					"default": "",
 					"required": false,
 					"input": "text"
+				},
+				{
+					"name": "custom_template",
+					"title": "Custom template",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "html",
+					"title": "HTML code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "textarea"
+				},
+				{
+					"name": "js",
+					"title": "JS code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "textarea"
 				},
 				{
 					"name": "dest_selector",
@@ -661,25 +695,14 @@
 			"override_members": [
 			],
 			"hide_members": [
+				"template",
+				"html",
+				"js"
 			],
 			"hide_derived_classes": [
-				"page",
-				"plugin"
-			]
-		},
-		{
-			"objectType": "plugin",
-			"derivedFrom": [
-				"component"
+				"page"
 			],
-			"members": [
-			],
-			"override_members": [
-			],
-			"hide_members": [
-			],
-			"hide_derived_classes": [
-			]
+			"hide_this": true
 		},
 		{
 			"objectType": "route_param",
@@ -710,7 +733,8 @@
 			"hide_members": [
 			],
 			"hide_derived_classes": [
-			]
+			],
+			"hide_this": false
 		},
 		{
 			"objectType": "server_side_route",
@@ -751,7 +775,8 @@
 			"hide_members": [
 			],
 			"hide_derived_classes": [
-			]
+			],
+			"hide_this": false
 		},
 		{
 			"objectType": "page",
@@ -870,6 +895,15 @@
 					"input": "static"
 				},
 				{
+					"name": "title",
+					"title": "Page title",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
 					"name": "template",
 					"title": "Template",
 					"type": "string",
@@ -889,24 +923,17 @@
 						"register",
 						"reset_password"
 					]
-				},
-				{
-					"name": "title",
-					"title": "Page title",
-					"type": "string",
-					"subType": "",
-					"default": "",
-					"required": false,
-					"input": "text"
 				}
 			],
 			"hide_members": [
+				"custom_template",
 				"dest_selector",
 				"dest_position"
 			],
 			"hide_derived_classes": [
 				"zone"
-			]
+			],
+			"hide_this": false
 		},
 		{
 			"objectType": "zone",
@@ -946,7 +973,8 @@
 				"meta_description"
 			],
 			"hide_derived_classes": [
-			]
+			],
+			"hide_this": false
 		},
 		{
 			"objectType": "file_pair",
@@ -977,7 +1005,8 @@
 			"hide_members": [
 			],
 			"hide_derived_classes": [
-			]
+			],
+			"hide_this": false
 		},
 		{
 			"objectType": "packages",
@@ -1008,7 +1037,8 @@
 			"hide_members": [
 			],
 			"hide_derived_classes": [
-			]
+			],
+			"hide_this": false
 		},
 		{
 			"objectType": "application",
@@ -1261,7 +1291,65 @@
 				"name"
 			],
 			"hide_derived_classes": [
-			]
+			],
+			"hide_this": false
+		},
+		{
+			"objectType": "custom_component",
+			"derivedFrom": [
+				"component"
+			],
+			"members": [
+			],
+			"override_members": [
+				{
+					"name": "type",
+					"title": "Type",
+					"type": "string",
+					"subType": "",
+					"default": "custom_component",
+					"required": false,
+					"input": "static"
+				},
+				{
+					"name": "html",
+					"title": "HTML code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "textarea"
+				},
+				{
+					"name": "js",
+					"title": "JS code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "textarea"
+				},
+				{
+					"name": "custom_template",
+					"title": "Use custom template",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				}
+			],
+			"hide_members": [
+				"events_code",
+				"helpers_code",
+				"template_rendered_code",
+				"class",
+				"title",
+				"text"
+			],
+			"hide_derived_classes": [
+			],
+			"hide_this": false
 		},
 		{
 			"objectType": "menu_item",
@@ -1339,7 +1427,8 @@
 				"name"
 			],
 			"hide_derived_classes": [
-			]
+			],
+			"hide_this": false
 		},
 		{
 			"objectType": "menu",
@@ -1375,21 +1464,14 @@
 					"default": "menu",
 					"required": false,
 					"input": "static"
-				},
-				{
-					"name": "template",
-					"title": "Template",
-					"type": "string",
-					"subType": "",
-					"default": "menu",
-					"required": false,
-					"input": "static"
 				}
 			],
 			"hide_members": [
+				"custom_template"
 			],
 			"hide_derived_classes": [
-			]
+			],
+			"hide_this": false
 		},
 		{
 			"objectType": "jumbotron",
@@ -1461,21 +1543,14 @@
 					"default": "jumbotron",
 					"required": false,
 					"input": "static"
-				},
-				{
-					"name": "template",
-					"title": "Template",
-					"type": "string",
-					"subType": "",
-					"default": "jumbotron",
-					"required": false,
-					"input": "static"
 				}
 			],
 			"hide_members": [
+				"custom_template"
 			],
 			"hide_derived_classes": [
-			]
+			],
+			"hide_this": false
 		},
 		{
 			"objectType": "form",
@@ -1611,21 +1686,14 @@
 					"default": "form",
 					"required": false,
 					"input": "static"
-				},
-				{
-					"name": "template",
-					"title": "Template",
-					"type": "string",
-					"subType": "",
-					"default": "form",
-					"required": false,
-					"input": "static"
 				}
 			],
 			"hide_members": [
+				"custom_template"
 			],
 			"hide_derived_classes": [
-			]
+			],
+			"hide_this": false
 		},
 		{
 			"objectType": "dataview",
@@ -1760,21 +1828,14 @@
 					"default": "dataview",
 					"required": false,
 					"input": "static"
-				},
-				{
-					"name": "template",
-					"title": "Template",
-					"type": "string",
-					"subType": "",
-					"default": "dataview",
-					"required": false,
-					"input": "static"
 				}
 			],
 			"hide_members": [
+				"custom_template"
 			],
 			"hide_derived_classes": [
-			]
+			],
+			"hide_this": false
 		},
 		{
 			"objectType": "markdown",
@@ -1801,25 +1862,19 @@
 					"default": "markdown",
 					"required": false,
 					"input": "static"
-				},
-				{
-					"name": "template",
-					"title": "Template",
-					"type": "string",
-					"subType": "",
-					"default": "markdown",
-					"required": false,
-					"input": "static"
 				}
 			],
 			"hide_members": [
+				"custom_template",
 				"class",
 				"events_code",
 				"helpers_code",
-				"template_rendered_code"
+				"template_rendered_code",
+				"title"
 			],
 			"hide_derived_classes": [
-			]
+			],
+			"hide_this": false
 		},
 		{
 			"objectType": "div",
@@ -1846,25 +1901,58 @@
 					"default": "div",
 					"required": false,
 					"input": "static"
-				},
-				{
-					"name": "template",
-					"title": "Template",
-					"type": "string",
-					"subType": "",
-					"default": "div",
-					"required": false,
-					"input": "static"
 				}
 			],
 			"hide_members": [
+				"custom_template",
+				"events_code",
+				"helpers_code",
+				"template_rendered_code",
+				"title"
+			],
+			"hide_derived_classes": [
+			],
+			"hide_this": false
+		},
+		{
+			"objectType": "plugin",
+			"derivedFrom": [
+				"component"
+			],
+			"members": [
+				{
+					"name": "properties",
+					"title": "Properties",
+					"type": "object",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "json"
+				}
+			],
+			"override_members": [
+				{
+					"name": "type",
+					"title": "Type",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": true,
+					"input": "text"
+				}
+			],
+			"hide_members": [
+				"custom_template",
+				"class",
+				"title",
 				"events_code",
 				"helpers_code",
 				"template_rendered_code"
 			],
 			"hide_derived_classes": [
-			]
+			],
+			"hide_this": false
 		}
 	],
-	"version": 17
+	"version": 18
 }

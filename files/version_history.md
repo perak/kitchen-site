@@ -1,6 +1,18 @@
 Version History
 ===============
 
+0.9.2
+-----
+
+- GUI: fixed **many bugs**
+
+- GUI: added possibility to delete object from array (that was somehow missing)
+
+- Added new component type "custom_component" with possibility to provide custom HTML and JS code. Component of type "custom" is deprecated now (still working for backward compatibility). 
+
+- Changed how plugins work
+
+
 0.9.1
 -----
 

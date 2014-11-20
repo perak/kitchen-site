@@ -15,7 +15,7 @@ You **need** to have <a href="https://www.meteor.com" target="_blank">Meteor >=1
 I paused work on version for Windows. You can download some old version <a href="/install/install_win.zip" target="_blank">here.</a>
 
 
-Current version is 0.9.1
+Current version is 0.9.2
 ========================
 
 Click <a href="{{pathFor 'version_history'}}">here</a> to see version history.
@@ -355,7 +355,7 @@ The minimal structure of any **component** object is:
 ```
 
 - `name` - used by generator to construct component template name: parent template name + component name (will be in capitalized camel-case).
-- `type` - used by the generator to determine the component's type. If type is not one of the built-in component types, the generator will try to find and execute a plugin with that name (more about plugins later). You can write custom component by specifying "custom" here. In that case you need to provide your custom html and js files. See "custom components" below.
+- `type` - used by the generator to determine the component's type. If type is not one of the built-in component types, the generator will try to find and execute a plugin with that name (more about plugins later). You can write custom component by specifying "custom_component" here. In that case you need to provide your custom html and js code. See "custom components" below.
 
 ### Jumbotron component
 
@@ -918,29 +918,35 @@ Add custom component into page and write your own HTML and JS code, like this:
 ```
 {
   "name": "my_component",
-  "title": "My cool component",
-  "type": "custom",
+  "type": "custom_component",
+
+  "html": "...your custom html here...",
+  "js": "...your custom js here..."
+}
+```
+
+Or provide custom template .html and .js files:
+
+
+```
+{
+  "name": "my_component",
+  "type": "custom_component",
+
   "custom_template": "something"
-  "query": {
-    "name": "some_query",
-    "collection": "some_collection",
-    "filter": {}
-  }
 }
 ```
 
 - `type` is set to `custom`. That requires you to provide custom HTML and JS templates.
 
-- In this example `custom_template` is set to `something`. That is path to template HTML and JS files without extension - you need to provide `something.html` and `something.js`. Path is relative to input json file.
+- If `custom_template` is set to `something` then you need to provide `something.html` and `something.js`. Path is relative to input json file.
 
-Your HTML and JS file can contain anything. Your component can contain other components, can use query - the same as any other built in component.
+Your HTML and JS code can contain anything. Your component can contain other components, can use query - the same as any other built in component.
 
-If you want your component to be reusable in multiple pages, then you should use special tokens instead of hard-coded template name, title and similar. Following special tokens inside HTML and JS files will be replaced by generator:
+Following special tokens inside HTML and JS files will be replaced by generator:
 
 ```
 TEMPLATE_NAME
-COMPONENT_TITLE
-COMPONENT_CLASS
 COMPONENT_ID
 QUERY_VAR
 COLLECTION_VAR
@@ -983,14 +989,18 @@ You can use plugin in your application by adding component into page and set com
 	"components": [
 		{
 			"name": "example_plugin",
-			"type": "example1"
+			"type": "example1",
+			"properties": { "anything": "here" }
 		}
 	]
 }
 ...
 ```
+
 Component type is set to `example1`. This type is unknown to generator and it will search plugins directory for subdirectory named `example1` that contains file named `plugin.js`. 
 If a file `plugins/example1/plugin.js` is found, the generator will pass that file to "node.js" and file is executed. File will produce html and js content that will be inserted into page.
+
+You can provide `properties` object with anything inside, that object will be passed to plugin processing code.
 
 Our "example1" `plugin.js` file contains following code:
 
