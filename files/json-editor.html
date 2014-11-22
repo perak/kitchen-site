@@ -1,0 +1,22 @@
+<template name="TEMPLATE_NAME">
+	<div class="row editor-toolbar">
+		<div class="col-md-12">
+			<button type="button" class="btn btn-success save-button" data-loading-text="Please wait...">Save</button>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="alert alert-warning alert-dismissible app-editor-error" role="alert">
+				<button type="button" class="app-editor-error-close close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<strong id="app-editor-error-title">Error:</strong><span id="app-editor-error-message"></span>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div id="xxx" class="col-md-12 app-editor-codemirror">
+			{{> CodeMirror id="json-editor" options=editorOptions code=editorCode}}
+		</div>
+	</div>
+</template>

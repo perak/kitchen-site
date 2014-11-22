@@ -553,7 +553,7 @@
 								{
 									"name" : "json_view",
 									"class": "app-editor",
-									"text": "This page is under construction (will contain JSON editor).",
+									"text": "",
 
 									"query": {
 										"name": "application",
@@ -572,6 +572,11 @@
 									],
 
 									"components": [
+										{
+											"name": "editor",
+											"type": "custom_component",
+											"custom_template": "files/json-editor"
+										}
 									]
 								}
 							],
@@ -727,7 +732,7 @@
 		],
 
 		"packages": {
-			"meteor": ["datariot:ganalytics"],
+			"meteor": ["datariot:ganalytics", "perak:codemirror"],
 			"mrt": []
 		},
 
