@@ -56,7 +56,16 @@ Template.TEMPLATE_NAME.events({
 
 		$(".save-button").button("loading");
 
+		var hasFreeZone = data.application.free_zone;
+
 		extendWithMetadata(data, "root", this.metadata.data);
+
+		if(hasFreeZone) {
+			delete data.application.public_zone;
+			delete data.application.private_zone;
+		} else {
+			delete data.application.free_zone;
+		}
 
 		Applications.update({ _id: this.application._id }, { $set: { data: data }}, function(e) {
 			$(".save-button").button("reset");
