@@ -213,16 +213,17 @@
 					]
 				},
 				{ 
-					"name": "object_reference",
-					"meta_title": "Object reference",
-					"meta_description": "Object reference for Meteor.js code generator",
+					"name": "api_reference",
+					"zoneless": true,
+					"meta_title": "API reference",
+					"meta_description": "API reference for Meteor.js code generator",
 					"template": "page_subcontent_sidenav.html",
 					"template_rendered_code": "$('table').addClass('table');",
 					"components": [
 						{
 							"name": "content",
 							"type": "markdown",
-							"source_file": "files/object_reference.md",
+							"source_file": "files/api_reference.md",
 							"dest_selector": "#subcontent"
 						}
 					],
@@ -233,26 +234,26 @@
 							"dest_selector": "#menu",
 							"scroll_spy_selector": "",
 							"items": [
-								{ "title": "application",	"url": "#application" },
-								{ "title": "collection",	"url": "#collection" },
-								{ "title": "component",		"url": "#component" },
-								{ "title": "dataview",		"url": "#dataview" },
-								{ "title": "div",			"url": "#div" },
-								{ "title": "field",			"url": "#field" },
-								{ "title": "field_item",	"url": "#field_item" },
-								{ "title": "file_pair",		"url": "#file_pair" },
-								{ "title": "form",			"url": "#form" },
-								{ "title": "hidden_field",	"url": "#hidden_field" },
-								{ "title": "jumbotron",		"url": "#jumbotron" },
-								{ "title": "markdown",		"url": "#markdown" },
-								{ "title": "menu",			"url": "#menu" },
-								{ "title": "menu_item",		"url": "#menu_item" },
-								{ "title": "packages",		"url": "#packages" },
-								{ "title": "page",			"url": "#page" },
-								{ "title": "query",			"url": "#query" },
-								{ "title": "route_param",	"url": "#route_param" },
+								{ "title": "application",		"url": "#application" },
+								{ "title": "collection",		"url": "#collection" },
+								{ "title": "custom_component",	"url": "#component" },
+								{ "title": "dataview",			"url": "#dataview" },
+								{ "title": "div",				"url": "#div" },
+								{ "title": "field",				"url": "#field" },
+								{ "title": "field_item",		"url": "#field_item" },
+								{ "title": "file_pair",			"url": "#file_pair" },
+								{ "title": "form",				"url": "#form" },
+								{ "title": "hidden_field",		"url": "#hidden_field" },
+								{ "title": "jumbotron",			"url": "#jumbotron" },
+								{ "title": "markdown",			"url": "#markdown" },
+								{ "title": "menu",				"url": "#menu" },
+								{ "title": "menu_item",			"url": "#menu_item" },
+								{ "title": "packages",			"url": "#packages" },
+								{ "title": "page",				"url": "#page" },
+								{ "title": "query",				"url": "#query" },
+								{ "title": "route_param",		"url": "#route_param" },
 								{ "title": "server_side_route",	"url": "#server_side_route" },
-								{ "title": "zone",			"url": "#zone" }
+								{ "title": "zone",				"url": "#zone" }
 							]
 						}
 					]
@@ -329,7 +330,7 @@
 						{ "title": "Home", "route": "home_public" },
 						{ "title": "Getting started", "route": "getting_started" },
 						{ "title": "Examples", "route": "examples" },
-						{ "title": "Object Reference", "route": "object_reference" },
+						{ "title": "API Reference", "route": "api_reference" },
 						{ "title": "What's Up?", "route": "version_history" },
 						{ "title": "Contribute", "route": "contribute" },
 						{ "title": "Donate", "route": "donate" }
@@ -484,33 +485,8 @@
 													"components": [
 														{
 															"name": "tree",
-															"type": "object_tree",
-															"query": {
-																"name": "application",
-																"collection": "applications",
-																"find_one": true,
-																"filter": { "_id": ":applicationId" }
-															},
-															"properties": {
-																"root_id_field": "_id",
-																"data_field": "data",
-																"metadata_query_name": "metadata",
-																"metadata_field": "data",
-
-																"select_object_route": "applications.details.form_view",
-																"select_object_route_params": [
-																	{ "name": "applicationId", "value": "this.rootId" },
-																	{ "name": "objectId", "value": "objectId" },
-																	{ "name": "propertyName", "value": null }
-																],
-
-																"select_array_route": "applications.details.form_view",
-																"select_array_route_params": [
-																	{ "name": "applicationId", "value": "this.rootId" },
-																	{ "name": "objectId", "value": "objectId" },
-																	{ "name": "propertyName", "value": "propertyName" }
-																]
-															}
+															"type": "custom_component",
+															"custom_template": "files/object-tree/object-tree"
 														}
 													]
 												},
@@ -521,26 +497,8 @@
 													"components": [
 														{
 															"name": "form",
-															"type": "object_editor",
-															"query": {
-																"name": "application",
-																"collection": "applications",
-																"find_one": true,
-																"filter": { "_id": ":applicationId" }
-															},
-															"properties": {
-																"data_field": "data",
-																"metadata_query_name": "metadata",
-																"metadata_field": "data",
-																"object_id": ":objectId",
-																"property_name": ":propertyName",
-																"select_object_route": "applications.details.form_view",
-																"select_object_route_params": [
-																	{ "name": "applicationId", "value": "this.rootId" },
-																	{ "name": "objectId", "value": "this.objectId" },
-																	{ "name": "propertyName", "value": null }
-																]
-															}
+															"type": "custom_component",
+															"custom_template": "files/object-editor/object-editor"
 														}
 													]
 												}
@@ -575,7 +533,7 @@
 										{
 											"name": "editor",
 											"type": "custom_component",
-											"custom_template": "files/json-editor"
+											"custom_template": "files/json-editor/json-editor"
 										}
 									]
 								}
@@ -678,7 +636,8 @@
 					"dest_selector": "#menu",
 					"items": [
 						{ "title": "Home", "route": "home_private" },
-						{ "title": "My applications", "route": "applications" }
+						{ "title": "My applications", "route": "applications" },
+						{ "title": "API Reference", "route": "api_reference" }
 					]
 				},
 
@@ -728,7 +687,10 @@
 			{ "source": "files/template-simple.json", "dest": "PRIVATE_DIR/template-simple.json" },
 			{ "source": "files/template-accounts.json", "dest": "PRIVATE_DIR/template-accounts.json" },
 
-			{ "source": "files/metadata.json", "dest": "PRIVATE_DIR/metadata.json" }
+			{ "source": "files/metadata.json", "dest": "PRIVATE_DIR/metadata.json" },
+			{ "source": "files/metadata_utils.js", "dest": "LIB_DIR/metadata_utils.js" },
+			{ "source": "files/dynamic-form/dynamic-form.html", "dest": "CLIENT_LIB_DIR/dynamic-form.html" },
+			{ "source": "files/dynamic-form/dynamic-form.js", "dest": "CLIENT_LIB_DIR/dynamic-form.js" }
 		],
 
 		"packages": {

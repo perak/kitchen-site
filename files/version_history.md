@@ -1,6 +1,18 @@
 Version History
 ===============
 
+0.9.3
+-----
+
+- GUI: integrated <a href="http://codemirror.net/" target="_blank">CodeMirror</a> editor
+
+- GUI: few improvements
+
+- GUI: tree editor and object editor pages were generator plugins - now they are changed to regular components. 
+
+- Page now can have "zoneless" property. If set to true page will be accessible both for authenticated and non-authenticated users.
+
+
 0.9.2
 -----
 
@@ -74,9 +86,9 @@ Version History
 
 - Meteor 1.0 support
 
-- Query object now has "options" member (second argument to collection.find and collection.findOne). See <a href="http://www.meteorkitchen.com/object_reference#query">query</a> object.
+- Query object now has "options" member (second argument to collection.find and collection.findOne). See <a href="http://www.meteorkitchen.com/api_reference#query">query</a> object.
 
-- You can specify date format for "datepicker" form controls. See <a href="http://www.meteorkitchen.com/object_reference#field">field</a> object, property "format".
+- You can specify date format for "datepicker" form controls. See <a href="http://www.meteorkitchen.com/api_reference#field">field</a> object, property "format".
 
 - Collection field "default" property now can be "today" (current date) and "now" (current date and time).
 

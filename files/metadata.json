@@ -391,7 +391,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "textarea"
+					"input": "javascript"
 				},
 				{
 					"name": "before_update_code",
@@ -400,7 +400,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "textarea"
+					"input": "javascript"
 				},
 				{
 					"name": "before_remove_code",
@@ -409,7 +409,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "textarea"
+					"input": "javascript"
 				},
 				{
 					"name": "after_insert_code",
@@ -418,7 +418,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "textarea"
+					"input": "javascript"
 				},
 				{
 					"name": "after_update_code",
@@ -427,7 +427,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "textarea"
+					"input": "javascript"
 				},
 				{
 					"name": "after_remove_code",
@@ -436,7 +436,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "textarea"
+					"input": "javascript"
 				},
 				{
 					"name": "before_insert_source_file",
@@ -592,7 +592,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "textarea"
+					"input": "html"
 				},
 				{
 					"name": "js",
@@ -601,7 +601,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "textarea"
+					"input": "javascript"
 				},
 				{
 					"name": "dest_selector",
@@ -653,7 +653,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "textarea"
+					"input": "javascript"
 				},
 				{
 					"name": "helpers_code",
@@ -662,7 +662,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "textarea"
+					"input": "javascript"
 				},
 				{
 					"name": "query",
@@ -689,7 +689,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "textarea"
+					"input": "javascript"
 				}
 			],
 			"override_members": [
@@ -881,7 +881,16 @@
 					"subType": "",
 					"default": "false",
 					"required": false,
-					"input": ""
+					"input": "checkbox"
+				},
+				{
+					"name": "zoneless",
+					"title": "Zoneless",
+					"type": "bool",
+					"subType": "",
+					"default": "false",
+					"required": false,
+					"input": "checkbox"
 				}
 			],
 			"override_members": [
@@ -970,7 +979,11 @@
 				"helpers_code",
 				"template_rendered_code",
 				"meta_title",
-				"meta_description"
+				"meta_description",
+				"force_yield_subpages",
+				"zoneless",
+				"queries",
+				"components"
 			],
 			"hide_derived_classes": [
 			],
@@ -1183,7 +1196,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "textarea"
+					"input": "javascript"
 				},
 				{
 					"name": "client_startup_code",
@@ -1192,7 +1205,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "textarea"
+					"input": "javascript"
 				},
 				{
 					"name": "on_user_created_code",
@@ -1201,7 +1214,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "textarea"
+					"input": "javascript"
 				},
 				{
 					"name": "on_user_logged_code",
@@ -1210,7 +1223,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "textarea"
+					"input": "javascript"
 				},
 				{
 					"name": "server_startup_source_file",
@@ -1318,7 +1331,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "textarea"
+					"input": "html"
 				},
 				{
 					"name": "js",
@@ -1327,7 +1340,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "textarea"
+					"input": "javascript"
 				},
 				{
 					"name": "custom_template",
@@ -1954,5 +1967,5 @@
 			"hide_this": false
 		}
 	],
-	"version": 18
+	"version": 19
 }

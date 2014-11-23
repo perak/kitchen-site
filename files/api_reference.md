@@ -39,8 +39,6 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	"collections": [
 	],
 	"free_zone": {
-		"events_code": "",
-		"helpers_code": "",
 		"menus": [
 		],
 		"pages": [
@@ -80,16 +78,12 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	"collections": [
 	],
 	"public_zone": {
-		"events_code": "",
-		"helpers_code": "",
 		"menus": [
 		],
 		"pages": [
 		]
 	},
 	"private_zone": {
-		"events_code": "",
-		"helpers_code": "",
 		"menus": [
 		],
 		"pages": [
@@ -178,37 +172,30 @@ after\_remove\_source\_file | string | File that contains code to be executed af
 ```
 
 
-# component
+# custom_component
 
 Property | Type | Description
 ---------|------|------------
 name | string | Object name
 type | string | Component type name.
-template | string | Built-in html and js template file name (without extension) contained in kitchen templates directory.
 custom\_template | string | Custom html and js template filename (without extension). Path is relative to input JSON file.
+html | string | Custom HTML code
+js | string | Custom JS code
 dest\_selector | string | destination html element selector. Similar to jQuery selector, but only three simple formats are supported: "tagname", "#element\_id" and ".class\_name".
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
-class | string | CSS class name to be added to component
-title | string | Component title
-events\_code | string | Content of `Template.TEMLATE\_NAME.events({ ... });`
-helpers\_code | string | Content of `Template.TEMLATE\_NAME.helpers({ ... });`
 query | [query](#query) | Query to be added to Template data context
 components | array of [component](#component) | Component list
-template\_rendered\_code | string | Code to be executed once template is rendered
 
 *Example:*
 ```
 {
 	"name": "",
-	"type": "",
-	"template": "",
+	"type": "custom_component",
 	"custom_template": "",
+	"html": "",
+	"js": "",
 	"dest_selector": "",
 	"dest_position": "",
-	"class": "",
-	"title": "",
-	"events_code": "",
-	"helpers_code": "",
 	"query": {
 		"name": "",
 		"collection": "",
@@ -219,8 +206,7 @@ template\_rendered\_code | string | Code to be executed once template is rendere
 		}
 	},
 	"components": [
-	],
-	"template_rendered_code": ""
+	]
 }
 ```
 
@@ -231,13 +217,12 @@ Property | Type | Description
 ---------|------|------------
 name | string | Object name
 type | string | Component type name.
-custom\_template | string | Custom html and js template filename (without extension). Path is relative to input JSON file.
 dest\_selector | string | destination html element selector. Similar to jQuery selector, but only three simple formats are supported: "tagname", "#element\_id" and ".class\_name".
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
 title | string | Component title
-events\_code | string | Content of `Template.TEMLATE\_NAME.events({ ... });`
-helpers\_code | string | Content of `Template.TEMLATE\_NAME.helpers({ ... });`
+events\_code | string | Content of Template.TEMLATE\_NAME.events({ ... });
+helpers\_code | string | Content of Template.TEMLATE\_NAME.helpers({ ... });
 query | [query](#query) | Query to be added to Template data context
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
@@ -260,7 +245,6 @@ views | array of string | View styles: "table", "list" or "gallery". Default: "t
 {
 	"name": "",
 	"type": "dataview",
-	"custom_template": "",
 	"dest_selector": "",
 	"dest_position": "",
 	"class": "",
@@ -308,17 +292,11 @@ Property | Type | Description
 ---------|------|------------
 name | string | Object name
 type | string | Component type name.
-template | string | Built-in html and js template file name (without extension) contained in kitchen templates directory.
-custom\_template | string | Custom html and js template filename (without extension). Path is relative to input JSON file.
 dest\_selector | string | destination html element selector. Similar to jQuery selector, but only three simple formats are supported: "tagname", "#element\_id" and ".class\_name".
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
-title | string | Component title
-events\_code | string | Content of `Template.TEMLATE\_NAME.events({ ... });`
-helpers\_code | string | Content of `Template.TEMLATE\_NAME.helpers({ ... });`
 query | [query](#query) | Query to be added to Template data context
 components | array of [component](#component) | Component list
-template\_rendered\_code | string | Code to be executed once template is rendered
 text | string | 
 
 *Example:*
@@ -326,14 +304,9 @@ text | string |
 {
 	"name": "",
 	"type": "div",
-	"template": "",
-	"custom_template": "",
 	"dest_selector": "",
 	"dest_position": "",
 	"class": "",
-	"title": "",
-	"events_code": "",
-	"helpers_code": "",
 	"query": {
 		"name": "",
 		"collection": "",
@@ -345,7 +318,6 @@ text | string |
 	},
 	"components": [
 	],
-	"template_rendered_code": "",
 	"text": ""
 }
 ```
@@ -360,10 +332,10 @@ title | string | Field title (used in form labels, table column headers etc.)
 type | string | Field data type (used in form validations). Default: string
 default | string | Default value
 required | bool | Is field input required? Default: false
+format | string | Currently used only with data types "date" and "time". Contains date or time format such as "MM/DD/YYYY" or "hh:mm:ss"
 searchable | bool | Is field searchable? Default: true
 sortable | bool | Is field sortable? Default: true
 exportable | bool | If true field will be exported to CSV/JSON (used in dataview component). Default: false
-format | string | Currently used only with data types "date" and "time". Contains date or time format such as "MM/DD/YYYY" or "hh:mm:ss"
 input | string | Form input control type: "text", "password", "datepicker", "read-only", "textarea", "radio", "checkbox", "select"
 input\_items | array of [input\_item](#input\_item) | Item list for input type "radio" and "select"
 lookup\_query | [query](#query) | Lookup query - data source for input type "select" items
@@ -383,10 +355,10 @@ show\_in\_read\_only\_form | bool | If set to "false", field will not be include
 	"type": "",
 	"default": "",
 	"required": false,
+	"format": "",
 	"searchable": true,
 	"sortable": true,
 	"exportable": true,
-	"format": "",
 	"input": "",
 	"input_items": [
 	],
@@ -432,13 +404,12 @@ Property | Type | Description
 ---------|------|------------
 name | string | Object name
 type | string | Component type name.
-custom\_template | string | Custom html and js template filename (without extension). Path is relative to input JSON file.
 dest\_selector | string | destination html element selector. Similar to jQuery selector, but only three simple formats are supported: "tagname", "#element\_id" and ".class\_name".
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
 title | string | Component title
-events\_code | string | Content of `Template.TEMLATE\_NAME.events({ ... });`
-helpers\_code | string | Content of `Template.TEMLATE\_NAME.helpers({ ... });`
+events\_code | string | Content of Template.TEMLATE\_NAME.events({ ... });
+helpers\_code | string | Content of Template.TEMLATE\_NAME.helpers({ ... });
 query | [query](#query) | Query to be added to Template data context
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
@@ -460,7 +431,6 @@ hidden\_fields | array of [hidden\_field](#hidden\_field) | Fields (not shown in
 {
 	"name": "",
 	"type": "form",
-	"custom_template": "",
 	"dest_selector": "",
 	"dest_position": "",
 	"class": "",
@@ -539,13 +509,12 @@ Property | Type | Description
 ---------|------|------------
 name | string | Object name
 type | string | Component type name.
-custom\_template | string | Custom html and js template filename (without extension). Path is relative to input JSON file.
 dest\_selector | string | destination html element selector. Similar to jQuery selector, but only three simple formats are supported: "tagname", "#element\_id" and ".class\_name".
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
 title | string | Component title
-events\_code | string | Content of `Template.TEMLATE\_NAME.events({ ... });`
-helpers\_code | string | Content of `Template.TEMLATE\_NAME.helpers({ ... });`
+events\_code | string | Content of Template.TEMLATE\_NAME.events({ ... });
+helpers\_code | string | Content of Template.TEMLATE\_NAME.helpers({ ... });
 query | [query](#query) | Query to be added to Template data context
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
@@ -561,7 +530,6 @@ button\_class | string | CSS class to be added to jumbotron button
 {
 	"name": "",
 	"type": "jumbotron",
-	"custom_template": "",
 	"dest_selector": "",
 	"dest_position": "",
 	"class": "",
@@ -597,16 +565,10 @@ Property | Type | Description
 ---------|------|------------
 name | string | Object name
 type | string | Component type name.
-custom\_template | string | Custom html and js template filename (without extension). Path is relative to input JSON file.
 dest\_selector | string | destination html element selector. Similar to jQuery selector, but only three simple formats are supported: "tagname", "#element\_id" and ".class\_name".
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
-class | string | CSS class name to be added to component
-title | string | Component title
-events\_code | string | Content of `Template.TEMLATE\_NAME.events({ ... });`
-helpers\_code | string | Content of `Template.TEMLATE\_NAME.helpers({ ... });`
 query | [query](#query) | Query to be added to Template data context
 components | array of [component](#component) | Component list
-template\_rendered\_code | string | Code to be executed once template is rendered
 source\_file | string | Path to file containing markup (relative to input file)
 
 *Example:*
@@ -614,13 +576,8 @@ source\_file | string | Path to file containing markup (relative to input file)
 {
 	"name": "",
 	"type": "markdown",
-	"custom_template": "",
 	"dest_selector": "",
 	"dest_position": "",
-	"class": "",
-	"title": "",
-	"events_code": "",
-	"helpers_code": "",
 	"query": {
 		"name": "",
 		"collection": "",
@@ -632,7 +589,6 @@ source\_file | string | Path to file containing markup (relative to input file)
 	},
 	"components": [
 	],
-	"template_rendered_code": "",
 	"source_file": ""
 }
 ```
@@ -644,13 +600,12 @@ Property | Type | Description
 ---------|------|------------
 name | string | Object name
 type | string | Component type name.
-custom\_template | string | Custom html and js template filename (without extension). Path is relative to input JSON file.
 dest\_selector | string | destination html element selector. Similar to jQuery selector, but only three simple formats are supported: "tagname", "#element\_id" and ".class\_name".
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
 title | string | Component title
-events\_code | string | Content of `Template.TEMLATE\_NAME.events({ ... });`
-helpers\_code | string | Content of `Template.TEMLATE\_NAME.helpers({ ... });`
+events\_code | string | Content of Template.TEMLATE\_NAME.events({ ... });
+helpers\_code | string | Content of Template.TEMLATE\_NAME.helpers({ ... });
 query | [query](#query) | Query to be added to Template data context
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
@@ -662,7 +617,6 @@ scroll\_spy\_selector | string | "scrollspy" selector for menus with anchor link
 {
 	"name": "",
 	"type": "menu",
-	"custom_template": "",
 	"dest_selector": "",
 	"dest_position": "",
 	"class": "",
@@ -740,11 +694,10 @@ Property | Type | Description
 ---------|------|------------
 name | string | Object name
 template | string | Built-in html and js template file name (without extension) contained in kitchen templates directory.
-custom\_template | string | Custom html and js template filename (without extension). Path is relative to input JSON file.
 class | string | CSS class name to be added to component
 title | string | Component title
-events\_code | string | Content of `Template.TEMLATE\_NAME.events({ ... });`
-helpers\_code | string | Content of `Template.TEMLATE\_NAME.helpers({ ... });`
+events\_code | string | Content of Template.TEMLATE\_NAME.events({ ... });
+helpers\_code | string | Content of Template.TEMLATE\_NAME.helpers({ ... });
 query | [query](#query) | Query to be added to Template data context
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
@@ -759,13 +712,13 @@ menus | array of [menu](#menu) | Menus to be inserted into this page
 pages | array of [page](#page) | Subpages
 queries | array of [query](#query) | List of queries to add into template data context
 force\_yield\_subpages | bool | Subpages will be rendered in "subcontent" area even if this page doesn't contains menu pointing to subpages
+zoneless | bool | For applications with user account system: make this page visible for both authenticated and non-authenticated users
 
 *Example:*
 ```
 {
 	"name": "",
 	"template": "",
-	"custom_template": "",
 	"class": "",
 	"title": "",
 	"events_code": "",
@@ -798,7 +751,8 @@ force\_yield\_subpages | bool | Subpages will be rendered in "subcontent" area e
 	],
 	"queries": [
 	],
-	"force_yield_subpages": false
+	"force_yield_subpages": false,
+	"zoneless": false
 }
 ```
 
@@ -868,18 +822,12 @@ source\_file | string | path to external file containing route action code (rela
 
 Property | Type | Description
 ---------|------|------------
-events\_code | string | Content of `Template.TEMLATE\_NAME.events({ ... });`
-helpers\_code | string | Content of `Template.TEMLATE\_NAME.helpers({ ... });`
-components | array of [component](#component) | Component list
-template\_rendered\_code | string | Code to be executed once template is rendered
 menus | array of [menu](#menu) | Menus to be inserted into this page
 pages | array of [page](#page) | Subpages
 
 *Example:*
 ```
 {
-	"events_code": "",
-	"helpers_code": "",
 	"menus": [
 	],
 	"pages": [
