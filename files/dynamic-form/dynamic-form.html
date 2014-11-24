@@ -76,15 +76,15 @@
 </template>
 
 <template name="DynamicFormJsonEditor">
-	{{> CodeMirror code=value options=editorOptions data=data field=field}}
+	{{> CodeMirror name=field.name code=value options=editorOptions data=data field=field}}
 </template>
 
 <template name="DynamicFormJavascriptEditor">
-	{{> CodeMirror code=value options=editorOptions data=data field=field}}
+	{{> CodeMirror name=field.name code=value options=editorOptions data=data field=field}}
 </template>
 
 <template name="DynamicFormHtmlEditor">
-	{{> CodeMirror code=value options=editorOptions data=data field=field}}
+	{{> CodeMirror name=field.name code=value options=editorOptions data=data field=field}}
 </template>
 
 <template name="DynamicFormSelect">

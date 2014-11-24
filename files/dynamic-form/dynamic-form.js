@@ -468,7 +468,6 @@ Template.DynamicFormJsonEditor.rendered = function() {
 		return;
 	}
 
-	textarea.attr("name", this.data.field.name);
 	textarea.attr("data-type", this.data.field.dataType);
 };
 
@@ -529,7 +528,6 @@ Template.DynamicFormJavascriptEditor.rendered = function() {
 		return;
 	}
 
-	textarea.attr("name", this.data.field.name);
 	textarea.attr("data-type", this.data.field.dataType);
 };
 
@@ -568,7 +566,6 @@ Template.DynamicFormHtmlEditor.rendered = function() {
 		return;
 	}
 
-	textarea.attr("name", this.data.field.name);
 	textarea.attr("data-type", this.data.field.dataType);
 };
 
