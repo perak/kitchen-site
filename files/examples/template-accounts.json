@@ -1,0 +1,89 @@
+{
+	"application": {
+		"collections": [],
+
+		"public_zone": {
+			"pages": [
+				{ 
+					"name": "home_public", 
+					"title": "Hello world!",
+					"components": [
+					]
+				},
+				{ "name": "login", "template": "login" },
+				{ "name": "register", "template": "register" },
+				{ "name": "forgot_password", "template": "forgot_password" },
+				{ "name": "reset_password", "template": "reset_password.html", "route_params": ["resetPasswordToken"] }
+			],
+
+			"menus": [
+				{
+					"name": "left_menu",
+					"class": "nav navbar-nav",
+					"dest_selector": "#menu",
+					"items": [
+						{ "title": "Home", "route": "home_public" }
+					]
+				},
+
+				{
+					"name": "right_menu",
+					"class": "nav navbar-nav navbar-right",
+					"dest_selector": "#menu",
+					"items": [
+						{ "title": "Register", "route": "register" },
+						{ "title": "Login", "route": "login" }
+					]
+				}
+			]
+		},
+
+		"private_zone": {
+			"pages": [
+				{ "name": "home_private", "title": "Welcome {{userFullName}}!" },
+				{
+					"name": "user_settings",
+					"pages": [
+						{ "name": "change_pass", "template": "change_pass" }
+					],
+
+					"menus": [
+						{
+							"name": "side_menu",
+							"class": "nav nav-stacked nav-pills",
+							"items": [
+								{ "title": "Change password", "route": "user_settings.change_pass" }
+							]
+						}
+					]
+				},
+				{ "name": "logout", "template": "logout", "action_code": "App.logout();" }
+			],
+
+			"menus": [
+				{
+					"name": "left_menu",
+					"class": "nav navbar-nav",
+					"dest_selector": "#menu",
+					"items": [
+						{ "title": "Home", "route": "home_private" }
+					]
+				},
+				{
+					"name": "right_menu",
+					"class": "nav navbar-nav navbar-right",
+					"dest_selector": "#menu",
+					"items": [
+						{ 
+							"title": "{{userEmail}}",
+							"items": [
+								{ "title": "Settings", "route": "user_settings" },
+								{ "title": "Logout", "route": "logout" }
+							]
+						}
+					]
+				}
+			]
+		}
+	}
+}

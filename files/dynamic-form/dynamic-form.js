@@ -476,7 +476,9 @@ Template.DynamicFormJsonEditor.helpers({
 		return {
 			lineNumbers: true,
 			mode: "application/ld+json",
-			keyMap: "sublime"
+			keyMap: "sublime",
+			gutters: ["CodeMirror-lint-markers"],
+			lint: true
 		};
 	},
 

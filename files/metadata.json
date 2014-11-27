@@ -74,8 +74,10 @@
 						"integer",
 						"float",
 						"date",
+						"time",
 						"bool",
-						"array"
+						"array",
+						"email"
 					]
 				},
 				{
@@ -148,8 +150,7 @@
 						"textarea",
 						"radio",
 						"checkbox",
-						"select",
-						"select_multi"
+						"select"
 					]
 				},
 				{
@@ -1967,5 +1968,5 @@
 			"hide_this": false
 		}
 	],
-	"version": 19
+	"version": 20
 }

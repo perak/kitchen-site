@@ -28,7 +28,9 @@ Template.TEMPLATE_NAME.helpers({
 			lineNumbers: true,
 			mode: "application/ld+json",
 			keyMap: "sublime",
-			theme: "blackboard"
+			theme: "blackboard",
+			gutters: ["CodeMirror-lint-markers"],
+			lint: true
 		}
 	},
 
@@ -53,7 +55,6 @@ Template.TEMPLATE_NAME.events({
 			return;
 		}
 		t.$(".app-editor-error").hide();
-
 		$(".save-button").button("loading");
 
 		var hasFreeZone = data.application.free_zone;

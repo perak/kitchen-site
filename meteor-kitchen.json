@@ -19,13 +19,15 @@
 				"fields": [
 					{ "name": "name", "title": "Application name", "type": "string", "required": true },
 					{
-						"name": "withUserAccounts",
-						"title": "User accounts?",
-						"type": "integer",
+						"name": "initialTemplate",
+						"title": "Initial template",
+						"type": "string",
 						"input": "radio",
 						"input_items": [
-							{ "title": "No user account system", "value": 0 },
-							{ "title": "With user account system", "value": 1 }
+							{ "title": "Minimal: No user account system", 	"value": "minimal" },
+							{ "title": "Minimal: With user account system", "value": "accounts" },
+							{ "title": "Example: Dataview", 				"value": "dataview" },
+							{ "title": "Example: Invoices", 				"value": "invoices" }
 						],
 						"show_in_dataview": false,
 						"show_in_insert_form": true,
@@ -236,14 +238,14 @@
 							"items": [
 								{ "title": "application",		"url": "#application" },
 								{ "title": "collection",		"url": "#collection" },
-								{ "title": "custom_component",	"url": "#component" },
+								{ "title": "custom_component",	"url": "#custom_component" },
 								{ "title": "dataview",			"url": "#dataview" },
 								{ "title": "div",				"url": "#div" },
 								{ "title": "field",				"url": "#field" },
-								{ "title": "field_item",		"url": "#field_item" },
 								{ "title": "file_pair",			"url": "#file_pair" },
 								{ "title": "form",				"url": "#form" },
 								{ "title": "hidden_field",		"url": "#hidden_field" },
+								{ "title": "input_item",		"url": "#input_item" },
 								{ "title": "jumbotron",			"url": "#jumbotron" },
 								{ "title": "markdown",			"url": "#markdown" },
 								{ "title": "menu",				"url": "#menu" },
@@ -682,10 +684,13 @@
 			{ "source": "files/example-accounts.png", "dest": "PUBLIC_DIR/images/example-accounts.png" },
 			{ "source": "files/example-invoices.png", "dest": "PUBLIC_DIR/images/example-invoices.png" },
 			{ "source": "files/example-plugins.png", "dest": "PUBLIC_DIR/images/example-plugins.png" },
+			{ "source": "files/ribbon-donate-gratipay.png", "dest": "PUBLIC_DIR/images/ribbon-donate-gratipay.png" },
 			{ "source": "files/ribbon-donate-bitcoin.png", "dest": "PUBLIC_DIR/images/ribbon-donate-bitcoin.png" },
 
-			{ "source": "files/template-simple.json", "dest": "PRIVATE_DIR/template-simple.json" },
-			{ "source": "files/template-accounts.json", "dest": "PRIVATE_DIR/template-accounts.json" },
+			{ "source": "files/examples/template-minimal.json", "dest": "PRIVATE_DIR/template-minimal.json" },
+			{ "source": "files/examples/template-accounts.json", "dest": "PRIVATE_DIR/template-accounts.json" },
+			{ "source": "files/examples/example-dataview.json", "dest": "PRIVATE_DIR/example-dataview.json" },
+			{ "source": "files/examples/example-invoices.json", "dest": "PRIVATE_DIR/example-invoices.json" },
 
 			{ "source": "files/metadata.json", "dest": "PRIVATE_DIR/metadata.json" },
 			{ "source": "files/metadata_utils.js", "dest": "LIB_DIR/metadata_utils.js" },

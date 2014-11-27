@@ -1,0 +1,22 @@
+{
+	"application": {
+
+		"collections": [],
+
+		"free_zone": {
+			"pages": [
+				{ "name": "home", "title": "Hello world!" }
+			],
+
+			"menus": [
+				{ 
+					"name": "main_menu",
+					"class": "nav navbar-nav",
+					"items": [
+						{ "title": "Home page", "route": "home" }
+					]
+				}
+			]
+		}
+	}
+}

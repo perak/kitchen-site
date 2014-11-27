@@ -1,6 +1,18 @@
 Version History
 ===============
 
+0.9.4
+-----
+
+- GUI: Added two examples
+
+- GUI: Added syntax check (lints) into JSON and JS editors
+
+- CLI: Fixed json parser bug: if key name is a string it's now properly stringified to javascript: { "\"x.y\"": 1 } now becomes { "x.y": 1 }
+
+- CLI: Fixed bug related to query object: if some component's query doesn't have a name, generator reported error. Now it just ignores queries without names.
+
+
 0.9.3
 -----
 
@@ -10,7 +22,7 @@ Version History
 
 - GUI: tree editor and object editor pages were generator plugins - now they are changed to regular components. 
 
-- Page now can have "zoneless" property. If set to true page will be accessible both for authenticated and non-authenticated users.
+- CLI: Page now can have "zoneless" property. If set to true page will be accessible both for authenticated and non-authenticated users.
 
 
 0.9.2
