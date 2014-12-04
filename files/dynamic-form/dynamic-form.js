@@ -179,6 +179,10 @@ Template.DynamicForm.rendered = function() {
 }
 
 Template.DynamicForm.helpers({
+	"formDescription": function() {
+		return this.description;
+	},
+
 	"formClass": function() {
 		var formClass = this.cssClass || "";
 
@@ -270,6 +274,9 @@ Template.DynamicForm.events({
 	}
 });
 
+Template.DynamicFormGroupDefault.rendered = function() {
+}
+
 Template.DynamicFormGroupDefault.helpers({
 	"formInput": function() {
 
@@ -326,6 +333,9 @@ Template.DynamicFormGroupDefault.helpers({
 		return null;
 	}
 });
+
+Template.DynamicFormGroupHorizontal.rendered = function() {
+}
 
 Template.DynamicFormGroupHorizontal.helpers({
 	"formInput": function() {
@@ -538,7 +548,9 @@ Template.DynamicFormJavascriptEditor.helpers({
 		return {
 			lineNumbers: true,
 			mode: "javascript",
-			keyMap: "sublime"
+			keyMap: "sublime",
+			gutters: ["CodeMirror-lint-markers"],
+			lint: true
 		};
 	},
 

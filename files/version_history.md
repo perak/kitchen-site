@@ -1,6 +1,16 @@
 Version History
 ===============
 
+0.9.5
+-----
+
+- GUI: Fixed bug - sometimes multiple editors for single field appeared
+
+- GUI: Added javascript hints in editor
+
+- CLI: Fixed bugs in HTML to JADE converter
+
+
 0.9.4
 -----
 

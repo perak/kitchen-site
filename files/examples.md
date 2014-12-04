@@ -34,6 +34,14 @@ User Accounts
 <a href="http://generator-accounts.meteor.com" target="_blank" class="btn btn-success">Live example</a> <a href="https://github.com/perak/kitchen-examples/tree/master/example-accounts" target="_blank" class="btn btn-default">Source code</a>
 
 
+Admin panel
+-----------
+
+<img src="images/example-admin.png" alt="accounts" class="example-img">
+
+<a href="https://github.com/perak/kitchen-examples/tree/master/example-admin" target="_blank" class="btn btn-default">Source code</a>
+
+
 Invoices
 --------
 

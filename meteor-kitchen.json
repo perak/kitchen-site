@@ -204,6 +204,7 @@
 				},
 				{
 					"name": "examples",
+					"zoneless": true,
 					"meta_title": "Examples",
 					"meta_description": "Example applications created with meteor-kitchen",
 					"components": [
@@ -262,6 +263,7 @@
 				},
 				{
 					"name": "version_history",
+					"zoneless": true,
 					"meta_title": "What's Up",
 					"meta_description": "Meteor.js code generator version history",
 					"components": [
@@ -300,6 +302,7 @@
 				},
 				{
 					"name": "contribute",
+					"zoneless": true,
 					"meta_title": "Contribute",
 					"meta_description": "Contribute to Meteor.js code generator",
 					"components": [
@@ -312,6 +315,7 @@
 				},
 				{
 					"name": "donate",
+					"zoneless": true,
 					"meta_title": "Donate",
 					"meta_description": "Support Meteor.js code generator",
 					"components": [
@@ -639,7 +643,11 @@
 					"items": [
 						{ "title": "Home", "route": "home_private" },
 						{ "title": "My applications", "route": "applications" },
-						{ "title": "API Reference", "route": "api_reference" }
+						{ "title": "Examples", "route": "examples" },
+						{ "title": "API Reference", "route": "api_reference" },
+						{ "title": "What's Up?", "route": "version_history" },
+						{ "title": "Contribute", "route": "contribute" },
+						{ "title": "Donate", "route": "donate" }
 					]
 				},
 
@@ -676,16 +684,16 @@
 			{ "source": "files/styles.less", "dest": "CLIENT_STYLES_DIR/styles.less" },
 			{ "source": "files/analytics.js", "dest": "CLIENT_DIR/analytics.js" },
 
-			{ "source": "files/cupcakes.svg", "dest": "PUBLIC_DIR/images/cupcakes.svg" },
-
-			{ "source": "files/example-minimal.png", "dest": "PUBLIC_DIR/images/example-minimal.png" },
-			{ "source": "files/example-subpages.png", "dest": "PUBLIC_DIR/images/example-subpages.png" },
-			{ "source": "files/example-dataview.png", "dest": "PUBLIC_DIR/images/example-dataview.png" },
-			{ "source": "files/example-accounts.png", "dest": "PUBLIC_DIR/images/example-accounts.png" },
-			{ "source": "files/example-invoices.png", "dest": "PUBLIC_DIR/images/example-invoices.png" },
-			{ "source": "files/example-plugins.png", "dest": "PUBLIC_DIR/images/example-plugins.png" },
-			{ "source": "files/ribbon-donate-gratipay.png", "dest": "PUBLIC_DIR/images/ribbon-donate-gratipay.png" },
-			{ "source": "files/ribbon-donate-bitcoin.png", "dest": "PUBLIC_DIR/images/ribbon-donate-bitcoin.png" },
+			{ "source": "files/images/cupcakes.svg", "dest": "PUBLIC_DIR/images/cupcakes.svg" },
+			{ "source": "files/images/example-minimal.png", "dest": "PUBLIC_DIR/images/example-minimal.png" },
+			{ "source": "files/images/example-subpages.png", "dest": "PUBLIC_DIR/images/example-subpages.png" },
+			{ "source": "files/images/example-dataview.png", "dest": "PUBLIC_DIR/images/example-dataview.png" },
+			{ "source": "files/images/example-accounts.png", "dest": "PUBLIC_DIR/images/example-accounts.png" },
+			{ "source": "files/images/example-admin.png", "dest": "PUBLIC_DIR/images/example-admin.png" },
+			{ "source": "files/images/example-invoices.png", "dest": "PUBLIC_DIR/images/example-invoices.png" },
+			{ "source": "files/images/example-plugins.png", "dest": "PUBLIC_DIR/images/example-plugins.png" },
+			{ "source": "files/images/ribbon-donate-gratipay.png", "dest": "PUBLIC_DIR/images/ribbon-donate-gratipay.png" },
+			{ "source": "files/images/ribbon-donate-bitcoin.png", "dest": "PUBLIC_DIR/images/ribbon-donate-bitcoin.png" },
 
 			{ "source": "files/examples/template-minimal.json", "dest": "PRIVATE_DIR/template-minimal.json" },
 			{ "source": "files/examples/template-accounts.json", "dest": "PRIVATE_DIR/template-accounts.json" },
