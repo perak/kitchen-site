@@ -813,6 +813,15 @@
 					"input": "textarea"
 				},
 				{
+					"name": "container_class",
+					"title": "Container class",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
 					"name": "route_params",
 					"title": "Route params",
 					"type": "array",
@@ -951,6 +960,19 @@
 				"page"
 			],
 			"members": [
+				{
+					"name": "layout",
+					"title": "Layout",
+					"type": "string",
+					"subType": "",
+					"default": "text",
+					"required": false,
+					"input": "select",
+					"choice_items": [
+						"",
+						"simple"
+					]
+				}
 			],
 			"override_members": [
 				{
@@ -1419,6 +1441,15 @@
 				{
 					"name": "class",
 					"title": "Class",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "icon_class",
+					"title": "Icon class",
 					"type": "string",
 					"subType": "",
 					"default": "",
@@ -1968,5 +1999,5 @@
 			"hide_this": false
 		}
 	],
-	"version": 20
+	"version": 22
 }

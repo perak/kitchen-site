@@ -39,6 +39,7 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	"collections": [
 	],
 	"free_zone": {
+		"container_class": "",
 		"menus": [
 		],
 		"pages": [
@@ -78,12 +79,14 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	"collections": [
 	],
 	"public_zone": {
+		"container_class": "",
 		"menus": [
 		],
 		"pages": [
 		]
 	},
 	"private_zone": {
+		"container_class": "",
 		"menus": [
 		],
 		"pages": [
@@ -651,6 +654,7 @@ route | string | Route name of destination page
 route\_params | array of [route\_param](#route\_param) | Parameters to be passed to "route"
 url | string | URL (for external links. You can use only one of "route" or "url" properties, not both)
 class | string | CSS class name to be added to item `li` element
+icon\_class | string | If present, generator will add `span` into menu item and assign this CSS class to it
 target | string | Anchor "target" attribute value e.g. "\_blank"
 items | array of [menu\_item](#menu\_item) | Subitems
 
@@ -663,6 +667,7 @@ items | array of [menu\_item](#menu\_item) | Subitems
 	],
 	"url": "",
 	"class": "",
+	"icon_class": "",
 	"target": "",
 	"items": [
 	]
@@ -704,6 +709,7 @@ template\_rendered\_code | string | Code to be executed once template is rendere
 meta\_description | string | Meta description
 meta\_title | string | Head title tag and meta title
 text | string | Text to be inserted into page
+container\_class | string | class to be added to page container. Example: "container-fluid". Default "container".
 route\_params | array of string | Route params to be passed via URL
 close\_route | string | If specified, page will have close button routing to this route
 close\_route\_params | array of [route\_param](#route\_param) | Params to be passed to close\_route
@@ -738,6 +744,7 @@ zoneless | bool | For applications with user account system: make this page visi
 	"meta_description": "",
 	"meta_title": "",
 	"text": "",
+	"container_class": "",
 	"route_params": [
 	],
 	"close_route": "",
@@ -822,12 +829,14 @@ source\_file | string | path to external file containing route action code (rela
 
 Property | Type | Description
 ---------|------|------------
+container\_class | string | class to be added to page container. Example: "container-fluid". Default "container".
 menus | array of [menu](#menu) | Menus to be inserted into this page
 pages | array of [page](#page) | Subpages
 
 *Example:*
 ```
 {
+	"container_class": "",
 	"menus": [
 	],
 	"pages": [

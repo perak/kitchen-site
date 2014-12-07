@@ -1,6 +1,15 @@
 Version History
 ===============
 
+0.9.6
+-----
+
+- Added "container_class" property to "page" and "zone" objects. CSS class to be added to page container. For example "container-fluid". Default: "container"
+
+- Added "icon_class" property to "menu_item" object. If set, "span" with this class will be added to menu item before title. So, now you can set menu item icons.
+
+
+
 0.9.5
 -----
 

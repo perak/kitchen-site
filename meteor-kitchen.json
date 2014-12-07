@@ -167,20 +167,28 @@
 					"name": "getting_started",
 					"meta_title": "Getting started",
 					"meta_description": "Getting started with meteor.js code generator",
-					"template": "page_subcontent_sidenav.html",
+
+					"container_class": "col-xs-7 col-xs-offset-5 col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2",
 					"components": [
+						{
+							"name": "sidebar",
+							"type": "div",
+							"class": "col-xs-5 col-sm-3 col-md-2 sidebar",
+							"dest_selector": ".page-container",
+							"dest_position": "before"
+						},
+
 						{
 							"name": "content",
 							"type": "markdown",
 							"source_file": "files/getting_started.md",
-							"dest_selector": "#subcontent"
 						}
 					],
 					"menus": [
 						{
 							"name": "sidebar",
 							"class": "nav nav-pills nav-stacked",
-							"dest_selector": "#menu",
+							"dest_selector": ".sidebar",
 							"scroll_spy_selector": "",
 							"items": [
 								{ "title": "Download", 				"url": "#download" },
@@ -220,21 +228,29 @@
 					"zoneless": true,
 					"meta_title": "API reference",
 					"meta_description": "API reference for Meteor.js code generator",
-					"template": "page_subcontent_sidenav.html",
 					"template_rendered_code": "$('table').addClass('table');",
+
+					"container_class": "col-xs-7 col-xs-offset-5 col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2",
 					"components": [
+						{
+							"name": "sidebar",
+							"type": "div",
+							"class": "col-xs-5 col-sm-3 col-md-2 sidebar",
+							"dest_selector": ".page-container",
+							"dest_position": "before"
+						},
+
 						{
 							"name": "content",
 							"type": "markdown",
-							"source_file": "files/api_reference.md",
-							"dest_selector": "#subcontent"
+							"source_file": "files/api_reference.md"
 						}
 					],
 					"menus": [
 						{
-							"name": "sidebar",
+							"name": "menu",
 							"class": "nav nav-pills nav-stacked",
-							"dest_selector": "#menu",
+							"dest_selector": ".sidebar",
 							"scroll_spy_selector": "",
 							"items": [
 								{ "title": "application",		"url": "#application" },
@@ -356,6 +372,7 @@
 		},
 
 		"private_zone": {
+
 			"pages": [
 				{ 
 					"name": "home_private", 

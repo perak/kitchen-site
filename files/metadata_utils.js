@@ -36,9 +36,10 @@ this.objectRemoveMetadata = function(object, idFieldName, typeFieldName) {
 	}
 
 	if(_.isObject(object)) {
-
-		delete object[idField];
-		delete object[typeField];
+		if(object[typeField]) {
+			delete object[idField];
+			delete object[typeField];
+		}
 
 		for(var propertyName in object) {
 			var property = object[propertyName];
