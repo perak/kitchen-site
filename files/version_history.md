@@ -1,13 +1,20 @@
 Version History
 ===============
 
+0.9.7
+-----
+
+- CLI: Fixed bug in forms with checkbox when field type is "bool" (checkbox was not displayed)
+
+- CLI: Fixed bug with accessing restricted pages: in some circumstances, authenticated user without access rights was able to access restricted page by directly entering page url (user was not able to see data if your collection is properly secured)
+
+
 0.9.6
 -----
 
 - Added "container_class" property to "page" and "zone" objects. CSS class to be added to page container. For example "container-fluid". Default: "container"
 
 - Added "icon_class" property to "menu_item" object. If set, "span" with this class will be added to menu item before title. So, now you can set menu item icons.
-
 
 
 0.9.5

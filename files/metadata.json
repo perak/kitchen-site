@@ -965,7 +965,7 @@
 					"title": "Layout",
 					"type": "string",
 					"subType": "",
-					"default": "text",
+					"default": "",
 					"required": false,
 					"input": "select",
 					"choice_items": [
@@ -1999,5 +1999,5 @@
 			"hide_this": false
 		}
 	],
-	"version": 22
+	"version": 23
 }

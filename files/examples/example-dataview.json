@@ -87,6 +87,7 @@
 									"type": "form",
 									"mode": "read_only",
 									"title": "Details",
+									"layout": "horizontal",
 									"query": {
 										"name": "customer",
 										"collection": "customers",
