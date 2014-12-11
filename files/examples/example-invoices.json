@@ -453,6 +453,33 @@
 				{
 					"name": "user_settings",
 					"pages": [
+						{
+							"name": "profile",
+							"components": [
+								{
+									"name": "edit_form",
+									"type": "form",
+									"mode": "update",
+									"title": "Edit your profile",
+									"submit_route": "user_settings.profile",
+									"query": {
+										"name": "current_user_data",
+										"collection": "users",
+										"filter": { "_id": "Meteor.userId()" },
+										"find_one": true
+									},
+									"fields": [
+										{ "name": "profile.name", "title": "Name", "required": true },
+										{ "name": "profile.email", "title": "E-mail", "type": "email", "required": true },
+										{ "name": "profile.facebook", "title": "Facebook URL" },
+										{ "name": "profile.google", "title": "Google+ URL" },
+										{ "name": "profile.twitter", "title": "Twitter ID" },
+										{ "name": "profile.website", "title": "Website URL" }
+									]
+								}
+							]
+						},
+
 						{ "name": "change_pass", "template": "change_pass.html" }
 					],
 
@@ -461,11 +488,13 @@
 							"name": "side_menu",
 							"class": "nav nav-stacked nav-pills",
 							"items": [
+								{ "title": "Profile", "route": "user_settings.profile" },
 								{ "title": "Change password", "route": "user_settings.change_pass" }
 							]
 						}
 					]
 				},
+
 				{ "name": "logout", "template": "logout.html", "action_code": "App.logout();" }
 			],
 

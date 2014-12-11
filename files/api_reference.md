@@ -40,6 +40,9 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	],
 	"free_zone": {
 		"container_class": "",
+		"back_route": "",
+		"back_route_params": [
+		],
 		"menus": [
 		],
 		"pages": [
@@ -80,6 +83,9 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	],
 	"public_zone": {
 		"container_class": "",
+		"back_route": "",
+		"back_route_params": [
+		],
 		"menus": [
 		],
 		"pages": [
@@ -87,6 +93,9 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	},
 	"private_zone": {
 		"container_class": "",
+		"back_route": "",
+		"back_route_params": [
+		],
 		"menus": [
 		],
 		"pages": [
@@ -224,6 +233,7 @@ dest\_selector | string | destination html element selector. Similar to jQuery s
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
 title | string | Component title
+title\_icon\_class | string | If present, "span" with this class name will be added to title (if title is set)
 events\_code | string | Content of Template.TEMLATE\_NAME.events({ ... });
 helpers\_code | string | Content of Template.TEMLATE\_NAME.helpers({ ... });
 query | [query](#query) | Query to be added to Template data context
@@ -252,6 +262,7 @@ views | array of string | View styles: "table", "list" or "gallery". Default: "t
 	"dest_position": "",
 	"class": "",
 	"title": "",
+	"title_icon_class": "",
 	"events_code": "",
 	"helpers_code": "",
 	"query": {
@@ -411,6 +422,7 @@ dest\_selector | string | destination html element selector. Similar to jQuery s
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
 title | string | Component title
+title\_icon\_class | string | If present, "span" with this class name will be added to title (if title is set)
 events\_code | string | Content of Template.TEMLATE\_NAME.events({ ... });
 helpers\_code | string | Content of Template.TEMLATE\_NAME.helpers({ ... });
 query | [query](#query) | Query to be added to Template data context
@@ -438,6 +450,7 @@ hidden\_fields | array of [hidden\_field](#hidden\_field) | Fields (not shown in
 	"dest_position": "",
 	"class": "",
 	"title": "",
+	"title_icon_class": "",
 	"events_code": "",
 	"helpers_code": "",
 	"query": {
@@ -516,6 +529,7 @@ dest\_selector | string | destination html element selector. Similar to jQuery s
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
 title | string | Component title
+title\_icon\_class | string | If present, "span" with this class name will be added to title (if title is set)
 events\_code | string | Content of Template.TEMLATE\_NAME.events({ ... });
 helpers\_code | string | Content of Template.TEMLATE\_NAME.helpers({ ... });
 query | [query](#query) | Query to be added to Template data context
@@ -537,6 +551,7 @@ button\_class | string | CSS class to be added to jumbotron button
 	"dest_position": "",
 	"class": "",
 	"title": "",
+	"title_icon_class": "",
 	"events_code": "",
 	"helpers_code": "",
 	"query": {
@@ -607,6 +622,7 @@ dest\_selector | string | destination html element selector. Similar to jQuery s
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
 title | string | Component title
+title\_icon\_class | string | If present, "span" with this class name will be added to title (if title is set)
 events\_code | string | Content of Template.TEMLATE\_NAME.events({ ... });
 helpers\_code | string | Content of Template.TEMLATE\_NAME.helpers({ ... });
 query | [query](#query) | Query to be added to Template data context
@@ -624,6 +640,7 @@ scroll\_spy\_selector | string | "scrollspy" selector for menus with anchor link
 	"dest_position": "",
 	"class": "",
 	"title": "",
+	"title_icon_class": "",
 	"events_code": "",
 	"helpers_code": "",
 	"query": {
@@ -701,6 +718,7 @@ name | string | Object name
 template | string | Built-in html and js template file name (without extension) contained in kitchen templates directory.
 class | string | CSS class name to be added to component
 title | string | Component title
+title\_icon\_class | string | If present, "span" with this class name will be added to title (if title is set)
 events\_code | string | Content of Template.TEMLATE\_NAME.events({ ... });
 helpers\_code | string | Content of Template.TEMLATE\_NAME.helpers({ ... });
 query | [query](#query) | Query to be added to Template data context
@@ -712,7 +730,9 @@ text | string | Text to be inserted into page
 container\_class | string | class to be added to page container. Example: "container-fluid". Default "container".
 route\_params | array of string | Route params to be passed via URL
 close\_route | string | If specified, page will have close button routing to this route
+back\_route | string | Route name of page to navigate on back button click. Mandatory field for back button to appear
 close\_route\_params | array of [route\_param](#route\_param) | Params to be passed to close\_route
+back\_route\_params | array of [route\_param](#route\_param) | Route params to be passed to "back\_route"
 roles | array of string | User roles allowed to access this page
 menus | array of [menu](#menu) | Menus to be inserted into this page
 pages | array of [page](#page) | Subpages
@@ -727,6 +747,7 @@ zoneless | bool | For applications with user account system: make this page visi
 	"template": "",
 	"class": "",
 	"title": "",
+	"title_icon_class": "",
 	"events_code": "",
 	"helpers_code": "",
 	"query": {
@@ -748,7 +769,10 @@ zoneless | bool | For applications with user account system: make this page visi
 	"route_params": [
 	],
 	"close_route": "",
+	"back_route": "",
 	"close_route_params": [
+	],
+	"back_route_params": [
 	],
 	"roles": [
 	],
@@ -830,6 +854,8 @@ source\_file | string | path to external file containing route action code (rela
 Property | Type | Description
 ---------|------|------------
 container\_class | string | class to be added to page container. Example: "container-fluid". Default "container".
+back\_route | string | Route name of page to navigate on back button click. Mandatory field for back button to appear
+back\_route\_params | array of [route\_param](#route\_param) | Route params to be passed to "back\_route"
 menus | array of [menu](#menu) | Menus to be inserted into this page
 pages | array of [page](#page) | Subpages
 
@@ -837,6 +863,9 @@ pages | array of [page](#page) | Subpages
 ```
 {
 	"container_class": "",
+	"back_route": "",
+	"back_route_params": [
+	],
 	"menus": [
 	],
 	"pages": [

@@ -1,6 +1,27 @@
 Version History
 ===============
 
+0.9.9
+-----
+
+- Looks like I am close to 1.0 but I am not: Next version will be 0.9.10 :)
+
+- There was bug preventing user to change own profile. Fixed now. Check <a href="http://generator-accounts.meteor.com" target="_blank">example-accounts</a>.
+
+- Built-in "form" component will show error (if any occurs) while writing data
+
+- "page" object now have "back_route" property and if you set this, button with left arrow will appear just before page title
+
+- "component" and "page" objects now have "title_icon_class" property, so you can add for example "fa fa-home" and that will appear before page title
+
+
+
+0.9.8
+-----
+
+- Minor bugfixes
+
+
 0.9.7
 -----
 

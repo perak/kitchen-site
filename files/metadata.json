@@ -648,6 +648,15 @@
 					"input": "text"
 				},
 				{
+					"name": "title_icon_class",
+					"title": "Title icon class",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
 					"name": "events_code",
 					"title": "Events",
 					"type": "string",
@@ -849,6 +858,24 @@
 					"input": ""
 				},
 				{
+					"name": "back_route",
+					"title": "Back route",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "back_route_params",
+					"title": "Back route params",
+					"type": "array",
+					"subType": "route_param",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
+				{
 					"name": "roles",
 					"title": "Roles",
 					"type": "array",
@@ -992,6 +1019,7 @@
 				"dest_selector",
 				"dest_position",
 				"title",
+				"title_icon_class",
 				"text",
 				"query",
 				"route_params",
@@ -1381,6 +1409,7 @@
 				"template_rendered_code",
 				"class",
 				"title",
+				"title_icon_class",
 				"text"
 			],
 			"hide_derived_classes": [
@@ -1915,7 +1944,8 @@
 				"events_code",
 				"helpers_code",
 				"template_rendered_code",
-				"title"
+				"title",
+				"title_icon_class"
 			],
 			"hide_derived_classes": [
 			],
@@ -1953,7 +1983,8 @@
 				"events_code",
 				"helpers_code",
 				"template_rendered_code",
-				"title"
+				"title",
+				"title_icon_class"
 			],
 			"hide_derived_classes": [
 			],
@@ -1990,6 +2021,7 @@
 				"custom_template",
 				"class",
 				"title",
+				"title_icon_class",
 				"events_code",
 				"helpers_code",
 				"template_rendered_code"
@@ -1999,5 +2031,5 @@
 			"hide_this": false
 		}
 	],
-	"version": 23
+	"version": 25
 }

@@ -1,6 +1,17 @@
 Events
 ======
 
+### December 9th 2014
+
+Meteor Meetup in L.A.
+---------------------
+
+"Meteor Kitchen" presented by <a href="https://github.com/jimbog" target="_blank">Jimmy Garzon</a> at <a href="http://www.meetup.com/Meteor-LA/events/218747434/" target="_blank">Meteor LA - December Meetup</a>.
+
+*(organizator promised video soon...)*
+
+<hr />
+
 ### November 6th 2014
 
 Worldwide Meteor Day - Chicago
