@@ -1,6 +1,26 @@
 Version History
 ===============
 
+0.9.11
+------
+
+- Fixed bug in forms: required checkbox fields are now really required
+
+- Vertical menus `.nav-stacked` : menu item can have subitems (and parent item is collapsible)
+
+- Fixed small issue with html parser: textarea had extra tab characted inside content
+
+
+0.9.10
+------
+
+- Forms: for input type "select" now you can combine items from collection (lookup) with static items (input_items). Useful if you need first item to be static (usually empty) and rest of items from collection.
+
+- Forms: added new input type: "crud". For fields with `"type": "array"` and `"array_item_type": "object"` you can define `"input": "crud"` and define `"crud_fields": [...]` - that will produce CRUD inside your form.
+
+- Fixed few bugs and maybe made new ones :)
+
+
 0.9.9
 -----
 

@@ -40,7 +40,6 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	],
 	"free_zone": {
 		"container_class": "",
-		"back_route": "",
 		"back_route_params": [
 		],
 		"menus": [
@@ -83,7 +82,6 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	],
 	"public_zone": {
 		"container_class": "",
-		"back_route": "",
 		"back_route_params": [
 		],
 		"menus": [
@@ -93,7 +91,6 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	},
 	"private_zone": {
 		"container_class": "",
-		"back_route": "",
 		"back_route_params": [
 		],
 		"menus": [
@@ -343,19 +340,22 @@ Property | Type | Description
 ---------|------|------------
 name | string | Object name
 title | string | Field title (used in form labels, table column headers etc.)
-type | string | Field data type (used in form validations). Default: string
+type | string | Field data type used in form validations. Examples: "string", "integer", "float", "date", "time", "array", "email", "random\_string". Default: "string"
 default | string | Default value
 required | bool | Is field input required? Default: false
 format | string | Currently used only with data types "date" and "time". Contains date or time format such as "MM/DD/YYYY" or "hh:mm:ss"
 searchable | bool | Is field searchable? Default: true
 sortable | bool | Is field sortable? Default: true
 exportable | bool | If true field will be exported to CSV/JSON (used in dataview component). Default: false
-input | string | Form input control type: "text", "password", "datepicker", "read-only", "textarea", "radio", "checkbox", "select"
+input | string | Form input control type: "text", "password", "datepicker", "read-only", "textarea", "radio", "checkbox", "select", "crud"
 input\_items | array of [input\_item](#input\_item) | Item list for input type "radio" and "select"
 lookup\_query | [query](#query) | Lookup query - data source for input type "select" items
 lookup\_key | string | Field name from lookup\_query used as option value in input type "select". Mandatory field if lookup\_query is defined
 lookup\_field | string | Field name from lookup\_query used as option title in input type "select". Mandatory field if lookup query is defined
 display\_helper | string | Helper name used to display value from this field (used in DataView, Forms etc.)
+array\_item\_type | string | If "type" is set to "array" then you can define array item type here. Format is the same as for "type" property.
+crudfields | array of [field](#field) | If "array\_item\_type" is set to "object" then you can define fields for input type "crud".
+crudinsert\_title | string | For fields with "input": "crud" - insert button and insert form title
 show\_in\_dataview | bool | If set to "false", field will not be shown in dataview components. Default: true
 show\_in\_insert\_form | bool | If set to "false", field will not be included in forms with mode "insert". Default: true
 show\_in\_update\_form | bool | If set to "false", field will not be included in forms with mode "update". Default: true
@@ -388,6 +388,10 @@ show\_in\_read\_only\_form | bool | If set to "false", field will not be include
 	"lookup_key": "",
 	"lookup_field": "",
 	"display_helper": "",
+	"array_item_type": "",
+	"crudfields": [
+	],
+	"crudinsert_title": "",
 	"show_in_dataview": true,
 	"show_in_insert_form": true,
 	"show_in_update_form": true,
@@ -438,6 +442,8 @@ submit\_route\_params | array of [route\_param](#route\_param) | Route params to
 cancel\_route\_params | array of [route\_param](#route\_param) | Route params to be passed to "cancel\_route"
 close\_route\_params | array of [route\_param](#route\_param) | Route params to be passed to "close\_route"
 back\_route\_params | array of [route\_param](#route\_param) | Route params to be passed to "back\_route"
+submit\_code | string | Custom code to execute on form submit
+cancel\_code | string | Custom code to execute on form cancel
 fields | array of [field](#field) | Defainition of form fields. If empty, generator will use fields defined at collection level.
 hidden\_fields | array of [hidden\_field](#hidden\_field) | Fields (not shown in a form) that will be automatically written on submit.
 
@@ -479,6 +485,8 @@ hidden\_fields | array of [hidden\_field](#hidden\_field) | Fields (not shown in
 	],
 	"back_route_params": [
 	],
+	"submit_code": "",
+	"cancel_code": "",
 	"fields": [
 	],
 	"hidden_fields": [
@@ -854,7 +862,6 @@ source\_file | string | path to external file containing route action code (rela
 Property | Type | Description
 ---------|------|------------
 container\_class | string | class to be added to page container. Example: "container-fluid". Default "container".
-back\_route | string | Route name of page to navigate on back button click. Mandatory field for back button to appear
 back\_route\_params | array of [route\_param](#route\_param) | Route params to be passed to "back\_route"
 menus | array of [menu](#menu) | Menus to be inserted into this page
 pages | array of [page](#page) | Subpages
@@ -863,7 +870,6 @@ pages | array of [page](#page) | Subpages
 ```
 {
 	"container_class": "",
-	"back_route": "",
 	"back_route_params": [
 	],
 	"menus": [

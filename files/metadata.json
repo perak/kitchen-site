@@ -150,7 +150,8 @@
 						"textarea",
 						"radio",
 						"checkbox",
-						"select"
+						"select",
+						"crud"
 					]
 				},
 				{
@@ -197,6 +198,24 @@
 					"default": "",
 					"required": false,
 					"input": "text"
+				},
+				{
+					"name": "array_item_type",
+					"title": "Array item type",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "crud_fields",
+					"title": "CRUD input fields",
+					"type": "array",
+					"subType": "field",
+					"default": "",
+					"required": false,
+					"input": ""
 				},
 				{
 					"name": "show_in_dataview",
@@ -1025,6 +1044,7 @@
 				"route_params",
 				"close_route",
 				"close_route_params",
+				"back_route",
 				"roles",
 				"events_code",
 				"helpers_code",
@@ -2031,5 +2051,5 @@
 			"hide_this": false
 		}
 	],
-	"version": 25
+	"version": 27
 }
