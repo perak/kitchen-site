@@ -720,9 +720,7 @@
 			{ "source": "files/metadata.json", "dest": "PRIVATE_DIR/metadata.json" },
 			{ "source": "files/metadata_utils.js", "dest": "LIB_DIR/metadata_utils.js" },
 			{ "source": "files/dynamic-form/dynamic-form.html", "dest": "CLIENT_LIB_DIR/dynamic-form.html" },
-			{ "source": "files/dynamic-form/dynamic-form.js", "dest": "CLIENT_LIB_DIR/dynamic-form.js" },
-
-			{ "source": "files/settings.json", "dest": "SETTINGS_DIR/settings.json" }
+			{ "source": "files/dynamic-form/dynamic-form.js", "dest": "CLIENT_LIB_DIR/dynamic-form.js" }
 		],
 
 		"packages": {
