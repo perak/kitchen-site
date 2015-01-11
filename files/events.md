@@ -8,7 +8,7 @@ Meteor Meetup in L.A.
 
 "Meteor Kitchen" presented by <a href="https://github.com/jimbog" target="_blank">Jimmy Garzon</a> at <a href="http://www.meetup.com/Meteor-LA/events/218747434/" target="_blank">Meteor LA - December Meetup</a>.
 
-*(organizator promised video soon...)*
+<iframe width="560" height="315" src="//www.youtube.com/embed/lBXsTvy1ElQ?list=PLJ1TVRVOrm2OryvkF8FU-wUHUs5xjP6Zn" frameborder="0" allowfullscreen></iframe>
 
 <hr />
 

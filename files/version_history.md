@@ -1,6 +1,69 @@
 Version History
 ===============
 
+0.9.16
+------
+
+Now you can set query params. See <a href="{{urlFor 'api_reference'}}">API docs</a> `query` object `params` property.
+
+Example query with params:
+
+```
+{
+	"name": "example",
+	"collection": "invoices",
+	"filter": { "date": ":theDate" },
+	"params": [
+		{ "name": "theDate", "value": "Session.get('something');" }
+	]
+}
+```
+
+In this example `theDate` is query param.
+
+Resulting controller code:
+
+```
+var theDate = Session.get('something');
+...
+Meteor.subscribe("example", theDate);
+```
+
+Params that are not listed in `params` array are treated as route params and resulting controller code will be:
+
+```
+Meteor.subscribe("example", this.params.theDate);
+``` 
+
+
+0.9.15
+------
+
+- Improved spacebars to jade converter - pages containing markdown blocks are now properly converted
+
+
+0.9.14
+------
+
+- Field object now have `min` and `max` property. Useful in form validations.
+
+- Removed control-label from single checkbox form fields
+
+
+0.9.13
+------
+
+- Fixed ugly bug preventing any application without user account system to work (including "example-minimal").
+
+- Changed controllers code related to "loadingTemplate". now "Loading..." renders only in part of the screen that is actually loading (no more entire page flickering).
+
+
+0.9.12
+------
+
+- Fixed bugs in form input type "crud"
+
+
 0.9.11
 ------
 

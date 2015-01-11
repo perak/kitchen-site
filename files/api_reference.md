@@ -40,8 +40,6 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	],
 	"free_zone": {
 		"container_class": "",
-		"back_route_params": [
-		],
 		"menus": [
 		],
 		"pages": [
@@ -82,8 +80,6 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	],
 	"public_zone": {
 		"container_class": "",
-		"back_route_params": [
-		],
 		"menus": [
 		],
 		"pages": [
@@ -91,8 +87,6 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	},
 	"private_zone": {
 		"container_class": "",
-		"back_route_params": [
-		],
 		"menus": [
 		],
 		"pages": [
@@ -212,7 +206,9 @@ components | array of [component](#component) | Component list
 		"filter": {
 		},
 		"options": {
-		}
+		},
+		"params": [
+		]
 	},
 	"components": [
 	]
@@ -243,10 +239,10 @@ insert\_route | string | Route name of page containing insert form
 details\_route | string | Route name of page showing selected item details (usually page containing form of type "read\_only").
 edit\_route | string | Route name of page containing edit form. Makes edit\\_route\\_params field mandatory in most cases to be functional.
 delete\_route | string | Route name to execute when user clicks "delete". Not mandatory - generator will automatically produce code for delete operation.
-insert\_route\_params | array of [route\_param](#route\_param) | Parameters to be passed to "insert\_route"
-details\_route\_params | array of [route\_param](#route\_param) | Parameters to be passed to "details\_route"
-edit\_route\_params | array of [route\_param](#route\_param) | Parameters to be passed to "edit\_route"
-delete\_route\_params | array of [route\_param](#route\_param) | Parameters to be passed to "delete\_route"
+insert\_route\_params | array of [param](#param) | Parameters to be passed to "insert\_route"
+details\_route\_params | array of [param](#param) | Parameters to be passed to "details\_route"
+edit\_route\_params | array of [param](#param) | Parameters to be passed to "edit\_route"
+delete\_route\_params | array of [param](#param) | Parameters to be passed to "delete\_route"
 insert\_button\_title | string | Insert button title
 views | array of string | View styles: "table", "list" or "gallery". Default: "table".
 
@@ -269,7 +265,9 @@ views | array of string | View styles: "table", "list" or "gallery". Default: "t
 		"filter": {
 		},
 		"options": {
-		}
+		},
+		"params": [
+		]
 	},
 	"components": [
 	],
@@ -325,7 +323,9 @@ text | string |
 		"filter": {
 		},
 		"options": {
-		}
+		},
+		"params": [
+		]
 	},
 	"components": [
 	],
@@ -342,12 +342,15 @@ name | string | Object name
 title | string | Field title (used in form labels, table column headers etc.)
 type | string | Field data type used in form validations. Examples: "string", "integer", "float", "date", "time", "array", "email", "random\_string". Default: "string"
 default | string | Default value
+min | string | Minimum value (only for numeric fields)
+max | string | Maximum value (only for numeric fields)
 required | bool | Is field input required? Default: false
 format | string | Currently used only with data types "date" and "time". Contains date or time format such as "MM/DD/YYYY" or "hh:mm:ss"
 searchable | bool | Is field searchable? Default: true
 sortable | bool | Is field sortable? Default: true
 exportable | bool | If true field will be exported to CSV/JSON (used in dataview component). Default: false
 input | string | Form input control type: "text", "password", "datepicker", "read-only", "textarea", "radio", "checkbox", "select", "crud"
+input\_group\_class | string | CSS class to apply to field input group container in forms.
 input\_items | array of [input\_item](#input\_item) | Item list for input type "radio" and "select"
 lookup\_query | [query](#query) | Lookup query - data source for input type "select" items
 lookup\_key | string | Field name from lookup\_query used as option value in input type "select". Mandatory field if lookup\_query is defined
@@ -368,12 +371,15 @@ show\_in\_read\_only\_form | bool | If set to "false", field will not be include
 	"title": "",
 	"type": "",
 	"default": "",
+	"min": "",
+	"max": "",
 	"required": false,
 	"format": "",
 	"searchable": true,
 	"sortable": true,
 	"exportable": true,
 	"input": "",
+	"input_group_class": "",
 	"input_items": [
 	],
 	"lookup_query": {
@@ -383,7 +389,9 @@ show\_in\_read\_only\_form | bool | If set to "false", field will not be include
 		"filter": {
 		},
 		"options": {
-		}
+		},
+		"params": [
+		]
 	},
 	"lookup_key": "",
 	"lookup_field": "",
@@ -438,10 +446,10 @@ submit\_route | string | Route name of page to navigate after successfull submit
 cancel\_route | string | Route name of page to navigate on form cancelation. Mandatory field for cancel button to appear
 close\_route | string | Route name of page to navigate when user clicks "OK" button in "read\_only" form. Mandatory field for close button to appear
 back\_route | string | Route name of page to navigate on form back button. Mandatory field for back button to appear
-submit\_route\_params | array of [route\_param](#route\_param) | Route params to be passed to "submit\_route"
-cancel\_route\_params | array of [route\_param](#route\_param) | Route params to be passed to "cancel\_route"
-close\_route\_params | array of [route\_param](#route\_param) | Route params to be passed to "close\_route"
-back\_route\_params | array of [route\_param](#route\_param) | Route params to be passed to "back\_route"
+submit\_route\_params | array of [param](#param) | Route params to be passed to "submit\_route"
+cancel\_route\_params | array of [param](#param) | Route params to be passed to "cancel\_route"
+close\_route\_params | array of [param](#param) | Route params to be passed to "close\_route"
+back\_route\_params | array of [param](#param) | Route params to be passed to "back\_route"
 submit\_code | string | Custom code to execute on form submit
 cancel\_code | string | Custom code to execute on form cancel
 fields | array of [field](#field) | Defainition of form fields. If empty, generator will use fields defined at collection level.
@@ -466,7 +474,9 @@ hidden\_fields | array of [hidden\_field](#hidden\_field) | Fields (not shown in
 		"filter": {
 		},
 		"options": {
-		}
+		},
+		"params": [
+		]
 	},
 	"components": [
 	],
@@ -547,7 +557,7 @@ text | string | Text to be shown in jumbotron
 image\_url | string | Picture URL
 button\_title | string | Jumbotron button title
 button\_route | string | Destination route name
-button\_route\_params | array of [route\_param](#route\_param) | Parameters to be passed to destination route
+button\_route\_params | array of [param](#param) | Parameters to be passed to destination route
 button\_class | string | CSS class to be added to jumbotron button
 
 *Example:*
@@ -569,7 +579,9 @@ button\_class | string | CSS class to be added to jumbotron button
 		"filter": {
 		},
 		"options": {
-		}
+		},
+		"params": [
+		]
 	},
 	"components": [
 	],
@@ -611,7 +623,9 @@ source\_file | string | Path to file containing markup (relative to input file)
 		"filter": {
 		},
 		"options": {
-		}
+		},
+		"params": [
+		]
 	},
 	"components": [
 	],
@@ -658,7 +672,9 @@ scroll\_spy\_selector | string | "scrollspy" selector for menus with anchor link
 		"filter": {
 		},
 		"options": {
-		}
+		},
+		"params": [
+		]
 	},
 	"components": [
 	],
@@ -676,7 +692,7 @@ Property | Type | Description
 ---------|------|------------
 title | string | Item title as appears in menu
 route | string | Route name of destination page
-route\_params | array of [route\_param](#route\_param) | Parameters to be passed to "route"
+route\_params | array of [param](#param) | Parameters to be passed to "route"
 url | string | URL (for external links. You can use only one of "route" or "url" properties, not both)
 class | string | CSS class name to be added to item `li` element
 icon\_class | string | If present, generator will add `span` into menu item and assign this CSS class to it
@@ -739,8 +755,8 @@ container\_class | string | class to be added to page container. Example: "conta
 route\_params | array of string | Route params to be passed via URL
 close\_route | string | If specified, page will have close button routing to this route
 back\_route | string | Route name of page to navigate on back button click. Mandatory field for back button to appear
-close\_route\_params | array of [route\_param](#route\_param) | Params to be passed to close\_route
-back\_route\_params | array of [route\_param](#route\_param) | Route params to be passed to "back\_route"
+close\_route\_params | array of [param](#param) | Params to be passed to close\_route
+back\_route\_params | array of [param](#param) | Route params to be passed to "back\_route"
 roles | array of string | User roles allowed to access this page
 menus | array of [menu](#menu) | Menus to be inserted into this page
 pages | array of [page](#page) | Subpages
@@ -765,7 +781,9 @@ zoneless | bool | For applications with user account system: make this page visi
 		"filter": {
 		},
 		"options": {
-		}
+		},
+		"params": [
+		]
 	},
 	"components": [
 	],
@@ -796,31 +814,7 @@ zoneless | bool | For applications with user account system: make this page visi
 ```
 
 
-# query
-
-Property | Type | Description
----------|------|------------
-name | string | Object name
-collection | string | Name of existing collection
-find\_one | bool | If set to true query will return single document: collection.findOne(). Default: false
-filter | jsonobject | Mongo query expression. Will be passed as parameter to collection.find(). Can contain route params in form ":paramName".
-options | jsonobject | Options parameter passed to collection.find().
-
-*Example:*
-```
-{
-	"name": "",
-	"collection": "",
-	"find_one": false,
-	"filter": {
-	},
-	"options": {
-	}
-}
-```
-
-
-# route_param
+# param
 
 Property | Type | Description
 ---------|------|------------
@@ -832,6 +826,33 @@ value | string | Parameter value
 {
 	"name": "",
 	"value": ""
+}
+```
+
+
+# query
+
+Property | Type | Description
+---------|------|------------
+name | string | Object name
+collection | string | Name of existing collection
+find\_one | bool | If set to true query will return single document: collection.findOne(). Default: false
+filter | jsonobject | Mongo query expression. Will be passed as parameter to collection.find(). Can contain route params in form ":paramName".
+options | jsonobject | Options parameter passed to collection.find().
+params | array of [param](#param) | Override parameter values passed to "filter".
+
+*Example:*
+```
+{
+	"name": "",
+	"collection": "",
+	"find_one": false,
+	"filter": {
+	},
+	"options": {
+	},
+	"params": [
+	]
 }
 ```
 
@@ -862,7 +883,6 @@ source\_file | string | path to external file containing route action code (rela
 Property | Type | Description
 ---------|------|------------
 container\_class | string | class to be added to page container. Example: "container-fluid". Default "container".
-back\_route\_params | array of [route\_param](#route\_param) | Route params to be passed to "back\_route"
 menus | array of [menu](#menu) | Menus to be inserted into this page
 pages | array of [page](#page) | Subpages
 
@@ -870,8 +890,6 @@ pages | array of [page](#page) | Subpages
 ```
 {
 	"container_class": "",
-	"back_route_params": [
-	],
 	"menus": [
 	],
 	"pages": [

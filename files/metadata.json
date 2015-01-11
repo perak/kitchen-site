@@ -82,7 +82,25 @@
 				},
 				{
 					"name": "default",
-					"title": "Default",
+					"title": "Default value",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "min",
+					"title": "Min. value",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "max",
+					"title": "Max. value",
 					"type": "string",
 					"subType": "",
 					"default": "",
@@ -153,6 +171,15 @@
 						"select",
 						"crud"
 					]
+				},
+				{
+					"name": "input_group_class",
+					"title": "Input group class",
+					"type": "string",
+					"subType": "",
+					"default": "text",
+					"required": false,
+					"input": "text"
 				},
 				{
 					"name": "input_items",
@@ -562,6 +589,15 @@
 					"default": "",
 					"required": false,
 					"input": "json"
+				},
+				{
+					"name": "params",
+					"title": "Params",
+					"type": "array",
+					"subType": "param",
+					"default": "",
+					"required": false,
+					"input": ""
 				}
 			],
 			"override_members": [
@@ -734,7 +770,7 @@
 			"hide_this": true
 		},
 		{
-			"objectType": "route_param",
+			"objectType": "param",
 			"derivedFrom": [
 			],
 			"members": [
@@ -871,7 +907,7 @@
 					"name": "close_route_params",
 					"title": "Close route params",
 					"type": "array",
-					"subType": "route_param",
+					"subType": "param",
 					"default": "",
 					"required": false,
 					"input": ""
@@ -889,7 +925,7 @@
 					"name": "back_route_params",
 					"title": "Back route params",
 					"type": "array",
-					"subType": "route_param",
+					"subType": "param",
 					"default": "",
 					"required": false,
 					"input": ""
@@ -1464,7 +1500,7 @@
 					"name": "route_params",
 					"title": "Route params",
 					"type": "array",
-					"subType": "route_param",
+					"subType": "param",
 					"default": "",
 					"required": false,
 					"input": ""
@@ -1613,7 +1649,7 @@
 					"name": "button_route_params",
 					"title": "Button route params",
 					"type": "array",
-					"subType": "route_param",
+					"subType": "param",
 					"default": "",
 					"required": false,
 					"input": ""
@@ -1720,7 +1756,7 @@
 					"name": "submit_route_params",
 					"title": "Submit route params",
 					"type": "array",
-					"subType": "route_param",
+					"subType": "param",
 					"default": "",
 					"required": false,
 					"input": ""
@@ -1729,7 +1765,7 @@
 					"name": "cancel_route_params",
 					"title": "Cancel route params",
 					"type": "array",
-					"subType": "route_param",
+					"subType": "param",
 					"default": "",
 					"required": false,
 					"input": ""
@@ -1738,7 +1774,7 @@
 					"name": "close_route_params",
 					"title": "Close route params",
 					"type": "array",
-					"subType": "route_param",
+					"subType": "param",
 					"default": "",
 					"required": false,
 					"input": ""
@@ -1747,7 +1783,7 @@
 					"name": "back_route_params",
 					"title": "Back route params",
 					"type": "array",
-					"subType": "route_param",
+					"subType": "param",
 					"default": "",
 					"required": false,
 					"input": ""
@@ -1853,7 +1889,7 @@
 					"name": "insert_route_params",
 					"title": "Insert route params",
 					"type": "array",
-					"subType": "route_param",
+					"subType": "param",
 					"default": "",
 					"required": false,
 					"input": ""
@@ -1862,7 +1898,7 @@
 					"name": "details_route_params",
 					"title": "Details route params",
 					"type": "array",
-					"subType": "route_param",
+					"subType": "param",
 					"default": "",
 					"required": false,
 					"input": ""
@@ -1871,7 +1907,7 @@
 					"name": "edit_route_params",
 					"title": "Edit route params",
 					"type": "array",
-					"subType": "route_param",
+					"subType": "param",
 					"default": "",
 					"required": false,
 					"input": ""
@@ -1880,7 +1916,7 @@
 					"name": "delete_route_params",
 					"title": "Delete route params",
 					"type": "array",
-					"subType": "route_param",
+					"subType": "param",
 					"default": "",
 					"required": false,
 					"input": ""
@@ -2051,5 +2087,5 @@
 			"hide_this": false
 		}
 	],
-	"version": 27
+	"version": 29
 }

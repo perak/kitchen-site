@@ -15,7 +15,7 @@ You **need** to have <a href="https://www.meteor.com" target="_blank">Meteor >=1
 I paused work on version for Windows. You can download some old version <a href="/install/install_win.zip" target="_blank">here.</a>
 
 
-Current version is 0.9.11
+Current version is 0.9.16
 =========================
 
 Click <a href="{{pathFor 'version_history'}}">here</a> to see version history.
