@@ -175,6 +175,24 @@ after\_remove\_source\_file | string | File that contains code to be executed af
 ```
 
 
+# component
+
+`component` is abstract base class for following types:
+ - [custom_component](#custom_component)
+
+ - [dataview](#dataview)
+
+ - [div](#div)
+
+ - [form](#form)
+
+ - [jumbotron](#jumbotron)
+
+ - [markdown](#markdown)
+
+ - [menu](#menu)
+
+
 # custom_component
 
 Property | Type | Description

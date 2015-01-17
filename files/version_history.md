@@ -1,6 +1,12 @@
 Version History
 ===============
 
+0.9.17
+------
+
+- Fixed few minor bugs (related to form input type "crud")
+
+
 0.9.16
 ------
 

@@ -255,6 +255,7 @@
 							"items": [
 								{ "title": "application",		"url": "#application" },
 								{ "title": "collection",		"url": "#collection" },
+								{ "title": "component",			"url": "#component" },
 								{ "title": "custom_component",	"url": "#custom_component" },
 								{ "title": "dataview",			"url": "#dataview" },
 								{ "title": "div",				"url": "#div" },
