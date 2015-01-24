@@ -45,15 +45,13 @@
 					"name": "home_public",
 					"components": [
 						{
-							"name": "home_jumbotron",
+							"name": "jumbotron",
+							"type": "custom_component",
+							"custom_template": "files/jumbotron/jumbotron",
 							"title": "Meteor Kitchen",
-							"type": "jumbotron",
-							"dest_position": "before",
-							"text": "<b>Code generator for <a href=\"https://www.meteor.com\" target=\"_blank\">Meteor.js</a></b><br />Less coding = more code",
-							"image_url": "images/cupcakes.svg",
-							"button_title": "Get started &raquo;",
-							"button_route": "getting_started"
+							"dest_position": "before"
 						},
+
 						{
 							"name": "features_top_row",
 							"type": "div",
@@ -191,6 +189,7 @@
 							"dest_selector": ".sidebar",
 							"scroll_spy_selector": "",
 							"items": [
+								{ "title": "Quick Start Video", 	"url": "#quick-start-video" },
 								{ "title": "Download", 				"url": "#download" },
 								{ "title": "CLI", 					"url": "#cli" },
 								{ "title": "Input File", 			"url": "#input-file" },

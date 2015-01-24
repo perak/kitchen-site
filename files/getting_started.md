@@ -1,3 +1,9 @@
+Quick start video
+=================
+
+<iframe width="560" height="315" src="//www.youtube.com/embed/9k5YRxjP58Y" frameborder="0" allowfullscreen></iframe>
+
+
 Download
 ========
 
@@ -12,10 +18,10 @@ You **need** to have <a href="https://www.meteor.com" target="_blank">Meteor >=1
 
 
 ### Windows
-I paused work on version for Windows. You can download some old version <a href="/install/install_win.zip" target="_blank">here.</a>
+I paused work on version for Windows until Meteor releases official version for Windows.
 
 
-Current version is 0.9.17
+Current version is 0.9.20
 =========================
 
 Click <a href="{{pathFor 'version_history'}}">here</a> to see version history.
@@ -499,10 +505,22 @@ Fields are used by components such as `form` and `dataview` (generator will "kno
 - `required` - used in form validations
 - `default` - default value in insert forms
 - `type` - field datatype - used in form validations
+*...and many more properties, see <a href="{{pathFor 'api_reference'}}">field object</a>*
 
+**Note** that defining fields at collection level is not mandatory - fields can be also set/overriden inside the `form` and `dataview` components.
 
-**Note** that defining fields at collection level is not mandatory - fields can be set/overriden inside the `form` and `dataview` components.
+**Nested objects**
 
+You can name field as `fieldName.subField` and your data will look like this:
+
+```
+{
+	fieldName: {
+		subField: ...
+	}
+}
+```
+*(that works in forms and dataviews)*
 
 Dataview Component
 ==================
@@ -952,7 +970,6 @@ QUERY_VAR
 COLLECTION_VAR
 APP_TITLE
 ```
-
 
 Plugins
 =======

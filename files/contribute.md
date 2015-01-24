@@ -9,9 +9,9 @@ How to contribute?
 
 - **Spread the word** - on your favourite tech blog, twitter, facebook... etc.
 
-- If you can help with **English spelling & grammar** corrections for this site, clone this <a href="https://github.com/perak/kitchen-site" target="_blank">repository</a> and send me a pull request.
+- **Create screencast videos** explaining how to create application using meteor-kitchen. I'l put your video on this site and add you to the contributors list. Great award, isn't it? :)
 
-- That would be cool if someone **create screencast video** with native English speaker explaining how to create simple app using meteor-kitchen.
+- If you can help with **English spelling & grammar** corrections for this site, clone this <a href="https://github.com/perak/kitchen-site" target="_blank">repository</a> and send me a pull request.
 
 - You can support meteor-kitchen with a <a href="{{pathFor 'donate'}}">donation</a>.
 
@@ -19,7 +19,11 @@ How to contribute?
 Contributors
 ============
 
+*Sorted by contribution date (descending)*
+
 <a href="https://github.com/perak" target="_blank"><b>Petar Korponaić</b></a> - original author
+
+<a href="https://github.com/robmoggach" target="_blank"><b>Robert Moggach</b></a> - improving examples and created nice "getting started" <a href="//www.youtube.com/embed/9k5YRxjP58Y" target="_blank">video</a>.
 
 <a href="https://github.com/jimbog" target="_blank"><b>Jimmy Garzon</b></a> - improving docs and made presentation at Meteor LA Meetup in December 2014.
 
