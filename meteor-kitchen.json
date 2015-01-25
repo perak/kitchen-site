@@ -4,7 +4,7 @@
 		"meta_title": "Meteor Generator",
 		"meta_description": "Meteor application generator",
 		"template": "bootstrap",
-		"theme": "bootswatch-amelia",
+		"theme": "bootswatch-superhero",
 		"footer_text": "Meteor Kitchen &copy; 2014 Petar Korponaić All Rights Reserved",
 
 		"collections": [
@@ -701,6 +701,7 @@
 			{ "source": "files/styles.less", "dest": "CLIENT_STYLES_DIR/styles.less" },
 			{ "source": "files/analytics.js", "dest": "CLIENT_DIR/analytics.js" },
 
+			{ "source": "files/images/jumbotron-bg.png", "dest": "PUBLIC_DIR/images/jumbotron-bg.png" },
 			{ "source": "files/images/cupcakes.svg", "dest": "PUBLIC_DIR/images/cupcakes.svg" },
 			{ "source": "files/images/example-minimal.png", "dest": "PUBLIC_DIR/images/example-minimal.png" },
 			{ "source": "files/images/example-subpages.png", "dest": "PUBLIC_DIR/images/example-subpages.png" },
@@ -708,6 +709,7 @@
 			{ "source": "files/images/example-accounts.png", "dest": "PUBLIC_DIR/images/example-accounts.png" },
 			{ "source": "files/images/example-admin.png", "dest": "PUBLIC_DIR/images/example-admin.png" },
 			{ "source": "files/images/example-invoices.png", "dest": "PUBLIC_DIR/images/example-invoices.png" },
+			{ "source": "files/images/example-onepage.png", "dest": "PUBLIC_DIR/images/example-onepage.png" },
 			{ "source": "files/images/example-plugins.png", "dest": "PUBLIC_DIR/images/example-plugins.png" },
 			{ "source": "files/images/ribbon-donate-gratipay.png", "dest": "PUBLIC_DIR/images/ribbon-donate-gratipay.png" },
 			{ "source": "files/images/ribbon-donate-bitcoin.png", "dest": "PUBLIC_DIR/images/ribbon-donate-bitcoin.png" },
@@ -721,6 +723,7 @@
 			{ "source": "files/metadata_utils.js", "dest": "LIB_DIR/metadata_utils.js" },
 			{ "source": "files/dynamic-form/dynamic-form.html", "dest": "CLIENT_LIB_DIR/dynamic-form.html" },
 			{ "source": "files/dynamic-form/dynamic-form.js", "dest": "CLIENT_LIB_DIR/dynamic-form.js" }
+
 		],
 
 		"packages": {
