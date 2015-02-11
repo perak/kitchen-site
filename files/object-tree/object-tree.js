@@ -61,6 +61,7 @@ Template.objectTreeView.helpers({
 			var isObject = false;
 			var isArray = false;
 			var id = "";
+			var cssClass = "";
 
 			if(_.isArray(property)) {
 				id = object._id || "";
@@ -83,7 +84,8 @@ Template.objectTreeView.helpers({
 					isObject: isObject,
 					isArray: isArray,
 					data: property,
-					meta: meta
+					meta: meta,
+					cssClass: cssClass
 				});
 			}
 		}
@@ -96,7 +98,7 @@ Template.objectTreeView.helpers({
 				var id = item._id || "";
 				var name = item.name || item.title || item.source || item.objectType + " " + (index + 1);
 
-				objects.push({ rootId: rootId, objectId: id, name: name, data: item, meta: meta });
+				objects.push({ rootId: rootId, objectId: id, name: name, data: item, meta: meta, cssClass: "object-item" });
 			}
 		});
 		return objects;
@@ -112,7 +114,7 @@ Template.objectTreeView.events({
 		e.preventDefault();
 		var link = $(e.currentTarget);
 		var li = link.parent();
-		var span = link.find("span");
+		var span = link.find("span.fa");
 
 		if(li.hasClass("active")) {
 			li.toggleClass("collapsed");

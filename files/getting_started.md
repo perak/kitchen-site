@@ -21,7 +21,7 @@ You **need** to have <a href="https://www.meteor.com" target="_blank">Meteor >=1
 I paused work on version for Windows until Meteor releases official version for Windows.
 
 
-Current version is 0.9.21
+Current version is 0.9.24
 =========================
 
 Click <a href="{{pathFor 'version_history'}}">here</a> to see version history.
@@ -961,15 +961,8 @@ Or provide custom template .html and .js files:
 
 Your HTML and JS code can contain anything. Your component can contain other components, can use query - the same as any other built in component.
 
-Following special tokens inside HTML and JS files will be replaced by generator:
+To see custom components in action check <a href="https://github.com/perak/kitchen-examples/tree/master/example-onepage" target="_blank">onepage</a> example.
 
-```
-TEMPLATE_NAME
-COMPONENT_ID
-QUERY_VAR
-COLLECTION_VAR
-APP_TITLE
-```
 
 Plugins
 =======

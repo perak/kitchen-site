@@ -43,7 +43,9 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 		"menus": [
 		],
 		"pages": [
-		]
+		],
+		"layout": "",
+		"navbar_class": ""
 	},
 	"server_startup_code": "",
 	"client_startup_code": "",
@@ -83,14 +85,18 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 		"menus": [
 		],
 		"pages": [
-		]
+		],
+		"layout": "",
+		"navbar_class": ""
 	},
 	"private_zone": {
 		"container_class": "",
 		"menus": [
 		],
 		"pages": [
-		]
+		],
+		"layout": "",
+		"navbar_class": ""
 	},
 	"server_startup_code": "",
 	"client_startup_code": "",
@@ -359,7 +365,7 @@ Property | Type | Description
 name | string | Object name
 title | string | Field title (used in form labels, table column headers etc.)
 type | string | Field data type used in form validations. Examples: "string", "integer", "float", "date", "time", "array", "email", "random\_string". Default: "string"
-default | string | Default value
+default | string | Default value. For date fields you can use special constant "today", for time fields you can use "now". Also, you can set helper here "{{myHelper}}".
 min | string | Minimum value (only for numeric fields)
 max | string | Maximum value (only for numeric fields)
 required | bool | Is field input required? Default: false
@@ -376,8 +382,8 @@ lookup\_key | string | Field name from lookup\_query used as option value in inp
 lookup\_field | string | Field name from lookup\_query used as option title in input type "select". Mandatory field if lookup query is defined
 display\_helper | string | Helper name used to display value from this field (used in DataView, Forms etc.)
 array\_item\_type | string | If "type" is set to "array" then you can define array item type here. Format is the same as for "type" property.
-crudfields | array of [field](#field) | If "array\_item\_type" is set to "object" then you can define fields for input type "crud".
-crudinsert\_title | string | For fields with "input": "crud" - insert button and insert form title
+crud\_fields | array of [field](#field) | If "array\_item\_type" is set to "object" then you can define fields for input type "crud".
+crud\_insert\_title | string | For fields with "input": "crud" - insert button and insert form title
 show\_in\_dataview | bool | If set to "false", field will not be shown in dataview components. Default: true
 show\_in\_insert\_form | bool | If set to "false", field will not be included in forms with mode "insert". Default: true
 show\_in\_update\_form | bool | If set to "false", field will not be included in forms with mode "update". Default: true
@@ -417,9 +423,9 @@ show\_in\_read\_only\_form | bool | If set to "false", field will not be include
 	"lookup_field": "",
 	"display_helper": "",
 	"array_item_type": "",
-	"crudfields": [
+	"crud_fields": [
 	],
-	"crudinsert_title": "",
+	"crud_insert_title": "",
 	"show_in_dataview": true,
 	"show_in_insert_form": true,
 	"show_in_update_form": true,
@@ -433,7 +439,7 @@ show\_in\_read\_only\_form | bool | If set to "false", field will not be include
 Property | Type | Description
 ---------|------|------------
 source | string | Source file to copy. Path is relative to input JSON.
-dest | string | Destination file. You can use directory aliases: OUTPUT\_DIR, CLIENT\_DIR, CLIENT\_LIB\_DIR, CLIENT\_STYLES\_DIR, CLIENT\_STYLES\_DEFAULT\_DIR, CLIENT\_VIEWS\_DIR, CLIENT\_VIEWS\_NOT\_FOUND\_DIR, CLIENT\_VIEWS\_LOADING\_DIR, LIB\_DIR, SETTINGS\_DIR, BOTH\_DIR, BOTH\_LIB\_DIR, BOTH\_COLLECTIONS\_DIR, BOTH\_ROUTER\_DIR, PUBLIC\_DIR, PUBLIC\_IMAGES\_DIR, PRIVATE\_DIR, SERVER\_DIR, SERVER\_LIB\_DIR, SERVER\_COLLECTIONS\_DIR, SERVER\_PUBLISH\_DIR, SERVER\_CONTROLLERS\_DIR, SERVER\_METHODS\_DIR
+dest | string | Destination file. You can use directory aliases: OUTPUT\_DIR, CLIENT\_DIR, CLIENT\_LIB\_DIR, CLIENT\_STYLES\_DIR, CLIENT\_STYLES\_DEFAULT\_DIR, CLIENT\_STYLES\_THEME\_DIR, CLIENT\_VIEWS\_DIR, CLIENT\_VIEWS\_NOT\_FOUND\_DIR, CLIENT\_VIEWS\_LOADING\_DIR, LIB\_DIR, SETTINGS\_DIR, BOTH\_DIR, BOTH\_LIB\_DIR, BOTH\_COLLECTIONS\_DIR, BOTH\_ROUTER\_DIR, PUBLIC\_DIR, PUBLIC\_IMAGES\_DIR, PRIVATE\_DIR, SERVER\_DIR, SERVER\_LIB\_DIR, SERVER\_COLLECTIONS\_DIR, SERVER\_PUBLISH\_DIR, SERVER\_CONTROLLERS\_DIR, SERVER\_METHODS\_DIR
 
 *Example:*
 ```
@@ -771,7 +777,7 @@ template\_rendered\_code | string | Code to be executed once template is rendere
 meta\_description | string | Meta description
 meta\_title | string | Head title tag and meta title
 text | string | Text to be inserted into page
-container\_class | string | class to be added to page container. Example: "container-fluid". Default "container".
+container\_class | string | Class to be added to page container. Example: "container-fluid". Default "container".
 route\_params | array of string | Route params to be passed via URL
 close\_route | string | If specified, page will have close button routing to this route
 back\_route | string | Route name of page to navigate on back button click. Mandatory field for back button to appear
@@ -902,9 +908,11 @@ source\_file | string | path to external file containing route action code (rela
 
 Property | Type | Description
 ---------|------|------------
-container\_class | string | class to be added to page container. Example: "container-fluid". Default "container".
+container\_class | string | Class to be added to page container. Example: "container-fluid". Default "container".
 menus | array of [menu](#menu) | Menus to be inserted into this page
 pages | array of [page](#page) | Subpages
+layout | string | built-in layout template name: "simple" or "navbar". Default: "navbar"
+navbar\_class | string | CSS class name to be added to navbar. Default: "navbar-fixed-top navbar-default"
 
 *Example:*
 ```
@@ -913,7 +921,9 @@ pages | array of [page](#page) | Subpages
 	"menus": [
 	],
 	"pages": [
-	]
+	],
+	"layout": "",
+	"navbar_class": ""
 }
 ```
 

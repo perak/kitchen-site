@@ -10,7 +10,7 @@
 		{{#each objectMembers this.rootId this.data this.meta}}
 			{{#if this.isObject}}
 				<li>
-					<a href="#" class="object-tree-link" data-object-id="{{this.objectId}}">
+					<a href="#" class="object-tree-link {{this.cssClass}}" data-object-id="{{this.objectId}}">
 						{{this.name}}
 					</a>
 					{{> objectTreeView rootId=this.rootId data=this.data meta=this.meta}}
@@ -19,7 +19,7 @@
 		
 			{{#if this.isArray}}
 				<li class="collapsed">
-					<a href="#" class="object-tree-link object-tree-array" data-object-id="{{this.objectId}}" data-property-name="{{this.name}}">
+					<a href="#" class="object-tree-link object-tree-array {{this.cssClass}}" data-object-id="{{this.objectId}}" data-property-name="{{this.name}}">
 						<span class="fa fa-caret-right"></span>
 						{{this.name}}
 						<span class="text-muted">({{arrayItemCount this.data}})</span>
@@ -27,7 +27,7 @@
 					<ul class="nav nav-pills nav-stacked object-tree">
 						{{#each objectArray this.rootId this.data this.meta}}
 						<li>
-							<a href="#" class="object-tree-link" data-object-id="{{this.objectId}}">
+							<a href="#" class="object-tree-link {{this.cssClass}}" data-object-id="{{this.objectId}}">
 								{{this.name}}
 							</a>
 							{{> objectTreeView rootId=this.rootId data=this.data meta=this.meta}}

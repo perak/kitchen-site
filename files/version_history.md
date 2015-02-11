@@ -1,6 +1,32 @@
 Version History
 ===============
 
+0.9.24
+------
+
+- Changes related to page layout:
+
+    - Now you can set `simple` or `navbar` layout (`zone` object, property `layout`). `simple` layout doesn't have navbar (but still can have menu - it is wrapped into simple container). Default layout (if not specified) is `navbar`.
+
+    - If your layout have navbar then you can define class to be added to main navbar (`zone` object, property `navbar_class`). For example "navbar-inverse" (or anything else).
+
+- Fixed small html parser issue: in some circumstances generated html code indentation was incorrect.
+
+
+0.9.23
+------
+
+- Fixed bug related to user account system: if page was refreshed or url was manually entered, user was logged out. Fixed now.
+
+
+0.9.22
+------
+
+- Fixed bug with forms that doesn't close on submit (message "Saved" was not shown). Fixed now.
+
+- Removed some unnecessary events code that was generated in each page
+
+
 0.9.21
 ------
 

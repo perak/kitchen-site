@@ -58,6 +58,14 @@ One page site
 <a href="http://generator-onepage.meteor.com" target="_blank" class="btn btn-success">Live example</a> <a href="https://github.com/perak/kitchen-examples/tree/master/example-onepage" target="_blank" class="btn btn-default">Source code</a>
 
 
+Markdown editor
+---------------
+
+<a href="http://generator-markdowned.meteor.com" target="_blank"><img src="images/example-markdowned.png" alt="markdowned" class="example-img"></a>
+
+<a href="http://generator-markdowned.meteor.com" target="_blank" class="btn btn-success">Live example</a> <a href="https://github.com/perak/kitchen-examples/tree/master/example-markdowned" target="_blank" class="btn btn-default">Source code</a>
+
+
 Plugins
 -------
 

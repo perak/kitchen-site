@@ -173,6 +173,15 @@
 					]
 				},
 				{
+					"name": "input_template",
+					"title": "Input template",
+					"type": "string",
+					"subType": "",
+					"default": "text",
+					"required": false,
+					"input": "text"
+				},
+				{
 					"name": "input_group_class",
 					"title": "Input group class",
 					"type": "string",
@@ -1052,8 +1061,18 @@
 					"input": "select",
 					"choice_items": [
 						"",
+						"navbar",
 						"simple"
 					]
+				},
+				{
+					"name": "navbar_class",
+					"title": "Navbar Class",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
 				}
 			],
 			"override_members": [
@@ -2087,5 +2106,5 @@
 			"hide_this": false
 		}
 	],
-	"version": 29
+	"version": 32
 }
