@@ -841,6 +841,7 @@
 			{ "source": "files/styles.less", "dest": "CLIENT_STYLES_DIR/styles.less" },
 			{ "source": "files/analytics.js", "dest": "CLIENT_DIR/analytics.js" },
 
+			{ "source": "files/images/favicon.ico", "dest": "PUBLIC_DIR/favicon.ico" },
 			{ "source": "files/images/jumbotron-bg.png", "dest": "PUBLIC_DIR/images/jumbotron-bg.png" },
 			{ "source": "files/images/cupcakes.svg", "dest": "PUBLIC_DIR/images/cupcakes.svg" },
 			{ "source": "files/images/example-minimal.png", "dest": "PUBLIC_DIR/images/example-minimal.png" },

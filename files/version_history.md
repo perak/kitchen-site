@@ -1,6 +1,18 @@
 Version History
 ===============
 
+0.9.25
+------
+
+- `query.options` object now can contain params in the same way and syntax as `query.filter` object.
+
+- `<title>` tag is now automatically added into layout template.
+
+- One small step for (a) man, one giant leap for mankind: added `favicon.ico` to this site :)
+
+- Fixed few minor bugs.
+
+
 0.9.24
 ------
 
