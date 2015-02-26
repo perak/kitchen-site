@@ -891,20 +891,11 @@ Property | Type | Description
 ---------|------|------------
 name | string | Object name
 type | string | Component type name.
-template | string | Built-in html and js template file name (without extension) contained in kitchen templates directory.
-custom\_template | string | Custom html and js template filename (without extension). Path is relative to input JSON file.
-html | string | Custom HTML code
-js | string | Custom JS code
 dest\_selector | string | destination html element selector. Similar to jQuery selector, but only three simple formats are supported: "tagname", "#element\_id" and ".class\_name".
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
-title | string | Component title
-title\_icon\_class | string | If present, "span" with this class name will be added to title (if title is set)
-events\_code | string | Content of Template.TEMLATE\_NAME.events({ ... });
-helpers\_code | string | Content of Template.TEMLATE\_NAME.helpers({ ... });
 query | [query](#query) | Query to be added to Template data context
 components | array of [component](#component) | Component list
-template\_rendered\_code | string | Code to be executed once template is rendered
 text | string | 
 
 *Example:*
@@ -912,17 +903,9 @@ text | string |
 {
 	"name": "",
 	"type": "section",
-	"template": "",
-	"custom_template": "",
-	"html": "",
-	"js": "",
 	"dest_selector": "",
 	"dest_position": "",
 	"class": "",
-	"title": "",
-	"title_icon_class": "",
-	"events_code": "",
-	"helpers_code": "",
 	"query": {
 		"name": "",
 		"collection": "",
@@ -936,7 +919,6 @@ text | string |
 	},
 	"components": [
 	],
-	"template_rendered_code": "",
 	"text": ""
 }
 ```

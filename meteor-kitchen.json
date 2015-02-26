@@ -274,6 +274,7 @@
 								{ "title": "page",				"url": "#page" },
 								{ "title": "query",				"url": "#query" },
 								{ "title": "route_param",		"url": "#route_param" },
+								{ "title": "section",			"url": "#section" },
 								{ "title": "server_side_route",	"url": "#server_side_route" },
 								{ "title": "zone",				"url": "#zone" }
 							]
