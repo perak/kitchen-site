@@ -182,7 +182,7 @@
 						{
 							"name": "content",
 							"type": "markdown",
-							"source_file": "files/getting_started.md",
+							"source_file": "files/getting_started.md"
 						}
 					],
 					"menus": [
@@ -626,11 +626,7 @@
 								}
 							],
 
-							"events_code": "
-								\"click .toggle-build-info\": function(e, t) {
-									$(\".alert.build-info\").toggle();
-								}
-							"
+							"events_code": "\"click .toggle-build-info\": function(e, t) { $(\".alert.build-info\").toggle(); }"
 						}
 					]
 				},
@@ -650,8 +646,7 @@
 									"query": {
 										"name": "admin_users",
 										"collection": "users",
-										"filter": {},
-										"options": { "sort": { "\"profile.name\"": 1 } }
+										"filter": {}
 									},
 
 									"fields": [

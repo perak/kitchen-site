@@ -21,7 +21,7 @@ You **need** to have <a href="https://www.meteor.com" target="_blank">Meteor >=1
 I paused work on version for Windows until Meteor releases official version for Windows.
 
 
-Current version is 0.9.25
+Current version is 0.9.26
 =========================
 
 Click <a href="{{pathFor 'version_history'}}">here</a> to see version history.
