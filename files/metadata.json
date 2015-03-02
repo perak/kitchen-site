@@ -2066,6 +2066,45 @@
 			"hide_this": false
 		},
 		{
+			"objectType": "section",
+			"derivedFrom": [
+				"component"
+			],
+			"members": [
+				{
+					"name": "text",
+					"title": "Text",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "textarea"
+				}
+			],
+			"override_members": [
+				{
+					"name": "type",
+					"title": "Type",
+					"type": "string",
+					"subType": "",
+					"default": "section",
+					"required": false,
+					"input": "static"
+				}
+			],
+			"hide_members": [
+				"custom_template",
+				"events_code",
+				"helpers_code",
+				"template_rendered_code",
+				"title",
+				"title_icon_class"
+			],
+			"hide_derived_classes": [
+			],
+			"hide_this": false
+		},
+		{
 			"objectType": "plugin",
 			"derivedFrom": [
 				"component"

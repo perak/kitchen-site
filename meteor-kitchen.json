@@ -4,7 +4,7 @@
 		"meta_title": "Meteor Generator",
 		"meta_description": "Meteor application generator",
 		"template": "bootstrap",
-		"theme": "bootswatch-superhero",
+		"theme": "bootswatch-darkly",
 		"footer_text": "Meteor Kitchen &copy; 2014 Petar Korponaić All Rights Reserved",
 
 		"roles": [ "admin", "user", "blocked" ],
@@ -49,10 +49,17 @@
 					"components": [
 						{
 							"name": "jumbotron",
-							"type": "custom_component",
-							"custom_template": "files/jumbotron/jumbotron",
-							"title": "Meteor Kitchen",
-							"dest_position": "before"
+							"type": "jumbotron",
+							"dest_position": "before",
+							"image_url": "/images/jumbotron-bg.png",
+							"components": [
+								{
+									"name": "jumbotron_content",
+									"type": "custom_component",
+									"custom_template": "files/jumbotron/jumbotron",
+									"title": "Meteor Kitchen",
+								}
+							]
 						},
 
 						{
@@ -273,7 +280,7 @@
 								{ "title": "packages",			"url": "#packages" },
 								{ "title": "page",				"url": "#page" },
 								{ "title": "query",				"url": "#query" },
-								{ "title": "route_param",		"url": "#route_param" },
+								{ "title": "param",				"url": "#param" },
 								{ "title": "section",			"url": "#section" },
 								{ "title": "server_side_route",	"url": "#server_side_route" },
 								{ "title": "zone",				"url": "#zone" }
