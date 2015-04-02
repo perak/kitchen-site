@@ -1,6 +1,19 @@
 Version History
 ===============
 
+0.9.29
+------
+
+- **Windows**: Meteor kitchen is now available for Windows.
+
+
+0.9.28
+------
+
+- Improved DataView component - insert/update/delete buttons are shown only if user is allowed to perform operation (only if user have correct role/owenership)
+
+
+
 0.9.27
 ------
 

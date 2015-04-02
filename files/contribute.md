@@ -5,7 +5,7 @@ How to contribute?
 
 - **Report issues or request features** to this <a href="https://github.com/perak/kitchen-site/issues" target="_blank">GitHub page</a>.
 
-- **Ask questions and discuss** in <a href="https://groups.google.com/forum/#!topic/meteor-talk/zXgP7ddCdHk" target="_blank">meteor-talk</a> forum.
+- **Ask questions and discuss** in <a href="https://forums.meteor.com/" target="_blank">Meteor forum</a>.
 
 - **Spread the word** - on your favourite tech blog, twitter, facebook... etc.
 
