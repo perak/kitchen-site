@@ -1,18 +1,34 @@
 {
 	"application": {
-		"collections": [],
+		"title": "Example application",
+		"meta_title": "Example application",
+		"meta_description": "Meteor Kitchen - example application",
+		"theme": "bootswatch-flatly",
+
+		"collections": [
+		],
 
 		"public_zone": {
+			"navbar_class": "navbar-inverse navbar-fixed-top",
+
 			"pages": [
 				{ 
 					"name": "home_public", 
-					"title": "Hello world!",
+					"title": "", 
 					"components": [
+						{
+							"name": "home_jumbotron",
+							"title": "Example application",
+							"type": "jumbotron",
+							"text": "<b>This <a href=\"https://www.meteor.com\" target=\"_blank\">Meteor</a> application is made with <a href=\"http://www.meteorkitchen.com\" target=\"_blank\">meteor-kitchen</a> without manual coding.</b><br />It demonstrates how to create application with login, register and forgot password functions.<br />Source code (input file for generator) is <a href=\"https://github.com/perak/kitchen-examples/tree/master/example-accounts\" target=\"_blank\">here</a>.",
+							"button_title": "Continue &raquo;",
+							"button_route": "login"
+						}
 					]
 				},
-				{ "name": "login", "template": "login" },
-				{ "name": "register", "template": "register" },
-				{ "name": "forgot_password", "template": "forgot_password" },
+				{ "name": "login", "template": "login.html" },
+				{ "name": "register", "template": "register.html" },
+				{ "name": "forgot_password", "template": "forgot_password.html" },
 				{ "name": "reset_password", "template": "reset_password.html", "route_params": ["resetPasswordToken"] }
 			],
 
@@ -39,12 +55,42 @@
 		},
 
 		"private_zone": {
+			"navbar_class": "navbar-default navbar-fixed-top",
+
 			"pages": [
 				{ "name": "home_private", "title": "Welcome {{userFullName}}!" },
+
 				{
 					"name": "user_settings",
 					"pages": [
-						{ "name": "change_pass", "template": "change_pass" }
+						{
+							"name": "profile",
+							"components": [
+								{
+									"name": "edit_form",
+									"type": "form",
+									"mode": "update",
+									"title": "Edit your profile",
+									"submit_route": "user_settings.profile",
+									"query": {
+										"name": "current_user_data",
+										"collection": "users",
+										"filter": { "_id": "Meteor.userId()" },
+										"find_one": true
+									},
+									"fields": [
+										{ "name": "profile.name", "title": "Name", "required": true },
+										{ "name": "profile.email", "title": "E-mail", "type": "email", "required": true },
+										{ "name": "profile.facebook", "title": "Facebook URL" },
+										{ "name": "profile.google", "title": "Google+ URL" },
+										{ "name": "profile.twitter", "title": "Twitter ID" },
+										{ "name": "profile.website", "title": "Website URL" }
+									]
+								}
+							]
+						},
+
+						{ "name": "change_pass", "template": "change_pass.html" }
 					],
 
 					"menus": [
@@ -52,12 +98,14 @@
 							"name": "side_menu",
 							"class": "nav nav-stacked nav-pills",
 							"items": [
+								{ "title": "Profile", "route": "user_settings.profile" },
 								{ "title": "Change password", "route": "user_settings.change_pass" }
 							]
 						}
 					]
 				},
-				{ "name": "logout", "template": "logout", "action_code": "App.logout();" }
+
+				{ "name": "logout", "template": "logout.html", "action_code": "App.logout();" }
 			],
 
 			"menus": [

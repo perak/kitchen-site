@@ -1,4 +1,5 @@
 {
+	"version": 42,
 	"classList": [
 		{
 			"objectType": "root",
@@ -15,13 +16,9 @@
 					"input": ""
 				}
 			],
-			"override_members": [
+			"hideDerivedClasses": [
 			],
-			"hide_members": [
-			],
-			"hide_derived_classes": [
-			],
-			"hide_this": false
+			"hideThis": false
 		},
 		{
 			"objectType": "object",
@@ -38,13 +35,9 @@
 					"input": "text"
 				}
 			],
-			"override_members": [
+			"hideDerivedClasses": [
 			],
-			"hide_members": [
-			],
-			"hide_derived_classes": [
-			],
-			"hide_this": false
+			"hideThis": false
 		},
 		{
 			"objectType": "field",
@@ -52,6 +45,15 @@
 				"object"
 			],
 			"members": [
+				{
+					"name": "name",
+					"title": "Name",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": true,
+					"input": "text"
+				},
 				{
 					"name": "title",
 					"title": "Title",
@@ -290,13 +292,9 @@
 					"input": "checkbox"
 				}
 			],
-			"override_members": [
+			"hideDerivedClasses": [
 			],
-			"hide_members": [
-			],
-			"hide_derived_classes": [
-			],
-			"hide_this": false
+			"hideThis": false
 		},
 		{
 			"objectType": "hidden_field",
@@ -322,13 +320,9 @@
 					"input": "text"
 				}
 			],
-			"override_members": [
+			"hideDerivedClasses": [
 			],
-			"hide_members": [
-			],
-			"hide_derived_classes": [
-			],
-			"hide_this": false
+			"hideThis": false
 		},
 		{
 			"objectType": "input_item",
@@ -354,13 +348,9 @@
 					"input": "text"
 				}
 			],
-			"override_members": [
+			"hideDerivedClasses": [
 			],
-			"hide_members": [
-			],
-			"hide_derived_classes": [
-			],
-			"hide_this": false
+			"hideThis": false
 		},
 		{
 			"objectType": "collection",
@@ -368,6 +358,15 @@
 				"object"
 			],
 			"members": [
+				{
+					"name": "name",
+					"title": "Name",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": true,
+					"input": "text"
+				},
 				{
 					"name": "fields",
 					"title": "Fields",
@@ -549,13 +548,9 @@
 					"input": "text"
 				}
 			],
-			"override_members": [
+			"hideDerivedClasses": [
 			],
-			"hide_members": [
-			],
-			"hide_derived_classes": [
-			],
-			"hide_this": false
+			"hideThis": false
 		},
 		{
 			"objectType": "query",
@@ -563,6 +558,15 @@
 				"object"
 			],
 			"members": [
+				{
+					"name": "name",
+					"title": "Name",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": true,
+					"input": "text"
+				},
 				{
 					"name": "collection",
 					"title": "Collection name",
@@ -609,13 +613,9 @@
 					"input": ""
 				}
 			],
-			"override_members": [
+			"hideDerivedClasses": [
 			],
-			"hide_members": [
-			],
-			"hide_derived_classes": [
-			],
-			"hide_this": false
+			"hideThis": false
 		},
 		{
 			"objectType": "component",
@@ -623,6 +623,15 @@
 				"object"
 			],
 			"members": [
+				{
+					"name": "name",
+					"title": "Name",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": true,
+					"input": "text"
+				},
 				{
 					"name": "type",
 					"title": "Type",
@@ -633,15 +642,6 @@
 					"input": "text"
 				},
 				{
-					"name": "template",
-					"title": "Template",
-					"type": "string",
-					"subType": "",
-					"default": "",
-					"required": false,
-					"input": "text"
-				},
-				{
 					"name": "custom_template",
 					"title": "Custom template",
 					"type": "string",
@@ -649,24 +649,6 @@
 					"default": "",
 					"required": false,
 					"input": "text"
-				},
-				{
-					"name": "html",
-					"title": "HTML code",
-					"type": "string",
-					"subType": "",
-					"default": "",
-					"required": false,
-					"input": "html"
-				},
-				{
-					"name": "js",
-					"title": "JS code",
-					"type": "string",
-					"subType": "",
-					"default": "",
-					"required": false,
-					"input": "javascript"
 				},
 				{
 					"name": "dest_selector",
@@ -766,17 +748,10 @@
 					"input": "javascript"
 				}
 			],
-			"override_members": [
-			],
-			"hide_members": [
-				"template",
-				"html",
-				"js"
-			],
-			"hide_derived_classes": [
+			"hideDerivedClasses": [
 				"page"
 			],
-			"hide_this": true
+			"hideThis": true
 		},
 		{
 			"objectType": "param",
@@ -802,13 +777,9 @@
 					"input": "text"
 				}
 			],
-			"override_members": [
+			"hideDerivedClasses": [
 			],
-			"hide_members": [
-			],
-			"hide_derived_classes": [
-			],
-			"hide_this": false
+			"hideThis": false
 		},
 		{
 			"objectType": "server_side_route",
@@ -816,6 +787,15 @@
 				"object"
 			],
 			"members": [
+				{
+					"name": "name",
+					"title": "Name",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": true,
+					"input": "text"
+				},
 				{
 					"name": "route_params",
 					"title": "Route params",
@@ -844,13 +824,9 @@
 					"input": "text"
 				}
 			],
-			"override_members": [
+			"hideDerivedClasses": [
 			],
-			"hide_members": [
-			],
-			"hide_derived_classes": [
-			],
-			"hide_this": false
+			"hideThis": false
 		},
 		{
 			"objectType": "page",
@@ -858,6 +834,127 @@
 				"component"
 			],
 			"members": [
+				{
+					"name": "name",
+					"title": "Name",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": true,
+					"input": "text"
+				},
+				{
+					"name": "type",
+					"title": "Type",
+					"type": "string",
+					"subType": "",
+					"default": "page",
+					"required": false,
+					"input": "static"
+				},
+				{
+					"name": "template",
+					"title": "Template",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "select",
+					"choice_items": [
+						"",
+						"page_empty",
+						"page_subcontent_sidenav",
+						"page_subcontent_tabnav",
+						"page_subcontent_navbar",
+						"change_pass",
+						"forgot_password",
+						"login",
+						"logout",
+						"register",
+						"reset_password"
+					]
+				},
+				{
+					"name": "custom_template",
+					"title": "Custom template",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "class",
+					"title": "CSS class",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "title",
+					"title": "Page title",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "title_icon_class",
+					"title": "Title icon class",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "events_code",
+					"title": "Events",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript"
+				},
+				{
+					"name": "helpers_code",
+					"title": "Helpers",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript"
+				},
+				{
+					"name": "query",
+					"title": "Query",
+					"type": "query",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
+				{
+					"name": "components",
+					"title": "Components",
+					"type": "array",
+					"subType": "component",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
+				{
+					"name": "template_rendered_code",
+					"title": "Template rendered code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript"
+				},
 				{
 					"name": "meta_description",
 					"title": "Meta Description",
@@ -992,58 +1089,21 @@
 					"default": "false",
 					"required": false,
 					"input": "checkbox"
-				}
-			],
-			"override_members": [
-				{
-					"name": "type",
-					"title": "Type",
-					"type": "string",
-					"subType": "",
-					"default": "page",
-					"required": false,
-					"input": "static"
 				},
 				{
-					"name": "title",
-					"title": "Page title",
-					"type": "string",
+					"name": "parent_layout",
+					"title": "Parent layout",
+					"type": "bool",
 					"subType": "",
-					"default": "",
+					"default": "false",
 					"required": false,
-					"input": "text"
-				},
-				{
-					"name": "template",
-					"title": "Template",
-					"type": "string",
-					"subType": "",
-					"default": "",
-					"required": false,
-					"input": "select",
-					"choice_items": [
-						"",
-						"page_empty",
-						"page_subcontent_sidenav",
-						"page_subcontent_tabnav",
-						"change_pass",
-						"forgot_password",
-						"login",
-						"logout",
-						"register",
-						"reset_password"
-					]
+					"input": "checkbox"
 				}
 			],
-			"hide_members": [
-				"custom_template",
-				"dest_selector",
-				"dest_position"
-			],
-			"hide_derived_classes": [
+			"hideDerivedClasses": [
 				"zone"
 			],
-			"hide_this": false
+			"hideThis": false
 		},
 		{
 			"objectType": "zone",
@@ -1051,6 +1111,42 @@
 				"page"
 			],
 			"members": [
+				{
+					"name": "type",
+					"title": "Type",
+					"type": "string",
+					"subType": "",
+					"default": "zone",
+					"required": false,
+					"input": "static"
+				},
+				{
+					"name": "container_class",
+					"title": "Container class",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "menus",
+					"title": "Menus",
+					"type": "array",
+					"subType": "menu",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
+				{
+					"name": "pages",
+					"title": "Subpages",
+					"type": "array",
+					"subType": "page",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
 				{
 					"name": "layout",
 					"title": "Layout",
@@ -1075,45 +1171,9 @@
 					"input": "text"
 				}
 			],
-			"override_members": [
-				{
-					"name": "type",
-					"title": "Type",
-					"type": "string",
-					"subType": "",
-					"default": "zone",
-					"required": false,
-					"input": "static"
-				}
+			"hideDerivedClasses": [
 			],
-			"hide_members": [
-				"name",
-				"template",
-				"class",
-				"dest_selector",
-				"dest_position",
-				"title",
-				"title_icon_class",
-				"text",
-				"query",
-				"route_params",
-				"close_route",
-				"close_route_params",
-				"back_route",
-				"roles",
-				"events_code",
-				"helpers_code",
-				"template_rendered_code",
-				"meta_title",
-				"meta_description",
-				"force_yield_subpages",
-				"zoneless",
-				"queries",
-				"components"
-			],
-			"hide_derived_classes": [
-			],
-			"hide_this": false
+			"hideThis": false
 		},
 		{
 			"objectType": "file_pair",
@@ -1139,13 +1199,9 @@
 					"input": "text"
 				}
 			],
-			"override_members": [
+			"hideDerivedClasses": [
 			],
-			"hide_members": [
-			],
-			"hide_derived_classes": [
-			],
-			"hide_this": false
+			"hideThis": false
 		},
 		{
 			"objectType": "packages",
@@ -1171,13 +1227,9 @@
 					"input": "stringlist"
 				}
 			],
-			"override_members": [
+			"hideDerivedClasses": [
 			],
-			"hide_members": [
-			],
-			"hide_derived_classes": [
-			],
-			"hide_this": false
+			"hideThis": false
 		},
 		{
 			"objectType": "application",
@@ -1424,14 +1476,9 @@
 					"input": "json"
 				}
 			],
-			"override_members": [
+			"hideDerivedClasses": [
 			],
-			"hide_members": [
-				"name"
-			],
-			"hide_derived_classes": [
-			],
-			"hide_this": false
+			"hideThis": false
 		},
 		{
 			"objectType": "custom_component",
@@ -1439,8 +1486,15 @@
 				"component"
 			],
 			"members": [
-			],
-			"override_members": [
+				{
+					"name": "name",
+					"title": "Name",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": true,
+					"input": "text"
+				},
 				{
 					"name": "type",
 					"title": "Type",
@@ -1449,6 +1503,15 @@
 					"default": "custom_component",
 					"required": false,
 					"input": "static"
+				},
+				{
+					"name": "custom_template",
+					"title": "Custom template",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
 				},
 				{
 					"name": "html",
@@ -1469,27 +1532,52 @@
 					"input": "javascript"
 				},
 				{
-					"name": "custom_template",
-					"title": "Use custom template",
+					"name": "dest_selector",
+					"title": "Dest. selector",
 					"type": "string",
 					"subType": "",
 					"default": "",
 					"required": false,
 					"input": "text"
+				},
+				{
+					"name": "dest_position",
+					"title": "Dest. position",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "select",
+					"choice_items": [
+						"",
+						"top",
+						"bottom",
+						"before",
+						"after"
+					]
+				},
+				{
+					"name": "query",
+					"title": "Query",
+					"type": "query",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
+				{
+					"name": "components",
+					"title": "Components",
+					"type": "array",
+					"subType": "component",
+					"default": "",
+					"required": false,
+					"input": ""
 				}
 			],
-			"hide_members": [
-				"events_code",
-				"helpers_code",
-				"template_rendered_code",
-				"class",
-				"title",
-				"title_icon_class",
-				"text"
+			"hideDerivedClasses": [
 			],
-			"hide_derived_classes": [
-			],
-			"hide_this": false
+			"hideThis": false
 		},
 		{
 			"objectType": "menu_item",
@@ -1570,14 +1658,9 @@
 					"input": ""
 				}
 			],
-			"override_members": [
+			"hideDerivedClasses": [
 			],
-			"hide_members": [
-				"name"
-			],
-			"hide_derived_classes": [
-			],
-			"hide_this": false
+			"hideThis": false
 		},
 		{
 			"objectType": "menu",
@@ -1585,6 +1668,121 @@
 				"component"
 			],
 			"members": [
+				{
+					"name": "name",
+					"title": "Name",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": true,
+					"input": "text"
+				},
+				{
+					"name": "type",
+					"title": "Type",
+					"type": "string",
+					"subType": "",
+					"default": "menu",
+					"required": false,
+					"input": "static"
+				},
+				{
+					"name": "dest_selector",
+					"title": "Dest. selector",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "dest_position",
+					"title": "Dest. position",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "select",
+					"choice_items": [
+						"",
+						"top",
+						"bottom",
+						"before",
+						"after"
+					]
+				},
+				{
+					"name": "class",
+					"title": "CSS class",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "title",
+					"title": "Title",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "title_icon_class",
+					"title": "Title icon class",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "events_code",
+					"title": "Events",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript"
+				},
+				{
+					"name": "helpers_code",
+					"title": "Helpers",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript"
+				},
+				{
+					"name": "query",
+					"title": "Query",
+					"type": "query",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
+				{
+					"name": "components",
+					"title": "Components",
+					"type": "array",
+					"subType": "component",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
+				{
+					"name": "template_rendered_code",
+					"title": "Template rendered code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript"
+				},
 				{
 					"name": "items",
 					"title": "Sub items",
@@ -1604,23 +1802,9 @@
 					"input": "text"
 				}
 			],
-			"override_members": [
-				{
-					"name": "type",
-					"title": "Type",
-					"type": "string",
-					"subType": "",
-					"default": "menu",
-					"required": false,
-					"input": "static"
-				}
+			"hideDerivedClasses": [
 			],
-			"hide_members": [
-				"custom_template"
-			],
-			"hide_derived_classes": [
-			],
-			"hide_this": false
+			"hideThis": false
 		},
 		{
 			"objectType": "jumbotron",
@@ -1628,6 +1812,121 @@
 				"component"
 			],
 			"members": [
+				{
+					"name": "name",
+					"title": "Name",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": true,
+					"input": "text"
+				},
+				{
+					"name": "type",
+					"title": "Type",
+					"type": "string",
+					"subType": "",
+					"default": "jumbotron",
+					"required": false,
+					"input": "static"
+				},
+				{
+					"name": "dest_selector",
+					"title": "Dest. selector",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "dest_position",
+					"title": "Dest. position",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "select",
+					"choice_items": [
+						"",
+						"top",
+						"bottom",
+						"before",
+						"after"
+					]
+				},
+				{
+					"name": "class",
+					"title": "CSS class",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "title",
+					"title": "Title",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "title_icon_class",
+					"title": "Title icon class",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "events_code",
+					"title": "Events",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript"
+				},
+				{
+					"name": "helpers_code",
+					"title": "Helpers",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript"
+				},
+				{
+					"name": "query",
+					"title": "Query",
+					"type": "query",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
+				{
+					"name": "components",
+					"title": "Components",
+					"type": "array",
+					"subType": "component",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
+				{
+					"name": "template_rendered_code",
+					"title": "Template rendered code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript"
+				},
 				{
 					"name": "text",
 					"title": "Text",
@@ -1683,23 +1982,9 @@
 					"input": "text"
 				}
 			],
-			"override_members": [
-				{
-					"name": "type",
-					"title": "Type",
-					"type": "string",
-					"subType": "",
-					"default": "jumbotron",
-					"required": false,
-					"input": "static"
-				}
+			"hideDerivedClasses": [
 			],
-			"hide_members": [
-				"custom_template"
-			],
-			"hide_derived_classes": [
-			],
-			"hide_this": false
+			"hideThis": false
 		},
 		{
 			"objectType": "form",
@@ -1707,6 +1992,121 @@
 				"component"
 			],
 			"members": [
+				{
+					"name": "name",
+					"title": "Name",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": true,
+					"input": "text"
+				},
+				{
+					"name": "type",
+					"title": "Type",
+					"type": "string",
+					"subType": "",
+					"default": "form",
+					"required": false,
+					"input": "static"
+				},
+				{
+					"name": "dest_selector",
+					"title": "Dest. selector",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "dest_position",
+					"title": "Dest. position",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "select",
+					"choice_items": [
+						"",
+						"top",
+						"bottom",
+						"before",
+						"after"
+					]
+				},
+				{
+					"name": "class",
+					"title": "CSS class",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "title",
+					"title": "Title",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "title_icon_class",
+					"title": "Title icon class",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "events_code",
+					"title": "Events",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript"
+				},
+				{
+					"name": "helpers_code",
+					"title": "Helpers",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript"
+				},
+				{
+					"name": "query",
+					"title": "Query",
+					"type": "query",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
+				{
+					"name": "components",
+					"title": "Components",
+					"type": "array",
+					"subType": "component",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
+				{
+					"name": "template_rendered_code",
+					"title": "Template rendered code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript"
+				},
 				{
 					"name": "mode",
 					"title": "Mode",
@@ -1826,30 +2226,131 @@
 					"input": ""
 				}
 			],
-			"override_members": [
+			"hideDerivedClasses": [
+			],
+			"hideThis": false
+		},
+		{
+			"objectType": "data_view",
+			"derivedFrom": [
+				"component"
+			],
+			"members": [
+				{
+					"name": "name",
+					"title": "Name",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": true,
+					"input": "text"
+				},
 				{
 					"name": "type",
 					"title": "Type",
 					"type": "string",
 					"subType": "",
-					"default": "form",
+					"default": "data_view",
 					"required": false,
 					"input": "static"
-				}
-			],
-			"hide_members": [
-				"custom_template"
-			],
-			"hide_derived_classes": [
-			],
-			"hide_this": false
-		},
-		{
-			"objectType": "dataview",
-			"derivedFrom": [
-				"component"
-			],
-			"members": [
+				},
+				{
+					"name": "dest_selector",
+					"title": "Dest. selector",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "dest_position",
+					"title": "Dest. position",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "select",
+					"choice_items": [
+						"",
+						"top",
+						"bottom",
+						"before",
+						"after"
+					]
+				},
+				{
+					"name": "class",
+					"title": "CSS class",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "title",
+					"title": "Title",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "title_icon_class",
+					"title": "Title icon class",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "events_code",
+					"title": "Events",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript"
+				},
+				{
+					"name": "helpers_code",
+					"title": "Helpers",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript"
+				},
+				{
+					"name": "query",
+					"title": "Query",
+					"type": "query",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
+				{
+					"name": "components",
+					"title": "Components",
+					"type": "array",
+					"subType": "component",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
+				{
+					"name": "template_rendered_code",
+					"title": "Template rendered code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript"
+				},
 				{
 					"name": "text_if_empty",
 					"title": "Text if empty",
@@ -1968,23 +2469,189 @@
 					"input": ""
 				}
 			],
-			"override_members": [
+			"hideDerivedClasses": [
+			],
+			"hideThis": false
+		},
+		{
+			"objectType": "tree_view",
+			"derivedFrom": [
+				"component"
+			],
+			"members": [
+				{
+					"name": "name",
+					"title": "Name",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": true,
+					"input": "text"
+				},
 				{
 					"name": "type",
 					"title": "Type",
 					"type": "string",
 					"subType": "",
-					"default": "dataview",
+					"default": "tree_view",
 					"required": false,
 					"input": "static"
+				},
+				{
+					"name": "dest_selector",
+					"title": "Dest. selector",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "dest_position",
+					"title": "Dest. position",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "select",
+					"choice_items": [
+						"",
+						"top",
+						"bottom",
+						"before",
+						"after"
+					]
+				},
+				{
+					"name": "class",
+					"title": "CSS class",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "title",
+					"title": "Title",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "title_icon_class",
+					"title": "Title icon class",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "events_code",
+					"title": "Events",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript"
+				},
+				{
+					"name": "helpers_code",
+					"title": "Helpers",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript"
+				},
+				{
+					"name": "query",
+					"title": "Query",
+					"type": "query",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
+				{
+					"name": "components",
+					"title": "Components",
+					"type": "array",
+					"subType": "component",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
+				{
+					"name": "template_rendered_code",
+					"title": "Template rendered code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript"
+				},
+				{
+					"name": "item_name_field",
+					"title": "Item name field",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "item_type_field",
+					"title": "Item type field",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "collapsed_icon_class",
+					"title": "Collapsed icon class",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "expanded_icon_class",
+					"title": "Expanded icon class",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "item_route",
+					"title": "Item route",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "item_route_params",
+					"title": "Item route params",
+					"type": "array",
+					"subType": "param",
+					"default": "",
+					"required": false,
+					"input": ""
 				}
 			],
-			"hide_members": [
-				"custom_template"
+			"hideDerivedClasses": [
 			],
-			"hide_derived_classes": [
-			],
-			"hide_this": false
+			"hideThis": false
 		},
 		{
 			"objectType": "markdown",
@@ -1992,6 +2659,67 @@
 				"component"
 			],
 			"members": [
+				{
+					"name": "name",
+					"title": "Name",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": true,
+					"input": "text"
+				},
+				{
+					"name": "type",
+					"title": "Type",
+					"type": "string",
+					"subType": "",
+					"default": "markdown",
+					"required": false,
+					"input": "static"
+				},
+				{
+					"name": "dest_selector",
+					"title": "Dest. selector",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "dest_position",
+					"title": "Dest. position",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "select",
+					"choice_items": [
+						"",
+						"top",
+						"bottom",
+						"before",
+						"after"
+					]
+				},
+				{
+					"name": "query",
+					"title": "Query",
+					"type": "query",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
+				{
+					"name": "components",
+					"title": "Components",
+					"type": "array",
+					"subType": "component",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
 				{
 					"name": "source_file",
 					"title": "Markdown source file",
@@ -2002,29 +2730,9 @@
 					"input": "text"
 				}
 			],
-			"override_members": [
-				{
-					"name": "type",
-					"title": "Type",
-					"type": "string",
-					"subType": "",
-					"default": "markdown",
-					"required": false,
-					"input": "static"
-				}
+			"hideDerivedClasses": [
 			],
-			"hide_members": [
-				"custom_template",
-				"class",
-				"events_code",
-				"helpers_code",
-				"template_rendered_code",
-				"title",
-				"title_icon_class"
-			],
-			"hide_derived_classes": [
-			],
-			"hide_this": false
+			"hideThis": false
 		},
 		{
 			"objectType": "div",
@@ -2033,16 +2741,14 @@
 			],
 			"members": [
 				{
-					"name": "text",
-					"title": "Text",
+					"name": "name",
+					"title": "Name",
 					"type": "string",
 					"subType": "",
 					"default": "",
-					"required": false,
-					"input": "textarea"
-				}
-			],
-			"override_members": [
+					"required": true,
+					"input": "text"
+				},
 				{
 					"name": "type",
 					"title": "Type",
@@ -2051,26 +2757,59 @@
 					"default": "div",
 					"required": false,
 					"input": "static"
-				}
-			],
-			"hide_members": [
-				"custom_template",
-				"events_code",
-				"helpers_code",
-				"template_rendered_code",
-				"title",
-				"title_icon_class"
-			],
-			"hide_derived_classes": [
-			],
-			"hide_this": false
-		},
-		{
-			"objectType": "section",
-			"derivedFrom": [
-				"component"
-			],
-			"members": [
+				},
+				{
+					"name": "dest_selector",
+					"title": "Dest. selector",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "dest_position",
+					"title": "Dest. position",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "select",
+					"choice_items": [
+						"",
+						"top",
+						"bottom",
+						"before",
+						"after"
+					]
+				},
+				{
+					"name": "class",
+					"title": "CSS class",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "query",
+					"title": "Query",
+					"type": "query",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
+				{
+					"name": "components",
+					"title": "Components",
+					"type": "array",
+					"subType": "component",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
 				{
 					"name": "text",
 					"title": "Text",
@@ -2081,7 +2820,25 @@
 					"input": "textarea"
 				}
 			],
-			"override_members": [
+			"hideDerivedClasses": [
+			],
+			"hideThis": false
+		},
+		{
+			"objectType": "section",
+			"derivedFrom": [
+				"component"
+			],
+			"members": [
+				{
+					"name": "name",
+					"title": "Name",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": true,
+					"input": "text"
+				},
 				{
 					"name": "type",
 					"title": "Type",
@@ -2090,19 +2847,72 @@
 					"default": "section",
 					"required": false,
 					"input": "static"
+				},
+				{
+					"name": "dest_selector",
+					"title": "Dest. selector",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "dest_position",
+					"title": "Dest. position",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "select",
+					"choice_items": [
+						"",
+						"top",
+						"bottom",
+						"before",
+						"after"
+					]
+				},
+				{
+					"name": "class",
+					"title": "CSS class",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "query",
+					"title": "Query",
+					"type": "query",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
+				{
+					"name": "components",
+					"title": "Components",
+					"type": "array",
+					"subType": "component",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
+				{
+					"name": "text",
+					"title": "Text",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "textarea"
 				}
 			],
-			"hide_members": [
-				"custom_template",
-				"events_code",
-				"helpers_code",
-				"template_rendered_code",
-				"title",
-				"title_icon_class"
+			"hideDerivedClasses": [
 			],
-			"hide_derived_classes": [
-			],
-			"hide_this": false
+			"hideThis": false
 		},
 		{
 			"objectType": "plugin",
@@ -2110,6 +2920,67 @@
 				"component"
 			],
 			"members": [
+				{
+					"name": "name",
+					"title": "Name",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": true,
+					"input": "text"
+				},
+				{
+					"name": "type",
+					"title": "Type",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": true,
+					"input": "text"
+				},
+				{
+					"name": "dest_selector",
+					"title": "Dest. selector",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "dest_position",
+					"title": "Dest. position",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "select",
+					"choice_items": [
+						"",
+						"top",
+						"bottom",
+						"before",
+						"after"
+					]
+				},
+				{
+					"name": "query",
+					"title": "Query",
+					"type": "query",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
+				{
+					"name": "components",
+					"title": "Components",
+					"type": "array",
+					"subType": "component",
+					"default": "",
+					"required": false,
+					"input": ""
+				},
 				{
 					"name": "properties",
 					"title": "Properties",
@@ -2120,30 +2991,9 @@
 					"input": "json"
 				}
 			],
-			"override_members": [
-				{
-					"name": "type",
-					"title": "Type",
-					"type": "string",
-					"subType": "",
-					"default": "",
-					"required": true,
-					"input": "text"
-				}
+			"hideDerivedClasses": [
 			],
-			"hide_members": [
-				"custom_template",
-				"class",
-				"title",
-				"title_icon_class",
-				"events_code",
-				"helpers_code",
-				"template_rendered_code"
-			],
-			"hide_derived_classes": [
-			],
-			"hide_this": false
+			"hideThis": false
 		}
-	],
-	"version": 33
+	]
 }

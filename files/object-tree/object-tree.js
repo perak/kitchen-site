@@ -1,15 +1,35 @@
-Template.TEMPLATE_NAME.events({
-
-});
-
-Template.TEMPLATE_NAME.helpers({
-});
-
-function expandItem(item) {
-	var closestLi = item.closest("li.collapsed");
+function expandParents(item) {
+	var closestLi = item.parent().parents("li.collapsed").first();
 	if(closestLi.length) {
 		closestLi.removeClass("collapsed");
-		expandItem(closestLi.parent());		
+
+		var span = closestLi.find("span.fa").first();
+		span.removeClass("fa-caret-right");
+		span.addClass("fa-caret-down");
+
+		var link = closestLi.find("a").first();
+		expandParents(link);
+	}
+}
+
+function selectItem(link) {
+	var li = link.parent();
+	var container = link.closest("div");
+	var span = link.find("span.fa").first();
+
+	if(link.hasClass("collapsable-item") && li.hasClass("active")) {
+		li.toggleClass("collapsed");
+
+		if(li.hasClass("collapsed")) {
+			span.removeClass("fa-caret-down");
+			span.addClass("fa-caret-right");
+		} else {
+			span.removeClass("fa-caret-right");
+			span.addClass("fa-caret-down");
+		}
+	} else {
+		container.find("li.active").removeClass("active");
+		li.addClass("active");
 	}
 }
 
@@ -23,26 +43,38 @@ function selectRequestedOrFirstItem() {
 		var objectId = Router.current().params.objectId || "";
 		var propertyName = Router.current().params.propertyName || "";
 
+		if(objectId == "null") objectId = "";
+		if(propertyName == "null") propertyName = "";
+
 		if(objectId) {
-			if(objectId != "null") {
-				if(propertyName && propertyName != "null") {
-					var item = $(".object-tree-array[data-object-id='" + objectId + "'][data-property-name='" + propertyName + "']").first();
-					expandItem(item);
-					item.click();
-				} else {
-					var item = $(".object-tree-link[data-object-id='" + objectId + "']").first();
-					expandItem(item);
-					item.click();
-				}
+			var link = null;
+			if(propertyName) {
+				link = $(".object-tree-array[data-object-id='" + objectId + "'][data-property-name='" + propertyName + "']").first();
 			} else {
-				$(".object-tree-link").first().click();
+				link = $(".object-tree-link[data-object-id='" + objectId + "']").first();
 			}
+			expandParents(link);
+			selectItem(link);
+		} else {
+			$(".object-tree-link").first().click();
+			return;
 		}
 	}	
 }
 
-Template.objectTreeView.rendered = function() {
+Template.TEMPLATE_NAME.rendered = function() {
 	selectRequestedOrFirstItem();
+};
+
+Template.TEMPLATE_NAME.events({
+
+});
+
+Template.TEMPLATE_NAME.helpers({
+});
+
+
+Template.objectTreeView.rendered = function() {
 }
 
 Deps.autorun(function() {
@@ -61,6 +93,7 @@ Template.objectTreeView.helpers({
 			var isObject = false;
 			var isArray = false;
 			var id = "";
+			var collapsable = false;
 			var cssClass = "";
 
 			if(_.isArray(property)) {
@@ -68,6 +101,8 @@ Template.objectTreeView.helpers({
 				var type = object.objectType || "";
 				var arrayItemType = getObjectArrayItemType(type, propertyName, meta);
 				isArray = arrayItemType != "string";
+				collapsable = true;
+				cssClass = "collapsable-item";
 			} else {
 				if(_.isObject(property)) {
 					id = property._id || "";
@@ -85,6 +120,7 @@ Template.objectTreeView.helpers({
 					isArray: isArray,
 					data: property,
 					meta: meta,
+					collapsable: collapsable,
 					cssClass: cssClass
 				});
 			}
@@ -98,7 +134,7 @@ Template.objectTreeView.helpers({
 				var id = item._id || "";
 				var name = item.name || item.title || item.source || item.objectType + " " + (index + 1);
 
-				objects.push({ rootId: rootId, objectId: id, name: name, data: item, meta: meta, cssClass: "object-item" });
+				objects.push({ rootId: rootId, objectId: id, name: name, data: item, meta: meta, collapsable: true, cssClass: "object-item collapsable-item" });
 			}
 		});
 		return objects;
@@ -110,45 +146,44 @@ Template.objectTreeView.helpers({
 });
 
 Template.objectTreeView.events({
-	"click .object-tree-array": function(e, t) {
-		e.preventDefault();
-		var link = $(e.currentTarget);
-		var li = link.parent();
-		var span = link.find("span.fa");
-
-		if(li.hasClass("active")) {
-			li.toggleClass("collapsed");
-
-			if(li.hasClass("collapsed")) {
-				span.removeClass("fa-caret-down");
-				span.addClass("fa-caret-right");
-			} else {
-				span.removeClass("fa-caret-right");
-				span.addClass("fa-caret-down");
-			}
-		}
-		return false;
-	},
 	"click .object-tree-link": function(e, t) {
 		e.preventDefault();
 
 		var link = $(e.currentTarget);
-		var li = link.parent();
-		var container = link.closest("div");
-
 		var objectId = this.objectId || "";
 
 		if(objectId) {
 			var propertyName = link.attr("data-property-name") || "";
 
+			var redirect = true;
+			if(Router.current() && Router.current().route) {
+				var routeName = Router.current().route.getName();
+				if(routeName != "PAGE_ROUTE_NAME") {
+					return false;
+				}
+				var currentObjectId = Router.current().params.objectId || "";
+				var currentPropertyName = Router.current().params.propertyName || "";
+
+				if(currentObjectId == "null") currentObjectId = "";
+				if(currentPropertyName == "null") currentPropertyName = "";
+
+				if(objectId == currentObjectId && propertyName == currentPropertyName) {
+					redirect = false;
+				}
+			}
+
 			if(propertyName) {
-				container.find("li.active").removeClass("active");
-				li.addClass("active");
-				Router.go("applications.details.form_view", { applicationId: this.rootId, objectId: objectId, propertyName: propertyName });
+				if(redirect) {
+					Router.go("applications.details.form_view", { applicationId: this.rootId, objectId: objectId, propertyName: propertyName });
+				} else {
+					selectItem(link);
+				}
 			} else {
-				container.find("li.active").removeClass("active");
-				li.addClass("active");
-				Router.go("applications.details.form_view", { applicationId: this.rootId, objectId: objectId, propertyName: null });
+				if(redirect) {
+					Router.go("applications.details.form_view", { applicationId: this.rootId, objectId: objectId, propertyName: null });
+				} else {
+					selectItem(link);
+				}
 			}
 		}
 		return false;

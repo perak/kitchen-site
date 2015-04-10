@@ -40,7 +40,7 @@
 					"components": [
 						{
 							"name": "view",
-							"type": "dataview",
+							"type": "data_view",
 							"title": "Customers",
 							"text_if_empty": "No customers :(",
 							"query": {

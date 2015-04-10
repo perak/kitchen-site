@@ -24,7 +24,7 @@ You can download binary release <a href="/install/install_win.zip" _target="blan
 **Note**: meteor-kitchen treats filenames case sensitive under windows too.
 
 
-Current version is 0.9.29
+Current version is 0.9.30
 =========================
 
 Click <a href="{{pathFor 'version_history'}}">here</a> to see version history.
@@ -559,7 +559,7 @@ A minimal application with `dataview` component should look like this:
 					"components": [
 						{
 							"name": "view",
-							"type": "dataview",
+							"type": "data_view",
 
 							"title": "Customers",
 							"text_if_empty": "No customers here :(",
@@ -674,7 +674,7 @@ To make it more clear let's see an example application with dataview and insert 
 					"components": [
 						{
 							"name": "view",
-							"type": "dataview",
+							"type": "data_view",
 
 							"title": "Customers",
 							"text_if_empty": "No customers here :(",
@@ -792,7 +792,7 @@ Now, let's pass this param to our `dataview` component via `edit_route` and `edi
 ```
 {
 	"name": "view",
-	"type": "dataview",
+	"type": "data_view",
 
 	"title": "Customers",
 	"text_if_empty": "No customers here :(",
@@ -845,7 +845,7 @@ Here is a full example with `insert` and `update` forms:
 					"components": [
 						{
 							"name": "view",
-							"type": "dataview",
+							"type": "data_view",
 
 							"title": "Customers",
 							"text_if_empty": "No customers here :(",

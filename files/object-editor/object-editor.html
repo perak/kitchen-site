@@ -1,9 +1,11 @@
 <template name="TEMPLATE_NAME">
 		<div id="COMPONENT_ID" class="well object-form-container">
 			<h2>{{title}}</h2>
-			{{#if isObject}}
-				{{#DynamicForm description=editObjectForm}}
-				{{/DynamicForm}}
+			{{#if defaultMode}}
+				{{#if isObject}}
+					{{#DynamicForm description=editObjectForm}}
+					{{/DynamicForm}}
+				{{/if}}
 			{{/if}}
 
 			{{#if isArray}}

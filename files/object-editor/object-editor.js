@@ -4,7 +4,10 @@ Template.TEMPLATE_NAME.rendered = function() {
 
 Deps.autorun(function() {
 	if(Router.current() && Router.current().url) {
-		pageSession.set("mode", "defaultMode");
+		pageSession.set("mode", "");
+		Meteor.defer(function() {
+			pageSession.set("mode", "defaultMode");
+		});
 	}
 });
 
@@ -124,7 +127,7 @@ Template.TEMPLATE_NAME.helpers({
 			return null;
 		}
 
-		var objectMeta = getObjectFullMetadata(newObjectType, meta);
+		var objectMeta = getObjectMetadata(newObjectType, meta);
 		if(!objectMeta) {
 			return null;
 		}
@@ -274,7 +277,7 @@ Template.TEMPLATE_NAME.helpers({
 			return null;
 		}
 
-		var objectMeta = getObjectFullMetadata(object.objectType, meta);
+		var objectMeta = getObjectMetadata(object.objectType, meta);
 		if(!objectMeta) {
 			return null;
 		}

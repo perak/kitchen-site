@@ -186,7 +186,7 @@ after\_remove\_source\_file | string | File that contains code to be executed af
 `component` is abstract base class for following types:
  - [custom_component](#custom_component)
 
- - [dataview](#dataview)
+ - [data_view](#data_view)
 
  - [div](#div)
 
@@ -199,6 +199,8 @@ after\_remove\_source\_file | string | File that contains code to be executed af
  - [menu](#menu)
 
  - [section](#section)
+
+ - [tree_view](#tree_view)
 
 
 # custom_component
@@ -242,7 +244,7 @@ components | array of [component](#component) | Component list
 ```
 
 
-# dataview
+# data_view
 
 Property | Type | Description
 ---------|------|------------
@@ -263,7 +265,7 @@ text\_if\_not\_found | string | Text to show if search string is not found.
 fields | array of [field](#field) | Defainition of table columns. If empty, generator will use fields defined at collection level.
 insert\_route | string | Route name of page containing insert form
 details\_route | string | Route name of page showing selected item details (usually page containing form of type "read\_only").
-edit\_route | string | Route name of page containing edit form. Makes edit\\_route\\_params field mandatory in most cases to be functional.
+edit\_route | string | Route name of page containing edit form. Makes edit\_route\_params field mandatory in most cases to be functional.
 delete\_route | string | Route name to execute when user clicks "delete". Not mandatory - generator will automatically produce code for delete operation.
 insert\_route\_params | array of [param](#param) | Parameters to be passed to "insert\_route"
 details\_route\_params | array of [param](#param) | Parameters to be passed to "details\_route"
@@ -276,7 +278,7 @@ views | array of string | View styles: "table", "list" or "gallery". Default: "t
 ```
 {
 	"name": "",
-	"type": "dataview",
+	"type": "data_view",
 	"dest_selector": "",
 	"dest_position": "",
 	"class": "",
@@ -441,7 +443,7 @@ show\_in\_read\_only\_form | bool | If set to "false", field will not be include
 Property | Type | Description
 ---------|------|------------
 source | string | Source file to copy. Path is relative to input JSON.
-dest | string | Destination file. You can use directory aliases: OUTPUT\_DIR, CLIENT\_DIR, CLIENT\_LIB\_DIR, CLIENT\_STYLES\_DIR, CLIENT\_STYLES\_DEFAULT\_DIR, CLIENT\_STYLES\_THEME\_DIR, CLIENT\_VIEWS\_DIR, CLIENT\_VIEWS\_NOT\_FOUND\_DIR, CLIENT\_VIEWS\_LOADING\_DIR, LIB\_DIR, SETTINGS\_DIR, BOTH\_DIR, BOTH\_LIB\_DIR, BOTH\_COLLECTIONS\_DIR, BOTH\_ROUTER\_DIR, PUBLIC\_DIR, PUBLIC\_IMAGES\_DIR, PRIVATE\_DIR, SERVER\_DIR, SERVER\_LIB\_DIR, SERVER\_COLLECTIONS\_DIR, SERVER\_PUBLISH\_DIR, SERVER\_CONTROLLERS\_DIR, SERVER\_METHODS\_DIR
+dest | string | Destination file. You can use directory aliases: OUTPUT\_DIR, CLIENT\_DIR, CLIENT\_LIB\_DIR, CLIENT\_STYLES\_DIR, CLIENT\_STYLES\_DEFAULT\_DIR, CLIENT\_STYLES\_THEME\_DIR, CLIENT\_VIEWS\_DIR, CLIENT\_VIEWS\_NOT\_FOUND\_DIR, CLIENT\_VIEWS\_LOADING\_DIR, LIB\_DIR, SETTINGS\_DIR, BOTH\_DIR, BOTH\_LIB\_DIR, BOTH\_COLLECTIONS\_DIR, PUBLIC\_DIR, PUBLIC\_IMAGES\_DIR, PRIVATE\_DIR, SERVER\_DIR, SERVER\_LIB\_DIR, SERVER\_COLLECTIONS\_DIR, SERVER\_PUBLISH\_DIR, SERVER\_CONTROLLERS\_DIR, SERVER\_METHODS\_DIR
 
 *Example:*
 ```
@@ -768,6 +770,7 @@ Property | Type | Description
 ---------|------|------------
 name | string | Object name
 template | string | Built-in html and js template file name (without extension) contained in kitchen templates directory.
+custom\_template | string | Custom html and js template filename (without extension). Path is relative to input JSON file.
 class | string | CSS class name to be added to component
 title | string | Component title
 title\_icon\_class | string | If present, "span" with this class name will be added to title (if title is set)
@@ -791,12 +794,14 @@ pages | array of [page](#page) | Subpages
 queries | array of [query](#query) | List of queries to add into template data context
 force\_yield\_subpages | bool | Subpages will be rendered in "subcontent" area even if this page doesn't contains menu pointing to subpages
 zoneless | bool | For applications with user account system: make this page visible for both authenticated and non-authenticated users
+parent\_layout | bool | If set to true parent page will be used as layoutTemplate. Default: false
 
 *Example:*
 ```
 {
 	"name": "",
 	"template": "",
+	"custom_template": "",
 	"class": "",
 	"title": "",
 	"title_icon_class": "",
@@ -837,7 +842,8 @@ zoneless | bool | For applications with user account system: make this page visi
 	"queries": [
 	],
 	"force_yield_subpages": false,
-	"zoneless": false
+	"zoneless": false,
+	"parent_layout": true
 }
 ```
 
@@ -941,6 +947,66 @@ source\_file | string | path to external file containing route action code (rela
 	],
 	"path": "",
 	"source_file": ""
+}
+```
+
+
+# tree_view
+
+Property | Type | Description
+---------|------|------------
+name | string | Object name
+type | string | Component type name.
+dest\_selector | string | destination html element selector. Similar to jQuery selector, but only three simple formats are supported: "tagname", "#element\_id" and ".class\_name".
+dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
+class | string | CSS class name to be added to component
+title | string | Component title
+title\_icon\_class | string | If present, "span" with this class name will be added to title (if title is set)
+events\_code | string | Content of Template.TEMLATE\_NAME.events({ ... });
+helpers\_code | string | Content of Template.TEMLATE\_NAME.helpers({ ... });
+query | [query](#query) | Query to be added to Template data context
+components | array of [component](#component) | Component list
+template\_rendered\_code | string | Code to be executed once template is rendered
+item\_name\_field | string | Collection field shown as folder and item title
+item\_type\_field | string | Collection field that stores item type. Can be "dir" or "item".
+collapsed\_icon\_class | string | CSS class for collapsed folder icon. Default: "fa fa-caret-right"
+expanded\_icon\_class | string | CSS class for expanded folder icon. Default: "fa fa-caret-down"
+item\_route | string | Navigate to this route when item is clicked
+item\_route\_params | array of [param](#param) | Parameters to be passed to "item\_route"
+
+*Example:*
+```
+{
+	"name": "",
+	"type": "tree_view",
+	"dest_selector": "",
+	"dest_position": "",
+	"class": "",
+	"title": "",
+	"title_icon_class": "",
+	"events_code": "",
+	"helpers_code": "",
+	"query": {
+		"name": "",
+		"collection": "",
+		"find_one": false,
+		"filter": {
+		},
+		"options": {
+		},
+		"params": [
+		]
+	},
+	"components": [
+	],
+	"template_rendered_code": "",
+	"item_name_field": "",
+	"item_type_field": "",
+	"collapsed_icon_class": "",
+	"expanded_icon_class": "",
+	"item_route": "",
+	"item_route_params": [
+	]
 }
 ```
 

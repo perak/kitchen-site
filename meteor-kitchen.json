@@ -173,6 +173,7 @@
 				{ "name": "reset_password", "template": "reset_password.html", "route_params": ["resetPasswordToken"] },
 				{ 
 					"name": "getting_started",
+					"zoneless": true,
 					"meta_title": "Getting started",
 					"meta_description": "Getting started with meteor.js code generator",
 
@@ -266,7 +267,7 @@
 								{ "title": "collection",		"url": "#collection" },
 								{ "title": "component",			"url": "#component" },
 								{ "title": "custom_component",	"url": "#custom_component" },
-								{ "title": "dataview",			"url": "#dataview" },
+								{ "title": "data_view",			"url": "#data_view" },
 								{ "title": "div",				"url": "#div" },
 								{ "title": "field",				"url": "#field" },
 								{ "title": "file_pair",			"url": "#file_pair" },
@@ -283,6 +284,7 @@
 								{ "title": "param",				"url": "#param" },
 								{ "title": "section",			"url": "#section" },
 								{ "title": "server_side_route",	"url": "#server_side_route" },
+								{ "title": "tree_view",			"url": "#tree_view" },
 								{ "title": "zone",				"url": "#zone" }
 							]
 						}
@@ -385,25 +387,12 @@
 		"private_zone": {
 
 			"pages": [
-				{ 
-					"name": "home_private", 
-					"title": "{{userFullName}}, welcome to Meteor Kitchen!",
-					"components": [
-						{
-							"name": "dashboard",
-							"type": "markdown",
-							"source_file": "files/dashboard.md"
-						}
-					]
-				},
-
-
 				{
 					"name": "applications",
 					"components": [
 						{
 							"name": "view",
-							"type": "dataview",
+							"type": "data_view",
 							"title": "My applications",
 							"text_if_empty": "No applications here",
 							"query": {
@@ -413,6 +402,7 @@
 								"options": { "sort": { "name": 1} }
 							},
 							"insert_route": "applications.insert",
+							"insert_button_title": "Create New",
 
 							"edit_route": "applications.edit",
 							"edit_route_params": [
@@ -474,9 +464,9 @@
 
 						{
 							"name": "details",
-							"template": "page_empty",
+							"template": "page_subcontent_navbar",
 							"title": "{{application.name}}",
-							"class": "app-editor-container",
+							"container_class": "container-fluid app-editor-container",
 							"route_params": [ "applicationId", "objectId", "propertyName" ],
 							"query": {
 								"name": "application",
@@ -484,10 +474,12 @@
 								"find_one": true,
 								"filter": { "_id": ":applicationId" }
 							},
+							"back_route": "applications",
 
 							"pages": [
 								{
 									"name" : "form_view",
+									"parent_layout": true,
 									"class": "app-editor",
 
 									"query": {
@@ -544,6 +536,7 @@
 
 								{
 									"name" : "json_view",
+									"parent_layout": true,
 									"class": "app-editor",
 									"text": "",
 
@@ -593,42 +586,53 @@
 
 							"menus": [
 								{
-									"name": "editor_menu",
-									"class": "nav nav-pills",
-									"dest_selector": "#page_menu",
+									"name": "left_menu",
+									"class": "nav navbar-nav",
 									"items": [
 										{
-											"title": "View",
-											"items": [
-												{
-													"title": "Tree/Form",
-													"route": "applications.details.form_view",
-													"route_params": [
-														{ "name": "applicationId", "value": "application._id" },
-														{ "name": "objectId", "value": null },
-														{ "name": "propertyName", "value": null }
-													]
-												},
-												{
-													"title": "Source (JSON)",
-													"route": "applications.details.json_view",
-													"route_params": [
-														{ "name": "applicationId", "value": "application._id" },
-														{ "name": "objectId", "value": null },
-														{ "name": "propertyName", "value": null }
-													]
-												}
+											"title": "Tree View",
+											"route": "applications.details.form_view",
+											"route_params": [
+												{ "name": "applicationId", "value": "application._id" },
+												{ "name": "objectId", "value": null },
+												{ "name": "propertyName", "value": null }
+											]
+										},
+										{
+											"title": "Source (JSON)",
+											"route": "applications.details.json_view",
+											"route_params": [
+												{ "name": "applicationId", "value": "application._id" },
+												{ "name": "objectId", "value": null },
+												{ "name": "propertyName", "value": null }
 											]
 										},
 										{
 											"title": "Build",
 											"url": "#",
-											"class": "toggle-build-info"
+											"class": "toggle-build-info",
+											"icon_class": "fa fa-rocket"
 										},
 										{
 											"title": "Download",
 											"url": "{{urlFor 'api.getapp.json' applicationId=application._id}}",
-											"target": "_blank"
+											"target": "_blank",
+											"icon_class": "fa fa-download"
+										}
+									]
+								},
+								{
+									"name": "right_menu",
+									"class": "nav navbar-nav navbar-right",
+									"dest_selector": "#menu",
+									"items": [
+										{ "title": "Admin", "route": "admin" },
+										{ 
+											"title": "{{userEmail}}",
+											"items": [
+												{ "title": "Settings", "route": "user_settings" },
+												{ "title": "Logout", "route": "logout" }
+											]
 										}
 									]
 								}
@@ -648,7 +652,7 @@
 							"components": [
 								{
 									"name": "view",
-									"type": "dataview",
+									"type": "data_view",
 									"title": "Users",
 									"text_if_empty": "No users yet",
 									"query": {
@@ -777,6 +781,29 @@
 				{
 					"name": "user_settings",
 					"pages": [
+						{
+							"name": "profile",
+							"components": [
+								{
+									"name": "edit_form",
+									"type": "form",
+									"mode": "update",
+									"title": "Edit your profile",
+									"submit_route": "user_settings.profile",
+									"query": {
+										"name": "current_user_data",
+										"collection": "users",
+										"filter": { "_id": "Meteor.userId()" },
+										"find_one": true
+									},
+									"fields": [
+										{ "name": "profile.name", "title": "Name", "required": true },
+										{ "name": "profile.email", "title": "E-mail", "type": "email", "required": true }
+									]
+								}
+							]
+						},
+
 						{ "name": "change_pass", "template": "change_pass.html" }
 					],
 
@@ -785,6 +812,7 @@
 							"name": "side_menu",
 							"class": "nav nav-stacked nav-pills",
 							"items": [
+								{ "title": "Profile", "route": "user_settings.profile" },
 								{ "title": "Change password", "route": "user_settings.change_pass" }
 							]
 						}
@@ -800,8 +828,8 @@
 					"class": "nav navbar-nav",
 					"dest_selector": "#menu",
 					"items": [
-						{ "title": "Home", "route": "home_private" },
-						{ "title": "My applications", "route": "applications" },
+						{ "title": "Home", "route": "applications" },
+						{ "title": "Getting started", "route": "getting_started" },
 						{ "title": "Examples", "route": "examples" },
 						{ "title": "API Reference", "route": "api_reference" },
 						{ "title": "What's Up?", "route": "version_history" },

@@ -2,8 +2,8 @@
 // metadata utils used by meteor-kitchen GUI
 // ---
 
-var objectAddId = function(object, idFieldName) {
-	var idField = idFieldName || "_id";
+var objectAddId = function(object) {
+	var idField = "_id";
 
 	if(_.isFunction(object)) {
 		return;
@@ -20,9 +20,9 @@ var objectAddId = function(object, idFieldName) {
 	}
 };
 
-this.objectRemoveMetadata = function(object, idFieldName, typeFieldName) {
-	var idField = idFieldName || "_id";
-	var typeField = typeFieldName || "objectType";
+this.objectRemoveMetadata = function(object) {
+	var idField = "_id";
+	var typeField = "objectType";
 
 	if(_.isFunction(object)) {
 		return;
@@ -30,7 +30,7 @@ this.objectRemoveMetadata = function(object, idFieldName, typeFieldName) {
 
 	if(_.isArray(object)) {
 		_.each(object, function(item) {
-			objectRemoveMetadata(item, idField);
+			objectRemoveMetadata(item);
 		});
 		return;
 	}
@@ -44,7 +44,7 @@ this.objectRemoveMetadata = function(object, idFieldName, typeFieldName) {
 		for(var propertyName in object) {
 			var property = object[propertyName];
 			if(_.isObject(property)) {
-				objectRemoveMetadata(property, idFieldName);
+				objectRemoveMetadata(property);
 			}
 		}
 		return;
@@ -52,23 +52,22 @@ this.objectRemoveMetadata = function(object, idFieldName, typeFieldName) {
 }
 
 
-this.findObjectById = function(object, objectId, idFieldName) {
+this.findObjectById = function(object, objectId) {
 	if(!object || !objectId) {
 		return null;
 	}
 
-	var idField = idFieldName || "_id";
+	var idField = "_id";
 	if(_.isFunction(object)) {
 		return null;
 	}
 
 	if(_.isArray(object)) {
-		_.each(object, function(item) {
-			var res = findObjectById(item, objectId, idField);
-			if(res) {
-				return res;
-			}
-		});
+		var res = null;
+		_.find(object, function(item) { res = findObjectById(item, objectId); return !!res; });
+		if(res) {
+			return res;
+		}
 	}
 
 	if(_.isObject(object)) {
@@ -80,7 +79,7 @@ this.findObjectById = function(object, objectId, idFieldName) {
 	for(var propertyName in object) {
 		var property = object[propertyName];
 		if(_.isObject(property)) {
-			var res = findObjectById(property, objectId, idField);
+			var res = findObjectById(property, objectId);
 			if(res) {
 				return res;
 			}
@@ -89,12 +88,12 @@ this.findObjectById = function(object, objectId, idFieldName) {
 	return null;
 };
 
-this.deleteObjectWithId = function(object, objectId, idFieldName) {
+this.deleteObjectWithId = function(object, objectId) {
 	if(!object || !objectId) {
 		return;
 	}
 
-	var idField = idFieldName || "_id";
+	var idField = "_id";
 
 	if(_.isFunction(object)) {
 		return;
@@ -103,14 +102,14 @@ this.deleteObjectWithId = function(object, objectId, idFieldName) {
 	if(_.isArray(object)) {
 		_.each(object, function(item, index) {
 			if(_.isArray(item)) {
-				deleteObjectWithId(item, objectId, idField);
+				deleteObjectWithId(item, objectId);
 			} else {
 				if(_.isObject(item)) {
 					if(item[idField] == objectId) {
 						object.splice(index, 1);
 						return false;
 					} else {
-						deleteObjectWithId(item, objectId, idField);
+						deleteObjectWithId(item, objectId);
 					}
 				}
 			}
@@ -127,7 +126,7 @@ this.deleteObjectWithId = function(object, objectId, idFieldName) {
 	for(var propertyName in object) {
 		var property = object[propertyName];
 		if(_.isObject(property)) {
-			deleteObjectWithId(property, objectId, idField);
+			deleteObjectWithId(property, objectId);
 		}
 	}
 	return null;
@@ -143,15 +142,7 @@ this.getObjectMetadata = function(objectType, meta) {
 		return null;
 	}
 
-	var result = {};
-	_.each(classList, function(metadata) {
-		if(metadata.objectType == objectType) {
-			result = metadata;
-			return false;
-		}
-	});
-
-	return result;
+	return _.find(classList, function(metadata) { return metadata.objectType == objectType; }) || {};
 };
 
 this.getObjectArrayItemType = function(objectType, memberName, meta) {
@@ -163,93 +154,21 @@ this.getObjectArrayItemType = function(objectType, memberName, meta) {
 		return "";
 	}	
 
-	var memberFound = false;
-	var memberSubtype = "";
-	_.each(metadata.members, function(member) {
-		if(member.name == memberName) {
-			memberFound = true;
-			memberSubtype = member.subType;
-			return false;
-		}
-	});
-
-	if(!memberFound) {
+	var member = _.find(metadata.members, function(member) { return member.name == memberName; });
+	if(!member) {
 		return getObjectArrayItemType(metadata.derivedFrom, memberName, meta);
 	}
 
-	if(!memberSubtype) {
-		return "";
-	}
-
-	return memberSubtype;
+	return member.subType || "";
 }
 
-this.pushObjectMembers = function(members, hideMembers, overrideMembers, objectType, meta) {
-	var objectMeta = getObjectMetadata(objectType, meta);
-	if(!objectMeta) {
-		return;
-	}
-
-	var metaHide = _.union(objectMeta.hide_members || [], []);
-	_.each(overrideMembers, function(over) {
-		var index = metaHide.indexOf(over.name);
-		if(index >= 0)
-			metaHide.splice(index, 1);
-	});
-
-	hideMembers = hideMembers || [];
-	var skipMembers = _.union(metaHide, hideMembers);
-
-	var metaOverride = objectMeta.override_members || [];
-	overrideMembers = overrideMembers || [];
-	var overMembers = _.union(metaOverride, overrideMembers);
-
-	_.each(objectMeta.derivedFrom, function(parentType) {
-		if(parentType != objectType) {
-			pushObjectMembers(members, skipMembers, overMembers, parentType, meta);
-		}
-	});
-
-	_.each(objectMeta.members, function(member) {
-		if(skipMembers.indexOf(member.name) < 0) {
-			_.each(overMembers, function(override) {
-				if(member.name == override.name) {
-					member = override;
-				}
-			});
-			members.push(member);
-		}
-	});
-};
-
-this.getObjectFullMetadata = function(objectType, meta) {
-	var objectMeta = getObjectMetadata(objectType, meta);
-	if(!objectMeta) {
-		return null;
-	}
-
-	var result = JSON.parse(JSON.stringify(objectMeta));
-	var members = [];
-	pushObjectMembers(members, null, null, objectType, meta);
-
-	result.members = members;
-	return result;
-};
-
-var objectAddMembers = function(object, metaMemberList, skipMembers, overrideMembers, meta) {
+var objectAddMembers = function(object, metaMemberList, meta) {
 	if(!metaMemberList) {
 		return;
 	}
 
 	_.each(metaMemberList, function(metaMember) {
-		if(metaMember.name && skipMembers.indexOf(metaMember.name) < 0) {
-			// override
-			_.each(overrideMembers, function(override) {
-				if(metaMember.name == override.name) {
-					metaMember = override;
-				}
-			});
-
+		if(metaMember.name) {
 			if(!object.hasOwnProperty(metaMember.name)) {
 				if(metaMember.hasOwnProperty("default")) {
 					switch(metaMember.type) {
@@ -310,7 +229,7 @@ this.extendWithMetadata = function(object, objectType, meta) {
 		type = object.type;
 	}
 
-	objectAddId(object, "_id");
+	objectAddId(object);
 
 	if(!meta) {
 		return;
@@ -325,32 +244,8 @@ this.extendWithMetadata = function(object, objectType, meta) {
 		object.objectType = objectMeta.objectType;
 	}
 
-	var skipMembers = objectMeta.hide_members || [];
-	var overrideMembers = objectMeta.override_members || [];
-
-	if(objectMeta.derivedFrom) {
-		_.each(objectMeta.derivedFrom, function(className) {
-			var classMeta = getObjectFullMetadata(className, meta);
-			if(classMeta && classMeta.members) {
-				var classOverride = classMeta.override_members || [];
-				overrideMembers = _.union(classOverride, overrideMembers);
-
-				var classSkip = _.union(classMeta.hide_members || [], []);
-				_.each(overrideMembers, function(over) {
-					var index = classSkip.indexOf(over.name);
-					if(index >= 0)
-						classSkip.splice(index, 1);
-				});
-				skipMembers = _.union(skipMembers, classSkip);
-
-
-				objectAddMembers(object, classMeta.members, skipMembers, overrideMembers, meta);
-			}
-		});
-	}
-
 	if(objectMeta.members) {
-		objectAddMembers(object, objectMeta.members, skipMembers, overrideMembers, meta);
+		objectAddMembers(object, objectMeta.members, meta);
 	}
 };
 
@@ -369,8 +264,8 @@ this.getDerivedTypes = function(objectType, includeThis, meta) {
 		return [];
 	}
 
-	var hideDerivedClasses = objectMeta.hide_derived_classes || [];
-	var hideThis = objectMeta.hide_this || false;
+	var hideDerivedClasses = objectMeta.hideDerivedClasses || [];
+	var hideThis = objectMeta.hideThis || false;
 
 	var derivedTypes = [];
 	if(includeThis && !hideThis) {

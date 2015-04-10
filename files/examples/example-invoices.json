@@ -153,7 +153,7 @@
 					"components": [
 						{
 							"name": "view",
-							"type": "dataview",
+							"type": "data_view",
 							"title": "Customers",
 							"text_if_empty": "No customers :(",
 							"query": {
@@ -253,7 +253,7 @@
 					"components": [
 						{
 							"name": "view",
-							"type": "dataview",
+							"type": "data_view",
 							"title": "Invoices",
 							"text_if_empty": "No invoices :(",
 							"query": {
@@ -343,7 +343,7 @@
 									"components": [
 										{
 											"name": "view",
-											"type": "dataview",
+											"type": "data_view",
 											"text_if_empty": "No items",
 											"query": {
 												"name": "invoice_items",

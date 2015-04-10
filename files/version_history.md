@@ -1,6 +1,16 @@
 Version History
 ===============
 
+0.9.30
+------
+
+- Changed directory layout: client controllers are moved from `/both/` to `/client/` directory (and server controllers are moved to '/server/').
+
+- Changed (simplified) metadata format - preparing to refactor kitchen-GUI
+
+- Now you can specify custom template for any page. Set `custom_template` and write your own HTML and JS. See getting started page for more info.
+
+
 0.9.29
 ------
 

@@ -1,11 +1,13 @@
 {
 	"application": {
-
-		"collections": [],
+		"title": "Example application",
+		"meta_title": "Example application",
+		"meta_description": "Meteor Kitchen - example application",
 
 		"free_zone": {
 			"pages": [
-				{ "name": "home", "title": "Hello world!" }
+				{ "name": "home", "title": "Home page", "text": "Hello world!" },
+				{ "name": "about", "title": "About", "text": "This example application is built with <a href=\"http://www.meteorkitchen.com\">Meteor Kitchen</a> - code generator for Meteor.js" }
 			],
 
 			"menus": [
@@ -13,7 +15,8 @@
 					"name": "main_menu",
 					"class": "nav navbar-nav",
 					"items": [
-						{ "title": "Home page", "route": "home" }
+						{ "title": "Home page", "route": "home", "icon_class": "fa fa-home" },
+						{ "title": "About", "route": "about" }
 					]
 				}
 			]
