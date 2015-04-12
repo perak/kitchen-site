@@ -30,7 +30,8 @@
 							{ "title": "Minimal: No user account system", 	"value": "minimal" },
 							{ "title": "Minimal: With user account system", "value": "accounts" },
 							{ "title": "Example: Dataview", 				"value": "dataview" },
-							{ "title": "Example: Invoices", 				"value": "invoices" }
+							{ "title": "Example: Invoices", 				"value": "invoices" },
+							{ "title": "Example: Admin", 					"value": "admin" }
 						],
 						"show_in_dataview": false,
 						"show_in_insert_form": true,
@@ -362,7 +363,7 @@
 					"class": "nav navbar-nav",
 					"dest_selector": "#menu",
 					"items": [
-						{ "title": "Home", "route": "home_public" },
+						{ "title": "Home", "route": "home_public", "icon_class": "fa fa-home" },
 						{ "title": "Getting started", "route": "getting_started" },
 						{ "title": "Examples", "route": "examples" },
 						{ "title": "API Reference", "route": "api_reference" },
@@ -828,7 +829,7 @@
 					"class": "nav navbar-nav",
 					"dest_selector": "#menu",
 					"items": [
-						{ "title": "Home", "route": "applications" },
+						{ "title": "Home", "route": "applications", "icon_class": "fa fa-home" },
 						{ "title": "Getting started", "route": "getting_started" },
 						{ "title": "Examples", "route": "examples" },
 						{ "title": "API Reference", "route": "api_reference" },
@@ -891,6 +892,7 @@
 			{ "source": "files/examples/template-accounts.json", "dest": "PRIVATE_DIR/template-accounts.json" },
 			{ "source": "files/examples/example-dataview.json", "dest": "PRIVATE_DIR/example-dataview.json" },
 			{ "source": "files/examples/example-invoices.json", "dest": "PRIVATE_DIR/example-invoices.json" },
+			{ "source": "files/examples/example-admin.json", "dest": "PRIVATE_DIR/example-admin.json" },
 
 			{ "source": "files/metadata.json", "dest": "PRIVATE_DIR/metadata.json" },
 			{ "source": "files/metadata_utils.js", "dest": "LIB_DIR/metadata_utils.js" },

@@ -1,5 +1,5 @@
 {
-	"version": 42,
+	"version": 47,
 	"classList": [
 		{
 			"objectType": "root",
@@ -13,12 +13,14 @@
 					"subType": "",
 					"default": "",
 					"required": true,
-					"input": ""
+					"input": "",
+					"description": ""
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false
+			"hideThis": false,
+			"description": ""
 		},
 		{
 			"objectType": "object",
@@ -32,12 +34,14 @@
 					"subType": "",
 					"default": "",
 					"required": true,
-					"input": "text"
+					"input": "text",
+					"description": ""
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false
+			"hideThis": false,
+			"description": ""
 		},
 		{
 			"objectType": "field",
@@ -52,7 +56,8 @@
 					"subType": "",
 					"default": "",
 					"required": true,
-					"input": "text"
+					"input": "text",
+					"description": "Object name"
 				},
 				{
 					"name": "title",
@@ -61,7 +66,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Field title (used in form labels, table column headers etc.)"
 				},
 				{
 					"name": "type",
@@ -70,7 +76,7 @@
 					"subType": "",
 					"default": "string",
 					"required": true,
-					"input": "radio",
+					"input": "select",
 					"choice_items": [
 						"string",
 						"integer",
@@ -80,7 +86,8 @@
 						"bool",
 						"array",
 						"email"
-					]
+					],
+					"description": "Field data type used in form validations. Examples: \"string\", \"integer\", \"float\", \"date\", \"time\", \"array\", \"email\", \"random_string\". Default: \"string\""
 				},
 				{
 					"name": "default",
@@ -89,7 +96,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Default value. For date fields you can use special constant \"today\", for time fields you can use \"now\". Also, you can set helper here \"{{myHelper}}\"."
 				},
 				{
 					"name": "min",
@@ -98,7 +106,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Minimum value (only for numeric fields)"
 				},
 				{
 					"name": "max",
@@ -107,7 +116,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Maximum value (only for numeric fields)"
 				},
 				{
 					"name": "required",
@@ -116,7 +126,8 @@
 					"subType": "",
 					"default": "false",
 					"required": false,
-					"input": "checkbox"
+					"input": "checkbox",
+					"description": "Is field input required? Default: false"
 				},
 				{
 					"name": "format",
@@ -125,7 +136,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Currently used only with data types \"date\" and \"time\". Contains date or time format such as \"MM\/DD\/YYYY\" or \"hh:mm:ss\""
 				},
 				{
 					"name": "searchable",
@@ -134,7 +146,8 @@
 					"subType": "",
 					"default": "true",
 					"required": false,
-					"input": "checkbox"
+					"input": "checkbox",
+					"description": "Is field searchable? Default: true"
 				},
 				{
 					"name": "sortable",
@@ -143,7 +156,8 @@
 					"subType": "",
 					"default": "true",
 					"required": false,
-					"input": "checkbox"
+					"input": "checkbox",
+					"description": "Is field sortable? Default: true"
 				},
 				{
 					"name": "exportable",
@@ -152,7 +166,8 @@
 					"subType": "",
 					"default": "false",
 					"required": false,
-					"input": "checkbox"
+					"input": "checkbox",
+					"description": "If true field will be exported to CSV\/JSON (used in dataview component). Default: false"
 				},
 				{
 					"name": "input",
@@ -161,7 +176,7 @@
 					"subType": "",
 					"default": "text",
 					"required": false,
-					"input": "radio",
+					"input": "select",
 					"choice_items": [
 						"text",
 						"password",
@@ -171,26 +186,30 @@
 						"radio",
 						"checkbox",
 						"select",
-						"crud"
-					]
+						"crud",
+						"custom"
+					],
+					"description": "Form input control type: \"text\", \"password\", \"datepicker\", \"read-only\", \"textarea\", \"radio\", \"checkbox\", \"select\", \"crud\", \"custom\""
 				},
 				{
 					"name": "input_template",
 					"title": "Input template",
 					"type": "string",
 					"subType": "",
-					"default": "text",
+					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Template for \"custom\" input field (relative to input file)"
 				},
 				{
 					"name": "input_group_class",
 					"title": "Input group class",
 					"type": "string",
 					"subType": "",
-					"default": "text",
+					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "CSS class to apply to field input group container in forms."
 				},
 				{
 					"name": "input_items",
@@ -199,7 +218,8 @@
 					"subType": "input_item",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Item list for input type \"radio\" and \"select\""
 				},
 				{
 					"name": "lookup_query",
@@ -208,7 +228,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Lookup query - data source for input type \"select\" items"
 				},
 				{
 					"name": "lookup_key",
@@ -217,7 +238,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Field name from lookup_query used as option value in input type \"select\". Mandatory field if lookup_query is defined"
 				},
 				{
 					"name": "lookup_field",
@@ -226,7 +248,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Field name from lookup_query used as option title in input type \"select\". Mandatory field if lookup query is defined"
 				},
 				{
 					"name": "display_helper",
@@ -235,7 +258,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Helper name used to display value from this field (used in DataView, Forms etc.)"
 				},
 				{
 					"name": "array_item_type",
@@ -244,7 +268,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "If \"type\" is set to \"array\" then you can define array item type here. Format is the same as for \"type\" property."
 				},
 				{
 					"name": "crud_fields",
@@ -253,7 +278,18 @@
 					"subType": "field",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "If \"array_item_type\" is set to \"object\" then you can define fields for input type \"crud\"."
+				},
+				{
+					"name": "crud_insert_title",
+					"title": "CRUD insert title",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text",
+					"description": "For fields with \"input\": \"crud\" - insert button and insert form title"
 				},
 				{
 					"name": "show_in_dataview",
@@ -262,7 +298,8 @@
 					"subType": "",
 					"default": "true",
 					"required": false,
-					"input": "checkbox"
+					"input": "checkbox",
+					"description": "If set to \"false\", field will not be shown in dataview components. Default: true"
 				},
 				{
 					"name": "show_in_insert_form",
@@ -271,7 +308,8 @@
 					"subType": "",
 					"default": "true",
 					"required": false,
-					"input": "checkbox"
+					"input": "checkbox",
+					"description": "If set to \"false\", field will not be included in forms with mode \"insert\". Default: true"
 				},
 				{
 					"name": "show_in_update_form",
@@ -280,7 +318,8 @@
 					"subType": "",
 					"default": "true",
 					"required": false,
-					"input": "checkbox"
+					"input": "checkbox",
+					"description": "If set to \"false\", field will not be included in forms with mode \"update\". Default: true"
 				},
 				{
 					"name": "show_in_read_only_form",
@@ -289,12 +328,14 @@
 					"subType": "",
 					"default": "true",
 					"required": false,
-					"input": "checkbox"
+					"input": "checkbox",
+					"description": "If set to \"false\", field will not be included in forms with mode \"read_only\". Default: true"
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false
+			"hideThis": false,
+			"description": ""
 		},
 		{
 			"objectType": "hidden_field",
@@ -308,7 +349,8 @@
 					"subType": "",
 					"default": "",
 					"required": true,
-					"input": "text"
+					"input": "text",
+					"description": "Field name"
 				},
 				{
 					"name": "value",
@@ -317,12 +359,14 @@
 					"subType": "",
 					"default": "",
 					"required": true,
-					"input": "text"
+					"input": "text",
+					"description": "Field value"
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false
+			"hideThis": false,
+			"description": ""
 		},
 		{
 			"objectType": "input_item",
@@ -336,7 +380,8 @@
 					"subType": "",
 					"default": "",
 					"required": true,
-					"input": "text"
+					"input": "text",
+					"description": "select, radio or checkbox item value written on submit"
 				},
 				{
 					"name": "title",
@@ -345,12 +390,14 @@
 					"subType": "",
 					"default": "",
 					"required": true,
-					"input": "text"
+					"input": "text",
+					"description": "select, radio or checkbox item title shown to user"
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false
+			"hideThis": false,
+			"description": ""
 		},
 		{
 			"objectType": "collection",
@@ -365,7 +412,8 @@
 					"subType": "",
 					"default": "",
 					"required": true,
-					"input": "text"
+					"input": "text",
+					"description": "Object name"
 				},
 				{
 					"name": "fields",
@@ -374,7 +422,8 @@
 					"subType": "field",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Field list. Not mandatory, used by components such as form, dataview etc."
 				},
 				{
 					"name": "owner_field",
@@ -383,7 +432,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Field name used to store user ID of document owner. Only for apps using user accounts. Value of this field will be automatically set server side by \"before.insert\" hook."
 				},
 				{
 					"name": "read_owner_only",
@@ -392,7 +442,8 @@
 					"subType": "",
 					"default": "false",
 					"required": false,
-					"input": "checkbox"
+					"input": "checkbox",
+					"description": "If \"owner_field\" specified, user can fetch\/view only own documents."
 				},
 				{
 					"name": "write_owner_only",
@@ -401,7 +452,8 @@
 					"subType": "",
 					"default": "false",
 					"required": false,
-					"input": "checkbox"
+					"input": "checkbox",
+					"description": "If \"owner_field\" specified, document can be updated or removed only by owner."
 				},
 				{
 					"name": "roles_allowed_to_read",
@@ -410,7 +462,8 @@
 					"subType": "string",
 					"default": "",
 					"required": false,
-					"input": "stringlist"
+					"input": "stringlist",
+					"description": "List of user roles that can subscribe to this collection."
 				},
 				{
 					"name": "roles_allowed_to_insert",
@@ -419,7 +472,8 @@
 					"subType": "string",
 					"default": "",
 					"required": false,
-					"input": "stringlist"
+					"input": "stringlist",
+					"description": "List of user roles that can insert documents into this collection."
 				},
 				{
 					"name": "roles_allowed_to_update",
@@ -428,7 +482,8 @@
 					"subType": "string",
 					"default": "",
 					"required": false,
-					"input": "stringlist"
+					"input": "stringlist",
+					"description": "List of user roles that can update documents."
 				},
 				{
 					"name": "roles_allowed_to_delete",
@@ -437,7 +492,8 @@
 					"subType": "string",
 					"default": "",
 					"required": false,
-					"input": "stringlist"
+					"input": "stringlist",
+					"description": "List of user roles that can delete documents."
 				},
 				{
 					"name": "before_insert_code",
@@ -446,7 +502,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": "Code to be executed before new document is inserted into collection. Should be only body of a function with args: (userId, doc). See <a href=\"https:\/\/github.com\/matb33\/meteor-collection-hooks\" target=\"_blank\">meteor-collection-hooks<\/a> package for more details."
 				},
 				{
 					"name": "before_update_code",
@@ -455,7 +512,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": "Code to be executed before document is updated. Should be only body of a function with args: (userId, doc, fieldNames, modifier, options)"
 				},
 				{
 					"name": "before_remove_code",
@@ -464,7 +522,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": "Code to be executed before document is removed. Should be only body of a function with args: (userId, doc)"
 				},
 				{
 					"name": "after_insert_code",
@@ -473,7 +532,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": "Code to be executed after new document is inserted into collection. Should be only body of a function with args: (userId, doc). See <a href=\"https:\/\/github.com\/matb33\/meteor-collection-hooks\" target=\"_blank\">meteor-collection-hooks<\/a> package for more details."
 				},
 				{
 					"name": "after_update_code",
@@ -482,7 +542,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": "Code to be executed after document is updated. Should be only body of a function with args: (userId, doc, fieldNames, modifier, options)"
 				},
 				{
 					"name": "after_remove_code",
@@ -491,7 +552,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": "Code to be executed after document is removed. Should be only body of a function with args: (userId, doc)"
 				},
 				{
 					"name": "before_insert_source_file",
@@ -500,7 +562,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "File that contains code to be executed before new document is inserted (relative to input JSON file). See \"before_insert_code\"."
 				},
 				{
 					"name": "before_update_source_file",
@@ -509,7 +572,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "File that contains code to be executed before document is updated (relative to input JSON file). See \"before_update_code\"."
 				},
 				{
 					"name": "before_remove_source_file",
@@ -518,7 +582,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "File that contains code to be executed before document is removed (relative to input JSON file). See \"before_remove_code\"."
 				},
 				{
 					"name": "after_insert_source_file",
@@ -527,7 +592,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "File that contains code to be executed after new document is inserted (relative to input JSON file). See \"after_insert_code\"."
 				},
 				{
 					"name": "after_update_source_file",
@@ -536,7 +602,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "File that contains code to be executed after document is updated (relative to input JSON file). See \"after_update_code\"."
 				},
 				{
 					"name": "after_remove_source_file",
@@ -545,12 +612,14 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "File that contains code to be executed after document is removed (relative to input JSON file). See \"after_remove_code\"."
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false
+			"hideThis": false,
+			"description": ""
 		},
 		{
 			"objectType": "query",
@@ -565,7 +634,8 @@
 					"subType": "",
 					"default": "",
 					"required": true,
-					"input": "text"
+					"input": "text",
+					"description": "Object name"
 				},
 				{
 					"name": "collection",
@@ -574,7 +644,8 @@
 					"subType": "",
 					"default": "",
 					"required": true,
-					"input": "text"
+					"input": "select_collection",
+					"description": "Name of existing collection"
 				},
 				{
 					"name": "find_one",
@@ -583,7 +654,8 @@
 					"subType": "",
 					"default": "false",
 					"required": false,
-					"input": "checkbox"
+					"input": "checkbox",
+					"description": "If set to true query will return single document: collection.findOne(). Default: false"
 				},
 				{
 					"name": "filter",
@@ -592,7 +664,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "json"
+					"input": "json",
+					"description": "Mongo query expression. Will be passed as parameter to collection.find(). Can contain route params in form \":paramName\"."
 				},
 				{
 					"name": "options",
@@ -601,7 +674,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "json"
+					"input": "json",
+					"description": "Options parameter passed to collection.find()."
 				},
 				{
 					"name": "params",
@@ -610,12 +684,14 @@
 					"subType": "param",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Override parameter values passed to \"filter\"."
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false
+			"hideThis": false,
+			"description": ""
 		},
 		{
 			"objectType": "component",
@@ -630,7 +706,8 @@
 					"subType": "",
 					"default": "",
 					"required": true,
-					"input": "text"
+					"input": "text",
+					"description": ""
 				},
 				{
 					"name": "type",
@@ -639,7 +716,8 @@
 					"subType": "",
 					"default": "component",
 					"required": true,
-					"input": "text"
+					"input": "text",
+					"description": ""
 				},
 				{
 					"name": "custom_template",
@@ -648,7 +726,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": ""
 				},
 				{
 					"name": "dest_selector",
@@ -657,7 +736,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": ""
 				},
 				{
 					"name": "dest_position",
@@ -673,7 +753,8 @@
 						"bottom",
 						"before",
 						"after"
-					]
+					],
+					"description": ""
 				},
 				{
 					"name": "class",
@@ -682,7 +763,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": ""
 				},
 				{
 					"name": "title",
@@ -691,7 +773,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": ""
 				},
 				{
 					"name": "title_icon_class",
@@ -700,7 +783,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": ""
 				},
 				{
 					"name": "events_code",
@@ -709,7 +793,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": ""
 				},
 				{
 					"name": "helpers_code",
@@ -718,7 +803,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": ""
 				},
 				{
 					"name": "query",
@@ -727,7 +813,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": ""
 				},
 				{
 					"name": "components",
@@ -736,7 +823,8 @@
 					"subType": "component",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": ""
 				},
 				{
 					"name": "template_rendered_code",
@@ -745,13 +833,15 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": ""
 				}
 			],
 			"hideDerivedClasses": [
 				"page"
 			],
-			"hideThis": true
+			"hideThis": true,
+			"description": "`component` is abstract base class for following types:\n - [custom_component](#custom_component)\n - [data_view](#data_view)\n - [div](#div)\n - [form](#form)\n - [jumbotron](#jumbotron)\n - [markdown](#markdown)\n - [menu](#menu)\n - [section](#section)\n - [tree_view](#tree_view)"
 		},
 		{
 			"objectType": "param",
@@ -765,7 +855,8 @@
 					"subType": "",
 					"default": "",
 					"required": true,
-					"input": "text"
+					"input": "text",
+					"description": "Parameter name"
 				},
 				{
 					"name": "value",
@@ -774,12 +865,14 @@
 					"subType": "",
 					"default": "",
 					"required": true,
-					"input": "text"
+					"input": "text",
+					"description": "Parameter value"
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false
+			"hideThis": false,
+			"description": ""
 		},
 		{
 			"objectType": "server_side_route",
@@ -794,7 +887,8 @@
 					"subType": "",
 					"default": "",
 					"required": true,
-					"input": "text"
+					"input": "text",
+					"description": "Object name"
 				},
 				{
 					"name": "route_params",
@@ -803,7 +897,8 @@
 					"subType": "string",
 					"default": "",
 					"required": false,
-					"input": "stringlist"
+					"input": "stringlist",
+					"description": "Route params to be passed via URL"
 				},
 				{
 					"name": "path",
@@ -812,7 +907,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Route path. Not mandatory: if ommited path is constructed from route name and route_params."
 				},
 				{
 					"name": "source_file",
@@ -821,12 +917,14 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "path to external file containing route action code (relative to input JSON file)."
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false
+			"hideThis": false,
+			"description": ""
 		},
 		{
 			"objectType": "page",
@@ -841,7 +939,8 @@
 					"subType": "",
 					"default": "",
 					"required": true,
-					"input": "text"
+					"input": "text",
+					"description": "Object name"
 				},
 				{
 					"name": "type",
@@ -850,7 +949,8 @@
 					"subType": "",
 					"default": "page",
 					"required": false,
-					"input": "static"
+					"input": "static",
+					"description": ""
 				},
 				{
 					"name": "template",
@@ -872,7 +972,8 @@
 						"logout",
 						"register",
 						"reset_password"
-					]
+					],
+					"description": "Built-in html and js template file name (without extension) contained in kitchen templates directory."
 				},
 				{
 					"name": "custom_template",
@@ -881,7 +982,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Custom html and js template filename (without extension). Path is relative to input JSON file."
 				},
 				{
 					"name": "class",
@@ -890,7 +992,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "CSS class name to be added to component"
 				},
 				{
 					"name": "title",
@@ -899,7 +1002,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Component title"
 				},
 				{
 					"name": "title_icon_class",
@@ -908,7 +1012,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "If present, \"span\" with this class name will be added to title (if title is set)"
 				},
 				{
 					"name": "events_code",
@@ -917,7 +1022,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": "Content of Template.TEMLATE_NAME.events({ ... });"
 				},
 				{
 					"name": "helpers_code",
@@ -926,7 +1032,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": "Content of Template.TEMLATE_NAME.helpers({ ... });"
 				},
 				{
 					"name": "query",
@@ -935,7 +1042,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Query to be added to Template data context"
 				},
 				{
 					"name": "components",
@@ -944,7 +1052,8 @@
 					"subType": "component",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Component list"
 				},
 				{
 					"name": "template_rendered_code",
@@ -953,7 +1062,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": "Code to be executed once template is rendered"
 				},
 				{
 					"name": "meta_description",
@@ -962,7 +1072,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Meta description"
 				},
 				{
 					"name": "meta_title",
@@ -971,7 +1082,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Head title tag and meta title"
 				},
 				{
 					"name": "text",
@@ -980,7 +1092,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "textarea"
+					"input": "textarea",
+					"description": "Text to be inserted into page"
 				},
 				{
 					"name": "container_class",
@@ -989,7 +1102,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Class to be added to page container. Example: \"container-fluid\". Default \"container\"."
 				},
 				{
 					"name": "route_params",
@@ -998,7 +1112,8 @@
 					"subType": "string",
 					"default": "",
 					"required": false,
-					"input": "stringlist"
+					"input": "stringlist",
+					"description": "Route params to be passed via URL"
 				},
 				{
 					"name": "close_route",
@@ -1007,7 +1122,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "If specified, page will have close button routing to this route"
 				},
 				{
 					"name": "close_route_params",
@@ -1016,7 +1132,8 @@
 					"subType": "param",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Params to be passed to close_route"
 				},
 				{
 					"name": "back_route",
@@ -1025,7 +1142,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Route name of page to navigate on back button click. Mandatory field for back button to appear"
 				},
 				{
 					"name": "back_route_params",
@@ -1034,7 +1152,8 @@
 					"subType": "param",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Route params to be passed to \"back_route\""
 				},
 				{
 					"name": "roles",
@@ -1043,7 +1162,8 @@
 					"subType": "string",
 					"default": "",
 					"required": false,
-					"input": "stringlist"
+					"input": "stringlist",
+					"description": "User roles allowed to access this page"
 				},
 				{
 					"name": "menus",
@@ -1052,7 +1172,8 @@
 					"subType": "menu",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Menus to be inserted into this page"
 				},
 				{
 					"name": "pages",
@@ -1061,7 +1182,8 @@
 					"subType": "page",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Subpages"
 				},
 				{
 					"name": "queries",
@@ -1070,7 +1192,8 @@
 					"subType": "query",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "List of queries to add into template data context"
 				},
 				{
 					"name": "force_yield_subpages",
@@ -1079,7 +1202,8 @@
 					"subType": "",
 					"default": "false",
 					"required": false,
-					"input": "checkbox"
+					"input": "checkbox",
+					"description": "Subpages will be rendered in \"subcontent\" area even if this page doesn't contains menu pointing to subpages"
 				},
 				{
 					"name": "zoneless",
@@ -1088,7 +1212,8 @@
 					"subType": "",
 					"default": "false",
 					"required": false,
-					"input": "checkbox"
+					"input": "checkbox",
+					"description": "For applications with user account system: make this page visible for both authenticated and non-authenticated users"
 				},
 				{
 					"name": "parent_layout",
@@ -1097,13 +1222,15 @@
 					"subType": "",
 					"default": "false",
 					"required": false,
-					"input": "checkbox"
+					"input": "checkbox",
+					"description": "If set to true parent page will be used as layoutTemplate. Default: false"
 				}
 			],
 			"hideDerivedClasses": [
 				"zone"
 			],
-			"hideThis": false
+			"hideThis": false,
+			"description": ""
 		},
 		{
 			"objectType": "zone",
@@ -1118,7 +1245,8 @@
 					"subType": "",
 					"default": "zone",
 					"required": false,
-					"input": "static"
+					"input": "static",
+					"description": ""
 				},
 				{
 					"name": "container_class",
@@ -1127,7 +1255,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Class to be added to page container. Example: \"container-fluid\". Default \"container\"."
 				},
 				{
 					"name": "menus",
@@ -1136,7 +1265,8 @@
 					"subType": "menu",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Menus to be inserted into this page"
 				},
 				{
 					"name": "pages",
@@ -1145,7 +1275,8 @@
 					"subType": "page",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Subpages"
 				},
 				{
 					"name": "layout",
@@ -1159,7 +1290,8 @@
 						"",
 						"navbar",
 						"simple"
-					]
+					],
+					"description": "built-in layout template name: \"simple\" or \"navbar\". Default: \"navbar\""
 				},
 				{
 					"name": "navbar_class",
@@ -1168,12 +1300,14 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "CSS class name to be added to navbar. Default: \"navbar-fixed-top navbar-default\""
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false
+			"hideThis": false,
+			"description": ""
 		},
 		{
 			"objectType": "file_pair",
@@ -1187,7 +1321,8 @@
 					"subType": "",
 					"default": "",
 					"required": true,
-					"input": "text"
+					"input": "text",
+					"description": "Source file to copy. Path is relative to input JSON."
 				},
 				{
 					"name": "dest",
@@ -1196,12 +1331,14 @@
 					"subType": "",
 					"default": "",
 					"required": true,
-					"input": "text"
+					"input": "text",
+					"description": "Destination file. You can use directory aliases: OUTPUT_DIR, CLIENT_DIR, CLIENT_LIB_DIR, CLIENT_STYLES_DIR, CLIENT_STYLES_DEFAULT_DIR, CLIENT_STYLES_THEME_DIR, CLIENT_VIEWS_DIR, CLIENT_VIEWS_NOT_FOUND_DIR, CLIENT_VIEWS_LOADING_DIR, LIB_DIR, SETTINGS_DIR, BOTH_DIR, BOTH_LIB_DIR, BOTH_COLLECTIONS_DIR, PUBLIC_DIR, PUBLIC_IMAGES_DIR, PRIVATE_DIR, SERVER_DIR, SERVER_LIB_DIR, SERVER_COLLECTIONS_DIR, SERVER_PUBLISH_DIR, SERVER_CONTROLLERS_DIR, SERVER_METHODS_DIR"
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false
+			"hideThis": false,
+			"description": ""
 		},
 		{
 			"objectType": "packages",
@@ -1215,7 +1352,8 @@
 					"subType": "string",
 					"default": "",
 					"required": false,
-					"input": "stringlist"
+					"input": "stringlist",
+					"description": "List of meteor packages"
 				},
 				{
 					"name": "mrt",
@@ -1224,12 +1362,14 @@
 					"subType": "string",
 					"default": "",
 					"required": false,
-					"input": "stringlist"
+					"input": "stringlist",
+					"description": "List of meteorite (atmosphere) packages"
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false
+			"hideThis": false,
+			"description": ""
 		},
 		{
 			"objectType": "application",
@@ -1244,7 +1384,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Application title"
 				},
 				{
 					"name": "meta_description",
@@ -1253,7 +1394,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Default meta_description for pages without meta_description"
 				},
 				{
 					"name": "meta_title",
@@ -1262,7 +1404,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Default meta_title for pages without meta_title"
 				},
 				{
 					"name": "template",
@@ -1274,7 +1417,8 @@
 					"input": "select",
 					"choice_items": [
 						"bootstrap"
-					]
+					],
+					"description": "Default: \"bootstrap\" (you can expect more templates in the future)."
 				},
 				{
 					"name": "theme",
@@ -1302,7 +1446,8 @@
 						"bootswatch-superhero",
 						"bootswatch-united",
 						"bootswatch-yeti"
-					]
+					],
+					"description": "Visual theme name. With \"bootstrap\" template, theme can be one of <a href=\"http:\/\/bootswatch.com\/\" target=\"_blank\">bootswatch<\/a> themes: bootswatch-amelia, bootswatch-cerulean, bootswatch-cosmo, bootswatch-cyborg, bootswatch-darkly, bootswatch-flatly, bootswatch-journal, bootswatch-lumen, bootswatch-paper, bootswatch-readable, bootswatch-simplex, bootswatch-slate, bootswatch-spacelab, bootswatch-superhero, bootswatch-united, bootswatch-yeti"
 				},
 				{
 					"name": "footer_text",
@@ -1311,7 +1456,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Text to show in page footer"
 				},
 				{
 					"name": "roles",
@@ -1320,7 +1466,8 @@
 					"subType": "string",
 					"default": "",
 					"required": false,
-					"input": "stringlist"
+					"input": "stringlist",
+					"description": "List of user roles for applications with user account system"
 				},
 				{
 					"name": "default_role",
@@ -1329,7 +1476,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Default role for new users"
 				},
 				{
 					"name": "collections",
@@ -1338,7 +1486,8 @@
 					"subType": "collection",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Mongo database collections"
 				},
 				{
 					"name": "free_zone",
@@ -1347,7 +1496,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Free zone (for application without user account system)"
 				},
 				{
 					"name": "public_zone",
@@ -1356,7 +1506,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Public zone (for app with user account system). Pages inside this zone are accessible only for non-authenticeted users."
 				},
 				{
 					"name": "private_zone",
@@ -1365,7 +1516,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Private zone (for app with user account system). Pages inside this zone are accessible only for authenticeted users."
 				},
 				{
 					"name": "server_startup_code",
@@ -1374,7 +1526,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": "javascript code to execute at server startup"
 				},
 				{
 					"name": "client_startup_code",
@@ -1383,7 +1536,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": "javascript code to execute at client startup"
 				},
 				{
 					"name": "on_user_created_code",
@@ -1392,7 +1546,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": "javascript code to execute when new user is created (Accounts.onCreateUser)"
 				},
 				{
 					"name": "on_user_logged_code",
@@ -1401,7 +1556,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": "javascript code to execute when user is logged in (Accounts.onLogin)"
 				},
 				{
 					"name": "server_startup_source_file",
@@ -1410,7 +1566,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "File that contains javascript code to execute at server startup (relative to input file)"
 				},
 				{
 					"name": "client_startup_source_file",
@@ -1419,7 +1576,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "File that contains javascript code to execute at client startup (relative to input file)"
 				},
 				{
 					"name": "on_user_created_source_file",
@@ -1428,7 +1586,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "File that contains javascript code to execute when new user is created (relative to input file)"
 				},
 				{
 					"name": "on_user_logged_source_file",
@@ -1437,7 +1596,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "File that contains javascript code to execute when user is logged in (relative to input file)"
 				},
 				{
 					"name": "server_side_routes",
@@ -1446,7 +1606,8 @@
 					"subType": "server_side_route",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "List of server side routes."
 				},
 				{
 					"name": "copy_files",
@@ -1455,7 +1616,8 @@
 					"subType": "file_pair",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "List of files to copy into destination directory. You can use directory aliases. See <a href=\"#file_pair\">file_pair<\/a> for more details."
 				},
 				{
 					"name": "packages",
@@ -1464,7 +1626,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "List of additional meteor and meteorite packages that will be automatically added by generator"
 				},
 				{
 					"name": "router_config",
@@ -1473,12 +1636,14 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "json"
+					"input": "json",
+					"description": "Optional parameter passed to Router.config()"
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false
+			"hideThis": false,
+			"description": ""
 		},
 		{
 			"objectType": "custom_component",
@@ -1493,7 +1658,8 @@
 					"subType": "",
 					"default": "",
 					"required": true,
-					"input": "text"
+					"input": "text",
+					"description": "Object name"
 				},
 				{
 					"name": "type",
@@ -1502,7 +1668,8 @@
 					"subType": "",
 					"default": "custom_component",
 					"required": false,
-					"input": "static"
+					"input": "static",
+					"description": "Component type name."
 				},
 				{
 					"name": "custom_template",
@@ -1511,7 +1678,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Custom html and js template filename (without extension). Path is relative to input JSON file."
 				},
 				{
 					"name": "html",
@@ -1520,7 +1688,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "html"
+					"input": "html",
+					"description": "Custom HTML code"
 				},
 				{
 					"name": "js",
@@ -1529,7 +1698,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": "Custom JS code"
 				},
 				{
 					"name": "dest_selector",
@@ -1538,7 +1708,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "destination html element selector. Similar to jQuery selector, but only three simple formats are supported: \"tagname\", \"#element_id\" and \".class_name\"."
 				},
 				{
 					"name": "dest_position",
@@ -1554,7 +1725,8 @@
 						"bottom",
 						"before",
 						"after"
-					]
+					],
+					"description": "destination position relative to destination element: \"top\", \"bottom\", \"before\" or \"after\". Default: \"bottom\""
 				},
 				{
 					"name": "query",
@@ -1563,7 +1735,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Query to be added to Template data context"
 				},
 				{
 					"name": "components",
@@ -1572,12 +1745,14 @@
 					"subType": "component",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Component list"
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false
+			"hideThis": false,
+			"description": ""
 		},
 		{
 			"objectType": "menu_item",
@@ -1592,7 +1767,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Item title as appears in menu"
 				},
 				{
 					"name": "route",
@@ -1601,7 +1777,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Route name of destination page"
 				},
 				{
 					"name": "route_params",
@@ -1610,7 +1787,8 @@
 					"subType": "param",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Parameters to be passed to \"route\""
 				},
 				{
 					"name": "url",
@@ -1619,7 +1797,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "URL (for external links. You can use only one of \"route\" or \"url\" properties, not both)"
 				},
 				{
 					"name": "target",
@@ -1628,7 +1807,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Anchor \"target\" attribute value e.g. \"_blank\""
 				},
 				{
 					"name": "class",
@@ -1637,7 +1817,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "CSS class name to be added to item `li` element"
 				},
 				{
 					"name": "icon_class",
@@ -1646,7 +1827,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "If present, generator will add `span` into menu item and assign this CSS class to it"
 				},
 				{
 					"name": "items",
@@ -1655,12 +1837,14 @@
 					"subType": "menu_item",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Subitems"
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false
+			"hideThis": false,
+			"description": ""
 		},
 		{
 			"objectType": "menu",
@@ -1675,7 +1859,8 @@
 					"subType": "",
 					"default": "",
 					"required": true,
-					"input": "text"
+					"input": "text",
+					"description": "Object name"
 				},
 				{
 					"name": "type",
@@ -1684,7 +1869,8 @@
 					"subType": "",
 					"default": "menu",
 					"required": false,
-					"input": "static"
+					"input": "static",
+					"description": "Component type name."
 				},
 				{
 					"name": "dest_selector",
@@ -1693,7 +1879,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "destination html element selector. Similar to jQuery selector, but only three simple formats are supported: \"tagname\", \"#element_id\" and \".class_name\"."
 				},
 				{
 					"name": "dest_position",
@@ -1709,7 +1896,8 @@
 						"bottom",
 						"before",
 						"after"
-					]
+					],
+					"description": "destination position relative to destination element: \"top\", \"bottom\", \"before\" or \"after\". Default: \"bottom\""
 				},
 				{
 					"name": "class",
@@ -1718,7 +1906,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "CSS class name to be added to component"
 				},
 				{
 					"name": "title",
@@ -1727,7 +1916,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Component title"
 				},
 				{
 					"name": "title_icon_class",
@@ -1736,7 +1926,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "If present, \"span\" with this class name will be added to title (if title is set)"
 				},
 				{
 					"name": "events_code",
@@ -1745,7 +1936,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": "Content of Template.TEMLATE_NAME.events({ ... });"
 				},
 				{
 					"name": "helpers_code",
@@ -1754,7 +1946,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": "Content of Template.TEMLATE_NAME.helpers({ ... });"
 				},
 				{
 					"name": "query",
@@ -1763,7 +1956,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Query to be added to Template data context"
 				},
 				{
 					"name": "components",
@@ -1772,7 +1966,8 @@
 					"subType": "component",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Component list"
 				},
 				{
 					"name": "template_rendered_code",
@@ -1781,7 +1976,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": "Code to be executed once template is rendered"
 				},
 				{
 					"name": "items",
@@ -1790,7 +1986,8 @@
 					"subType": "menu_item",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Menu items"
 				},
 				{
 					"name": "scroll_spy_selector",
@@ -1799,12 +1996,14 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "\"scrollspy\" selector for menus with anchor links, usually \"body\"."
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false
+			"hideThis": false,
+			"description": ""
 		},
 		{
 			"objectType": "jumbotron",
@@ -1819,7 +2018,8 @@
 					"subType": "",
 					"default": "",
 					"required": true,
-					"input": "text"
+					"input": "text",
+					"description": "Object name"
 				},
 				{
 					"name": "type",
@@ -1828,7 +2028,8 @@
 					"subType": "",
 					"default": "jumbotron",
 					"required": false,
-					"input": "static"
+					"input": "static",
+					"description": "Component type name."
 				},
 				{
 					"name": "dest_selector",
@@ -1837,7 +2038,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "destination html element selector. Similar to jQuery selector, but only three simple formats are supported: \"tagname\", \"#element_id\" and \".class_name\"."
 				},
 				{
 					"name": "dest_position",
@@ -1853,7 +2055,8 @@
 						"bottom",
 						"before",
 						"after"
-					]
+					],
+					"description": "destination position relative to destination element: \"top\", \"bottom\", \"before\" or \"after\". Default: \"bottom\""
 				},
 				{
 					"name": "class",
@@ -1862,7 +2065,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "CSS class name to be added to component"
 				},
 				{
 					"name": "title",
@@ -1871,7 +2075,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Component title"
 				},
 				{
 					"name": "title_icon_class",
@@ -1880,7 +2085,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "If present, \"span\" with this class name will be added to title (if title is set)"
 				},
 				{
 					"name": "events_code",
@@ -1889,7 +2095,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": "Content of Template.TEMLATE_NAME.events({ ... });"
 				},
 				{
 					"name": "helpers_code",
@@ -1898,7 +2105,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": "Content of Template.TEMLATE_NAME.helpers({ ... });"
 				},
 				{
 					"name": "query",
@@ -1907,7 +2115,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Query to be added to Template data context"
 				},
 				{
 					"name": "components",
@@ -1916,7 +2125,8 @@
 					"subType": "component",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Component list"
 				},
 				{
 					"name": "template_rendered_code",
@@ -1925,7 +2135,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": "Code to be executed once template is rendered"
 				},
 				{
 					"name": "text",
@@ -1934,7 +2145,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "textarea"
+					"input": "textarea",
+					"description": "Text to be shown in jumbotron"
 				},
 				{
 					"name": "image_url",
@@ -1943,7 +2155,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Background image URL"
 				},
 				{
 					"name": "button_title",
@@ -1952,7 +2165,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Jumbotron button title"
 				},
 				{
 					"name": "button_route",
@@ -1961,7 +2175,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Destination route name"
 				},
 				{
 					"name": "button_route_params",
@@ -1970,7 +2185,8 @@
 					"subType": "param",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Parameters to be passed to destination route"
 				},
 				{
 					"name": "button_class",
@@ -1979,12 +2195,14 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "CSS class to be added to jumbotron button"
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false
+			"hideThis": false,
+			"description": ""
 		},
 		{
 			"objectType": "form",
@@ -1999,7 +2217,8 @@
 					"subType": "",
 					"default": "",
 					"required": true,
-					"input": "text"
+					"input": "text",
+					"description": "Object name"
 				},
 				{
 					"name": "type",
@@ -2008,7 +2227,8 @@
 					"subType": "",
 					"default": "form",
 					"required": false,
-					"input": "static"
+					"input": "static",
+					"description": "Component type name."
 				},
 				{
 					"name": "dest_selector",
@@ -2017,7 +2237,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "destination html element selector. Similar to jQuery selector, but only three simple formats are supported: \"tagname\", \"#element_id\" and \".class_name\"."
 				},
 				{
 					"name": "dest_position",
@@ -2033,7 +2254,8 @@
 						"bottom",
 						"before",
 						"after"
-					]
+					],
+					"description": "destination position relative to destination element: \"top\", \"bottom\", \"before\" or \"after\". Default: \"bottom\""
 				},
 				{
 					"name": "class",
@@ -2042,7 +2264,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "CSS class name to be added to component"
 				},
 				{
 					"name": "title",
@@ -2051,7 +2274,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Component title"
 				},
 				{
 					"name": "title_icon_class",
@@ -2060,7 +2284,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "If present, \"span\" with this class name will be added to title (if title is set)"
 				},
 				{
 					"name": "events_code",
@@ -2069,7 +2294,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": "Content of Template.TEMLATE_NAME.events({ ... });"
 				},
 				{
 					"name": "helpers_code",
@@ -2078,7 +2304,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": "Content of Template.TEMLATE_NAME.helpers({ ... });"
 				},
 				{
 					"name": "query",
@@ -2087,7 +2314,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Query to be added to Template data context"
 				},
 				{
 					"name": "components",
@@ -2096,7 +2324,8 @@
 					"subType": "component",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Component list"
 				},
 				{
 					"name": "template_rendered_code",
@@ -2105,7 +2334,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": "Code to be executed once template is rendered"
 				},
 				{
 					"name": "mode",
@@ -2119,7 +2349,8 @@
 						"insert",
 						"update",
 						"read_only"
-					]
+					],
+					"description": "\"insert\", \"update\" or \"read_only\""
 				},
 				{
 					"name": "layout",
@@ -2133,7 +2364,8 @@
 						"default",
 						"horizontal",
 						"inline"
-					]
+					],
+					"description": "\"default\", \"horizontal\" or \"inline\""
 				},
 				{
 					"name": "submit_route",
@@ -2142,7 +2374,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Route name of page to navigate after successfull submit. Mandatory field for submit button to appear"
 				},
 				{
 					"name": "cancel_route",
@@ -2151,7 +2384,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Route name of page to navigate on form cancelation. Mandatory field for cancel button to appear"
 				},
 				{
 					"name": "close_route",
@@ -2160,7 +2394,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Route name of page to navigate when user clicks \"OK\" button in \"read_only\" form. Mandatory field for close button to appear"
 				},
 				{
 					"name": "back_route",
@@ -2169,7 +2404,28 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Route name of page to navigate on form back button. Mandatory field for back button to appear"
+				},
+				{
+					"name": "submit_code",
+					"title": "Submit code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Custom code to execute on form submit"
+				},
+				{
+					"name": "cancel_code",
+					"title": "Cancel code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Custom code to execute on form cancel"
 				},
 				{
 					"name": "submit_route_params",
@@ -2178,7 +2434,8 @@
 					"subType": "param",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Route params to be passed to \"submit_route\""
 				},
 				{
 					"name": "cancel_route_params",
@@ -2187,7 +2444,8 @@
 					"subType": "param",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Route params to be passed to \"cancel_route\""
 				},
 				{
 					"name": "close_route_params",
@@ -2196,7 +2454,8 @@
 					"subType": "param",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Route params to be passed to \"close_route\""
 				},
 				{
 					"name": "back_route_params",
@@ -2205,7 +2464,8 @@
 					"subType": "param",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Route params to be passed to \"back_route\""
 				},
 				{
 					"name": "fields",
@@ -2214,7 +2474,8 @@
 					"subType": "field",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Defainition of form fields. If empty, generator will use fields defined at collection level."
 				},
 				{
 					"name": "hidden_fields",
@@ -2223,12 +2484,14 @@
 					"subType": "hidden_field",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Fields (not shown in a form) that will be automatically written on submit."
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false
+			"hideThis": false,
+			"description": ""
 		},
 		{
 			"objectType": "data_view",
@@ -2243,7 +2506,8 @@
 					"subType": "",
 					"default": "",
 					"required": true,
-					"input": "text"
+					"input": "text",
+					"description": "Object name"
 				},
 				{
 					"name": "type",
@@ -2252,7 +2516,8 @@
 					"subType": "",
 					"default": "data_view",
 					"required": false,
-					"input": "static"
+					"input": "static",
+					"description": "Component type name."
 				},
 				{
 					"name": "dest_selector",
@@ -2261,7 +2526,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "destination html element selector. Similar to jQuery selector, but only three simple formats are supported: \"tagname\", \"#element_id\" and \".class_name\"."
 				},
 				{
 					"name": "dest_position",
@@ -2277,7 +2543,8 @@
 						"bottom",
 						"before",
 						"after"
-					]
+					],
+					"description": "destination position relative to destination element: \"top\", \"bottom\", \"before\" or \"after\". Default: \"bottom\""
 				},
 				{
 					"name": "class",
@@ -2286,7 +2553,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "CSS class name to be added to component"
 				},
 				{
 					"name": "title",
@@ -2295,7 +2563,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Component title"
 				},
 				{
 					"name": "title_icon_class",
@@ -2304,7 +2573,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "If present, \"span\" with this class name will be added to title (if title is set)"
 				},
 				{
 					"name": "events_code",
@@ -2313,7 +2583,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": "Content of Template.TEMLATE_NAME.events({ ... });"
 				},
 				{
 					"name": "helpers_code",
@@ -2322,7 +2593,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": "Content of Template.TEMLATE_NAME.helpers({ ... });"
 				},
 				{
 					"name": "query",
@@ -2331,7 +2603,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Query to be added to Template data context"
 				},
 				{
 					"name": "components",
@@ -2340,7 +2613,8 @@
 					"subType": "component",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Component list"
 				},
 				{
 					"name": "template_rendered_code",
@@ -2349,7 +2623,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": "Code to be executed once template is rendered"
 				},
 				{
 					"name": "text_if_empty",
@@ -2358,7 +2633,8 @@
 					"subType": "",
 					"default": "No data here",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Text to show if collection is empty."
 				},
 				{
 					"name": "text_if_not_found",
@@ -2367,7 +2643,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Text to show if search string is not found."
 				},
 				{
 					"name": "insert_route",
@@ -2376,7 +2653,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Route name of page containing insert form"
 				},
 				{
 					"name": "details_route",
@@ -2385,7 +2663,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Route name of page showing selected item details (usually page containing form of type \"read_only\")."
 				},
 				{
 					"name": "edit_route",
@@ -2394,7 +2673,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Route name of page containing edit form. Makes edit_route_params field mandatory in most cases to be functional."
 				},
 				{
 					"name": "delete_route",
@@ -2403,7 +2683,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Route name to execute when user clicks \"delete\". Not mandatory - generator will automatically produce code for delete operation."
 				},
 				{
 					"name": "insert_route_params",
@@ -2412,7 +2693,8 @@
 					"subType": "param",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Parameters to be passed to \"insert_route\""
 				},
 				{
 					"name": "details_route_params",
@@ -2421,7 +2703,8 @@
 					"subType": "param",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Parameters to be passed to \"details_route\""
 				},
 				{
 					"name": "edit_route_params",
@@ -2430,7 +2713,8 @@
 					"subType": "param",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Parameters to be passed to \"edit_route\""
 				},
 				{
 					"name": "delete_route_params",
@@ -2439,7 +2723,8 @@
 					"subType": "param",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Parameters to be passed to \"delete_route\""
 				},
 				{
 					"name": "insert_button_title",
@@ -2448,7 +2733,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Insert button title"
 				},
 				{
 					"name": "views",
@@ -2457,7 +2743,8 @@
 					"subType": "string",
 					"default": "",
 					"required": false,
-					"input": "stringlist"
+					"input": "stringlist",
+					"description": "View styles: \"table\", \"list\" or \"gallery\". Default: \"table\"."
 				},
 				{
 					"name": "fields",
@@ -2466,12 +2753,14 @@
 					"subType": "field",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Defainition of table columns. If empty, generator will use fields defined at collection level."
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false
+			"hideThis": false,
+			"description": ""
 		},
 		{
 			"objectType": "tree_view",
@@ -2486,7 +2775,8 @@
 					"subType": "",
 					"default": "",
 					"required": true,
-					"input": "text"
+					"input": "text",
+					"description": "Object name"
 				},
 				{
 					"name": "type",
@@ -2495,7 +2785,8 @@
 					"subType": "",
 					"default": "tree_view",
 					"required": false,
-					"input": "static"
+					"input": "static",
+					"description": "Component type name."
 				},
 				{
 					"name": "dest_selector",
@@ -2504,7 +2795,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "destination html element selector. Similar to jQuery selector, but only three simple formats are supported: \"tagname\", \"#element_id\" and \".class_name\"."
 				},
 				{
 					"name": "dest_position",
@@ -2520,7 +2812,8 @@
 						"bottom",
 						"before",
 						"after"
-					]
+					],
+					"description": "destination position relative to destination element: \"top\", \"bottom\", \"before\" or \"after\". Default: \"bottom\""
 				},
 				{
 					"name": "class",
@@ -2529,7 +2822,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "CSS class name to be added to component"
 				},
 				{
 					"name": "title",
@@ -2538,7 +2832,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Component title"
 				},
 				{
 					"name": "title_icon_class",
@@ -2547,7 +2842,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "If present, \"span\" with this class name will be added to title (if title is set)"
 				},
 				{
 					"name": "events_code",
@@ -2556,7 +2852,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": "Content of Template.TEMLATE_NAME.events({ ... });"
 				},
 				{
 					"name": "helpers_code",
@@ -2565,7 +2862,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": "Content of Template.TEMLATE_NAME.helpers({ ... });"
 				},
 				{
 					"name": "query",
@@ -2574,7 +2872,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Query to be added to Template data context"
 				},
 				{
 					"name": "components",
@@ -2583,7 +2882,8 @@
 					"subType": "component",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Component list"
 				},
 				{
 					"name": "template_rendered_code",
@@ -2592,7 +2892,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "javascript"
+					"input": "javascript",
+					"description": "Code to be executed once template is rendered"
 				},
 				{
 					"name": "item_name_field",
@@ -2601,7 +2902,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Collection field shown as folder and item title"
 				},
 				{
 					"name": "item_type_field",
@@ -2610,7 +2912,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Collection field that stores item type. Can be \"dir\" or \"item\"."
 				},
 				{
 					"name": "collapsed_icon_class",
@@ -2619,7 +2922,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "CSS class for collapsed folder icon. Default: \"fa fa-caret-right\""
 				},
 				{
 					"name": "expanded_icon_class",
@@ -2628,7 +2932,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "CSS class for expanded folder icon. Default: \"fa fa-caret-down\""
 				},
 				{
 					"name": "item_route",
@@ -2637,7 +2942,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Navigate to this route when item is clicked"
 				},
 				{
 					"name": "item_route_params",
@@ -2646,12 +2952,14 @@
 					"subType": "param",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Parameters to be passed to \"item_route\""
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false
+			"hideThis": false,
+			"description": ""
 		},
 		{
 			"objectType": "markdown",
@@ -2666,7 +2974,8 @@
 					"subType": "",
 					"default": "",
 					"required": true,
-					"input": "text"
+					"input": "text",
+					"description": "Object name"
 				},
 				{
 					"name": "type",
@@ -2675,7 +2984,8 @@
 					"subType": "",
 					"default": "markdown",
 					"required": false,
-					"input": "static"
+					"input": "static",
+					"description": "Component type name."
 				},
 				{
 					"name": "dest_selector",
@@ -2684,7 +2994,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "destination html element selector. Similar to jQuery selector, but only three simple formats are supported: \"tagname\", \"#element_id\" and \".class_name\"."
 				},
 				{
 					"name": "dest_position",
@@ -2700,7 +3011,8 @@
 						"bottom",
 						"before",
 						"after"
-					]
+					],
+					"description": "destination position relative to destination element: \"top\", \"bottom\", \"before\" or \"after\". Default: \"bottom\""
 				},
 				{
 					"name": "query",
@@ -2709,7 +3021,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Query to be added to Template data context"
 				},
 				{
 					"name": "components",
@@ -2718,7 +3031,8 @@
 					"subType": "component",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Component list"
 				},
 				{
 					"name": "source_file",
@@ -2727,12 +3041,14 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Path to file containing markup (relative to input file)"
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false
+			"hideThis": false,
+			"description": ""
 		},
 		{
 			"objectType": "div",
@@ -2747,7 +3063,8 @@
 					"subType": "",
 					"default": "",
 					"required": true,
-					"input": "text"
+					"input": "text",
+					"description": "Object name"
 				},
 				{
 					"name": "type",
@@ -2756,7 +3073,8 @@
 					"subType": "",
 					"default": "div",
 					"required": false,
-					"input": "static"
+					"input": "static",
+					"description": "Component type name."
 				},
 				{
 					"name": "dest_selector",
@@ -2765,7 +3083,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "destination html element selector. Similar to jQuery selector, but only three simple formats are supported: \"tagname\", \"#element_id\" and \".class_name\"."
 				},
 				{
 					"name": "dest_position",
@@ -2781,7 +3100,8 @@
 						"bottom",
 						"before",
 						"after"
-					]
+					],
+					"description": "destination position relative to destination element: \"top\", \"bottom\", \"before\" or \"after\". Default: \"bottom\""
 				},
 				{
 					"name": "class",
@@ -2790,7 +3110,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "CSS class name to be added to component"
 				},
 				{
 					"name": "query",
@@ -2799,7 +3120,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Query to be added to Template data context"
 				},
 				{
 					"name": "components",
@@ -2808,7 +3130,8 @@
 					"subType": "component",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Component list"
 				},
 				{
 					"name": "text",
@@ -2817,12 +3140,14 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "textarea"
+					"input": "textarea",
+					"description": ""
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false
+			"hideThis": false,
+			"description": ""
 		},
 		{
 			"objectType": "section",
@@ -2837,7 +3162,8 @@
 					"subType": "",
 					"default": "",
 					"required": true,
-					"input": "text"
+					"input": "text",
+					"description": "Object name"
 				},
 				{
 					"name": "type",
@@ -2846,7 +3172,8 @@
 					"subType": "",
 					"default": "section",
 					"required": false,
-					"input": "static"
+					"input": "static",
+					"description": "Component type name."
 				},
 				{
 					"name": "dest_selector",
@@ -2855,7 +3182,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "destination html element selector. Similar to jQuery selector, but only three simple formats are supported: \"tagname\", \"#element_id\" and \".class_name\"."
 				},
 				{
 					"name": "dest_position",
@@ -2871,7 +3199,8 @@
 						"bottom",
 						"before",
 						"after"
-					]
+					],
+					"description": "destination position relative to destination element: \"top\", \"bottom\", \"before\" or \"after\". Default: \"bottom\""
 				},
 				{
 					"name": "class",
@@ -2880,7 +3209,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "CSS class name to be added to component"
 				},
 				{
 					"name": "query",
@@ -2889,7 +3219,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Query to be added to Template data context"
 				},
 				{
 					"name": "components",
@@ -2898,7 +3229,8 @@
 					"subType": "component",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": "Component list"
 				},
 				{
 					"name": "text",
@@ -2907,12 +3239,14 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "textarea"
+					"input": "textarea",
+					"description": ""
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false
+			"hideThis": false,
+			"description": ""
 		},
 		{
 			"objectType": "plugin",
@@ -2927,7 +3261,8 @@
 					"subType": "",
 					"default": "",
 					"required": true,
-					"input": "text"
+					"input": "text",
+					"description": ""
 				},
 				{
 					"name": "type",
@@ -2936,7 +3271,8 @@
 					"subType": "",
 					"default": "",
 					"required": true,
-					"input": "text"
+					"input": "text",
+					"description": ""
 				},
 				{
 					"name": "dest_selector",
@@ -2945,7 +3281,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": ""
 				},
 				{
 					"name": "dest_position",
@@ -2961,7 +3298,8 @@
 						"bottom",
 						"before",
 						"after"
-					]
+					],
+					"description": ""
 				},
 				{
 					"name": "query",
@@ -2970,7 +3308,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": ""
 				},
 				{
 					"name": "components",
@@ -2979,7 +3318,8 @@
 					"subType": "component",
 					"default": "",
 					"required": false,
-					"input": ""
+					"input": "",
+					"description": ""
 				},
 				{
 					"name": "properties",
@@ -2988,12 +3328,14 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "json"
+					"input": "json",
+					"description": ""
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false
+			"hideThis": false,
+			"description": ""
 		}
 	]
 }

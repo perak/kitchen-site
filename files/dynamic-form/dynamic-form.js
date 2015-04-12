@@ -275,6 +275,9 @@ Template.DynamicForm.events({
 });
 
 Template.DynamicFormGroupDefault.rendered = function() {
+	$("[data-toggle='popover']").popover({
+		container: "body"
+	});
 }
 
 Template.DynamicFormGroupDefault.helpers({
@@ -335,6 +338,9 @@ Template.DynamicFormGroupDefault.helpers({
 });
 
 Template.DynamicFormGroupHorizontal.rendered = function() {
+	$("[data-toggle='popover']").popover({
+		container: "body"
+	});
 }
 
 Template.DynamicFormGroupHorizontal.helpers({

@@ -3,6 +3,7 @@
 		if(doc.initialTemplate == "accounts") doc.data = JSON.parse(Assets.getText("template-accounts.json"));
 		if(doc.initialTemplate == "dataview") doc.data = JSON.parse(Assets.getText("example-dataview.json"));
 		if(doc.initialTemplate == "invoices") doc.data = JSON.parse(Assets.getText("example-invoices.json"));
+		if(doc.initialTemplate == "admin") doc.data = JSON.parse(Assets.getText("example-admin.json"));
 	}
 
 	if(_.isObject(doc.data)) {

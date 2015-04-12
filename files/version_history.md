@@ -1,6 +1,22 @@
 Version History
 ===============
 
+0.9.32
+------
+
+- GUI: in form for editing collection fields, radio buttons with large number of choices are changed to "select"
+
+- GUI: in form for editing queries, "collection" input is now dropdown - list of existing collections
+
+
+0.9.31
+------
+
+- Started refactoring GUI
+
+- GUI: added popover help to object editor
+
+
 0.9.30
 ------
 

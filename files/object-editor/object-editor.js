@@ -143,6 +143,7 @@ Template.TEMPLATE_NAME.helpers({
 			var choiceItems = [];
 			var required = member.required ? true : false;
 			var dataType = "";
+			var description = member.description;
 
 			switch(member.input) {
 				case "text": {
@@ -203,6 +204,17 @@ Template.TEMPLATE_NAME.helpers({
 				case "html": {
 					control = "html";
 				}; break;
+
+				case "select_collection": {
+					control = "select";
+					choiceItems.push({ value: "", title: "" });
+					if(containerObject && containerObject.application) {
+						_.each(containerObject.application.collections, function(collection) {
+							choiceItems.push({ value: collection.name, title: collection.name });
+
+						});
+					}
+				}; break;
 			}
 
 			if(control) {
@@ -214,7 +226,8 @@ Template.TEMPLATE_NAME.helpers({
 					dataType: dataType,
 					items: choiceItems,
 					required: required,
-					autofocus: fieldCounter == 0
+					autofocus: fieldCounter == 0,
+					description: description
 				});
 				fieldCounter++;
 				if(control != "static") {
@@ -292,6 +305,7 @@ Template.TEMPLATE_NAME.helpers({
 			var choiceItems = [];
 			var required = member.required ? true : false;
 			var dataType = "";
+			var description = member.description;
 
 			switch(member.input) {
 				case "text": {
@@ -352,6 +366,17 @@ Template.TEMPLATE_NAME.helpers({
 				case "html": {
 					control = "html";
 				}; break;
+
+				case "select_collection": {
+					control = "select";
+					choiceItems.push({ value: "", title: "" });
+					if(containerObject && containerObject.application) {
+						_.each(containerObject.application.collections, function(collection) {
+							choiceItems.push({ value: collection.name, title: collection.name });
+						});
+					}
+				}; break;
+
 			}
 
 			if(control) {
@@ -363,7 +388,8 @@ Template.TEMPLATE_NAME.helpers({
 					dataType: dataType,
 					items: choiceItems,
 					required: required,
-					autofocus: fieldCounter == 0
+					autofocus: fieldCounter == 0,
+					description: description
 				});
 				fieldCounter++;
 				if(control != "static") {

@@ -21,10 +21,11 @@ You **need** to have <a href="https://www.meteor.com" target="_blank">Meteor >=1
 
 You can download binary release <a href="/install/install_win.zip" _target="blank">here</a>. Extract it somewhere and make sure `meteor-kitchen.exe` is in your system PATH. See included `windows.txt` for more details.
 
-**Note**: meteor-kitchen treats filenames case sensitive under windows too.
+**Note**
+- Filenames case sensitive under windows too.
+- meteor-kitchen is using "curl" to download files. You can find curl for windows <a href="http://www.confusedbycode.com/curl/#downloads" target="_blank">here</a>.
 
-
-Current version is 0.9.30
+Current version is 0.9.32
 =========================
 
 Click <a href="{{pathFor 'version_history'}}">here</a> to see version history.
