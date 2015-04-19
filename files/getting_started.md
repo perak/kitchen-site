@@ -25,7 +25,7 @@ You can download binary release <a href="/install/install_win.zip" _target="blan
 - Filenames case sensitive under windows too.
 - meteor-kitchen is using "curl" to download files. You can find curl for windows <a href="http://www.confusedbycode.com/curl/#downloads" target="_blank">here</a>.
 
-Current version is 0.9.32
+Current version is 0.9.33
 =========================
 
 Click <a href="{{pathFor 'version_history'}}">here</a> to see version history.
@@ -344,7 +344,7 @@ The list of built-in components currently implemented into generator:
 
 - `form` - for inserting/updating data (with validations)
 
-- `dataview` - shows data from collections (with search and sort functions)
+- `data_view` - shows data from collections (with search and sort functions)
 
 - `jumbotron` - cool big heading text with button (usually found in home pages)
 
@@ -959,11 +959,11 @@ Or provide custom template .html and .js files:
 }
 ```
 
-- `type` is set to `custom`. That requires you to provide custom HTML and JS templates.
+- `type` is set to `custom_component`. That requires you to provide custom HTML and JS templates.
 
 - If `custom_template` is set to `something` then you need to provide `something.html` and `something.js`. Path is relative to input json file.
 
-Your HTML and JS code can contain anything. Your component can contain other components, can use query - the same as any other built in component.
+Your HTML and JS code can contain anything. Your component can contain other components, can use query - in the same way as any other built in component.
 
 To see custom components in action check <a href="https://github.com/perak/kitchen-examples/tree/master/example-onepage" target="_blank">onepage</a> example.
 
@@ -1132,9 +1132,11 @@ First, you need to add `roles` array to application object:
 }
 ```
 
-By default, meteor kitchen will add `roles` array to user document. If you specify `default_role`, that role will be added to new users. Each user can have multiple roles (`roles` is array of strings).
+Meteor kitchen will create code that adds `roles` array to user document automatically. 
+If you specify `default_role`, that role will be added to new users. 
+Each user can have multiple roles (`User.roles` is array of strings).
 
-**Restrict pages to set of user roles**
+### Restrict access to pages
 
 You can restrict any page inside private zone to any set of user roles by adding `roles` array to your page object. **Note**: `home_private` page should be accessible to all authenticated users (don't restrict private home page to any role).
 
@@ -1224,7 +1226,7 @@ db.users.update({ _id: "YOUR_USER_ID" }, { $set: { roles: ["admin"] } })
 ```
 
 
-**Restrict collections to set of user roles**
+### Restrict collections to set of user roles
 
 You can choose which user roles are allowed to read, update, insert and delete documents from collection:
 
@@ -1243,7 +1245,7 @@ You can choose which user roles are allowed to read, update, insert and delete d
 				"roles_allowed_to_read": [],
 				"roles_allowed_to_insert": ["admin", "manager"],
 				"roles_allowed_to_update": ["admin", "manager"],
-				"roles_allowed_to_delete": ["admin"],
+				"roles_allowed_to_delete": ["nobody"],
 			}
 		],
 
@@ -1272,7 +1274,40 @@ In this example we have application with three user roles ("admin", "manager" an
 
 - **read**: everybody (empty array means "everybody")
 - **insert** and **update**: "admin" and "manager"
-- **delete**: "admin" only
+- **delete**: "nobody" - nobody can delete.
+
+There are two predefined built-in roles: "nobody" and "owner":
+
+**"nobody"** means restrict access to all user roles (including "admin").
+**"owner"** means allow access only to document owner.
+
+### Document owner
+
+Document **owner** is by default user who inserted document. 
+Meteor kitchen generates code that sets "createdBy" field in each document automatically in "before.insert" hook. 
+In collection object, you can define custom "owner_field" - that is name of the field that will store user ID of document owner.
+If you set for example: `"owner_field": "ownerId"` then document.ownerId will be used to determine document owner.
+
+Example:
+
+```
+{
+	"name": "customers",
+
+	"owner_field": "ownerId",
+	"roles_allowed_to_read": ["admin", "owner"],
+	"roles_allowed_to_insert": ["admin", "user"],
+	"roles_allowed_to_update": ["owner"],
+	"roles_allowed_to_delete": ["nobody"],
+}
+```
+
+In this example, we set following permissions:
+
+- **read** - owner and users with "admin" role
+- **insert** - only users with role "user" and "admin"
+- **update** - only document owner can modify document
+- **delete** - nobody can delete document
 
 
 To be continued...

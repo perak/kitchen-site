@@ -4,6 +4,8 @@
 		"meta_title": "Example application",
 		"meta_description": "Meteor Kitchen - example application",
 
+		"collections": [],
+
 		"free_zone": {
 			"pages": [
 				{ "name": "home", "title": "Home page", "text": "Hello world!" },

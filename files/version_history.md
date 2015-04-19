@@ -1,6 +1,18 @@
 Version History
 ===============
 
+0.9.33
+------
+
+- Deprecated properties in `collection` object: `read_owner_only` and `write_owner_only` (still functional due to backward compatibility). Now you can set special role `owner` in `roles_allowed_to_read`, `roles_allowed_to_update` and `roles_allowed_to_delete`. See "Getting started" guid about user roles.
+
+- GUI: in form for editing object properties, "route" input is now dropdown - list of all existing routes.
+
+- New loading template - now with animated spinner. Thanks to <a href="https://github.com/Billybobbonnet" target="_blank"><b>Antoine Cordelois</b></a>.
+
+- Fixed bug with integer query params. If your query filter uses params in form `{ "someIntField": "#staticValue" }` and you define staticValue in list of query params: `{ "name": "staticValue", "value": 1 }` that value is now properly passed as integer (before it was string).
+
+
 0.9.32
 ------
 

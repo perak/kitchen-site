@@ -66,6 +66,17 @@ Markdown editor
 <a href="http://generator-markdowned.meteor.com" target="_blank" class="btn btn-success">Live example</a> <a href="https://github.com/perak/kitchen-examples/tree/master/example-markdowned" target="_blank" class="btn btn-default">Source code</a>
 
 
+Photosharing
+------------
+
+<a href="http://generator-photosharing.meteor.com" target="_blank"><img src="/images/example-photosharing.png" alt="photosharing" class="example-img"></a>
+
+Video Tutorial:
+<iframe width="400" height="225" src="https://www.youtube.com/embed/7zWBhtE72o4" frameborder="0" allowfullscreen></iframe>
+
+<a href="http://generator-photosharing.meteor.com" target="_blank" class="btn btn-success">Live example</a> <a href="https://github.com/perak/kitchen-examples/tree/master/example-photosharing" target="_blank" class="btn btn-default">Source code</a>
+
+
 Plugins
 -------
 

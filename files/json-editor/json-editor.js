@@ -36,6 +36,7 @@ Template.TEMPLATE_NAME.helpers({
 
 	"editorCode": function() {
 		var data = this.application.data;
+		simplifyObject(data, this.metadata.data);
 		objectRemoveMetadata(data);
 		return JSON.stringify(data, null, '\t');
 	}

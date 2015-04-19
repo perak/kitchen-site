@@ -18,8 +18,10 @@
 					{ "name": "totalAmount", "title": "Invoiced", "type": "float", "show_in_insert_form": false, "show_in_update_form": false, "exportable": true }
 				],
 				"owner_field": "ownerId",
-				"read_owner_only": true,
-				"write_owner_only": true,
+
+				"roles_allowed_to_read": ["owner"],
+				"roles_allowed_to_update": ["owner"],
+				"roles_allowed_to_delete": ["owner"],
 
 				"before_insert_code": "if(!doc.totalAmount) doc.totalAmount = 0;"
 			},
@@ -66,8 +68,9 @@
 				],
 
 				"owner_field": "ownerId",
-				"read_owner_only": true,
-				"write_owner_only": true,
+				"roles_allowed_to_read": ["owner"],
+				"roles_allowed_to_update": ["owner"],
+				"roles_allowed_to_delete": ["owner"],
 
 				"before_insert_code": "if(!doc.totalAmount) doc.totalAmount = 0;"
 			},
@@ -81,8 +84,10 @@
 					{ "name": "amount", "title": "Amount", "type": "float", "show_in_insert_form": false, "show_in_update_form": false, "exportable": true }
 				],
 				"owner_field": "ownerId",
-				"read_owner_only": true,
-				"write_owner_only": true,
+
+				"roles_allowed_to_read": ["owner"],
+				"roles_allowed_to_update": ["owner"],
+				"roles_allowed_to_delete": ["owner"],
 
 				"before_insert_code": "doc.amount = doc.quantity * doc.price;",
 

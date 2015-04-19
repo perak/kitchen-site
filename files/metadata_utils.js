@@ -49,8 +49,7 @@ this.objectRemoveMetadata = function(object) {
 		}
 		return;
 	}
-}
-
+};
 
 this.findObjectById = function(object, objectId) {
 	if(!object || !objectId) {
@@ -80,6 +79,44 @@ this.findObjectById = function(object, objectId) {
 		var property = object[propertyName];
 		if(_.isObject(property)) {
 			var res = findObjectById(property, objectId);
+			if(res) {
+				return res;
+			}
+		}
+	}
+	return null;
+};
+
+this.findObjectParent = function(object, objectId, parent) {
+	var res = parent || null;
+
+	if(!object || !objectId) {
+		return null;
+	}
+
+	var idField = "_id";
+	if(_.isFunction(object)) {
+		return null;
+	}
+
+	if(_.isArray(object)) {
+		var res = null;
+		_.find(object, function(item) { res = findObjectParent(item, objectId, parent); return !!res; });
+		if(res) {
+			return res;
+		}
+	}
+
+	if(_.isObject(object)) {
+		if(object[idField] == objectId) {
+			return parent;
+		}
+	}
+
+	for(var propertyName in object) {
+		var property = object[propertyName];
+		if(_.isObject(property)) {
+			var res = findObjectParent(property, objectId, object);
 			if(res) {
 				return res;
 			}
@@ -132,6 +169,172 @@ this.deleteObjectWithId = function(object, objectId) {
 	return null;
 };
 
+
+this.findObjectsOfType = function(object, objectType) {
+	var res = [];
+
+	if(!object || !objectType) {
+		return [];
+	}
+
+	var typeField = "objectType";
+	if(_.isFunction(object)) {
+		return [];
+	}
+
+	if(_.isArray(object)) {
+		_.each(object, function(item) { 
+			var tmp = findObjectsOfType(item, objectType);
+			_.each(tmp, function(o) {
+				res.push(o);
+			})
+		});
+		return res;
+	}
+
+	if(_.isObject(object)) {
+		if(object[typeField] == objectType) {
+			res.push(object._id);
+		}
+
+		for(var propertyName in object) {
+			var property = object[propertyName];
+			if(_.isObject(property)) {
+				var tmp = findObjectsOfType(property, objectType);
+				_.each(tmp, function(o) {
+					res.push(o);
+				})
+			}
+		}
+	}
+
+	return res;
+};
+
+
+this.findObjectParents = function(object, objectId, parents) {
+	var res = parents || [];
+
+	if(!object || !objectId) {
+		return res;
+	}
+
+	var parent = findObjectParent(object, objectId, null);
+	if(parent == null) {
+		return res;
+	}
+
+	res.unshift(parent);
+	return findObjectParents(object, parent._id, res);
+};
+
+this.findObjectParentsOfType = function(object, objectId, parentType) {
+	var parents = findObjectParents(object, objectId);
+	var res = [];
+	_.each(parents, function(parent) {
+		if(parent.objectType == parentType) {
+			res.push(parent);
+		}
+	});
+	return res;
+};
+
+this.findObjectParentOfType = function(object, objectId, parentType) {
+	var parents = findObjectParents(object, objectId);
+	var res = null;
+	_.each(parents, function(parent) {
+		if(parent.objectType == parentType) {
+			res = parent;
+		}
+	});
+	return res;
+};
+
+this.getPageRoute = function(object, pageId) {
+	var page = findObjectById(object, pageId);
+	if(!page) {
+		return "";
+	}
+
+	var route = "";
+	var parents = findObjectParentsOfType(object, page._id, "page");
+	_.each(parents, function(parent) {
+		if(route) {
+			route = route + ".";
+		}
+		route = route + parent.name;
+	});
+	if(route) {
+		route = route + ".";
+	}
+	route = route + page.name;
+	return route;
+};
+
+this.getAllRoutes = function(object) {
+	var routes = [];
+	// client routes
+	var pages = findObjectsOfType(object, "page");
+	_.each(pages, function(pageId) {
+		routes.push(getPageRoute(object, pageId));
+	});
+
+	// server-side routes
+	if(object.server_side_routes) {
+		_.each(object.server_side_routes, function(route) {
+			if(route.name) {
+				routes.push(route.name);
+			}
+		});
+	}
+
+	return routes;
+};
+
+// function returns all routes that belongs to the same zone as given object + zoneless pages + server side routes
+this.getAllRoutesInCurrentZone = function(object, objectId) {
+	var res = [];
+
+	var parentZone = null;
+
+	var tmp = findObjectById(object, objectId);
+	if(tmp && tmp.objectType == "zone") {
+		parentZone = tmp;
+	} else {
+		parentZone = findObjectParentOfType(object, objectId, "zone");
+	}
+
+	if(!parentZone) {
+		return [];
+	}
+
+	var pages = findObjectsOfType(object, "page");
+
+	_.each(pages, function(pageId) {
+		var page = findObjectById(object, pageId);
+		if(page) {
+			if(page.zoneless) {
+				res.push(getPageRoute(object, page._id));
+			} else {
+				var zone = findObjectParentOfType(object, page._id, "zone");
+				if(zone._id == parentZone._id) {
+					res.push(getPageRoute(object, page._id));
+				}
+			}
+		}
+	});
+
+	// server-side routes
+	if(object.server_side_routes) {
+		_.each(object.server_side_routes, function(route) {
+			if(route.name) {
+				res.push(route.name);
+			}
+		});
+	}
+	return res;
+};
+
 this.getObjectMetadata = function(objectType, meta) {
 	if(!meta) {
 		return null;
@@ -160,7 +363,7 @@ this.getObjectArrayItemType = function(objectType, memberName, meta) {
 	}
 
 	return member.subType || "";
-}
+};
 
 var objectAddMembers = function(object, metaMemberList, meta) {
 	if(!metaMemberList) {
@@ -249,6 +452,62 @@ this.extendWithMetadata = function(object, objectType, meta) {
 	}
 };
 
+this.simplifyObject = function(object, meta) {
+	if(!object) {
+		return;
+	}
+
+	if(!meta) {
+		return;
+	}
+
+	if(_.isArray(object)) {
+		_.each(object, function(obj) {
+			simplifyObject(obj, meta);
+		});
+		return;
+	}
+
+	if(_.isObject(object) && object.objectType) {
+		var type = object.objectType;
+		var objectMeta = getObjectMetadata(type, meta);
+		if(!objectMeta) {
+			return;
+		}
+
+		var template = {};
+		extendWithMetadata(template, type, meta);
+		_.each(objectMeta.members, function(member) {
+			if(member.name) {
+				var prop = object[member.name];
+				if(typeof(prop) == "string" || (!_.isObject(prop) && !_.isArray(prop))) {
+					if(!member.required && prop == template[member.name]) {
+						if(member.name != "type" && member.name != "mode") {
+							delete object[member.name];
+						} else {
+							if(member.name != "type" && (objectMeta.derivedFrom.indexOf("component") < 0 || type == "page" || type == "zone")) {
+								delete object[member.name];
+							}
+						}
+					}
+				} else {
+					if(!member.required && _.isEmpty(prop) && _.isEmpty(template[member.name]) && member.name != "collections") {
+						delete object[member.name];
+					} else {
+						if(member.type == "query") {
+							if(!prop.name && !prop.collection) {
+								delete object[member.name];
+							}
+						} else {
+							simplifyObject(prop, meta);
+						}
+					}
+				}
+			}
+		});
+	}
+};
+
 this.getDerivedTypes = function(objectType, includeThis, meta) {
 	if(!objectType || !meta) {
 		return [];
@@ -281,4 +540,4 @@ this.getDerivedTypes = function(objectType, includeThis, meta) {
 	});
 
 	return derivedTypes;
-}
+};

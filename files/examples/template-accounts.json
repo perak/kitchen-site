@@ -5,8 +5,7 @@
 		"meta_description": "Meteor Kitchen - example application",
 		"theme": "bootswatch-flatly",
 
-		"collections": [
-		],
+		"collections": [],
 
 		"public_zone": {
 			"navbar_class": "navbar-inverse navbar-fixed-top",

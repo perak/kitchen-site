@@ -1,5 +1,5 @@
 {
-	"version": 47,
+	"version": 52,
 	"classList": [
 		{
 			"objectType": "root",
@@ -436,26 +436,6 @@
 					"description": "Field name used to store user ID of document owner. Only for apps using user accounts. Value of this field will be automatically set server side by \"before.insert\" hook."
 				},
 				{
-					"name": "read_owner_only",
-					"title": "Only owner can read",
-					"type": "bool",
-					"subType": "",
-					"default": "false",
-					"required": false,
-					"input": "checkbox",
-					"description": "If \"owner_field\" specified, user can fetch\/view only own documents."
-				},
-				{
-					"name": "write_owner_only",
-					"title": "Only owner can update/remove",
-					"type": "bool",
-					"subType": "",
-					"default": "false",
-					"required": false,
-					"input": "checkbox",
-					"description": "If \"owner_field\" specified, document can be updated or removed only by owner."
-				},
-				{
 					"name": "roles_allowed_to_read",
 					"title": "Roles allowed to Read",
 					"type": "array",
@@ -463,7 +443,7 @@
 					"default": "",
 					"required": false,
 					"input": "stringlist",
-					"description": "List of user roles that can subscribe to this collection."
+					"description": "List of user roles that can subscribe to this collection. You can also use special roles \"nobody\" and \"owner\"."
 				},
 				{
 					"name": "roles_allowed_to_insert",
@@ -473,7 +453,7 @@
 					"default": "",
 					"required": false,
 					"input": "stringlist",
-					"description": "List of user roles that can insert documents into this collection."
+					"description": "List of user roles that can insert documents into this collection. You can also use special role \"nobody\"."
 				},
 				{
 					"name": "roles_allowed_to_update",
@@ -483,7 +463,7 @@
 					"default": "",
 					"required": false,
 					"input": "stringlist",
-					"description": "List of user roles that can update documents."
+					"description": "List of user roles that can update documents. You can also use special roles \"nobody\" and \"owner\"."
 				},
 				{
 					"name": "roles_allowed_to_delete",
@@ -493,7 +473,7 @@
 					"default": "",
 					"required": false,
 					"input": "stringlist",
-					"description": "List of user roles that can delete documents."
+					"description": "List of user roles that can delete documents. You can also use special roles \"nobody\" and \"owner\"."
 				},
 				{
 					"name": "before_insert_code",
@@ -1122,7 +1102,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text",
+					"input": "select_route",
 					"description": "If specified, page will have close button routing to this route"
 				},
 				{
@@ -1142,7 +1122,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text",
+					"input": "select_route",
 					"description": "Route name of page to navigate on back button click. Mandatory field for back button to appear"
 				},
 				{
@@ -1777,7 +1757,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text",
+					"input": "select_route",
 					"description": "Route name of destination page"
 				},
 				{
@@ -2175,7 +2155,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text",
+					"input": "select_route",
 					"description": "Destination route name"
 				},
 				{
@@ -2374,7 +2354,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text",
+					"input": "select_route",
 					"description": "Route name of page to navigate after successfull submit. Mandatory field for submit button to appear"
 				},
 				{
@@ -2384,7 +2364,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text",
+					"input": "select_route",
 					"description": "Route name of page to navigate on form cancelation. Mandatory field for cancel button to appear"
 				},
 				{
@@ -2394,7 +2374,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text",
+					"input": "select_route",
 					"description": "Route name of page to navigate when user clicks \"OK\" button in \"read_only\" form. Mandatory field for close button to appear"
 				},
 				{
@@ -2404,7 +2384,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text",
+					"input": "select_route",
 					"description": "Route name of page to navigate on form back button. Mandatory field for back button to appear"
 				},
 				{
@@ -2653,7 +2633,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text",
+					"input": "select_route",
 					"description": "Route name of page containing insert form"
 				},
 				{
@@ -2663,7 +2643,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text",
+					"input": "select_route",
 					"description": "Route name of page showing selected item details (usually page containing form of type \"read_only\")."
 				},
 				{
@@ -2673,7 +2653,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text",
+					"input": "select_route",
 					"description": "Route name of page containing edit form. Makes edit_route_params field mandatory in most cases to be functional."
 				},
 				{
@@ -2683,7 +2663,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text",
+					"input": "select_route",
 					"description": "Route name to execute when user clicks \"delete\". Not mandatory - generator will automatically produce code for delete operation."
 				},
 				{
@@ -2942,7 +2922,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text",
+					"input": "select_route",
 					"description": "Navigate to this route when item is clicked"
 				},
 				{

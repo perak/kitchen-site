@@ -23,6 +23,8 @@ Contributors
 
 <a href="https://github.com/perak" target="_blank"><b>Petar Korponaić</b></a> - original author
 
+<a href="https://github.com/Billybobbonnet" target="_blank"><b>Antoine Cordelois</b></a> - loader template
+
 <a href="https://github.com/peterennis" target="_blank"><b>Peter Ennis</b></a> - created `favicon.ico`
 
 <a href="https://github.com/robmoggach" target="_blank"><b>Robert Moggach</b></a> - improving examples and created nice "getting started" <a href="//www.youtube.com/embed/9k5YRxjP58Y" target="_blank">video</a>.

@@ -29,6 +29,7 @@ Template.TEMPLATE_NAME.helpers({
 	},
 
 	"title": function() {
+		if(!this.application) return "";
  		var containerObject = this.application.data;
  		var objectId = this.params.objectId;
  		var meta = this.metadata.data;
@@ -48,6 +49,7 @@ Template.TEMPLATE_NAME.helpers({
 	},
 
 	"isObject": function() {
+		if(!this.application) return false;
  		var containerObject = this.application.data;
  		var objectId = this.params.objectId;
  		var meta = this.metadata.data;
@@ -62,6 +64,7 @@ Template.TEMPLATE_NAME.helpers({
 	},
 
 	"isArray": function() {
+		if(!this.application) return false;
  		var containerObject = this.application.data;
  		var objectId = this.params.objectId;
  		var meta = this.metadata.data;
@@ -215,6 +218,18 @@ Template.TEMPLATE_NAME.helpers({
 						});
 					}
 				}; break;
+
+				case "select_route": {
+					control = "select";
+					choiceItems.push({ value: "", title: "" });
+
+					if(containerObject && containerObject.application) {
+						var routes = getAllRoutesInCurrentZone(containerObject.application, objectId);
+						_.each(routes, function(route) {
+							choiceItems.push({ value: route, title: route });
+						});
+					}
+				}; break;
 			}
 
 			if(control) {
@@ -285,7 +300,6 @@ Template.TEMPLATE_NAME.helpers({
 		var meta = this.metadata.data;
 
 		var object = findObjectById(containerObject, objectId);
-
 		if(!object || !object.objectType) {
 			return null;
 		}
@@ -377,6 +391,17 @@ Template.TEMPLATE_NAME.helpers({
 					}
 				}; break;
 
+				case "select_route": {
+					control = "select";
+					choiceItems.push({ value: "", title: "" });
+
+					if(containerObject && containerObject.application) {
+						var routes = getAllRoutesInCurrentZone(containerObject.application, objectId);
+						_.each(routes, function(route) {
+							choiceItems.push({ value: route, title: route });
+						});
+					}
+				}; break;
 			}
 
 			if(control) {

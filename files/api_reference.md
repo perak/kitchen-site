@@ -8,7 +8,7 @@ meta\_description | string | Default meta\_description for pages without meta\_d
 template | string | Default: "bootstrap" (you can expect more templates in the future).
 theme | string | Visual theme name. With "bootstrap" template, theme can be one of <a href="http://bootswatch.com/" target="\_blank">bootswatch</a> themes: bootswatch-amelia, bootswatch-cerulean, bootswatch-cosmo, bootswatch-cyborg, bootswatch-darkly, bootswatch-flatly, bootswatch-journal, bootswatch-lumen, bootswatch-paper, bootswatch-readable, bootswatch-simplex, bootswatch-slate, bootswatch-spacelab, bootswatch-superhero, bootswatch-united, bootswatch-yeti
 footer\_text | string | Text to show in page footer
-roles | array of string | List of user roles for applications with user account system
+roles | array of string | List of user roles for applications with user account system. There are two predefined roles "nobody" and "owner" (see collection object for more info).
 default\_role | string | Default role for new users
 collections | array of [collection](#collection) | Mongo database collections
 free\_zone | [zone](#zone) | Free zone (for application without user account system)
@@ -129,12 +129,10 @@ Property | Type | Description
 name | string | Object name
 fields | array of [field](#field) | Field list. Not mandatory, used by components such as form, dataview etc.
 owner\_field | string | Field name used to store user ID of document owner. Only for apps using user accounts. Value of this field will be automatically set server side by "before.insert" hook.
-read\_owner\_only | bool | If "owner\_field" specified, user can fetch/view only own documents.
-write\_owner\_only | bool | If "owner\_field" specified, document can be updated or removed only by owner.
-roles\_allowed\_to\_read | array of string | List of user roles that can subscribe to this collection.
-roles\_allowed\_to\_insert | array of string | List of user roles that can insert documents into this collection.
-roles\_allowed\_to\_update | array of string | List of user roles that can update documents.
-roles\_allowed\_to\_delete | array of string | List of user roles that can delete documents.
+roles\_allowed\_to\_read | array of string | List of user roles that can subscribe to this collection. You can use special roles "nobody" (nobody can read) and "owner" (only owner/creator can read).
+roles\_allowed\_to\_insert | array of string | List of user roles that can insert documents into this collection. You can use special role "nobody" (nobody can insert).
+roles\_allowed\_to\_update | array of string | List of user roles that can update documents. You can use special roles "nobody" (nobody can update) and "owner" (only owner/creator can update).
+roles\_allowed\_to\_delete | array of string | List of user roles that can delete documents. You can use special roles "nobody" (nobody can remove) and "owner" (only owner/creator can remove).
 before\_insert\_code | string | Code to be executed before new document is inserted into collection. Should be only body of a function with args: (userId, doc). See <a href="https://github.com/matb33/meteor-collection-hooks" target="\_blank">meteor-collection-hooks</a> package for more details.
 before\_update\_code | string | Code to be executed before document is updated. Should be only body of a function with args: (userId, doc, fieldNames, modifier, options)
 before\_remove\_code | string | Code to be executed before document is removed. Should be only body of a function with args: (userId, doc)
@@ -155,8 +153,6 @@ after\_remove\_source\_file | string | File that contains code to be executed af
 	"fields": [
 	],
 	"owner_field": "",
-	"read_owner_only": false,
-	"write_owner_only": false,
 	"roles_allowed_to_read": [
 	],
 	"roles_allowed_to_insert": [

@@ -12,13 +12,15 @@
 
 		"collections": [
 			{
-				"name": "metadata"
+				"name": "metadata",
+				"roles_allowed_to_read": [],
+				"roles_allowed_to_insert": [],
+				"roles_allowed_to_update": ["admin"],
+				"roles_allowed_to_delete": ["admin"]
 			},
 			{
 				"name": "applications",
 				"owner_field": "ownerId",
-				"read_owner_only": true,
-				"write_owner_only": true,
 				"fields": [
 					{ "name": "name", "title": "Application name", "type": "string", "required": true },
 					{
@@ -39,7 +41,11 @@
 						"show_in_read_only_form": false
 					}
 				],
-				"before_insert_source_file": "files/applications_before_insert.js"
+				"before_insert_source_file": "files/applications_before_insert.js",
+				"roles_allowed_to_read": ["owner"],
+				"roles_allowed_to_insert": ["admin", "user"],
+				"roles_allowed_to_update": ["owner"],
+				"roles_allowed_to_delete": ["owner"]
 			}
 		],
 
@@ -58,7 +64,7 @@
 									"name": "jumbotron_content",
 									"type": "custom_component",
 									"custom_template": "files/jumbotron/jumbotron",
-									"title": "Meteor Kitchen",
+									"title": "Meteor Kitchen"
 								}
 							]
 						},
@@ -884,6 +890,7 @@
 			{ "source": "files/images/example-invoices.png", "dest": "PUBLIC_DIR/images/example-invoices.png" },
 			{ "source": "files/images/example-onepage.png", "dest": "PUBLIC_DIR/images/example-onepage.png" },
 			{ "source": "files/images/example-markdowned.png", "dest": "PUBLIC_DIR/images/example-markdowned.png" },
+			{ "source": "files/images/example-photosharing.png", "dest": "PUBLIC_DIR/images/example-photosharing.png" },
 			{ "source": "files/images/example-plugins.png", "dest": "PUBLIC_DIR/images/example-plugins.png" },
 			{ "source": "files/images/ribbon-donate-gratipay.png", "dest": "PUBLIC_DIR/images/ribbon-donate-gratipay.png" },
 			{ "source": "files/images/ribbon-donate-bitcoin.png", "dest": "PUBLIC_DIR/images/ribbon-donate-bitcoin.png" },
