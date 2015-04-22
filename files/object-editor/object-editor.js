@@ -208,6 +208,10 @@ Template.TEMPLATE_NAME.helpers({
 					control = "html";
 				}; break;
 
+				case "markdown": {
+					control = "markdown";
+				}; break;
+
 				case "select_collection": {
 					control = "select";
 					choiceItems.push({ value: "", title: "" });
@@ -379,6 +383,10 @@ Template.TEMPLATE_NAME.helpers({
 
 				case "html": {
 					control = "html";
+				}; break;
+
+				case "markdown": {
+					control = "markdown";
 				}; break;
 
 				case "select_collection": {

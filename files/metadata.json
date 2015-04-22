@@ -1,5 +1,5 @@
 {
-	"version": 52,
+	"version": 54,
 	"classList": [
 		{
 			"objectType": "root",
@@ -3013,6 +3013,16 @@
 					"required": false,
 					"input": "",
 					"description": "Component list"
+				},
+				{
+					"name": "source",
+					"title": "Source",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "markdown",
+					"description": "Markdown source"
 				},
 				{
 					"name": "source_file",

@@ -25,7 +25,7 @@ You can download binary release <a href="/install/install_win.zip" _target="blan
 - Filenames case sensitive under windows too.
 - meteor-kitchen is using "curl" to download files. You can find curl for windows <a href="http://www.confusedbycode.com/curl/#downloads" target="_blank">here</a>.
 
-Current version is 0.9.33
+Current version is 0.9.34
 =========================
 
 Click <a href="{{pathFor 'version_history'}}">here</a> to see version history.
@@ -1154,10 +1154,10 @@ You can restrict any page inside private zone to any set of user roles by adding
 
 			"pages": [
 				{ "name": "home_public", "title": "Public home page" },
-				{ "name": "login", "template": "login.html" },
-				{ "name": "register", "template": "register.html" },
-				{ "name": "forgot_password", "template": "forgot_password.html" },
-				{ "name": "reset_password", "template": "reset_password.html", "route_params": ["resetPasswordToken"] }
+				{ "name": "login", "template": "login" },
+				{ "name": "register", "template": "register" },
+				{ "name": "forgot_password", "template": "forgot_password" },
+				{ "name": "reset_password", "template": "reset_password", "route_params": ["resetPasswordToken"] }
 			],
 
 			"menus": [
@@ -1191,7 +1191,7 @@ You can restrict any page inside private zone to any set of user roles by adding
 					"title": "Admin panel",
 					"roles": ["admin"]
 				},
-				{ "name": "logout", "template": "logout.html", "action_code": "App.logout();" }
+				{ "name": "logout", "template": "logout", "action_code": "App.logout();" }
 			],
 
 			"menus": [

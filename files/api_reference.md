@@ -633,7 +633,8 @@ dest\_selector | string | destination html element selector. Similar to jQuery s
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 query | [query](#query) | Query to be added to Template data context
 components | array of [component](#component) | Component list
-source\_file | string | Path to file containing markup (relative to input file)
+source | string | Markdown here
+source\_file | string | Path to file containing markdown (relative to input file)
 
 *Example:*
 ```
@@ -655,6 +656,7 @@ source\_file | string | Path to file containing markup (relative to input file)
 	},
 	"components": [
 	],
+	"source": "",
 	"source_file": ""
 }
 ```

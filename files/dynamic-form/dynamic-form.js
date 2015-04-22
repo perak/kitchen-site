@@ -317,6 +317,10 @@ Template.DynamicFormGroupDefault.helpers({
 			return Template.DynamicFormHtmlEditor;
 		}
 
+		if(control == "markdown") {
+			return Template.DynamicFormMarkdownEditor;
+		}
+
 		if(control == "select") {
 			return Template.DynamicFormSelect;
 		}
@@ -378,6 +382,10 @@ Template.DynamicFormGroupHorizontal.helpers({
 
 		if(control == "html") {
 			return Template.DynamicFormHtmlEditor;
+		}
+
+		if(control == "markdown") {
+			return Template.DynamicFormMarkdownEditor;
 		}
 
 		if(control == "select") {
@@ -617,6 +625,42 @@ Template.DynamicFormHtmlEditor.helpers({
 	}
 });
 
+Template.DynamicFormHtmlEditor.rendered = function() {
+	var textarea = this.$("textarea");
+	if(!textarea.length) {
+		return;
+	}
+
+	textarea.attr("data-type", this.data.field.dataType);
+};
+
+Template.DynamicFormMarkdownEditor.helpers({
+	"editorOptions": function() {
+		return {
+			lineNumbers: true,
+			mode: "markdown",
+			keyMap: "sublime"
+		};
+	},
+
+	"autofocus": function() {
+		return this.field.autofocus ? "autofocus" : "";
+	},
+
+	"value": function() {
+		if(!this.data || !this.field || !this.field.name) {
+			return "";
+		}
+		return this.data[this.field.name];
+	},
+
+	"dataType": function() {
+		if(!this.field) {
+			return "";
+		}
+		return this.field.dataType || "";
+	}
+});
 
 Template.DynamicFormSelect.helpers({
 	"autofocus": function() {

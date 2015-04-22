@@ -117,10 +117,10 @@
 						}
 					]
 				},
-				{ "name": "login", "template": "login.html" },
-				{ "name": "register", "template": "register.html" },
-				{ "name": "forgot_password", "template": "forgot_password.html" },
-				{ "name": "reset_password", "template": "reset_password.html", "route_params": ["resetPasswordToken"] }
+				{ "name": "login", "template": "login" },
+				{ "name": "register", "template": "register" },
+				{ "name": "forgot_password", "template": "forgot_password" },
+				{ "name": "reset_password", "template": "reset_password", "route_params": ["resetPasswordToken"] }
 			],
 
 			"menus": [
@@ -488,7 +488,7 @@
 							]
 						},
 
-						{ "name": "change_pass", "template": "change_pass.html" }
+						{ "name": "change_pass", "template": "change_pass" }
 					],
 
 					"menus": [
@@ -503,7 +503,7 @@
 					]
 				},
 
-				{ "name": "logout", "template": "logout.html", "action_code": "App.logout();" }
+				{ "name": "logout", "template": "logout", "action_code": "App.logout();" }
 			],
 
 			"menus": [

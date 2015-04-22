@@ -1,6 +1,14 @@
 Version History
 ===============
 
+0.9.34
+------
+
+- **Fixed bug related to special role "owner"**. Publication code, `userCanUpdate` and `userCanRemove` functions are now properly generated.
+
+- Markdown component - now you can directly set markdown source (before was possible only to reffer external file).
+
+
 0.9.33
 ------
 

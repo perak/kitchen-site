@@ -97,6 +97,10 @@
 	{{> CodeMirror name=field.name code=value options=editorOptions data=data field=field}}
 </template>
 
+<template name="DynamicFormMarkdownEditor">
+	{{> CodeMirror name=field.name code=value options=editorOptions data=data field=field}}
+</template>
+
 <template name="DynamicFormSelect">
 	<select class="form-control" {{autofocus}} name="{{field.name}}" data-type="{{dataType}}">
 		{{#each field.items}}
