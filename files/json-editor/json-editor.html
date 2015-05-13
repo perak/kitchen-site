@@ -1,9 +1,16 @@
 <template name="TEMPLATE_NAME">
-	<div class="row editor-toolbar">
-		<div class="col-md-12">
+	<div class="btn-toolbar" role="toolbar">
+		<div class="btn-group">
 			<button type="button" class="btn btn-success save-button" data-loading-text="Please wait...">
 				<span class="fa fa-save"></span>
 				&nbsp;Save
+			</button>
+		</div>
+
+		<div class="btn-group">
+			<a href="{{urlFor 'api.getapp.json' applicationId=application._id}}" target="_blank" class="btn btn-primary">
+				<span class="fa fa-download"></span>
+				&nbsp;Download
 			</button>
 		</div>
 	</div>

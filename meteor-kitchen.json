@@ -545,7 +545,6 @@
 									"name" : "json_view",
 									"parent_layout": true,
 									"class": "app-editor",
-									"text": "",
 
 									"query": {
 										"name": "application",
@@ -570,7 +569,28 @@
 											"custom_template": "files/json-editor/json-editor"
 										}
 									]
-								}
+								},
+
+								{
+									"name" : "console",
+									"parent_layout": true,
+									"class": "app-editor",
+
+									"query": {
+										"name": "application",
+										"collection": "applications",
+										"find_one": true,
+										"filter": { "_id": ":applicationId" }
+									},
+
+									"components": [
+										{
+											"type": "custom_component",
+											"name": "console_view",
+											"custom_template": "files/console-view/console-view"
+										}
+									]
+								}								
 							],
 
 							"components": [
@@ -580,7 +600,7 @@
 									"dest_position": "after",
 									"type": "div",
 									"class": "alert alert-info alert-dismissible build-info",
-									"text": "<button type=\"button\" class=\"close toggle-build-info\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>",
+									"text": "<button type=\"button\" class=\"close build-local\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>",
 									"components": [
 										{
 											"name": "text",
@@ -603,7 +623,8 @@
 												{ "name": "applicationId", "value": "application._id" },
 												{ "name": "objectId", "value": null },
 												{ "name": "propertyName", "value": null }
-											]
+											],
+											"icon_class": "fa fa-sitemap"
 										},
 										{
 											"title": "Source (JSON)",
@@ -612,19 +633,18 @@
 												{ "name": "applicationId", "value": "application._id" },
 												{ "name": "objectId", "value": null },
 												{ "name": "propertyName", "value": null }
-											]
+											],
+											"icon_class": "fa fa-code"
 										},
 										{
-											"title": "Build",
-											"url": "#",
-											"class": "toggle-build-info",
+											"title": "Build & Run",
+											"route": "applications.details.console",
+											"route_params": [
+												{ "name": "applicationId", "value": "application._id" },
+												{ "name": "objectId", "value": null },
+												{ "name": "propertyName", "value": null }
+											],
 											"icon_class": "fa fa-rocket"
-										},
-										{
-											"title": "Download",
-											"url": "{{urlFor 'api.getapp.json' applicationId=application._id}}",
-											"target": "_blank",
-											"icon_class": "fa fa-download"
 										}
 									]
 								},
@@ -645,7 +665,7 @@
 								}
 							],
 
-							"events_code": "\"click .toggle-build-info\": function(e, t) { $(\".alert.build-info\").toggle(); }"
+							"events_code": "\"click .build-local\": function(e, t) { $(\".alert.build-info\").toggle(\"fast\"); }"
 						}
 					]
 				},

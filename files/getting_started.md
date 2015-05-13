@@ -25,7 +25,7 @@ You can download the binary release <a href="/install/install_win.zip" _target="
 - Filenames are case sensitive under windows too.
 - meteor-kitchen is using "curl" to download files. You can find curl for windows <a href="http://www.confusedbycode.com/curl/#downloads" target="_blank">here</a>.
 
-Current version is 0.9.34
+Current version is 0.9.35
 =========================
 
 Click <a href="{{pathFor 'version_history'}}">here</a> to see version history.

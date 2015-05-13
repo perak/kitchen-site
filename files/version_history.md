@@ -1,6 +1,14 @@
 Version History
 ===============
 
+0.9.35
+------
+
+- Query parameter value now can be `Meteor.anything`, `this.anything`, `Session.anything` and `function() { anything }`
+
+- **GUI - now you can build application in the cloud** (without installing and running meteor-kitchen locally). But, application cannot be run in the cloud yet - server (<a href="http://www.meteorfarm.com" target="_blank">meteorfarm.com</a> setup is in progress.
+
+
 0.9.34
 ------
 
