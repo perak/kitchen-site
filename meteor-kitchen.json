@@ -10,6 +10,10 @@
 		"roles": [ "admin", "user", "blocked" ],
 		"default_role": "user",
 
+		"login_with_password": true,
+		"login_with_google": true,
+		"login_with_github": true,
+
 		"collections": [
 			{
 				"name": "metadata",
@@ -222,6 +226,7 @@
 								{ "title": "Custom components", 	"url": "#custom-components" },
 								{ "title": "Plugins", 				"url": "#plugins" },
 								{ "title": "Server Side Routes", 	"url": "#server-side-routes" },
+								{ "title": "OAuth", 				"url": "#oauth" },
 								{ "title": "User Roles",			"url": "#user-roles" }
 							]
 						}
@@ -542,6 +547,66 @@
 								},
 
 								{
+									"name" : "sitemap",
+									"parent_layout": true,
+									"class": "app-editor",
+
+									"query": {
+										"name": "application",
+										"collection": "applications",
+										"find_one": true,
+										"filter": { "_id": ":applicationId" }
+									},
+
+									"queries": [
+										{
+											"name": "metadata",
+											"collection": "metadata",
+											"find_one": true,
+											"options": { "sort": { "version": -1 } }
+										}
+									],
+
+									"components": [
+										{
+											"name": "map",
+											"type": "custom_component",
+											"custom_template": "files/sitemap/sitemap"
+										}
+									]
+								},
+
+								{
+									"name" : "database",
+									"parent_layout": true,
+									"class": "app-editor",
+
+									"query": {
+										"name": "application",
+										"collection": "applications",
+										"find_one": true,
+										"filter": { "_id": ":applicationId" }
+									},
+
+									"queries": [
+										{
+											"name": "metadata",
+											"collection": "metadata",
+											"find_one": true,
+											"options": { "sort": { "version": -1 } }
+										}
+									],
+
+									"components": [
+										{
+											"name": "diagram",
+											"type": "custom_component",
+											"custom_template": "files/dbdiagram/dbdiagram"
+										}
+									]
+								},
+
+								{
 									"name" : "json_view",
 									"parent_layout": true,
 									"class": "app-editor",
@@ -617,8 +682,28 @@
 									"class": "nav navbar-nav",
 									"items": [
 										{
-											"title": "Tree View",
+											"title": "Designer",
 											"route": "applications.details.form_view",
+											"route_params": [
+												{ "name": "applicationId", "value": "application._id" },
+												{ "name": "objectId", "value": null },
+												{ "name": "propertyName", "value": null }
+											],
+											"icon_class": "fa fa-edit"
+										},
+										{
+											"title": "Edit Source",
+											"route": "applications.details.json_view",
+											"route_params": [
+												{ "name": "applicationId", "value": "application._id" },
+												{ "name": "objectId", "value": null },
+												{ "name": "propertyName", "value": null }
+											],
+											"icon_class": "fa fa-code"
+										},
+										{
+											"title": "Sitemap",
+											"route": "applications.details.sitemap",
 											"route_params": [
 												{ "name": "applicationId", "value": "application._id" },
 												{ "name": "objectId", "value": null },
@@ -627,14 +712,14 @@
 											"icon_class": "fa fa-sitemap"
 										},
 										{
-											"title": "Source (JSON)",
-											"route": "applications.details.json_view",
+											"title": "Database",
+											"route": "applications.details.database",
 											"route_params": [
 												{ "name": "applicationId", "value": "application._id" },
 												{ "name": "objectId", "value": null },
 												{ "name": "propertyName", "value": null }
 											],
-											"icon_class": "fa fa-code"
+											"icon_class": "fa fa-database"
 										},
 										{
 											"title": "Build & Run",
@@ -928,7 +1013,7 @@
 		],
 
 		"packages": {
-			"meteor": ["datariot:ganalytics", "perak:codemirror"],
+			"meteor": ["datariot:ganalytics", "perak:codemirror", "d3", "perak:dagre-d3"],
 			"mrt": []
 		},
 

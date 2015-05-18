@@ -1,5 +1,5 @@
 {
-	"version": 54,
+	"version": 55,
 	"classList": [
 		{
 			"objectType": "root",
@@ -1460,6 +1460,16 @@
 					"description": "Default role for new users"
 				},
 				{
+					"name": "use_collection2",
+					"title": "Use Collection2",
+					"type": "bool",
+					"subType": "",
+					"default": "false",
+					"required": false,
+					"input": "checkbox",
+					"description": "Experimental feature. If set to `true` simple-schema will be generated and resulting code will use collection2. Default: false"
+				},
+				{
 					"name": "collections",
 					"title": "Collections",
 					"type": "array",
@@ -1498,6 +1508,36 @@
 					"required": false,
 					"input": "",
 					"description": "Private zone (for app with user account system). Pages inside this zone are accessible only for authenticeted users."
+				},
+				{
+					"name": "login_with_password",
+					"title": "Login with password",
+					"type": "bool",
+					"subType": "",
+					"default": "true",
+					"required": false,
+					"input": "checkbox",
+					"description": "Allow login with password (for app with user account system only). Default: true"
+				},
+				{
+					"name": "login_with_google",
+					"title": "Login with Google",
+					"type": "bool",
+					"subType": "",
+					"default": "false",
+					"required": false,
+					"input": "checkbox",
+					"description": "Allow OAuth login with google account (for app with user account system only). Default: false"
+				},
+				{
+					"name": "login_with_github",
+					"title": "Login with GitHub",
+					"type": "bool",
+					"subType": "",
+					"default": "false",
+					"required": false,
+					"input": "checkbox",
+					"description": "Allow OAuth login with github account (for app with user account system only). Default: false"
 				},
 				{
 					"name": "server_startup_code",

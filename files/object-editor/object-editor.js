@@ -78,41 +78,6 @@ Template.TEMPLATE_NAME.helpers({
  		return _.isArray(object[this.params.propertyName]);
 	},
 
-	"objectArrayItems": function() {
-		var containerObject = this.application.data;
-		var objectId = this.params.objectId;
-		var meta = this.metadata.data;
-
-		var object = findObjectById(containerObject, objectId);
-
-		if(!object || !object.objectType) {
-			return [];
-		}
-
-		var array = object[this.params.propertyName];
-		if(!_.isArray(array)) {
-			return [];
-		}
-
-		var self = this;
-
-		var list = [];
-		var nonameCounter = 1;
-		_.each(array, function(item) {
-			if(_.isObject(item)) {
-				var title = item.name || item.title || item.source || item.objectType + (nonameCounter++);
-
-				list.push({
-					itemTitle: title,
-					objectId: item._id,
-					rootId: self.application._id
-				});
-			}
-		});
-
- 		return list;
-	},
-
 	"newObjectForm": function() {
 		var containerObject = this.application.data;
 		var objectId = this.params.objectId;
@@ -588,5 +553,43 @@ Template.TEMPLATE_NAME.events({
 		});
 
 		return false;
+	}
+});
+
+Template.GenericArrayView.helpers({
+	"objectArrayItems": function() {
+		if(!this.application) return [];
+		var containerObject = this.application.data;
+		var objectId = this.params.objectId;
+		var meta = this.metadata.data;
+
+		var object = findObjectById(containerObject, objectId);
+
+		if(!object || !object.objectType) {
+			return [];
+		}
+
+		var array = object[this.params.propertyName];
+		if(!_.isArray(array)) {
+			return [];
+		}
+
+		var self = this;
+
+		var list = [];
+		var nonameCounter = 1;
+		_.each(array, function(item) {
+			if(_.isObject(item)) {
+				var title = item.name || item.title || item.source || item.objectType + (nonameCounter++);
+
+				list.push({
+					itemTitle: title,
+					objectId: item._id,
+					rootId: self.application._id
+				});
+			}
+		});
+
+ 		return list;
 	}
 });

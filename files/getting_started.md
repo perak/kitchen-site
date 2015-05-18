@@ -25,7 +25,7 @@ You can download the binary release <a href="/install/install_win.zip" _target="
 - Filenames are case sensitive under windows too.
 - meteor-kitchen is using "curl" to download files. You can find curl for windows <a href="http://www.confusedbycode.com/curl/#downloads" target="_blank">here</a>.
 
-Current version is 0.9.35
+Current version is 0.9.36
 =========================
 
 Click <a href="{{pathFor 'version_history'}}">here</a> to see version history.
@@ -1093,6 +1093,39 @@ You can add the array `server_side_routes` to your `application` object and the 
 - `path` is the route path. Example: `/api/show/some_data`. If you leave this blank, the path will be automatically created from the route name.
 
 - `source_file` is the path to the .js file (relative to the input JSON) which will be inserted into the controller `action` function (not mandatory).
+
+
+OAuth
+=====
+
+In application with user account system, inside `application` object set `login_with_google` and/or `login_with_github` to `true` and provide `clientId` and `secret` in your settings passed to meteor.
+
+Example `settings.json` file:
+
+```
+{
+	"public": {
+	},
+
+	"oauth": {
+		"google": {
+			"clientId": "yourClientIdHere",
+			"secret": "yourSecretHere"
+		},
+		"github": {
+			"clientId": "yourClientIdHere",
+			"secret": "yourSecretHere"
+		}
+	},
+	"env": {
+	}
+}
+
+```
+Built-in login form will automatically show "Sign in with Google" and/or "Sign in with GitHub" buttons.
+
+You can prevent users to login with password (and leave only OAuth login) by setting `login_with_password` to `false`.
+
 
 
 User Roles

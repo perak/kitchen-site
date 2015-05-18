@@ -6,6 +6,8 @@
 		"meta_description": "Meteor Kitchen - example application",
 		"theme": "bootswatch-darkly",
 
+		"use_collection2": false,
+
 		"collections": [
 			{
 				"name": "customers",

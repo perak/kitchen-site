@@ -10,50 +10,7 @@
 
 			{{#if isArray}}
 				{{#if defaultMode}}
-					<div class="row">
-						<div class="col-md-12">
-							<form class="form">
-								<div class="form-group">
-									<button type="button" id="object-array-insert-button" class="btn btn-success">
-										<span class="fa fa-plus">
-										</span>
-										Add new
-									</button>
-								</div>
-							</form>
-						</div>
-
-						<div class="col-md-12">
-
-							{{#if objectArrayItems}}
-								<table class="table table-hover table-striped object-array-table">
-									<thead>
-										<tr>
-											<th>Name</th>
-											<th>&nbsp;</th>
-										</tr>
-									</thead>
-
-									<tbody>
-										{{#each objectArrayItems}}
-											<tr>
-												<td>
-													{{itemTitle}}
-												</td>
-												<td class="td-icon">
-													<span id="delete-button" class="fa fa-trash-o" title="Delete"></span>
-												</td>
-											</tr>
-										{{/each}}
-									</tbody>
-								</table>
-							{{else}}
-								<div class="alert alert-info">
-									(empty)
-								</div>
-							{{/if}}
-						</div>
-					</div>
+					{{> GenericArrayView}}
 				{{/if}}
 
 				{{#if chooseTypeMode}}
@@ -69,4 +26,51 @@
 				{{/if}}
 			{{/if}}
 		</div>
+</template>
+
+<template name="GenericArrayView">
+	<div class="row">
+		<div class="col-md-12">
+			<form class="form">
+				<div class="form-group">
+					<button type="button" id="object-array-insert-button" class="btn btn-success">
+						<span class="fa fa-plus">
+						</span>
+						Add new
+					</button>
+				</div>
+			</form>
+		</div>
+
+		<div class="col-md-12">
+
+			{{#if objectArrayItems}}
+				<table class="table table-hover table-striped object-array-table">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>&nbsp;</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						{{#each objectArrayItems}}
+							<tr>
+								<td>
+									{{itemTitle}}
+								</td>
+								<td class="td-icon">
+									<span id="delete-button" class="fa fa-trash-o" title="Delete"></span>
+								</td>
+							</tr>
+						{{/each}}
+					</tbody>
+				</table>
+			{{else}}
+				<div class="alert alert-info">
+					(empty)
+				</div>
+			{{/if}}
+		</div>
+	</div>
 </template>

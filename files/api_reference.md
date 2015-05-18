@@ -5,15 +5,19 @@ Property | Type | Description
 title | string | Application title
 meta\_title | string | Default meta\_title for pages without meta\_title
 meta\_description | string | Default meta\_description for pages without meta\_description
-template | string | Default: "bootstrap" (you can expect more templates in the future).
+template | string | Default: "bootstrap" (you can expect more templates in the future)
 theme | string | Visual theme name. With "bootstrap" template, theme can be one of <a href="http://bootswatch.com/" target="\_blank">bootswatch</a> themes: bootswatch-amelia, bootswatch-cerulean, bootswatch-cosmo, bootswatch-cyborg, bootswatch-darkly, bootswatch-flatly, bootswatch-journal, bootswatch-lumen, bootswatch-paper, bootswatch-readable, bootswatch-simplex, bootswatch-slate, bootswatch-spacelab, bootswatch-superhero, bootswatch-united, bootswatch-yeti
 footer\_text | string | Text to show in page footer
 roles | array of string | List of user roles for applications with user account system. There are two predefined roles "nobody" and "owner" (see collection object for more info).
 default\_role | string | Default role for new users
+use\_collection2 | bool | Experimental feature. If set to true, schema will be generated and Collection2 package will be used for collections. Default: false
 collections | array of [collection](#collection) | Mongo database collections
 free\_zone | [zone](#zone) | Free zone (for application without user account system)
 public\_zone | [zone](#zone) | Public zone (for app with user account system). Pages inside this zone are accessible only for non-authenticeted users.
 private\_zone | [zone](#zone) | Private zone (for app with user account system). Pages inside this zone are accessible only for authenticeted users.
+login\_with\_password | bool | Allow login with password (for app with user account system only). Default: true
+login\_with\_google | bool | Allow OAuth login with google account (for app with user account system only). Default: false
+login\_with\_github | bool | Allow OAuth login with github account (for app with user account system only). Default: false
 server\_startup\_code | string | javascript code to execute at server startup
 client\_startup\_code | string | javascript code to execute at client startup
 on\_user\_created\_code | string | javascript code to execute when new user is created (Accounts.onCreateUser)
@@ -36,6 +40,7 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	"template": "",
 	"theme": "",
 	"footer_text": "",
+	"use_collection2": true,
 	"collections": [
 	],
 	"free_zone": {
@@ -47,6 +52,9 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 		"layout": "",
 		"navbar_class": ""
 	},
+	"login_with_password": true,
+	"login_with_google": true,
+	"login_with_github": true,
 	"server_startup_code": "",
 	"client_startup_code": "",
 	"server_startup_source_file": "",
@@ -78,6 +86,7 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	"roles": [
 	],
 	"default_role": "",
+	"use_collection2": true,
 	"collections": [
 	],
 	"public_zone": {
@@ -98,6 +107,9 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 		"layout": "",
 		"navbar_class": ""
 	},
+	"login_with_password": true,
+	"login_with_google": true,
+	"login_with_github": true,
 	"server_startup_code": "",
 	"client_startup_code": "",
 	"on_user_created_code": "",
