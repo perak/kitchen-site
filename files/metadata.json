@@ -1,5 +1,5 @@
 {
-	"version": 55,
+	"version": 59,
 	"classList": [
 		{
 			"objectType": "root",
@@ -290,6 +290,36 @@
 					"required": false,
 					"input": "text",
 					"description": "For fields with \"input\": \"crud\" - insert button and insert form title"
+				},
+				{
+					"name": "join_collection",
+					"title": "Join collection",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "select_collection",
+					"description": "Collection name to join. If set then this field acts as foreign key"
+				},
+				{
+					"name": "join_container",
+					"title": "Join container field",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text",
+					"description": "Field name where document from joined collection will be stored"
+				},
+				{
+					"name": "join_fields",
+					"title": "Join fields",
+					"type": "array",
+					"subType": "string",
+					"default": "",
+					"required": false,
+					"input": "stringlist",
+					"description": "Field list to fetch from joined collection. If not set, all fields will be fetched"
 				},
 				{
 					"name": "show_in_dataview",
@@ -1538,6 +1568,46 @@
 					"required": false,
 					"input": "checkbox",
 					"description": "Allow OAuth login with github account (for app with user account system only). Default: false"
+				},
+				{
+					"name": "login_with_linkedin",
+					"title": "Login with LinkedIn",
+					"type": "bool",
+					"subType": "",
+					"default": "false",
+					"required": false,
+					"input": "checkbox",
+					"description": "Allow OAuth login with linkedin account (for app with user account system only). Default: false"
+				},
+				{
+					"name": "login_with_facebook",
+					"title": "Login with Facebook",
+					"type": "bool",
+					"subType": "",
+					"default": "false",
+					"required": false,
+					"input": "checkbox",
+					"description": "Allow OAuth login with facebook account (for app with user account system only). Default: false"
+				},
+				{
+					"name": "login_with_twitter",
+					"title": "Login with Twitter",
+					"type": "bool",
+					"subType": "",
+					"default": "false",
+					"required": false,
+					"input": "checkbox",
+					"description": "Allow OAuth login with twitter account (for app with user account system only). Default: false"
+				},
+				{
+					"name": "login_with_meteor",
+					"title": "Login with Meteor",
+					"type": "bool",
+					"subType": "",
+					"default": "false",
+					"required": false,
+					"input": "checkbox",
+					"description": "Allow OAuth login with meteor developer account (for app with user account system only). Default: false"
 				},
 				{
 					"name": "server_startup_code",

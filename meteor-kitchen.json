@@ -13,6 +13,7 @@
 		"login_with_password": true,
 		"login_with_google": true,
 		"login_with_github": true,
+		"login_with_meteor": true,
 
 		"collections": [
 			{
@@ -37,7 +38,8 @@
 							{ "title": "Minimal: With user account system", "value": "accounts" },
 							{ "title": "Example: Dataview", 				"value": "dataview" },
 							{ "title": "Example: Invoices", 				"value": "invoices" },
-							{ "title": "Example: Admin", 					"value": "admin" }
+							{ "title": "Example: Admin", 					"value": "admin" },
+							{ "title": "Example: IoT - sensors", 			"value": "iot" }
 						],
 						"show_in_dataview": false,
 						"show_in_insert_form": true,
@@ -211,7 +213,7 @@
 							"dest_selector": ".sidebar",
 							"scroll_spy_selector": "",
 							"items": [
-								{ "title": "Quick Start Video", 	"url": "#quick-start-video" },
+								{ "title": "Quick Start Videos", 	"url": "#quick-start-videos" },
 								{ "title": "Download", 				"url": "#download" },
 								{ "title": "CLI", 					"url": "#cli" },
 								{ "title": "Input File", 			"url": "#input-file" },
@@ -220,6 +222,7 @@
 								{ "title": "Visual Themes",			"url": "#visual-themes" },
 								{ "title": "Components", 			"url": "#components" },
 								{ "title": "Collections", 			"url": "#collections" },
+								{ "title": "Joins", 				"url": "#joins" },
 								{ "title": "DataView Component",	"url": "#dataview-component" },
 								{ "title": "Form Component", 		"url": "#form-component" },
 								{ "title": "Route Params", 			"url": "#route-params" },
@@ -997,6 +1000,7 @@
 			{ "source": "files/images/example-markdowned.png", "dest": "PUBLIC_DIR/images/example-markdowned.png" },
 			{ "source": "files/images/example-photosharing.png", "dest": "PUBLIC_DIR/images/example-photosharing.png" },
 			{ "source": "files/images/example-plugins.png", "dest": "PUBLIC_DIR/images/example-plugins.png" },
+			{ "source": "files/images/example-iot.png", "dest": "PUBLIC_DIR/images/example-iot.png" },
 			{ "source": "files/images/ribbon-donate-gratipay.png", "dest": "PUBLIC_DIR/images/ribbon-donate-gratipay.png" },
 			{ "source": "files/images/ribbon-donate-bitcoin.png", "dest": "PUBLIC_DIR/images/ribbon-donate-bitcoin.png" },
 
@@ -1005,6 +1009,7 @@
 			{ "source": "files/examples/example-dataview.json", "dest": "PRIVATE_DIR/example-dataview.json" },
 			{ "source": "files/examples/example-invoices.json", "dest": "PRIVATE_DIR/example-invoices.json" },
 			{ "source": "files/examples/example-admin.json", "dest": "PRIVATE_DIR/example-admin.json" },
+			{ "source": "files/examples/example-iot.json", "dest": "PRIVATE_DIR/example-iot.json" },
 
 			{ "source": "files/metadata.json", "dest": "PRIVATE_DIR/metadata.json" },
 			{ "source": "files/metadata_utils.js", "dest": "LIB_DIR/metadata_utils.js" },

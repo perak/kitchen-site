@@ -23,6 +23,8 @@ Contributors
 
 <a href="https://github.com/perak" target="_blank"><b>Petar Korponaić</b></a> - original author
 
+<a href="https://github.com/bartonhammond" target="_blank"><b>Barton Hammond</b></a> - created awesome screencast video tutorial (and "todos" example - will be published soon)
+
 <a href="https://github.com/modcoms" target="_blank"><b>Martin McCormack</b></a> - improving docs
 
 <a href="https://github.com/Billybobbonnet" target="_blank"><b>Antoine Cordelois</b></a> - loader template

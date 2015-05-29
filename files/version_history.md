@@ -1,14 +1,55 @@
 Version History
 ===============
 
+0.9.38
+------
+
+#### New features
+
+- **Collection joins**: now you can define joins between collections. This is experimental feature. Currently uses [perak:joins](https://atmospherejs.com/perak/joins) package written in rush. See [getting started](/getting_started#joins) for more info.
+
+
+#### New example
+
+- **IoT - Sensors**. See it <a href="http://generator-iot.meteor.com" target="_blank">live</a>, source is <a href="https://github.com/perak/kitchen-examples/tree/master/example-iot" target="_blank">here</a>.
+
+
+#### Bugfixes
+
+- Fixed few minor bugs
+
+
+0.9.37
+------
+
+#### New features
+
+- **OAuth**: added more OAuth providers, now we got login with **google**, **github**, **linkedin**, **facebook**, **twitter** and **meteor**. See [getting started](/getting_started#oauth) for more info.
+
+- Small but usefull: boolean fields with `"input": "checkbox"` are now shown in dataview (table) as checkbox and user can check/uncheck it directly here. See updated [example-dataview](http://generator-dataview.meteor.com).
+
+
+#### Bugfixes
+
+- Built-in form component validation: if your field is for example of type "email" but *not required* and user leaves form field blank it was regEx validated - that was a bug and is fixed now. Non-required fields are not validated if blank.
+
+
 0.9.36
 ------
 
-- **OAuth** login: now you can generate code with OAuth login (currently only "google" and "github", other providers will be added soon). Just set `login_with_google` and/or `login_with_github` to `true` in application object. You'l need to add `clientId` and `secret` in settings passed to meteor. See "getting started" for more details.
+#### OAuth
 
-- **Collection2**: if you set `use_collection2` to `true` in your application object then simple-schema will be generated and Collection2 will be used for all collections. Note: inside collection object, you need to define all fields that will be inserted/modified - collection2 will automatically remove unlisted fields passed to `Collection.insert` and `Collection.update`.
+Now you can generate code with OAuth login (currently only "google" and "github", other providers will be added soon). Just set `login_with_google` and/or `login_with_github` to `true` in application object. You'l need to add `clientId` and `secret` in settings passed to meteor. See "getting started" for more details.
 
-- **GUI - sitemap diagram** is now automatically drawn - plan is to enable drag&drop to add/remove/move pages - one step closer to "draw & generate app" ;)
+
+#### Collection2
+
+If you set `use_collection2` to `true` in your application object then simple-schema will be generated and Collection2 will be used for all collections. Note: inside collection object, you need to define all fields that will be inserted/modified - collection2 will automatically remove unlisted fields passed to `Collection.insert` and `Collection.update`.
+
+
+#### GUI - sitemap diagram
+
+Is now automatically drawn - plan is to enable drag&drop to add/remove/move pages - one step closer to "draw & generate app" ;)
 
 
 0.9.35

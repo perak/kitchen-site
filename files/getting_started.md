@@ -1,8 +1,7 @@
-Quick start video
-=================
+Quick start videos
+==================
 
-<iframe width="560" height="315" src="//www.youtube.com/embed/9k5YRxjP58Y" frameborder="0" allowfullscreen></iframe>
-
+<div class="row"><div class="col-xs-12 col-md-6"><h4>CLI</h4><iframe width="480" height="360" src="//www.youtube.com/embed/9k5YRxjP58Y" frameborder="0" allowfullscreen></iframe></div><div class="col-xs-12 col-md-6"><h4>GUI</h4><iframe width="480" height="360" src="//www.youtube.com/embed/7sVwJQYcgWk" frameborder="0" allowfullscreen></iframe></div></div>
 
 Download
 ========
@@ -25,7 +24,7 @@ You can download the binary release <a href="/install/install_win.zip" _target="
 - Filenames are case sensitive under windows too.
 - meteor-kitchen is using "curl" to download files. You can find curl for windows <a href="http://www.confusedbycode.com/curl/#downloads" target="_blank">here</a>.
 
-Current version is 0.9.36
+Current version is 0.9.38
 =========================
 
 Click <a href="{{pathFor 'version_history'}}">here</a> to see version history.
@@ -525,6 +524,108 @@ You can name a field as `fieldName.subField` and your data will look like this:
 }
 ```
 *(that works in forms and dataviews)*
+
+
+Joins
+=====
+
+Since version 0.9.38 you can define joins between collections.
+
+Let's start with example:
+
+We have two collections: Companies & Employees
+
+Example document from `Companies` collection:
+```
+{
+    _id: "CQKDzmqmQXGhsC6PG",
+    name: "Acme"
+}
+```
+
+Example document from `Employees` collection:
+```
+{
+    _id: "dySSKA25pCtKjo5uA",
+    name: "Jimi Hendrix",
+    companyId: "CQKDzmqmQXGhsC6PG"
+}
+```
+
+In this example `Employees` collection have foreign key `companyId` referencing `Companies` collection.
+
+Now we want to do `Employees.find()` and get joined document that looks like this:
+
+```
+{
+    _id: "dySSKA25pCtKjo5uA",
+    name: "Jimi Hendrix",
+    companyId: "CQKDzmqmQXGhsC6PG",
+    company: {
+        name: "Acme"
+    }
+}
+```
+
+Meteor Kitchen uses [perak:joins](https://github.com/perak/meteor-joins) package to perform this.
+
+Here is example how to define join between Employees and Companies in meteor-kitchen:
+
+```
+"application": {
+	"collections": [
+		{
+			"name": "companies",
+			"fields": [
+				{ 
+					"name": "name",
+					"title": "Company name"
+				}
+			]
+		},
+		{
+			"name": "employees",
+			"fields": [
+				{ 
+					"name": "name",
+					"title": "Employee name"
+				},
+				{
+					"name": "companyId",
+					"join_collection": "companies",
+					"join_container": "company",
+					"join_fields": ["name"]
+				}
+			]
+		}
+	]
+
+	...
+}
+```
+
+Take a closer look at "companyId" field definition:
+```
+{
+	"name": "companyId",
+	"join_collection": "companies",
+	"join_container": "company",
+	"join_fields": ["name"]
+}
+```
+
+- **join_collection** is name of foreign collection to join with
+- **join_container** is field name where to store document from foreign collection
+- **join_fields** is array of field names we want to get from foreign collection
+
+That's it - now any call to `Employee.find()` or `Employee.findOne()` will return documents from Employees extended with data from Companies.
+
+Your employees publish functions will automatically return employees and companies cursor (companies filtered with employee.companyId).
+
+**Note:** perak:joins package is experimental and will change in the future (and maybe another package will be used instead).
+
+*Example application that demonstrates using joins will be added soon*
+
 
 Dataview Component
 ==================
@@ -1098,15 +1199,24 @@ You can add the array `server_side_routes` to your `application` object and the 
 OAuth
 =====
 
-In application with user account system, inside `application` object set `login_with_google` and/or `login_with_github` to `true` and provide `clientId` and `secret` in your settings passed to meteor.
+In application with user account system, inside `application` object you can set:
 
-Example `settings.json` file:
+```
+	"login_with_password": true,
+
+	"login_with_google": true,
+	"login_with_github": true,
+	"login_with_linkedin": true,
+	"login_with_facebook": true,
+	"login_with_twitter": true,
+	"login_with_meteor": true
+```
+
+and provide OAuth keys in your settings passed to meteor. Example `settings.json` file:
+
 
 ```
 {
-	"public": {
-	},
-
 	"oauth": {
 		"google": {
 			"clientId": "yourClientIdHere",
@@ -1115,14 +1225,34 @@ Example `settings.json` file:
 		"github": {
 			"clientId": "yourClientIdHere",
 			"secret": "yourSecretHere"
+		},
+		"linkedin": {
+			"clientId": "yourClientIdHere",
+			"secret": "yourSecretHere"
+		},
+		"facebook": {
+			"appId": "yourAppIdHere",
+			"secret": "yourSecretHere" 
+		},
+		"twitter": {
+			"consumerKey": "yourConsumerKeyHere",
+			"secret": "yourSecretHere"
+		},
+		"meteor": {
+			"clientId": "yourAppIdHere",
+			"secret": "yourSecretHere"
 		}
 	},
+
+	"public": {
+	},
+
 	"env": {
 	}
 }
 
 ```
-Built-in login form will automatically show "Sign in with Google" and/or "Sign in with GitHub" buttons.
+Built-in login form will automatically show "Sign in with..." buttons.
 
 You can prevent users to login with password (and leave only OAuth login) by setting `login_with_password` to `false`.
 

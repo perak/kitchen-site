@@ -15,7 +15,8 @@
 					{ "name": "name", "title": "Name", "required": true, "exportable": true },
 					{ "name": "phone", "title": "Phone", "default": "-", "exportable": true },
 					{ "name": "email", "title": "E-mail", "type": "email", "exportable": true },
-					{ "name": "note", "title": "Note", "input": "textarea", "exportable": true }
+					{ "name": "note", "title": "Note", "input": "textarea", "exportable": true },
+					{ "name": "active", "title": "Active", "type": "bool", "input": "checkbox", "display_helper": "booleanToYesNo", "exportable": true }
 				]
 			}
 		],

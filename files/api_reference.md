@@ -18,6 +18,10 @@ private\_zone | [zone](#zone) | Private zone (for app with user account system).
 login\_with\_password | bool | Allow login with password (for app with user account system only). Default: true
 login\_with\_google | bool | Allow OAuth login with google account (for app with user account system only). Default: false
 login\_with\_github | bool | Allow OAuth login with github account (for app with user account system only). Default: false
+login\_with\_linkedin | bool | Allow OAuth login with linkedin account (for app with user account system only). Default: false
+login\_with\_facebook | bool | Allow OAuth login with facebook account (for app with user account system only). Default: false
+login\_with\_twitter | bool | Allow OAuth login with twitter account (for app with user account system only). Default: false
+login\_with\_meteor | bool | Allow OAuth login with meteor developer account (for app with user account system only). Default: false
 server\_startup\_code | string | javascript code to execute at server startup
 client\_startup\_code | string | javascript code to execute at client startup
 on\_user\_created\_code | string | javascript code to execute when new user is created (Accounts.onCreateUser)
@@ -55,6 +59,10 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	"login_with_password": true,
 	"login_with_google": true,
 	"login_with_github": true,
+	"login_with_linkedin": true,
+	"login_with_facebook": true,
+	"login_with_twitter": true,
+	"login_with_meteor": true,
 	"server_startup_code": "",
 	"client_startup_code": "",
 	"server_startup_source_file": "",
@@ -110,6 +118,10 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	"login_with_password": true,
 	"login_with_google": true,
 	"login_with_github": true,
+	"login_with_linkedin": true,
+	"login_with_facebook": true,
+	"login_with_twitter": true,
+	"login_with_meteor": true,
 	"server_startup_code": "",
 	"client_startup_code": "",
 	"on_user_created_code": "",
@@ -396,6 +408,9 @@ display\_helper | string | Helper name used to display value from this field (us
 array\_item\_type | string | If "type" is set to "array" then you can define array item type here. Format is the same as for "type" property.
 crud\_fields | array of [field](#field) | If "array\_item\_type" is set to "object" then you can define fields for input type "crud".
 crud\_insert\_title | string | For fields with "input": "crud" - insert button and insert form title
+join\_collection | string | Collection name to join. If set then this field acts as foreign key
+join\_container | string | Field name where document from joined collection will be stored
+join\_fields | array of string | Field list to fetch from joined collection
 show\_in\_dataview | bool | If set to "false", field will not be shown in dataview components. Default: true
 show\_in\_insert\_form | bool | If set to "false", field will not be included in forms with mode "insert". Default: true
 show\_in\_update\_form | bool | If set to "false", field will not be included in forms with mode "update". Default: true
@@ -438,6 +453,10 @@ show\_in\_read\_only\_form | bool | If set to "false", field will not be include
 	"crud_fields": [
 	],
 	"crud_insert_title": "",
+	"join_collection": "",
+	"join_container": "",
+	"join_fields": [
+	],
 	"show_in_dataview": true,
 	"show_in_insert_form": true,
 	"show_in_update_form": true,

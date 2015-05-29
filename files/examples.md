@@ -77,6 +77,14 @@ Video Tutorial:
 <a href="http://generator-photosharing.meteor.com" target="_blank" class="btn btn-success">Live example</a> <a href="https://github.com/perak/kitchen-examples/tree/master/example-photosharing" target="_blank" class="btn btn-default">Source code</a>
 
 
+IoT (Internet of Things) - Sensors
+----------------------------------
+
+<a href="http://generator-iot.meteor.com" target="_blank"><img src="/images/example-iot.png" alt="iot" class="example-img"></a>
+
+<a href="http://generator-iot.meteor.com" target="_blank" class="btn btn-success">Live example</a> <a href="https://github.com/perak/kitchen-examples/tree/master/example-iot" target="_blank" class="btn btn-default">Source code</a>
+
+
 Plugins
 -------
 
