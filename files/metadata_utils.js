@@ -87,6 +87,53 @@ this.findObjectById = function(object, objectId) {
 	return null;
 };
 
+this.parentPropertyName = function(parent, object) {
+	for(var key in parent) {
+		if(parent[key] == object) {
+			return key;
+		}
+	}
+	return "";
+};
+
+this.findDirectParent = function(object, objectId, parent) {
+	var res = parent || null;
+
+	if(!object || !objectId) {
+		return null;
+	}
+
+	var idField = "_id";
+	if(_.isFunction(object)) {
+		return null;
+	}
+
+	if(_.isArray(object)) {
+		var res = null;
+		_.find(object, function(item) { res = findDirectParent(item, objectId, object); return !!res; });
+
+		return res;
+	}
+
+	if(_.isObject(object) && object[idField]) {
+		if(object[idField] == objectId) {
+			return parent;
+		}
+
+		for(var propertyName in object) {
+			var property = object[propertyName];
+			if(_.isArray(property) || _.isObject(property)) {
+				var res = findDirectParent(property, objectId, object);
+				if(res) {
+					return res;
+				}
+			}
+		}
+	}
+
+	return null;
+}
+
 this.findObjectParent = function(object, objectId, parent) {
 	var res = parent || null;
 

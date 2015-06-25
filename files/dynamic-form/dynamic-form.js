@@ -7,29 +7,31 @@ function getDynamicFormValues(form) {
 		var fieldName = $(this).attr("name") || "";
 		var fieldValue = $(this).val();
 
-		// multiselect - I want empty array instead of null
-		if(tagName == "select" && $(this).attr("multiple") && fieldValue == null) fieldValue = [];
+		if(fieldName) {
+			// multiselect - I want empty array instead of null
+			if(tagName == "select" && $(this).attr("multiple") && fieldValue == null) fieldValue = [];
 
-		if(fieldType === "checkbox") {
-			var checked = $(this).is(":checked");
-			if(!fieldValue || fieldValue == "on") {
-				// if field doesn't have value specified, result value is bool
-				values[fieldName] = checked;
-			} else {
-				if(!values[fieldName]) {
-					values[fieldName] = [];
-				}
-				if(checked) {
-					values[fieldName].push(fieldValue);
-				}
-			}
-		} else {
-			if(fieldType === "radio") {
-				if($(this).is(":checked")) {
-					values[fieldName] = fieldValue;
+			if(fieldType === "checkbox") {
+				var checked = $(this).is(":checked");
+				if(!fieldValue || fieldValue == "on") {
+					// if field doesn't have value specified, result value is bool
+					values[fieldName] = checked;
+				} else {
+					if(!values[fieldName]) {
+						values[fieldName] = [];
+					}
+					if(checked) {
+						values[fieldName].push(fieldValue);
+					}
 				}
 			} else {
-				values[fieldName] = fieldValue;			
+				if(fieldType === "radio") {
+					if($(this).is(":checked")) {
+						values[fieldName] = fieldValue;
+					}
+				} else {
+					values[fieldName] = fieldValue;			
+				}
 			}
 		}
 	});
@@ -176,7 +178,7 @@ function setFieldValue(form, fieldName, fieldValue) {
 
 Template.DynamicForm.rendered = function() {
 	$("input[autofocus], select[autofocus], textarea[autofocus]").first().focus();
-}
+};
 
 Template.DynamicForm.helpers({
 	"formDescription": function() {
@@ -278,7 +280,7 @@ Template.DynamicFormGroupDefault.rendered = function() {
 	$("[data-toggle='popover']").popover({
 		container: "body"
 	});
-}
+};
 
 Template.DynamicFormGroupDefault.helpers({
 	"formInput": function() {
@@ -345,7 +347,7 @@ Template.DynamicFormGroupHorizontal.rendered = function() {
 	$("[data-toggle='popover']").popover({
 		container: "body"
 	});
-}
+};
 
 Template.DynamicFormGroupHorizontal.helpers({
 	"formInput": function() {

@@ -1,6 +1,24 @@
 <template name="DynamicForm">
 	{{#with formDescription}}
+
 		<form role="form" id="{{id}}" class="dynamic-form {{formClass}}">
+			{{#if title}}
+				<h3>
+					{{title}}
+					{{#if hasButtons}}
+						<div class="pull-right">
+							{{#if submitButton}}
+								<button type="submit" class="btn btn-sm btn-success submit-button" data-loading-text="Please wait...">{{submitButton}}</button>
+							{{/if}}
+
+							{{#if cancelButton}}
+								<button type="button" class="btn btn-sm btn-default cancel-button">{{cancelButton}}</button>
+							{{/if}}
+						</div>
+					{{/if}}
+				</h3>
+			{{/if}}
+
 			{{#if isHorizontal}}
 
 				{{#each fields}}

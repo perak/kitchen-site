@@ -85,6 +85,30 @@ IoT (Internet of Things) - Sensors
 <a href="http://generator-iot.meteor.com" target="_blank" class="btn btn-success">Live example</a> <a href="https://github.com/perak/kitchen-examples/tree/master/example-iot" target="_blank" class="btn btn-default">Source code</a>
 
 
+IoT (Internet of Things) - Geiger
+---------------------------------
+
+<a href="http://generator-geiger.meteor.com" target="_blank"><img src="/images/example-geiger.png" alt="geiger" class="example-img"></a>
+
+<a href="http://generator-geiger.meteor.com" target="_blank" class="btn btn-success">Live example</a> <a href="https://github.com/perak/kitchen-examples/tree/master/example-geiger" target="_blank" class="btn btn-default">Source code</a>
+
+
+IDE - minimalistic cloud IDE
+----------------------------
+
+<a href="http://generator-ide.meteor.com" target="_blank"><img src="/images/example-ide.png" alt="ide" class="example-img"></a>
+
+<a href="http://generator-ide.meteor.com" target="_blank" class="btn btn-success">Live example</a> <a href="https://github.com/perak/kitchen-examples/tree/master/example-ide" target="_blank" class="btn btn-default">Source code</a>
+
+
+Upload
+------
+
+<a href="http://generator-upload.meteor.com" target="_blank"><img src="/images/example-upload.png" alt="upload" class="example-img"></a>
+
+<a href="http://generator-upload.meteor.com" target="_blank" class="btn btn-success">Live example</a> <a href="https://github.com/perak/kitchen-examples/tree/master/example-upload" target="_blank" class="btn btn-default">Source code</a>
+
+
 Plugins
 -------
 

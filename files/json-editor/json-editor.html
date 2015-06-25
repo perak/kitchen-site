@@ -13,6 +13,13 @@
 				&nbsp;Download
 			</button>
 		</div>
+
+		<div class="btn-group">
+			<button type="button" class="btn btn-default github-push-button" data-loading-text="Please wait...">
+				<span class="fa fa-github"></span>
+				&nbsp;Push to GitHub
+			</button>
+		</div>
 	</div>
 
 	<div class="row">
@@ -29,4 +36,72 @@
 			{{> CodeMirror id="json-editor" options=editorOptions code=editorCode}}
 		</div>
 	</div>
+</template>
+
+
+<template name="GithubDialog">
+	<form role="form">
+		{{#if errorMessage}}
+			<div class="alert alert-warning">
+				{{errorMessage}}
+			</div>
+		{{/if}}
+
+		{{#if githubError}}
+			<div class="alert alert-warning">
+				{{githubError}}
+			</div>
+		{{else}}
+			{{#if githubRepos}}
+				<div class="form-group field-githubRepo">
+					<label for="githubRepo">
+						GitHub repository
+					</label>
+					<div class="input-div">
+						<select name="githubRepo" class="form-control" required>
+							<option value="">Choose repository</option>
+							{{#each githubRepos}}
+								<option value="{{name}}" {{selected}}>{{name}}</option>
+							{{/each}}
+						</select>
+						<span id="help-text" class="help-block">
+						</span>
+						<span id="error-text" class="help-block">
+						</span>
+					</div>
+				</div>
+				<div class="form-group field-commitMessage">
+					<label for="commitMessage">
+						Commit message
+					</label>
+					<div class="input-div">
+					<textarea class="form-control" name="commitMessage" required></textarea>
+						<span id="help-text" class="help-block">
+						</span>
+						<span id="error-text" class="help-block">
+						</span>
+					</div>
+				</div>
+			{{else}}
+				<div class="alert alert-default">
+					Please wait...
+				</div>
+			{{/if}}
+		{{/if}}
+
+		<div class="form-group">
+			<div class="submit-div">
+				{{#if githubRepos}}
+					<button id="form-submit-button" class="btn btn-success" type="submit" data-loading-text="Please wait...">
+						<span class="fa fa-check">
+						</span>
+						Push
+					</button>
+				{{/if}}
+				<a href="#" id="form-cancel-button" class="btn btn-default">
+					Cancel
+				</a>
+			</div>
+		</div>
+	</form>
 </template>

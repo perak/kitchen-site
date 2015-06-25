@@ -24,7 +24,8 @@ You can download the binary release <a href="/install/install_win.zip" _target="
 - Filenames are case sensitive under windows too.
 - meteor-kitchen is using "curl" to download files. You can find curl for windows <a href="http://www.confusedbycode.com/curl/#downloads" target="_blank">here</a>.
 
-Current version is 0.9.38
+
+Current version is 0.9.42
 =========================
 
 Click <a href="{{pathFor 'version_history'}}">here</a> to see version history.
@@ -139,7 +140,7 @@ As you can see, the **application** object is at the root and contains **free\_z
 - If the application object has both a **public\_zone** and a **private\_zone**, pages under **public\_zone** will be accessible only for non-authenticated users, and pages under **private\_zone** will be accessible only for authenticated users.
 
 Each zone has **pages** and **menus** arrays containing descriptions of top-level pages and menus under that zone.
- 
+
 
 Pages and Menus
 ===============
@@ -156,7 +157,7 @@ Pages and Menus
 			],
 
 			"menus": [
-				{ 
+				{
 					"name": "main_menu",
 					"class": "nav navbar-nav",
 					"items": [
@@ -176,7 +177,7 @@ Copy & paste it into your text editor, save it as "example-minimal.json" and run
 meteor-kitchen example-minimal.json ./example-minimal
 ```
 
-That will produce a simple application with a navbar and two pages. 
+That will produce a simple application with a navbar and two pages.
 
 You can see a live example <a href="http://generator-minimal.meteor.com" target="_blank">here</a>
 
@@ -228,7 +229,7 @@ To produce this, add a **pages** array to any **page** object - in the same way 
 }
 ...
 ```
-Subpages will have the route name constructed from its parent's page route name and the subpage name separated with a dot. 
+Subpages will have the route name constructed from its parent's page route name and the subpage name separated with a dot.
 
 In the previous example:
 
@@ -281,7 +282,7 @@ The generator has several built-in examples. To try them out, you just run:
 meteor-kitchen --example-subpages ./example-subpages
 ```
 
-This will produce an application with pages and subpages. 
+This will produce an application with pages and subpages.
 
 You can see a live example <a href="http://generator-subpages.meteor.com" target="_blank">here</a>
 
@@ -462,7 +463,7 @@ Before we continue with components `dataview` and `form`, let's add some **mongo
 Collections
 ===========
 
-To define collections, add the **collections** array to your **application** object: 
+To define collections, add the **collections** array to your **application** object:
 
 ```
 {
@@ -577,7 +578,7 @@ Here is example how to define join between Employees and Companies in meteor-kit
 		{
 			"name": "companies",
 			"fields": [
-				{ 
+				{
 					"name": "name",
 					"title": "Company name"
 				}
@@ -586,7 +587,7 @@ Here is example how to define join between Employees and Companies in meteor-kit
 		{
 			"name": "employees",
 			"fields": [
-				{ 
+				{
 					"name": "name",
 					"title": "Employee name"
 				},
@@ -689,7 +690,7 @@ A minimal application with a `dataview` component should look like this:
 			],
 
 			"menus": [
-				{ 
+				{
 					"name": "main_menu",
 					"class": "nav navbar-nav",
 					"items": [
@@ -825,7 +826,7 @@ To make it clearer let's see an example application with a dataview and an inser
 			],
 
 			"menus": [
-				{ 
+				{
 					"name": "main_menu",
 					"class": "nav navbar-nav",
 					"items": [
@@ -838,7 +839,7 @@ To make it clearer let's see an example application with a dataview and an inser
 }
 ```
 
-In this example we have a page named `home` with a `dataview` component and a subpage named `insert`. 
+In this example we have a page named `home` with a `dataview` component and a subpage named `insert`.
 Subpage `insert` has a `form` component named `insert_form`.
 
 Now look:
@@ -1016,7 +1017,7 @@ Here is a full example with `insert` and `update` forms:
 			],
 
 			"menus": [
-				{ 
+				{
 					"name": "main_menu",
 					"class": "nav navbar-nav",
 					"items": [
@@ -1032,7 +1033,7 @@ Here is a full example with `insert` and `update` forms:
 Custom components
 =================
 
-You can also write your own components and add them into pages. 
+You can also write your own components and add them into pages.
 
 **Note**: This is only for simple components (components that don't require special processing while generating the application). If you need advanced, complex components write <a href="#plugins">plugins</a> instead.
 
@@ -1088,7 +1089,7 @@ Meteor kitchen comes with two example plugins. Please navigate to the first exam
 cd ~/.meteor-kitchen/plugins/example1/
 ```
 
-The directory contains two files: 
+The directory contains two files:
 
 - `plugin.js` is javascript code that is passed to node.js and executed. It should create html and js that the generator will insert into the page.
 - `plugin.json` is a JSON file with plugin settings: here you can specify which meteor and mrt packages your plugin is using.
@@ -1112,7 +1113,7 @@ You can use plugins in your application by adding a component into a page and se
 ...
 ```
 
-Component type is set to `example1`. This type is unknown to the generator so it will search the plugins directory for a subdirectory named `example1` that contains a file named `plugin.js`. 
+Component type is set to `example1`. This type is unknown to the generator so it will search the plugins directory for a subdirectory named `example1` that contains a file named `plugin.js`.
 If a file `plugins/example1/plugin.js` is found, the generator will pass that file to "node.js" and executed it. This file will produce html and js content that will be inserted into the page.
 
 You can provide a `properties` object with anything inside, that object will be passed to the plugin processing code.
@@ -1150,9 +1151,9 @@ Method `getInput()` returns the component description - a javascript object extr
 	"js": ""
 }
 ```
-Properties `html`, and `js` are automatically added by the generator. Those are output strings that our plugin code should fill with content. 
+Properties `html`, and `js` are automatically added by the generator. Those are output strings that our plugin code should fill with content.
 
-Method `setOutput()` will pass "html" and "js" strings to the generator and these will be inserted into the page. 
+Method `setOutput()` will pass "html" and "js" strings to the generator and these will be inserted into the page.
 
 This is a really trivial example that shows how to write a custom component. Note that you can add any custom properties to the component object inside the input file and use them inside the plugin.
 
@@ -1232,7 +1233,7 @@ and provide OAuth keys in your settings passed to meteor. Example `settings.json
 		},
 		"facebook": {
 			"appId": "yourAppIdHere",
-			"secret": "yourSecretHere" 
+			"secret": "yourSecretHere"
 		},
 		"twitter": {
 			"consumerKey": "yourConsumerKeyHere",
@@ -1295,8 +1296,8 @@ First, you need to add a `roles` array to the application object:
 }
 ```
 
-Meteor kitchen will create code that adds a `roles` array to the user document automatically. 
-If you specify `default_role`, that role will be added to new users. 
+Meteor kitchen will create code that adds a `roles` array to the user document automatically.
+If you specify `default_role`, that role will be added to new users.
 Each user can have multiple roles (`User.roles` is an array of strings).
 
 ### Restrict access to pages
@@ -1354,7 +1355,7 @@ You can restrict any page inside a private zone to any set of user roles by addi
 					"title": "Admin panel",
 					"roles": ["admin"]
 				},
-				{ "name": "logout", "template": "logout", "action_code": "App.logout();" }
+				{ "name": "logout", "template": "logout" }
 			],
 
 			"menus": [
@@ -1381,7 +1382,7 @@ You can restrict any page inside a private zone to any set of user roles by addi
 }
 ```
 
-In this example we have page "admin_panel" that is restricted to role "admin" - regular users (users with role "user") cannot access this page. 
+In this example we have page "admin_panel" that is restricted to role "admin" - regular users (users with role "user") cannot access this page.
 If you try this example, when you login into application you will not see "Admin panel" page because you are in the "user" role. Use the mongo shell to add "admin" to the `roles` array:
 
 ```
@@ -1446,8 +1447,8 @@ There are two predefined built-in roles: "nobody" and "owner":
 
 ### Document owner
 
-Document **owner** is by default user who inserted document. 
-Meteor kitchen generates code that sets a "createdBy" field in each document automatically in the "before.insert" hook. 
+Document **owner** is by default user who inserted document.
+Meteor kitchen generates code that sets a "createdBy" field in each document automatically in the "before.insert" hook.
 In a collection object, you can define a custom "owner_field" - that is the name of the field that will store the user ID of the document owner.
 If you set for example: `"owner_field": "ownerId"` then document.ownerId will be used to determine the document owner.
 
@@ -1471,6 +1472,85 @@ In this example, we set following permissions:
 - **insert** - only users with role "user" and "admin"
 - **update** - only document owner can modify document
 - **delete** - nobody can delete document
+
+
+File Uploads
+============
+
+You can define collection of type `file_collection` and generated collection will be <a href="https://github.com/CollectionFS/Meteor-CollectionFS" target="_blank">FS.Collection</a> (instead usual "Mongo.Collection") and you can use it to store uploaded (or any other) files.
+
+```
+"collections": [
+	{
+		"name": "my_files",
+		"type": "file_collection",
+
+		"storage_adapters": ["gridfs"],
+
+		"roles_allowed_to_read": [],
+		"roles_allowed_to_insert": [],
+		"roles_allowed_to_update": [],
+		"roles_allowed_to_delete": [],
+		"roles_allowed_to_download": []
+	}
+]
+```
+
+You can write `_id` of uploaded into normal collection and automatically join it with file collection like this:
+
+```
+"collections": [
+	{
+		"name": "my_files",
+		"type": "file_collection",
+
+		"storage_adapters": ["gridfs"],
+
+		"roles_allowed_to_read": [],
+		"roles_allowed_to_insert": [],
+		"roles_allowed_to_update": [],
+		"roles_allowed_to_delete": [],
+		"roles_allowed_to_download": []
+	},
+
+	{
+		"name": "my_collection",
+		"fields": [
+			{
+				"name": "fileId",
+				"input": "file",
+				"file_collection": "my_files",
+				"file_container": "fileObject"
+			}
+		]
+	}
+]
+```
+
+Now, when you upload file into "my_files" collection, write file's `_id` into "my_collection" `fileId` and if you do:
+
+```
+MyCollection.find()
+```
+
+You'l get something like this:
+
+```
+{
+	_id: "dySSKA25pCtKjo5uA",
+	fileId: "CQKDzmqmQXGhsC6PG",
+	fileObject: ...FS.File object...
+}
+```
+
+#### Form
+
+If you set `"input": "file"` in your field definition, built-in form component will show `<input type="file">`. This is not perfectly implemented and will be improved in near future.
+
+
+#### Example
+
+See <a href="http://generator-upload.meteor.com" target="_blank">live example</a>, source is <a href="https://github.com/perak/kitchen-examples/tree/master/example-upload" target="_blank">here</a>.
 
 
 To be continued...

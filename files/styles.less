@@ -12,6 +12,23 @@
 	width: 100%;
 }
 
+.object-tab-menu {
+	margin-bottom: 0;
+	border-bottom: none;
+}
+
+.object-form-container {
+	overflow-y: auto;
+	margin-bottom: 5px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.object-tree-container {
+	overflow-y: auto;
+	margin-bottom: 5px;
+}
+
 .object-tree .object-item {
 	font-weight: bold;
 }
@@ -68,7 +85,7 @@
 }
 
 .sidebar {
-	top: 61px;
+	top: 51px;
 }
 
 
@@ -91,6 +108,8 @@
 }
 
 .dagre-container {
+	margin-bottom: 5px;
+
 	text {
 		font-weight: 300;
 		font-family: "Helvetica Neue", Helvetica, Arial, sans-serf;
@@ -98,14 +117,18 @@
 	}
 
 	.node rect {
-	  stroke: #333;
-	  fill: #f0ad4e;
-	  stroke-width: 1.5px;
-	  cursor: pointer;
+		stroke: #ffffff;
+		fill: #77b300;
+		stroke-width: 1.5px;
+		cursor: pointer;
+	}
+
+	.node.selected rect {
+		fill: #2a9fd6;
 	}
 
 	.node .label {
-		fill: #000;
+		fill: #fff;
 		cursor: pointer;
 	}
 

@@ -241,7 +241,7 @@
 					]
 				},
 
-				{ "name": "logout", "template": "logout", "action_code": "App.logout();" }
+				{ "name": "logout", "template": "logout" }
 			],
 
 			"menus": [

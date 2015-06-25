@@ -1,6 +1,54 @@
 Version History
 ===============
 
+0.9.42
+------
+
+### New features
+
+- Application with user account system now can have "free_zone" too. Pages inside "free_zone" are accessible for both authenticated and non-authenticated users. See updated <a href="https://github.com/perak/kitchen-examples/tree/master/example-photosharing" target="_blank">photosharing example</a>. In example application, main page with photos is inside free_zone.
+
+- Page object's `zoneless` property is now deprecated and exists only for backward compatibility. Will be removed soon.
+
+
+### New example
+
+- **IoT - Geiger**: see it <a href="http://generator-geiger.meteor.com" target="_blank">live</a>, source is <a href="https://github.com/perak/kitchen-examples/tree/master/example-geiger" target="_blank">here</a>.
+
+
+0.9.41
+------
+
+### New example
+
+- **Minimalistic IDE**: see it <a href="http://generator-ide.meteor.com" target="_blank">live</a>, source is <a href="https://github.com/perak/kitchen-examples/tree/master/example-ide" target="_blank">here</a>. Application demonstrates how to use built-in "tree_view" component (and more).
+
+
+0.9.40
+------
+
+### New features
+
+- **GUI**: first step in integration with **GitHub** - now you can push code to GitHub directly from Kitchen-GUI.
+
+
+### Bugfixes
+
+- Changed e-mail regex check in forms - e-mail address now can contain `+` sign.
+
+- Removed deprecated `action_code` property from examples.
+
+- Fixed: collection hooks are generated twice
+
+
+0.9.39
+------
+
+#### New features
+
+- **Upload**: at last! Using <a href="https://github.com/CollectionFS/Meteor-CollectionFS" target="_blank">CollectionFS</a>. See <a href="http://generator-upload.meteor.com" target="_blank">live example</a>, source is <a href="https://github.com/perak/kitchen-examples/tree/master/example-upload" target="_blank">here</a>. See [getting started](/getting_started#file-uploads) for more info.
+
+
 0.9.38
 ------
 
@@ -268,7 +316,7 @@ Params that are not listed in `params` array are treated as route params and res
 
 ```
 Meteor.subscribe("example", this.params.theDate);
-``` 
+```
 
 
 0.9.15
@@ -385,7 +433,7 @@ Meteor.subscribe("example", this.params.theDate);
 
 - GUI: few improvements
 
-- GUI: tree editor and object editor pages were generator plugins - now they are changed to regular components. 
+- GUI: tree editor and object editor pages were generator plugins - now they are changed to regular components.
 
 - CLI: Page now can have "zoneless" property. If set to true page will be accessible both for authenticated and non-authenticated users.
 
@@ -397,7 +445,7 @@ Meteor.subscribe("example", this.params.theDate);
 
 - GUI: added possibility to delete object from array (that was somehow missing)
 
-- Added new component type "custom_component" with possibility to provide custom HTML and JS code. Component of type "custom" is deprecated now (still working for backward compatibility). 
+- Added new component type "custom_component" with possibility to provide custom HTML and JS code. Component of type "custom" is deprecated now (still working for backward compatibility).
 
 - Changed how plugins work
 

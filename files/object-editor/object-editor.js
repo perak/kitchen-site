@@ -1,12 +1,41 @@
-Template.TEMPLATE_NAME.rendered = function() {
-	pageSession.set("mode", "defaultMode");
+function resizeForm() {
+	if(!$(".object-form-container").length) {
+		return;
+	}
+	var viewHeight = $(window).height();
+
+	var footerHeight = $("#footer").outerHeight();
+	var formTop = $(".object-form-container").offset().top;
+	var formHeight = $(".object-form-container").height();
+	var formOuterHeight = $(".object-form-container").outerHeight();
+	var formMarginTop = parseInt($(".object-form-container").css("margin-top") || "0");
+	var formMarginBottom = parseInt($(".object-form-container").css("margin-bottom") || "0");
+	var availableHeight = viewHeight - footerHeight - formTop - ((formOuterHeight - formHeight) + formMarginTop + formMarginBottom);
+
+	if(availableHeight < 200) {
+		availableHeight = 200;
+	}
+
+	$(".object-form-container").height(availableHeight);
 }
+
+Template.TEMPLATE_NAME.rendered = function() {
+
+	$(window).on('resize', function() {
+		resizeForm();
+	});
+
+	resizeForm();
+
+	pageSession.set("mode", "defaultMode");
+};
 
 Deps.autorun(function() {
 	if(Router.current() && Router.current().url) {
 		pageSession.set("mode", "");
 		Meteor.defer(function() {
 			pageSession.set("mode", "defaultMode");
+			resizeForm();
 		});
 	}
 });
@@ -48,6 +77,71 @@ Template.TEMPLATE_NAME.helpers({
  		return title;
 	},
 
+	"objectTabs": function(showParent) {
+		var tabs = [];
+		if(!this.application) return false;
+		var containerObject = this.application.data;
+		var objectId = this.params.objectId;
+		var meta = this.metadata.data;
+		var applicationId = this.params.applicationId;
+
+		var object = findObjectById(containerObject, objectId);
+
+		if(!object || !object.objectType) {
+			return [];
+		}
+
+		var title = object.objectType;
+		var propertyName = this.params.propertyName;
+		var parent = findDirectParent(containerObject, objectId);
+		if(parent && !_.isArray(parent) && object.objectType != "application") {
+			if(showParent) {
+				propertyName = parentPropertyName(parent, object);
+				object = parent;
+				objectId = parent._id;
+				title = object.objectType;
+			} else {
+				title = parentPropertyName(parent, object) || title;
+			}
+		} else {
+			if(!showParent) return [];
+		}
+
+		tabs.push({
+			itemTitle: title,
+			propertyName: "null",
+			cssClass: propertyName == "null" ? "active" : "",
+			objectId: object._id,
+			applicationId: applicationId
+		});
+
+		for(var key in object) {
+			if(_.isArray(object[key]) && getObjectArrayItemType(object.objectType, key, meta) != "string") {
+				tabs.push({
+					itemTitle: key,
+					propertyName: key,
+					cssClass: propertyName == key ? "active" : "",
+					objectId: object._id,
+					applicationId: applicationId
+				});
+			}
+			if(_.isObject(object[key]) && object[key].objectType) {
+				tabs.push({
+					itemTitle: key,
+					propertyName: "null",
+					cssClass: propertyName == key ? "active" : "",
+					objectId: object[key]._id,
+					applicationId: applicationId
+				});
+			}
+		}
+
+		if(tabs.length < 2) return [];
+
+		return tabs;
+	},
+
+
 	"isObject": function() {
 		if(!this.application) return false;
  		var containerObject = this.application.data;
@@ -65,17 +159,17 @@ Template.TEMPLATE_NAME.helpers({
 
 	"isArray": function() {
 		if(!this.application) return false;
- 		var containerObject = this.application.data;
- 		var objectId = this.params.objectId;
- 		var meta = this.metadata.data;
+		var containerObject = this.application.data;
+		var objectId = this.params.objectId;
+		var meta = this.metadata.data;
 
- 		var object = findObjectById(containerObject, objectId);
+		var object = findObjectById(containerObject, objectId);
 
- 		if(!object || !object.objectType) {
- 			return false;
- 		}
+		if(!object || !object.objectType) {
+			return false;
+		}
 
- 		return _.isArray(object[this.params.propertyName]);
+		return _.isArray(object[this.params.propertyName]);
 	},
 
 	"newObjectForm": function() {
@@ -229,6 +323,7 @@ Template.TEMPLATE_NAME.helpers({
 		var cancelButton = editableFieldCounter > 0 ? "Cancel" : "";
 
 		return {
+			title: "New " + newObjectType,
 			data: newObject,
 
 			cssClass: "",
@@ -398,8 +493,20 @@ Template.TEMPLATE_NAME.helpers({
 
 		var self = this;
 
+		var title = object.objectType;
+		if(object.name) {
+			title = object.objectType + ": " + object.name;
+		} else {
+			var parent = findDirectParent(containerObject, object._id);
+			if(_.isObject(parent) && parent._id) {
+				title = parentPropertyName(parent, object) || title;
+			}
+		}
+
 		var submitButton = editableFieldCounter > 0 ? "Save" : "";
 		return {
+			title: title,
+
 			data: object,
 
 			cssClass: "",
@@ -474,6 +581,7 @@ Template.TEMPLATE_NAME.helpers({
 	 		];
 
 			return {
+				title: "New object",
 				data: info,
 
 				cssClass: "",
@@ -507,7 +615,7 @@ Template.TEMPLATE_NAME.events({
 
 	"click .object-array-table tr": function(e, t) {
 		e.preventDefault();
-		Router.go("applications.details.form_view", { applicationId: this.rootId, objectId: this.objectId, propertyName: null });
+		Router.go("PAGE_ROUTE_NAME", { applicationId: this.rootId, objectId: this.objectId, propertyName: null });
 		return false;
 	},
 
@@ -553,10 +661,14 @@ Template.TEMPLATE_NAME.events({
 		});
 
 		return false;
+	},
+	"click .object-tab-item": function(e, t) {
+		e.preventDefault();
+		Router.go("PAGE_ROUTE_NAME", { applicationId: this.applicationId, objectId: this.objectId, propertyName: this.propertyName });
 	}
 });
 
-Template.GenericArrayView.helpers({
+Template.TEMPLATE_NAMEGenericArrayView.helpers({
 	"objectArrayItems": function() {
 		if(!this.application) return [];
 		var containerObject = this.application.data;

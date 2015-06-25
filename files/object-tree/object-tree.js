@@ -63,6 +63,30 @@ function selectRequestedOrFirstItem() {
 }
 
 Template.TEMPLATE_NAME.rendered = function() {
+	function resizeTree() {
+		if(!$(".object-tree-container").length) {
+			return;
+		}
+		var viewHeight = $(window).height();
+		var footerHeight = $("#footer").outerHeight();
+		var treeTop = $(".object-tree-container").offset().top;
+		var treeHeight = $(".object-tree-container").height();
+		var treeOuterHeight = $(".object-tree-container").outerHeight();
+		var treeMarginTop = parseInt($(".object-tree-container").css("margin-top") || "0");
+		var treeMarginBottom = parseInt($(".object-tree-container").css("margin-bottom") || "0");
+		var availableHeight = viewHeight - footerHeight - treeTop - ((treeOuterHeight - treeHeight) + treeMarginTop + treeMarginBottom);
+		if(availableHeight < 200) {
+			availableHeight = 200;
+		}
+
+		$(".object-tree-container").height(availableHeight);
+	}
+
+	$(window).on('resize', function() {
+		resizeTree();
+	});
+
+	resizeTree();
 	selectRequestedOrFirstItem();
 };
 

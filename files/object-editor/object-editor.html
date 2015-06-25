@@ -1,8 +1,25 @@
 <template name="TEMPLATE_NAME">
+<!--
+		<ul class="object-tab-menu nav nav-tabs">
+			{{#each objectTabs true}}
+				<li role="presentation" class="{{cssClass}}"><a href="#" class="object-tab-item" data-object-id="{{objectId}}" data-property-name="{{propertyName}}">{{itemTitle}}</a></li>
+			{{/each}}
+		</ul>
+-->
+
 		<div id="COMPONENT_ID" class="well object-form-container">
-			<h2>{{title}}</h2>
-			{{#if defaultMode}}
-				{{#if isObject}}
+<!--
+			{{#if objectTabs false}}
+				<ul class="nav nav-tabs">
+					{{#each objectTabs false}}
+						<li role="presentation" class="{{cssClass}}"><a href="#" class="object-tab-item" data-object-id="{{objectId}}" data-property-name="{{propertyName}}">{{itemTitle}}</a></li>
+					{{/each}}
+				</ul>
+			{{/if}}
+-->
+
+			{{#if isObject}}
+				{{#if defaultMode}}
 					{{#DynamicForm description=editObjectForm}}
 					{{/DynamicForm}}
 				{{/if}}
@@ -10,17 +27,16 @@
 
 			{{#if isArray}}
 				{{#if defaultMode}}
-					{{> GenericArrayView}}
+					<h3>{{title}}</h3>
+					{{> TEMPLATE_NAMEGenericArrayView}}
 				{{/if}}
 
 				{{#if chooseTypeMode}}
-					<h3>New object</h3>
 					{{#DynamicForm description=objectTypeForm}}
 					{{/DynamicForm}}
 				{{/if}}
 
 				{{#if newObjectMode}}
-					<h3>New {{newObjectType}}</h3>
 					{{#DynamicForm description=newObjectForm}}
 					{{/DynamicForm}}
 				{{/if}}
@@ -28,7 +44,7 @@
 		</div>
 </template>
 
-<template name="GenericArrayView">
+<template name="TEMPLATE_NAMEGenericArrayView">
 	<div class="row">
 		<div class="col-md-12">
 			<form class="form">

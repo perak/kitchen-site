@@ -151,12 +151,15 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 Property | Type | Description
 ---------|------|------------
 name | string | Object name
+type | string | Collection type. Can be "collection" or "file\_collection" (FS.Collection). Default: "collection".
 fields | array of [field](#field) | Field list. Not mandatory, used by components such as form, dataview etc.
 owner\_field | string | Field name used to store user ID of document owner. Only for apps using user accounts. Value of this field will be automatically set server side by "before.insert" hook.
 roles\_allowed\_to\_read | array of string | List of user roles that can subscribe to this collection. You can use special roles "nobody" (nobody can read) and "owner" (only owner/creator can read).
 roles\_allowed\_to\_insert | array of string | List of user roles that can insert documents into this collection. You can use special role "nobody" (nobody can insert).
 roles\_allowed\_to\_update | array of string | List of user roles that can update documents. You can use special roles "nobody" (nobody can update) and "owner" (only owner/creator can update).
 roles\_allowed\_to\_delete | array of string | List of user roles that can delete documents. You can use special roles "nobody" (nobody can remove) and "owner" (only owner/creator can remove).
+roles\_allowed\_to\_download | array of string | For collection of type "file\_collection": List of user roles that can download files. You can use special roles "nobody" (nobody can download) and "owner" (only owner/creator can download).
+storage\_adapters | array of string | For collection of type "file\_collection": list of CollectionFS storage adapters: "gridfs", "filesystem", "s3" or "dropbox". If not specified, generator will assume "gridfs".
 before\_insert\_code | string | Code to be executed before new document is inserted into collection. Should be only body of a function with args: (userId, doc). See <a href="https://github.com/matb33/meteor-collection-hooks" target="\_blank">meteor-collection-hooks</a> package for more details.
 before\_update\_code | string | Code to be executed before document is updated. Should be only body of a function with args: (userId, doc, fieldNames, modifier, options)
 before\_remove\_code | string | Code to be executed before document is removed. Should be only body of a function with args: (userId, doc)
@@ -174,6 +177,7 @@ after\_remove\_source\_file | string | File that contains code to be executed af
 ```
 {
 	"name": "",
+	"type": "collection",
 	"fields": [
 	],
 	"owner_field": "",
@@ -184,6 +188,10 @@ after\_remove\_source\_file | string | File that contains code to be executed af
 	"roles_allowed_to_update": [
 	],
 	"roles_allowed_to_delete": [
+	],
+	"roles_allowed_to_download": [
+	],
+	"storage_adapters": [
 	],
 	"before_insert_code": "",
 	"before_update_code": "",
@@ -397,7 +405,7 @@ format | string | Currently used only with data types "date" and "time". Contain
 searchable | bool | Is field searchable? Default: true
 sortable | bool | Is field sortable? Default: true
 exportable | bool | If true field will be exported to CSV/JSON (used in dataview component). Default: false
-input | string | Form input control type: "text", "password", "datepicker", "read-only", "textarea", "radio", "checkbox", "select", "crud", "custom"
+input | string | Form input control type: "text", "password", "datepicker", "read-only", "textarea", "radio", "checkbox", "select", "crud", "file", "custom"
 input\_template | string | Template for "custom" input field (relative to input file)
 input\_group\_class | string | CSS class to apply to field input group container in forms.
 input\_items | array of [input\_item](#input\_item) | Item list for input type "radio" and "select"
@@ -408,6 +416,8 @@ display\_helper | string | Helper name used to display value from this field (us
 array\_item\_type | string | If "type" is set to "array" then you can define array item type here. Format is the same as for "type" property.
 crud\_fields | array of [field](#field) | If "array\_item\_type" is set to "object" then you can define fields for input type "crud".
 crud\_insert\_title | string | For fields with "input": "crud" - insert button and insert form title
+file\_collection | string | For fields with "input": "file". Name of FS.Collection where file is stored. Generator will automatically join this collection with file\_collection.
+file\_container | string | For fields with "input": "file". Field name where FS.File object from joined FS.Collection will be stored.
 join\_collection | string | Collection name to join. If set then this field acts as foreign key
 join\_container | string | Field name where document from joined collection will be stored
 join\_fields | array of string | Field list to fetch from joined collection
@@ -453,6 +463,8 @@ show\_in\_read\_only\_form | bool | If set to "false", field will not be include
 	"crud_fields": [
 	],
 	"crud_insert_title": "",
+	"file_collection": "",
+	"file_container": "",
 	"join_collection": "",
 	"join_container": "",
 	"join_fields": [
@@ -470,7 +482,7 @@ show\_in\_read\_only\_form | bool | If set to "false", field will not be include
 Property | Type | Description
 ---------|------|------------
 source | string | Source file to copy. Path is relative to input JSON.
-dest | string | Destination file. You can use directory aliases: OUTPUT\_DIR, CLIENT\_DIR, CLIENT\_LIB\_DIR, CLIENT\_STYLES\_DIR, CLIENT\_STYLES\_DEFAULT\_DIR, CLIENT\_STYLES\_THEME\_DIR, CLIENT\_VIEWS\_DIR, CLIENT\_VIEWS\_NOT\_FOUND\_DIR, CLIENT\_VIEWS\_LOADING\_DIR, LIB\_DIR, SETTINGS\_DIR, BOTH\_DIR, BOTH\_LIB\_DIR, BOTH\_COLLECTIONS\_DIR, PUBLIC\_DIR, PUBLIC\_IMAGES\_DIR, PRIVATE\_DIR, SERVER\_DIR, SERVER\_LIB\_DIR, SERVER\_COLLECTIONS\_DIR, SERVER\_PUBLISH\_DIR, SERVER\_CONTROLLERS\_DIR, SERVER\_METHODS\_DIR
+dest | string | Destination file. You can use directory aliases: OUTPUT\_DIR, CLIENT\_DIR, CLIENT\_LIB\_DIR, CLIENT\_STYLES\_DIR, CLIENT\_STYLES\_DEFAULT\_DIR, CLIENT\_STYLES\_THEME\_DIR, CLIENT\_VIEWS\_DIR, CLIENT\_VIEWS\_NOT\_FOUND\_DIR, CLIENT\_VIEWS\_LOADING\_DIR, LIB\_DIR, SETTINGS\_DIR, BOTH\_DIR, BOTH\_LIB\_DIR, BOTH\_COLLECTIONS\_DIR, PUBLIC\_DIR, PUBLIC\_IMAGES\_DIR, PUBLIC\_FONTS\_DIR, PRIVATE\_DIR, SERVER\_DIR, SERVER\_LIB\_DIR, SERVER\_COLLECTIONS\_DIR, SERVER\_PUBLISH\_DIR, SERVER\_CONTROLLERS\_DIR, SERVER\_METHODS\_DIR
 
 *Example:*
 ```
@@ -822,7 +834,7 @@ menus | array of [menu](#menu) | Menus to be inserted into this page
 pages | array of [page](#page) | Subpages
 queries | array of [query](#query) | List of queries to add into template data context
 force\_yield\_subpages | bool | Subpages will be rendered in "subcontent" area even if this page doesn't contains menu pointing to subpages
-zoneless | bool | For applications with user account system: make this page visible for both authenticated and non-authenticated users
+zoneless | bool | Deprecated - will be removed soon. For applications with user account system: make this page visible for both authenticated and non-authenticated users
 parent\_layout | bool | If set to true parent page will be used as layoutTemplate. Default: false
 
 *Example:*
@@ -1002,6 +1014,8 @@ collapsed\_icon\_class | string | CSS class for collapsed folder icon. Default: 
 expanded\_icon\_class | string | CSS class for expanded folder icon. Default: "fa fa-caret-down"
 item\_route | string | Navigate to this route when item is clicked
 item\_route\_params | array of [param](#param) | Parameters to be passed to "item\_route"
+folder\_route | string | Navigate to this route when folder is clicked
+folder\_route\_params | array of [param](#param) | Parameters to be passed to "folder\_route"
 
 *Example:*
 ```
@@ -1035,6 +1049,9 @@ item\_route\_params | array of [param](#param) | Parameters to be passed to "ite
 	"expanded_icon_class": "",
 	"item_route": "",
 	"item_route_params": [
+	],
+	"folder_route": "",
+	"folder_route_params": [
 	]
 }
 ```
