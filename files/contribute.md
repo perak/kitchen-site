@@ -42,3 +42,5 @@ Contributors
 <a href="https://github.com/npvn" target="_blank"><b>Phúc Nguyễn</b></a> - improving docs
 
 <a href="http://danielonum.crevado.com/about" target="_blank"><b>Daniel Zec</b></a> - super cool logo design
+
+<a href="https://github.com/mikkelking" target="_blank"><b>Mike King</b></a> - Testing js-yaml (replacement for yaml2json, and some english fixes
