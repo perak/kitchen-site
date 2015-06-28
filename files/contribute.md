@@ -1,7 +1,7 @@
 How to contribute?
 ==================
 
-**Meteor Kitchen** is under developement, its new and not well tested yet. If you find this project interesting, please feel free to:
+**Meteor Kitchen** is under development, its new and not fully tested yet, although it is improving. If you find this project interesting, please feel free to:
 
 - **Report issues or request features** to this <a href="https://github.com/perak/kitchen-site/issues" target="_blank">GitHub page</a>.
 
