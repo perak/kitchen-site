@@ -22,19 +22,19 @@ You can download the binary release <a href="/install/install_win.zip" _target="
 
 **Note**
 - Filenames are case sensitive under windows too.
-- meteor-kitchen is using "curl" to download files. You can find curl for windows <a href="http://www.confusedbycode.com/curl/#downloads" target="_blank">here</a>.
+- meteor-kitchen uses "curl" to download files. You can find curl for windows <a href="http://www.confusedbycode.com/curl/#downloads" target="_blank">here</a>.
 
 
 Current version is 0.9.42
 =========================
 
-Click <a href="{{pathFor 'version_history'}}">here</a> to see version history.
+Click <a href="{{pathFor 'version_history'}}">here</a> to see the version history.
 
 
 Upgrade to latest version
 =========================
 
-Just install it again.
+Just install it again. The installation will replace all the files with the new versions.
 
 
 CLI
@@ -52,7 +52,7 @@ Common usage:
 meteor-kitchen <input_file_or_url> <output_directory>
 ```
 
-The input file can be <a href="http://www.json.org/" target="_blank">JSON</a> or <a href="http://www.yaml.org/" target="_blank">YAML</a>. If you preffer YAML, you'll need to install the <a href="https://www.npmjs.org/package/yaml2json" target="_blank">yaml2json</a> converter.
+The input file can be <a href="http://www.json.org/" target="_blank">JSON</a> or <a href="http://www.yaml.org/" target="_blank">YAML</a>. If you prefer YAML, you'll need to install the <a href="https://www.npmjs.org/package/js-yaml" target="_blank">js-yaml</a> converter.
 
 
 CoffeeScript
@@ -67,13 +67,13 @@ meteor-kitchen <input_file_or_url> <output_directory> --coffee
 Jade
 ----
 
-For <a href="http://jade-lang.com/" target="_blank">Jade</a> lovers, use `--jade` switch and the generator will convert the html files to jade:
+For <a href="http://jade-lang.com/" target="_blank">Jade</a> lovers, use the `--jade` switch and the generator will convert the html files to jade:
 
 ```
 meteor-kitchen <input_file_or_url> <output_directory> --jade
 ```
 
-Jade converter is experimental (I wrote it in a rush). It's not 100% syntaticaly clean and will be improved in the future. At least, it's super fast (long live good old friend: C++).
+The Jade converter is experimental (I wrote it in a rush). It's not 100% syntactically clean and will be improved in the future. It is, at least, super fast (long live my good old friend: C++).
 
 
 Input file
@@ -193,7 +193,7 @@ You can see a live example <a href="http://generator-minimal.meteor.com" target=
 
 * The **menu** object has **name**, **class** and **items** properties. Each component must have a **name** property (menu is a component, more about components later).
 
-* The property **class** will be applied to the menu's `ul` html element.
+* The property **class** (of the menu object) will be applied to the menu's `ul` html element.
 
 * Each menu item has **title** and **route** properties. The **title** property is the menu's label, while the **route** property is the name of the route you want this menu item to link to.
 
@@ -276,7 +276,13 @@ Now we can have new menu items linking to the newly-created subpages:
 ```
 
 ### Subpages example
-The generator has several built-in examples. To try them out, you just run:
+The generator has several built-in examples. You can get a list of the available examples with this command
+```
+meteor-kitchen 
+```
+
+
+To try out one of the examples, just run:
 
 ```
 meteor-kitchen --example-subpages ./example-subpages
@@ -286,7 +292,7 @@ This will produce an application with pages and subpages.
 
 You can see a live example <a href="http://generator-subpages.meteor.com" target="_blank">here</a>
 
-**Note:** The source code for all examples caan be found <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>
+**Note:** The source code for all examples can be found <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>
 
 
 Visual Themes
@@ -392,11 +398,11 @@ A page object with a `jumbotron` component should look like this:
 ...
 ```
 
-In this example jumbotron will be shown at home page. Properties `title`, `text`, `button_title` and `button_route` are specific to the component of type `jumbotron`.
+In this example jumbotron will be shown on the home page. Properties `title`, `text`, `button_title` and `button_route` are specific to the component of type `jumbotron`.
 
 ### Markdown component
 
-The easiest way to add formated content into pages is to write text with <a href="http://daringfireball.net/projects/markdown/" target="_blank">markdown</a>, save it into a separate file and then insert the component of type `markdown` into your page.
+The easiest way to add formatted content into pages is to write text with <a href="http://daringfireball.net/projects/markdown/" target="_blank">markdown</a>, save it into a separate file and then insert the component of type `markdown` into your page.
 
 A page object with the `markdown` component should look like this:
 
@@ -851,7 +857,7 @@ Form has a defined query `customers_empty`: this is the insert form and we don't
 
 You can see a **live example** <a href="http://generator-dataview.meteor.com" target="_blank">here</a>
 
-**Note:** Source code for all examples you can find <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>
+**Note:** Source code for all examples can be found <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>
 
 
 Route params
@@ -1114,7 +1120,7 @@ You can use plugins in your application by adding a component into a page and se
 ```
 
 Component type is set to `example1`. This type is unknown to the generator so it will search the plugins directory for a subdirectory named `example1` that contains a file named `plugin.js`.
-If a file `plugins/example1/plugin.js` is found, the generator will pass that file to "node.js" and executed it. This file will produce html and js content that will be inserted into the page.
+If a file `plugins/example1/plugin.js` is found, the generator will pass that file to "node.js" and execute it. This file will produce html and js content that will be inserted into the page.
 
 You can provide a `properties` object with anything inside, that object will be passed to the plugin processing code.
 
@@ -1160,7 +1166,7 @@ This is a really trivial example that shows how to write a custom component. Not
 
 You can see a live application that uses two example plugins <a href="http://generator-plugins.meteor.com" target="_blank">here</a>
 
-**Note:** Source code for all examples you can find <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>
+**Note:** Source code for all examples can be found <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>
 
 
 Server Side Routes
@@ -1255,7 +1261,7 @@ and provide OAuth keys in your settings passed to meteor. Example `settings.json
 ```
 Built-in login form will automatically show "Sign in with..." buttons.
 
-You can prevent users to login with password (and leave only OAuth login) by setting `login_with_password` to `false`.
+You can prevent users from logging in with email/password (and leave only OAuth login) by setting `login_with_password` to `false`.
 
 
 
@@ -1477,7 +1483,7 @@ In this example, we set following permissions:
 File Uploads
 ============
 
-You can define collection of type `file_collection` and generated collection will be <a href="https://github.com/CollectionFS/Meteor-CollectionFS" target="_blank">FS.Collection</a> (instead usual "Mongo.Collection") and you can use it to store uploaded (or any other) files.
+You can define a collection of type `file_collection` and the generated collection will be <a href="https://github.com/CollectionFS/Meteor-CollectionFS" target="_blank">FS.Collection</a> (instead of the usual "Mongo.Collection") and you can use it to store uploaded (or any other) files.
 
 ```
 "collections": [
@@ -1496,7 +1502,7 @@ You can define collection of type `file_collection` and generated collection wil
 ]
 ```
 
-You can write `_id` of uploaded into normal collection and automatically join it with file collection like this:
+You can write the `_id` of uploaded files into a normal collection and automatically join it with the file collection like this:
 
 ```
 "collections": [
@@ -1527,13 +1533,13 @@ You can write `_id` of uploaded into normal collection and automatically join it
 ]
 ```
 
-Now, when you upload file into "my_files" collection, write file's `_id` into "my_collection" `fileId` and if you do:
+Now, when you upload a file into the "my_files" collection, write the file's `_id` into "my_collection" `fileId` and if you do:
 
 ```
 MyCollection.find()
 ```
 
-You'l get something like this:
+You'll get something like this:
 
 ```
 {
@@ -1545,7 +1551,7 @@ You'l get something like this:
 
 #### Form
 
-If you set `"input": "file"` in your field definition, built-in form component will show `<input type="file">`. This is not perfectly implemented and will be improved in near future.
+If you set `"input": "file"` in your field definition, the built-in form component will show `<input type="file">`. This feature is not perfectly implemented and will be improved in near future.
 
 
 #### Example

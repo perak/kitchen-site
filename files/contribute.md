@@ -1,7 +1,7 @@
 How to contribute?
 ==================
 
-**Meteor Kitchen** is under developement, its new and not well tested yet. If you find this project interesting, please feel free to:
+**Meteor Kitchen** is under development, its new and not fully tested yet, although it is improving. If you find this project interesting, please feel free to:
 
 - **Report issues or request features** to this <a href="https://github.com/perak/kitchen-site/issues" target="_blank">GitHub page</a>.
 
@@ -42,3 +42,5 @@ Contributors
 <a href="https://github.com/npvn" target="_blank"><b>Phúc Nguyễn</b></a> - improving docs
 
 <a href="http://danielonum.crevado.com/about" target="_blank"><b>Daniel Zec</b></a> - super cool logo design
+
+<a href="https://github.com/mikkelking" target="_blank"><b>Mike King</b></a> - Testing js-yaml (replacement for yaml2json, and some english fixes

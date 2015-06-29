@@ -1,7 +1,7 @@
 What is "Meteor Kitchen"?
 =========================
 
-"Meteor Kitchen" is a code generator for Meteor.js. Just describe your application in a simple JSON file (or use <a href="{{urlFor 'login'}}">kitchen-GUI</a>) and let meteor-kitchen to build a complete Meteor application with:
+"Meteor Kitchen" is a code generator for Meteor.js. Just describe your application in a simple JSON file (or use <a href="{{urlFor 'login'}}">kitchen-GUI</a>) and let meteor-kitchen build a complete Meteor application for you with all of the following:
 
 - Directory structure
 - Router and route controllers
