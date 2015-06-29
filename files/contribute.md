@@ -23,6 +23,8 @@ Contributors
 
 <a href="https://github.com/perak" target="_blank"><b>Petar Korponaić</b></a> - original author
 
+<a href="https://github.com/mikkelking" target="_blank"><b>Mike King</b></a> - Testing js-yaml (replacement for yaml2json, and some english fixes)
+
 <a href="https://github.com/bartonhammond" target="_blank"><b>Barton Hammond</b></a> - created awesome screencast video tutorial (and "todos" example - will be published soon)
 
 <a href="https://github.com/modcoms" target="_blank"><b>Martin McCormack</b></a> - improving docs
@@ -42,5 +44,3 @@ Contributors
 <a href="https://github.com/npvn" target="_blank"><b>Phúc Nguyễn</b></a> - improving docs
 
 <a href="http://danielonum.crevado.com/about" target="_blank"><b>Daniel Zec</b></a> - super cool logo design
-
-<a href="https://github.com/mikkelking" target="_blank"><b>Mike King</b></a> - Testing js-yaml (replacement for yaml2json, and some english fixes

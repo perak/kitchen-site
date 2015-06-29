@@ -17,4 +17,4 @@ What is "Meteor Kitchen"?
 Did you know?
 -------------
 
-This site is a meteor application generated automatically by Meteor Kitchen without any manual code (that's so meta!). See source code (input file for generator) <a href="https://github.com/perak/kitchen-site" target="_blank">here</a>.
+This site is a meteor application generated automatically by Meteor Kitchen. See source code (input file for generator) <a href="https://github.com/perak/kitchen-site" target="_blank">here</a>.

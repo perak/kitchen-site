@@ -25,7 +25,7 @@ You can download the binary release <a href="/install/install_win.zip" _target="
 - meteor-kitchen uses "curl" to download files. You can find curl for windows <a href="http://www.confusedbycode.com/curl/#downloads" target="_blank">here</a>.
 
 
-Current version is 0.9.42
+Current version is 0.9.44
 =========================
 
 Click <a href="{{pathFor 'version_history'}}">here</a> to see the version history.
@@ -54,6 +54,13 @@ meteor-kitchen <input_file_or_url> <output_directory>
 
 The input file can be <a href="http://www.json.org/" target="_blank">JSON</a> or <a href="http://www.yaml.org/" target="_blank">YAML</a>. If you prefer YAML, you'll need to install the <a href="https://www.npmjs.org/package/js-yaml" target="_blank">js-yaml</a> converter.
 
+### <span class="label label-danger">New!</span> Human language support
+
+**Experimental feature:** since version 0.9.43, you can write application description in everyday language.
+
+Meteor Kitchen uses <a href="https://www.npmjs.com/package/human2machine" target="_blank">human2machine</a> npm module to translate from everyday english to json. See example <a href="https://github.com/perak/kitchen-examples/tree/master/example-human" target="_blank">here</a>.
+
+More info and docs will be added soon.
 
 CoffeeScript
 ------------
@@ -278,7 +285,7 @@ Now we can have new menu items linking to the newly-created subpages:
 ### Subpages example
 The generator has several built-in examples. You can get a list of the available examples with this command
 ```
-meteor-kitchen 
+meteor-kitchen
 ```
 
 

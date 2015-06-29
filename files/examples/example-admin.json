@@ -7,15 +7,16 @@
 
 		"roles": [ "admin", "user", "blocked" ],
 		"default_role": "user",
+		"send_verification_email": true,
 
 		"collections": [
 		],
 
 		"public_zone": {
 			"pages": [
-				{ 
-					"name": "home_public", 
-					"title": "", 
+				{
+					"name": "home_public",
+					"title": "",
 					"components": [
 						{
 							"name": "home_jumbotron",
@@ -29,6 +30,7 @@
 				},
 				{ "name": "login", "template": "login" },
 				{ "name": "register", "template": "register" },
+				{ "name": "verify_email", "template": "verify_email", "route_params": ["verifyEmailToken"] },
 				{ "name": "forgot_password", "template": "forgot_password" },
 				{ "name": "reset_password", "template": "reset_password", "route_params": ["resetPasswordToken"] }
 			],
@@ -260,7 +262,7 @@
 					"items": [
 						{ "title": "Admin", "route": "admin" },
 
-						{ 
+						{
 							"title": "{{userEmail}}",
 							"items": [
 								{ "title": "Settings", "route": "user_settings" },

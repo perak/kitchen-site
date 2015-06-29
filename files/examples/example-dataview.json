@@ -24,8 +24,8 @@
 		"free_zone": {
 
 			"pages": [
-				{ 
-					"name": "home", 
+				{
+					"name": "home",
 					"title": "",
 					"components": [
 						{

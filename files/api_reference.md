@@ -16,6 +16,7 @@ free\_zone | [zone](#zone) | Free zone (for application without user account sys
 public\_zone | [zone](#zone) | Public zone (for app with user account system). Pages inside this zone are accessible only for non-authenticeted users.
 private\_zone | [zone](#zone) | Private zone (for app with user account system). Pages inside this zone are accessible only for authenticeted users.
 login\_with\_password | bool | Allow login with password (for app with user account system only). Default: true
+send\_verification\_email | bool | After user account registration, e-mail with verification link will be sent to user. Default: false
 login\_with\_google | bool | Allow OAuth login with google account (for app with user account system only). Default: false
 login\_with\_github | bool | Allow OAuth login with github account (for app with user account system only). Default: false
 login\_with\_linkedin | bool | Allow OAuth login with linkedin account (for app with user account system only). Default: false
@@ -57,6 +58,7 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 		"navbar_class": ""
 	},
 	"login_with_password": true,
+	"send_verification_email": true,
 	"login_with_google": true,
 	"login_with_github": true,
 	"login_with_linkedin": true,
@@ -116,6 +118,7 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 		"navbar_class": ""
 	},
 	"login_with_password": true,
+	"send_verification_email": true,
 	"login_with_google": true,
 	"login_with_github": true,
 	"login_with_linkedin": true,
@@ -396,7 +399,7 @@ Property | Type | Description
 ---------|------|------------
 name | string | Object name
 title | string | Field title (used in form labels, table column headers etc.)
-type | string | Field data type used in form validations. Examples: "string", "integer", "float", "date", "time", "array", "email", "random\_string". Default: "string"
+type | string | Field data type used in form validations. Examples: "string", "integer", "float", "date", "time", "bool", "array", "email", "random\_string". Default: "string"
 default | string | Default value. For date fields you can use special constant "today", for time fields you can use "now". Also, you can set helper here "{{myHelper}}".
 min | string | Minimum value (only for numeric fields)
 max | string | Maximum value (only for numeric fields)
