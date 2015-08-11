@@ -5,13 +5,14 @@ Property | Type | Description
 title | string | Application title
 meta\_title | string | Default meta\_title for pages without meta\_title
 meta\_description | string | Default meta\_description for pages without meta\_description
-template | string | Default: "bootstrap" (you can expect more templates in the future)
-theme | string | Visual theme name. With "bootstrap" template, theme can be one of <a href="http://bootswatch.com/" target="\_blank">bootswatch</a> themes: bootswatch-amelia, bootswatch-cerulean, bootswatch-cosmo, bootswatch-cyborg, bootswatch-darkly, bootswatch-flatly, bootswatch-journal, bootswatch-lumen, bootswatch-paper, bootswatch-readable, bootswatch-simplex, bootswatch-slate, bootswatch-spacelab, bootswatch-superhero, bootswatch-united, bootswatch-yeti
+frontend | string | "bootstrap3" or "semantic-ui". Default: "bootstrap3". "semantic-ui" is not yet fully implemented.
+theme | string | Visual theme name. With "bootstrap" frontend theme can be "flat-ui" or one of bootswatch themes: "bootswatch-amelia", "bootswatch-cerulean", "bootswatch-cosmo", "bootswatch-cyborg", "bootswatch-darkly", "bootswatch-flatly", "bootswatch-journal", "bootswatch-lumen", "bootswatch-paper", "bootswatch-readable", "bootswatch-simplex", "bootswatch-slate", "bootswatch-spacelab", "bootswatch-superhero", "bootswatch-united", "bootswatch-yeti"
 footer\_text | string | Text to show in page footer
 roles | array of string | List of user roles for applications with user account system. There are two predefined roles "nobody" and "owner" (see collection object for more info).
 default\_role | string | Default role for new users
 use\_collection2 | bool | Experimental feature. If set to true, schema will be generated and Collection2 package will be used for collections. Default: false
 collections | array of [collection](#collection) | Mongo database collections
+queries | array of [query](#query) | List of database queries (publications).
 free\_zone | [zone](#zone) | Free zone (for application without user account system)
 public\_zone | [zone](#zone) | Public zone (for app with user account system). Pages inside this zone are accessible only for non-authenticeted users.
 private\_zone | [zone](#zone) | Private zone (for app with user account system). Pages inside this zone are accessible only for authenticeted users.
@@ -42,20 +43,21 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	"title": "",
 	"meta_title": "",
 	"meta_description": "",
-	"template": "",
+	"frontend": "",
 	"theme": "",
 	"footer_text": "",
 	"use_collection2": true,
 	"collections": [
 	],
+	"queries": [
+	],
 	"free_zone": {
 		"container_class": "",
-		"menus": [
-		],
 		"pages": [
 		],
 		"layout": "",
-		"navbar_class": ""
+		"navbar_class": "",
+		"footer_class": ""
 	},
 	"login_with_password": true,
 	"send_verification_email": true,
@@ -90,7 +92,7 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	"title": "",
 	"meta_title": "",
 	"meta_description": "",
-	"template": "",
+	"frontend": "",
 	"theme": "",
 	"footer_text": "",
 	"roles": [
@@ -99,23 +101,23 @@ router\_config | jsonobject | Optional parameter passed to Router.config()
 	"use_collection2": true,
 	"collections": [
 	],
+	"queries": [
+	],
 	"public_zone": {
 		"container_class": "",
-		"menus": [
-		],
 		"pages": [
 		],
 		"layout": "",
-		"navbar_class": ""
+		"navbar_class": "",
+		"footer_class": ""
 	},
 	"private_zone": {
 		"container_class": "",
-		"menus": [
-		],
 		"pages": [
 		],
 		"layout": "",
-		"navbar_class": ""
+		"navbar_class": "",
+		"footer_class": ""
 	},
 	"login_with_password": true,
 	"send_verification_email": true,
@@ -245,7 +247,8 @@ html | string | Custom HTML code
 js | string | Custom JS code
 dest\_selector | string | destination html element selector. Similar to jQuery selector, but only three simple formats are supported: "tagname", "#element\_id" and ".class\_name".
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
-query | [query](#query) | Query to be added to Template data context
+query\_name | string | Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically.
+query\_params | array of [param](#param) | Query (publication) params
 components | array of [component](#component) | Component list
 
 *Example:*
@@ -258,17 +261,9 @@ components | array of [component](#component) | Component list
 	"js": "",
 	"dest_selector": "",
 	"dest_position": "",
-	"query": {
-		"name": "",
-		"collection": "",
-		"find_one": false,
-		"filter": {
-		},
-		"options": {
-		},
-		"params": [
-		]
-	},
+	"query_name": "",
+	"query_params": [
+	],
 	"components": [
 	]
 }
@@ -288,7 +283,8 @@ title | string | Component title
 title\_icon\_class | string | If present, "span" with this class name will be added to title (if title is set)
 events\_code | string | Content of Template.TEMLATE\_NAME.events({ ... });
 helpers\_code | string | Content of Template.TEMLATE\_NAME.helpers({ ... });
-query | [query](#query) | Query to be added to Template data context
+query\_name | string | Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically.
+query\_params | array of [param](#param) | Query (publication) params
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
 text\_if\_empty | string | Text to show if collection is empty.
@@ -317,17 +313,9 @@ views | array of string | View styles: "table", "list" or "gallery". Default: "t
 	"title_icon_class": "",
 	"events_code": "",
 	"helpers_code": "",
-	"query": {
-		"name": "",
-		"collection": "",
-		"find_one": false,
-		"filter": {
-		},
-		"options": {
-		},
-		"params": [
-		]
-	},
+	"query_name": "",
+	"query_params": [
+	],
 	"components": [
 	],
 	"template_rendered_code": "",
@@ -363,7 +351,8 @@ type | string | Component type name.
 dest\_selector | string | destination html element selector. Similar to jQuery selector, but only three simple formats are supported: "tagname", "#element\_id" and ".class\_name".
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
-query | [query](#query) | Query to be added to Template data context
+query\_name | string | Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically.
+query\_params | array of [param](#param) | Query (publication) params
 components | array of [component](#component) | Component list
 text | string | 
 
@@ -375,17 +364,9 @@ text | string |
 	"dest_selector": "",
 	"dest_position": "",
 	"class": "",
-	"query": {
-		"name": "",
-		"collection": "",
-		"find_one": false,
-		"filter": {
-		},
-		"options": {
-		},
-		"params": [
-		]
-	},
+	"query_name": "",
+	"query_params": [
+	],
 	"components": [
 	],
 	"text": ""
@@ -412,7 +393,8 @@ input | string | Form input control type: "text", "password", "datepicker", "rea
 input\_template | string | Template for "custom" input field (relative to input file)
 input\_group\_class | string | CSS class to apply to field input group container in forms.
 input\_items | array of [input\_item](#input\_item) | Item list for input type "radio" and "select"
-lookup\_query | [query](#query) | Lookup query - data source for input type "select" items
+lookup\_query\_name | string | Query name used for form input type "select".
+lookup\_query\_params | array of [param](#param) | Lookup query params
 lookup\_key | string | Field name from lookup\_query used as option value in input type "select". Mandatory field if lookup\_query is defined
 lookup\_field | string | Field name from lookup\_query used as option title in input type "select". Mandatory field if lookup query is defined
 display\_helper | string | Helper name used to display value from this field (used in DataView, Forms etc.)
@@ -421,9 +403,10 @@ crud\_fields | array of [field](#field) | If "array\_item\_type" is set to "obje
 crud\_insert\_title | string | For fields with "input": "crud" - insert button and insert form title
 file\_collection | string | For fields with "input": "file". Name of FS.Collection where file is stored. Generator will automatically join this collection with file\_collection.
 file\_container | string | For fields with "input": "file". Field name where FS.File object from joined FS.Collection will be stored.
-join\_collection | string | Collection name to join. If set then this field acts as foreign key
+join\_collection | string | Collection name to join with. If set then this field acts as foreign key. For generic join don't set this field (see "join\_collection\_field" instead).
+join\_collection\_field | string | Used in generic joins only. Field name (from this collection) containing collection name to join with. If set then this field acts as foreign key.
 join\_container | string | Field name where document from joined collection will be stored
-join\_fields | array of string | Field list to fetch from joined collection
+join\_fields | array of string | Field list to fetch from joined collection. Ignored in generic joins.
 show\_in\_dataview | bool | If set to "false", field will not be shown in dataview components. Default: true
 show\_in\_insert\_form | bool | If set to "false", field will not be included in forms with mode "insert". Default: true
 show\_in\_update\_form | bool | If set to "false", field will not be included in forms with mode "update". Default: true
@@ -448,17 +431,9 @@ show\_in\_read\_only\_form | bool | If set to "false", field will not be include
 	"input_group_class": "",
 	"input_items": [
 	],
-	"lookup_query": {
-		"name": "",
-		"collection": "",
-		"find_one": false,
-		"filter": {
-		},
-		"options": {
-		},
-		"params": [
-		]
-	},
+	"lookup_query_name": "",
+	"lookup_query_params": [
+	],
 	"lookup_key": "",
 	"lookup_field": "",
 	"display_helper": "",
@@ -469,6 +444,7 @@ show\_in\_read\_only\_form | bool | If set to "false", field will not be include
 	"file_collection": "",
 	"file_container": "",
 	"join_collection": "",
+	"join_collection_field": "",
 	"join_container": "",
 	"join_fields": [
 	],
@@ -509,7 +485,8 @@ title | string | Component title
 title\_icon\_class | string | If present, "span" with this class name will be added to title (if title is set)
 events\_code | string | Content of Template.TEMLATE\_NAME.events({ ... });
 helpers\_code | string | Content of Template.TEMLATE\_NAME.helpers({ ... });
-query | [query](#query) | Query to be added to Template data context
+query\_name | string | Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically.
+query\_params | array of [param](#param) | Query (publication) params
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
 mode | string | "insert", "update" or "read\_only"
@@ -539,17 +516,9 @@ hidden\_fields | array of [hidden\_field](#hidden\_field) | Fields (not shown in
 	"title_icon_class": "",
 	"events_code": "",
 	"helpers_code": "",
-	"query": {
-		"name": "",
-		"collection": "",
-		"find_one": false,
-		"filter": {
-		},
-		"options": {
-		},
-		"params": [
-		]
-	},
+	"query_name": "",
+	"query_params": [
+	],
 	"components": [
 	],
 	"template_rendered_code": "",
@@ -622,7 +591,8 @@ title | string | Component title
 title\_icon\_class | string | If present, "span" with this class name will be added to title (if title is set)
 events\_code | string | Content of Template.TEMLATE\_NAME.events({ ... });
 helpers\_code | string | Content of Template.TEMLATE\_NAME.helpers({ ... });
-query | [query](#query) | Query to be added to Template data context
+query\_name | string | Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically.
+query\_params | array of [param](#param) | Query (publication) params
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
 text | string | Text to be shown in jumbotron
@@ -644,17 +614,9 @@ button\_class | string | CSS class to be added to jumbotron button
 	"title_icon_class": "",
 	"events_code": "",
 	"helpers_code": "",
-	"query": {
-		"name": "",
-		"collection": "",
-		"find_one": false,
-		"filter": {
-		},
-		"options": {
-		},
-		"params": [
-		]
-	},
+	"query_name": "",
+	"query_params": [
+	],
 	"components": [
 	],
 	"template_rendered_code": "",
@@ -677,7 +639,8 @@ name | string | Object name
 type | string | Component type name.
 dest\_selector | string | destination html element selector. Similar to jQuery selector, but only three simple formats are supported: "tagname", "#element\_id" and ".class\_name".
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
-query | [query](#query) | Query to be added to Template data context
+query\_name | string | Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically.
+query\_params | array of [param](#param) | Query (publication) params
 components | array of [component](#component) | Component list
 source | string | Markdown here
 source\_file | string | Path to file containing markdown (relative to input file)
@@ -689,17 +652,9 @@ source\_file | string | Path to file containing markdown (relative to input file
 	"type": "markdown",
 	"dest_selector": "",
 	"dest_position": "",
-	"query": {
-		"name": "",
-		"collection": "",
-		"find_one": false,
-		"filter": {
-		},
-		"options": {
-		},
-		"params": [
-		]
-	},
+	"query_name": "",
+	"query_params": [
+	],
 	"components": [
 	],
 	"source": "",
@@ -721,10 +676,12 @@ title | string | Component title
 title\_icon\_class | string | If present, "span" with this class name will be added to title (if title is set)
 events\_code | string | Content of Template.TEMLATE\_NAME.events({ ... });
 helpers\_code | string | Content of Template.TEMLATE\_NAME.helpers({ ... });
-query | [query](#query) | Query to be added to Template data context
+query\_name | string | Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically.
+query\_params | array of [param](#param) | Query (publication) params
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
-items | array of [menu\_item](#menu\_item) | Menu items
+items | array of [menu\_item](#menu\_item) | Menu items.
+items\_container\_class | string | CSS class for div containing menu items.
 scroll\_spy\_selector | string | "scrollspy" selector for menus with anchor links, usually "body".
 
 *Example:*
@@ -739,22 +696,15 @@ scroll\_spy\_selector | string | "scrollspy" selector for menus with anchor link
 	"title_icon_class": "",
 	"events_code": "",
 	"helpers_code": "",
-	"query": {
-		"name": "",
-		"collection": "",
-		"find_one": false,
-		"filter": {
-		},
-		"options": {
-		},
-		"params": [
-		]
-	},
+	"query_name": "",
+	"query_params": [
+	],
 	"components": [
 	],
 	"template_rendered_code": "",
 	"items": [
 	],
+	"items_container_class": "",
 	"scroll_spy_selector": ""
 }
 ```
@@ -769,6 +719,7 @@ route | string | Route name of destination page
 route\_params | array of [param](#param) | Parameters to be passed to "route"
 url | string | URL (for external links. You can use only one of "route" or "url" properties, not both)
 class | string | CSS class name to be added to item `li` element
+items\_container\_class | string | CSS class for div containing subitems.
 icon\_class | string | If present, generator will add `span` into menu item and assign this CSS class to it
 target | string | Anchor "target" attribute value e.g. "\_blank"
 items | array of [menu\_item](#menu\_item) | Subitems
@@ -782,6 +733,7 @@ items | array of [menu\_item](#menu\_item) | Subitems
 	],
 	"url": "",
 	"class": "",
+	"items_container_class": "",
 	"icon_class": "",
 	"target": "",
 	"items": [
@@ -794,8 +746,8 @@ items | array of [menu\_item](#menu\_item) | Subitems
 
 Property | Type | Description
 ---------|------|------------
-meteor | array of string | List of meteor packages
-mrt | array of string | List of meteorite (atmosphere) packages
+meteor | array of string | List of meteor packages. Packages listed here will be added to your application.
+mrt | array of string | List of meteorite packages (deprecated)
 
 *Example:*
 ```
@@ -820,7 +772,8 @@ title | string | Component title
 title\_icon\_class | string | If present, "span" with this class name will be added to title (if title is set)
 events\_code | string | Content of Template.TEMLATE\_NAME.events({ ... });
 helpers\_code | string | Content of Template.TEMLATE\_NAME.helpers({ ... });
-query | [query](#query) | Query to be added to Template data context
+query\_name | string | Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically.
+query\_params | array of [param](#param) | Query (publication) params
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
 meta\_description | string | Meta description
@@ -833,12 +786,13 @@ back\_route | string | Route name of page to navigate on back button click. Mand
 close\_route\_params | array of [param](#param) | Params to be passed to close\_route
 back\_route\_params | array of [param](#param) | Route params to be passed to "back\_route"
 roles | array of string | User roles allowed to access this page
-menus | array of [menu](#menu) | Menus to be inserted into this page
 pages | array of [page](#page) | Subpages
-queries | array of [query](#query) | List of queries to add into template data context
+related\_queries | array of [subscription](#subscription) | List of additional queries (publications) to subscribe
 force\_yield\_subpages | bool | Subpages will be rendered in "subcontent" area even if this page doesn't contains menu pointing to subpages
 zoneless | bool | Deprecated - will be removed soon. For applications with user account system: make this page visible for both authenticated and non-authenticated users
 parent\_layout | bool | If set to true parent page will be used as layoutTemplate. Default: false
+controller\_before\_action | string | code to execute inside route controller "onBeforeAction" hook
+controller\_after\_action | string | code to execute inside route controller "onBeforeAction" hook
 
 *Example:*
 ```
@@ -851,17 +805,9 @@ parent\_layout | bool | If set to true parent page will be used as layoutTemplat
 	"title_icon_class": "",
 	"events_code": "",
 	"helpers_code": "",
-	"query": {
-		"name": "",
-		"collection": "",
-		"find_one": false,
-		"filter": {
-		},
-		"options": {
-		},
-		"params": [
-		]
-	},
+	"query_name": "",
+	"query_params": [
+	],
 	"components": [
 	],
 	"template_rendered_code": "",
@@ -879,15 +825,15 @@ parent\_layout | bool | If set to true parent page will be used as layoutTemplat
 	],
 	"roles": [
 	],
-	"menus": [
-	],
 	"pages": [
 	],
-	"queries": [
+	"related_queries": [
 	],
 	"force_yield_subpages": false,
 	"zoneless": false,
-	"parent_layout": true
+	"parent_layout": true,
+	"controller_before_action": "",
+	"controller_after_action": ""
 }
 ```
 
@@ -914,10 +860,10 @@ Property | Type | Description
 ---------|------|------------
 name | string | Object name
 collection | string | Name of existing collection
-find\_one | bool | If set to true query will return single document: collection.findOne(). Default: false
-filter | jsonobject | Mongo query expression. Will be passed as parameter to collection.find(). Can contain route params in form ":paramName".
-options | jsonobject | Options parameter passed to collection.find().
-params | array of [param](#param) | Override parameter values passed to "filter".
+find\_one | bool | If set to true query will return single document: findOne(). Default: false
+filter | jsonobject | Mongo query expression. Will be passed as first argument to find() or findOne(). Can contain route params in form ":paramName".
+options | jsonobject | Options parameter passed as second argument to find() or findOne().
+related\_queries | array of [subscription](#subscription) | Page which subscribes to this query will also subscribe to related queries (for example: this is useful if you are using transform function that uses data from other collection).
 
 *Example:*
 ```
@@ -929,7 +875,7 @@ params | array of [param](#param) | Override parameter values passed to "filter"
 	},
 	"options": {
 	},
-	"params": [
+	"related_queries": [
 	]
 }
 ```
@@ -944,7 +890,8 @@ type | string | Component type name.
 dest\_selector | string | destination html element selector. Similar to jQuery selector, but only three simple formats are supported: "tagname", "#element\_id" and ".class\_name".
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
 class | string | CSS class name to be added to component
-query | [query](#query) | Query to be added to Template data context
+query\_name | string | Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically.
+query\_params | array of [param](#param) | Query (publication) params
 components | array of [component](#component) | Component list
 text | string | 
 
@@ -956,17 +903,9 @@ text | string |
 	"dest_selector": "",
 	"dest_position": "",
 	"class": "",
-	"query": {
-		"name": "",
-		"collection": "",
-		"find_one": false,
-		"filter": {
-		},
-		"options": {
-		},
-		"params": [
-		]
-	},
+	"query_name": "",
+	"query_params": [
+	],
 	"components": [
 	],
 	"text": ""
@@ -995,6 +934,23 @@ source\_file | string | path to external file containing route action code (rela
 ```
 
 
+# subscription
+
+Property | Type | Description
+---------|------|------------
+name | string | Publication name
+params | array of [param](#param) | Params
+
+*Example:*
+```
+{
+	"name": "",
+	"params": [
+	]
+}
+```
+
+
 # tree_view
 
 Property | Type | Description
@@ -1008,7 +964,8 @@ title | string | Component title
 title\_icon\_class | string | If present, "span" with this class name will be added to title (if title is set)
 events\_code | string | Content of Template.TEMLATE\_NAME.events({ ... });
 helpers\_code | string | Content of Template.TEMLATE\_NAME.helpers({ ... });
-query | [query](#query) | Query to be added to Template data context
+query\_name | string | Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically.
+query\_params | array of [param](#param) | Query (publication) params
 components | array of [component](#component) | Component list
 template\_rendered\_code | string | Code to be executed once template is rendered
 item\_name\_field | string | Collection field shown as folder and item title
@@ -1032,17 +989,9 @@ folder\_route\_params | array of [param](#param) | Parameters to be passed to "f
 	"title_icon_class": "",
 	"events_code": "",
 	"helpers_code": "",
-	"query": {
-		"name": "",
-		"collection": "",
-		"find_one": false,
-		"filter": {
-		},
-		"options": {
-		},
-		"params": [
-		]
-	},
+	"query_name": "",
+	"query_params": [
+	],
 	"components": [
 	],
 	"template_rendered_code": "",
@@ -1064,22 +1013,22 @@ folder\_route\_params | array of [param](#param) | Parameters to be passed to "f
 
 Property | Type | Description
 ---------|------|------------
+components | array of [component](#component) | Component list
 container\_class | string | Class to be added to page container. Example: "container-fluid". Default "container".
-menus | array of [menu](#menu) | Menus to be inserted into this page
 pages | array of [page](#page) | Subpages
-layout | string | built-in layout template name: "simple" or "navbar". Default: "navbar"
-navbar\_class | string | CSS class name to be added to navbar. Default: "navbar-fixed-top navbar-default"
+layout | string | Built-in layout template name: "empty", "navbar" or "sticky\_footer". Default: "navbar"
+navbar\_class | string | CSS class name to be added to navbar.
+footer\_class | string | CSS class name to be added to footer.
 
 *Example:*
 ```
 {
 	"container_class": "",
-	"menus": [
-	],
 	"pages": [
 	],
 	"layout": "",
-	"navbar_class": ""
+	"navbar_class": "",
+	"footer_class": ""
 }
 ```
 

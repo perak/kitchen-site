@@ -1,6 +1,175 @@
 Version History
 ===============
 
+### Latest News
+
+Preparing to open meteor-kitchen CLI source code. Now cleaning up the code and writing docs - stay tuned. 
+
+You can cheer for me by adding the star <span class="fa fa-star" style="color: yellow"></span> to this repositories:
+
+- <a href="https://github.com/perak/kitchen-cli" target="_blank">https://github.com/perak/kitchen-cli</a>
+- <a href="https://github.com/perak/kitchen-site" target="_blank">https://github.com/perak/kitchen-site</a>
+
+Many stars == many thanks!
+
+
+0.9.48
+------
+
+### New features
+
+**Input file structure is changed** 
+
+**Why it is changed?**
+
+We are preparing for the new GUI and some redundancies and mistakes by design should be fixed before we dive too far into it.
+
+**Compatibility with previous versions**
+
+GUI
+
+All your applications that resides in GUI are automatically converted to the new structure.
+
+CLI
+
+Don't worry - CLI is backward compatible and your apps with old structure will be built correctly but you'll experience warning messages. Please consider converting your input file structure into new format.
+
+
+**How to convert?**
+
+- **option 1** - automatically using GUI: login into GUI, create new application (any, minimal), goto "Edit source" page, clear JSON editor and paste your input file here. Click "Save", navigate to any page and come back to JSON editor - your file will be converted. You'l be sure that everything went fine if generator builds application without warnings.
+
+- **option 2** - manually. You can follow instructions you get from warnings printed while generating application, and here is what is changed:
+
+
+**What is changed?**
+
+**Menus** - no more `menus` array in "zone" and "page" objects. Menu is just a component as any other, so put your menus into `components` array.
+
+Old:
+```json
+{
+	"application": {
+
+		"free_zone": {
+			
+			"pages": [
+			],
+
+			"menus": [
+				{ ...your menu was here... }
+			]
+		}
+	}
+}
+```
+
+New:
+```json
+{
+	"application": {
+
+		"free_zone": {
+			
+			"pages": [
+			],
+
+			"components": [
+				{ ...your menu is now here... }
+			]
+		}
+	}
+}
+```
+*(don't forget to set your menu object's `"type": "menu"`)*
+
+
+**Queries** - defining query in each page and/or component leads to redundant code - the same query can appear in many pages and components and you was forced to repeat it's definition. Also, it was hard to maintain redundant queries.
+
+Now, all queries are defined in `application.queries` array:
+
+```
+{
+	"application": {
+		"collections": [
+			{ "name": "customers" }
+		],
+
+		"queries": [
+			{
+				"name": "all_customers",
+				"collection": "customers",
+				"filter": {},
+				"options": {}
+			}
+		]
+	}
+}
+```
+Once defined, query can be referenced from any page and component just by name:
+
+```
+{
+	"name": "my_cool_page",
+	"query_name": "all_customers",
+	"query_params": []
+}
+```
+*(please check "Getting started" page about queries for more details)*
+
+
+### Bugfixes
+
+- There was a bug in a GUI - if application created with GUI contains any collection, you couldn't built app from GUI (error was: collection "collection_name" is of unknown type "string"). Application still can be built from CLI. Problem was that GUI sets wrong `"type": "string"` to collection object (instead `"type": "collection"`).
+
+- A lot of small bugs are fixed (and maybe a lot of fresh new bugs are produced :)
+
+
+0.9.47
+------
+
+### New features
+
+- In zone object, you can specify one of 3 layouts: `empty`, `sticky_footer` and `navbar` (both for "bootstrap3" and "semantic-ui"). 
+
+  - **empty** layout is empty.
+  - **sticky_footer** is layout without menu with footer (footer is allways at the bottom of viewport).
+  - **navbar** is layout with top menu and sticky footer (this is default layout).
+
+- Zone object have "components" array - you can add any components into your layout.
+
+
+0.9.46
+------
+
+### New features
+
+- Now using <a href="https://atmospherejs.com/nemo64/bootstrap" target="_blank">nemo64:bootstrap</a> package (instead including raw bootstrap-less directory).
+
+- Started adding support for <a href="http://semantic-ui.com/" target="_blank">semantic-ui</a>. You'l be able to choose frontend framework by setting application object's property `frontend` to `bootstrap3` or `semantic-ui`. Not yet fully implemented - expect it in next few days.
+
+
+### Bugfixes
+
+- After automatic redirect to page's first subpage, back button now works (using `replaceState`).
+
+- There was problem with escape-ing json strings - fixed.
+
+- In some circumstances generator didn't report missing component template file - fixed.
+
+
+0.9.45
+------
+
+### New features
+
+- Tags input in forms: now you can set field input property to `"input": "tags"` and you'l get tags input control. Field type can be string or array. If it is string then result is string with comma separated values ("tag1,tag2,tag3"). 
+
+### Bugfixes
+
+- Menu item class for home subpages is now properly set.
+
+
 0.9.44
 ------
 

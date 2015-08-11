@@ -1,6 +1,17 @@
 Events
 ======
 
+### August 5th 2015
+
+Meteor Meetup in Melbourne, Australia
+-------------------------------------
+
+"Meteor Kitchen" and "human2machine" presented by <a href="https://github.com/mikkelking" target="_blank">Mike King</a> at <a href="http://www.meetup.com/Meteor-Melbourne/events/223624467/" target="_blank">Meteor Meetup - Melbourne 21</a>.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4onSUkj4hKc" frameborder="0" allowfullscreen></iframe>
+
+<hr />
+
 ### December 9th 2014
 
 Meteor Meetup in L.A.

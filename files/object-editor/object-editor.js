@@ -274,10 +274,20 @@ Template.TEMPLATE_NAME.helpers({
 				case "select_collection": {
 					control = "select";
 					choiceItems.push({ value: "", title: "" });
+					choiceItems.push({ value: "users", title: "users" });
 					if(containerObject && containerObject.application) {
 						_.each(containerObject.application.collections, function(collection) {
 							choiceItems.push({ value: collection.name, title: collection.name });
+						});
+					}
+				}; break;
 
+				case "select_query": {
+					control = "select";
+					choiceItems.push({ value: "", title: "" });
+					if(containerObject && containerObject.application) {
+						_.each(containerObject.application.queries, function(query) {
+							choiceItems.push({ value: query.name, title: query.name });
 						});
 					}
 				}; break;
@@ -452,9 +462,20 @@ Template.TEMPLATE_NAME.helpers({
 				case "select_collection": {
 					control = "select";
 					choiceItems.push({ value: "", title: "" });
+					choiceItems.push({ value: "users", title: "users" });
 					if(containerObject && containerObject.application) {
 						_.each(containerObject.application.collections, function(collection) {
 							choiceItems.push({ value: collection.name, title: collection.name });
+						});
+					}
+				}; break;
+
+				case "select_query": {
+					control = "select";
+					choiceItems.push({ value: "", title: "" });
+					if(containerObject && containerObject.application) {
+						_.each(containerObject.application.queries, function(query) {
+							choiceItems.push({ value: query.name, title: query.name });
 						});
 					}
 				}; break;

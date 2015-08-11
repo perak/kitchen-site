@@ -36,9 +36,10 @@
 						"input_items": [
 							{ "title": "Minimal: No user account system", 	"value": "minimal" },
 							{ "title": "Minimal: With user account system", "value": "accounts" },
+							{ "title": "Example: Admin", 					"value": "admin" },
 							{ "title": "Example: Dataview", 				"value": "dataview" },
 							{ "title": "Example: Invoices", 				"value": "invoices" },
-							{ "title": "Example: Admin", 					"value": "admin" },
+							{ "title": "Example: Photosharing", 			"value": "photosharing" },
 							{ "title": "Example: IoT - sensors", 			"value": "iot" },
 							{ "title": "Example: IoT - geiger", 			"value": "geiger" }
 						],
@@ -64,6 +65,248 @@
 				"roles_allowed_to_delete": ["owner"]
 			}
 		],
+
+		"queries": [
+			{
+				"name": "metadata",
+				"collection": "metadata",
+				"find_one": true,
+				"options": { "sort": { "version": -1} }
+			},
+			{
+				"name": "applications",
+				"collection": "applications",
+				"filter": {},
+				"options": { "sort": { "name": 1} }
+			},
+			{
+				"name": "applications_empty",
+				"collection": "applications",
+				"filter": {"_id": null},
+				"find_one": true
+			},
+			{
+				"name": "application",
+				"collection": "applications",
+				"filter": { "_id": ":applicationId" },
+				"find_one": true,
+				"related_queries": [
+					{ "name": "metadata" }
+				]
+			},
+			{
+				"name": "admin_users",
+				"collection": "users",
+				"filter": {}
+			},
+			{
+				"name": "admin_user",
+				"collection": "users",
+				"filter": { "_id": ":userId" },
+				"find_one": true
+			},
+			{
+				"name": "users_null",
+				"collection": "users",
+				"filter": { "_id": null },
+				"find_one": true
+			},
+			{
+				"name": "current_user_data",
+				"collection": "users",
+				"filter": { "_id": "Meteor.userId()" },
+				"find_one": true
+			}
+		],
+
+		"free_zone": {
+			"pages": [
+				{
+					"name": "getting_started",
+					"meta_title": "Getting started",
+					"meta_description": "Getting started with meteor.js code generator",
+
+					"container_class": "col-xs-7 col-xs-offset-5 col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2",
+					"components": [
+						{
+							"name": "sidebar",
+							"type": "div",
+							"class": "col-xs-5 col-sm-3 col-md-2 sidebar",
+							"dest_selector": ".page-container",
+							"dest_position": "before",
+							"components": [
+								{
+									"name": "menu",
+									"type": "menu",
+									"class": "nav nav-pills nav-stacked",
+									"scroll_spy_selector": "",
+									"items": [
+										{ "title": "Quick Start Videos", 	"url": "#quick-start-videos" },
+										{ "title": "Download", 				"url": "#download" },
+										{ "title": "CLI", 					"url": "#cli" },
+										{ "title": "Input File", 			"url": "#input-file" },
+										{ "title": "Pages and Menus", 		"url": "#pages-and-menus" },
+										{ "title": "Subpages", 				"url": "#subpages" },
+										{ "title": "Frontend Framework",	"url": "#frontend-framework" },
+										{ "title": "Visual Themes",			"url": "#visual-themes" },
+										{ "title": "Components", 			"url": "#components" },
+										{ "title": "Collections", 			"url": "#collections" },
+										{ "title": "Queries", 				"url": "#queries" },
+										{ "title": "Joins", 				"url": "#joins" },
+										{ "title": "DataView Component",	"url": "#dataview-component" },
+										{ "title": "Form Component", 		"url": "#form-component" },
+										{ "title": "Route Params", 			"url": "#route-params" },
+										{ "title": "Custom components", 	"url": "#custom-components" },
+										{ "title": "Plugins", 				"url": "#plugins" },
+										{ "title": "Server Side Routes", 	"url": "#server-side-routes" },
+										{ "title": "OAuth", 				"url": "#oauth" },
+										{ "title": "User Roles",			"url": "#user-roles" },
+										{ "title": "File Uploads",			"url": "#file-uploads" }
+									]
+								}
+							]
+						},
+
+						{
+							"name": "content",
+							"type": "markdown",
+							"source_file": "files/getting_started.md"
+						}
+					]
+				},
+				{
+					"name": "examples",
+					"meta_title": "Examples",
+					"meta_description": "Example applications created with meteor-kitchen",
+					"components": [
+						{
+							"name": "content",
+							"type": "markdown",
+							"source_file": "files/examples.md"
+						}
+					]
+				},
+				{
+					"name": "api_reference",
+					"meta_title": "API reference",
+					"meta_description": "API reference for Meteor.js code generator",
+					"template_rendered_code": "$('table').addClass('table');",
+
+					"container_class": "col-xs-7 col-xs-offset-5 col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2",
+					"components": [
+						{
+							"name": "sidebar",
+							"type": "div",
+							"class": "col-xs-5 col-sm-3 col-md-2 sidebar",
+							"dest_selector": ".page-container",
+							"dest_position": "before",
+							"components": [
+								{
+									"name": "menu",
+									"type": "menu",
+									"class": "nav nav-pills nav-stacked",
+									"scroll_spy_selector": "",
+									"items": [
+										{ "title": "application",		"url": "#application" },
+										{ "title": "collection",		"url": "#collection" },
+										{ "title": "component",			"url": "#component" },
+										{ "title": "custom_component",	"url": "#custom_component" },
+										{ "title": "data_view",			"url": "#data_view" },
+										{ "title": "div",				"url": "#div" },
+										{ "title": "field",				"url": "#field" },
+										{ "title": "file_pair",			"url": "#file_pair" },
+										{ "title": "form",				"url": "#form" },
+										{ "title": "hidden_field",		"url": "#hidden_field" },
+										{ "title": "input_item",		"url": "#input_item" },
+										{ "title": "jumbotron",			"url": "#jumbotron" },
+										{ "title": "markdown",			"url": "#markdown" },
+										{ "title": "menu",				"url": "#menu" },
+										{ "title": "menu_item",			"url": "#menu_item" },
+										{ "title": "packages",			"url": "#packages" },
+										{ "title": "page",				"url": "#page" },
+										{ "title": "query",				"url": "#query" },
+										{ "title": "param",				"url": "#param" },
+										{ "title": "section",			"url": "#section" },
+										{ "title": "server_side_route",	"url": "#server_side_route" },
+										{ "title": "subscription",		"url": "#subscription" },
+										{ "title": "tree_view",			"url": "#tree_view" },
+										{ "title": "zone",				"url": "#zone" }
+									]
+								}
+							]
+						},
+
+						{
+							"name": "content",
+							"type": "markdown",
+							"source_file": "files/api_reference.md"
+						}
+					]
+				},
+				{
+					"name": "version_history",
+					"meta_title": "What's Up",
+					"meta_description": "Meteor.js code generator version history",
+					"components": [
+						{
+							"name": "row",
+							"type": "div",
+							"class": "row",
+							"components": [
+								{
+									"name": "left",
+									"type": "div",
+									"class": "col-sm-6",
+									"components": [
+										{
+											"name": "version_history",
+											"type": "markdown",
+											"source_file": "files/version_history.md"
+										}
+									]
+								},
+								{
+									"name": "right",
+									"type": "div",
+									"class": "col-sm-6",
+									"components": [
+										{
+											"name": "events",
+											"type": "markdown",
+											"source_file": "files/events.md"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "contribute",
+					"meta_title": "Contribute",
+					"meta_description": "Contribute to Meteor.js code generator",
+					"components": [
+						{
+							"name": "content",
+							"type": "markdown",
+							"source_file": "files/contribute.md"
+						}
+					]
+				},
+				{
+					"name": "donate",
+					"meta_title": "Donate",
+					"meta_description": "Support Meteor.js code generator",
+					"components": [
+						{
+							"name": "content",
+							"type": "markdown",
+							"source_file": "files/donate.md"
+						}
+					]
+				}
+			]
+		},
 
 		"public_zone": {
 			"pages":[
@@ -194,197 +437,11 @@
 				{ "name": "register", "template": "register" },
 				{ "name": "forgot_password", "template": "forgot_password" },
 				{ "name": "reset_password", "template": "reset_password", "route_params": ["resetPasswordToken"] },
-				{
-					"name": "getting_started",
-					"zoneless": true,
-					"meta_title": "Getting started",
-					"meta_description": "Getting started with meteor.js code generator",
-
-					"container_class": "col-xs-7 col-xs-offset-5 col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2",
-					"components": [
-						{
-							"name": "sidebar",
-							"type": "div",
-							"class": "col-xs-5 col-sm-3 col-md-2 sidebar",
-							"dest_selector": ".page-container",
-							"dest_position": "before"
-						},
-
-						{
-							"name": "content",
-							"type": "markdown",
-							"source_file": "files/getting_started.md"
-						}
-					],
-					"menus": [
-						{
-							"name": "sidebar",
-							"class": "nav nav-pills nav-stacked",
-							"dest_selector": ".sidebar",
-							"scroll_spy_selector": "",
-							"items": [
-								{ "title": "Quick Start Videos", 	"url": "#quick-start-videos" },
-								{ "title": "Download", 				"url": "#download" },
-								{ "title": "CLI", 					"url": "#cli" },
-								{ "title": "Input File", 			"url": "#input-file" },
-								{ "title": "Pages and Menus", 		"url": "#pages-and-menus" },
-								{ "title": "Subpages", 				"url": "#subpages" },
-								{ "title": "Visual Themes",			"url": "#visual-themes" },
-								{ "title": "Components", 			"url": "#components" },
-								{ "title": "Collections", 			"url": "#collections" },
-								{ "title": "Joins", 				"url": "#joins" },
-								{ "title": "DataView Component",	"url": "#dataview-component" },
-								{ "title": "Form Component", 		"url": "#form-component" },
-								{ "title": "Route Params", 			"url": "#route-params" },
-								{ "title": "Custom components", 	"url": "#custom-components" },
-								{ "title": "Plugins", 				"url": "#plugins" },
-								{ "title": "Server Side Routes", 	"url": "#server-side-routes" },
-								{ "title": "OAuth", 				"url": "#oauth" },
-								{ "title": "User Roles",			"url": "#user-roles" },
-								{ "title": "File Uploads",			"url": "#file-uploads" }
-							]
-						}
-					]
-				},
-				{
-					"name": "examples",
-					"zoneless": true,
-					"meta_title": "Examples",
-					"meta_description": "Example applications created with meteor-kitchen",
-					"components": [
-						{
-							"name": "content",
-							"type": "markdown",
-							"source_file": "files/examples.md"
-						}
-					]
-				},
-				{
-					"name": "api_reference",
-					"zoneless": true,
-					"meta_title": "API reference",
-					"meta_description": "API reference for Meteor.js code generator",
-					"template_rendered_code": "$('table').addClass('table');",
-
-					"container_class": "col-xs-7 col-xs-offset-5 col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2",
-					"components": [
-						{
-							"name": "sidebar",
-							"type": "div",
-							"class": "col-xs-5 col-sm-3 col-md-2 sidebar",
-							"dest_selector": ".page-container",
-							"dest_position": "before"
-						},
-
-						{
-							"name": "content",
-							"type": "markdown",
-							"source_file": "files/api_reference.md"
-						}
-					],
-					"menus": [
-						{
-							"name": "menu",
-							"class": "nav nav-pills nav-stacked",
-							"dest_selector": ".sidebar",
-							"scroll_spy_selector": "",
-							"items": [
-								{ "title": "application",		"url": "#application" },
-								{ "title": "collection",		"url": "#collection" },
-								{ "title": "component",			"url": "#component" },
-								{ "title": "custom_component",	"url": "#custom_component" },
-								{ "title": "data_view",			"url": "#data_view" },
-								{ "title": "div",				"url": "#div" },
-								{ "title": "field",				"url": "#field" },
-								{ "title": "file_pair",			"url": "#file_pair" },
-								{ "title": "form",				"url": "#form" },
-								{ "title": "hidden_field",		"url": "#hidden_field" },
-								{ "title": "input_item",		"url": "#input_item" },
-								{ "title": "jumbotron",			"url": "#jumbotron" },
-								{ "title": "markdown",			"url": "#markdown" },
-								{ "title": "menu",				"url": "#menu" },
-								{ "title": "menu_item",			"url": "#menu_item" },
-								{ "title": "packages",			"url": "#packages" },
-								{ "title": "page",				"url": "#page" },
-								{ "title": "query",				"url": "#query" },
-								{ "title": "param",				"url": "#param" },
-								{ "title": "section",			"url": "#section" },
-								{ "title": "server_side_route",	"url": "#server_side_route" },
-								{ "title": "tree_view",			"url": "#tree_view" },
-								{ "title": "zone",				"url": "#zone" }
-							]
-						}
-					]
-				},
-				{
-					"name": "version_history",
-					"zoneless": true,
-					"meta_title": "What's Up",
-					"meta_description": "Meteor.js code generator version history",
-					"components": [
-						{
-							"name": "row",
-							"type": "div",
-							"class": "row",
-							"components": [
-								{
-									"name": "left",
-									"type": "div",
-									"class": "col-sm-6",
-									"components": [
-										{
-											"name": "version_history",
-											"type": "markdown",
-											"source_file": "files/version_history.md"
-										}
-									]
-								},
-								{
-									"name": "right",
-									"type": "div",
-									"class": "col-sm-6",
-									"components": [
-										{
-											"name": "events",
-											"type": "markdown",
-											"source_file": "files/events.md"
-										}
-									]
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "contribute",
-					"zoneless": true,
-					"meta_title": "Contribute",
-					"meta_description": "Contribute to Meteor.js code generator",
-					"components": [
-						{
-							"name": "content",
-							"type": "markdown",
-							"source_file": "files/contribute.md"
-						}
-					]
-				},
-				{
-					"name": "donate",
-					"zoneless": true,
-					"meta_title": "Donate",
-					"meta_description": "Support Meteor.js code generator",
-					"components": [
-						{
-							"name": "content",
-							"type": "markdown",
-							"source_file": "files/donate.md"
-						}
-					]
-				}
 			],
-			"menus": [
+			"components": [
 				{
 					"name": "left_menu",
+					"type": "menu",
 					"class": "nav navbar-nav",
 					"dest_selector": "#menu",
 					"items": [
@@ -400,6 +457,7 @@
 
 				{
 					"name": "right_menu",
+					"type": "menu",
 					"class": "nav navbar-nav navbar-right",
 					"dest_selector": "#menu",
 					"items": [
@@ -421,12 +479,7 @@
 							"type": "data_view",
 							"title": "My applications",
 							"text_if_empty": "No applications here",
-							"query": {
-								"name": "applications",
-								"collection": "applications",
-								"filter": {},
-								"options": { "sort": { "name": 1} }
-							},
+							"query_name": "applications",
 							"insert_route": "applications.insert",
 							"insert_button_title": "Create New",
 
@@ -452,11 +505,7 @@
 									"type": "form",
 									"mode": "insert",
 									"title": "New application",
-									"query": {
-										"name": "applications_empty",
-										"collection": "applications",
-										"filter": {"_id": null}
-									},
+									"query_name": "applications_empty",
 									"submit_route": "applications.details",
 									"submit_route_params": [
 										{ "name": "applicationId", "value": "newId" },
@@ -477,13 +526,9 @@
 									"type": "form",
 									"mode": "update",
 									"title": "Edit",
+									"query_name": "application",
 									"submit_route": "applications",
-									"cancel_route": "applications",
-									"query": {
-										"name": "application",
-										"collection": "applications",
-										"filter": { "_id": ":applicationId" }
-									}
+									"cancel_route": "applications"
 								}
 							]
 						},
@@ -494,12 +539,7 @@
 							"title": "{{application.name}}",
 							"container_class": "container-fluid app-editor-container",
 							"route_params": [ "applicationId", "objectId", "propertyName" ],
-							"query": {
-								"name": "application",
-								"collection": "applications",
-								"find_one": true,
-								"filter": { "_id": ":applicationId" }
-							},
+							"query_name": "application",
 							"back_route": "applications",
 
 							"pages": [
@@ -508,21 +548,7 @@
 									"parent_layout": true,
 									"class": "app-editor",
 
-									"query": {
-										"name": "application",
-										"collection": "applications",
-										"find_one": true,
-										"filter": { "_id": ":applicationId" }
-									},
-
-									"queries": [
-										{
-											"name": "metadata",
-											"collection": "metadata",
-											"find_one": true,
-											"options": { "sort": { "version": -1} }
-										}
-									],
+									"query_name": "application",
 
 									"components": [
 										{
@@ -565,21 +591,7 @@
 									"parent_layout": true,
 									"class": "app-editor",
 
-									"query": {
-										"name": "application",
-										"collection": "applications",
-										"find_one": true,
-										"filter": { "_id": ":applicationId" }
-									},
-
-									"queries": [
-										{
-											"name": "metadata",
-											"collection": "metadata",
-											"find_one": true,
-											"options": { "sort": { "version": -1 } }
-										}
-									],
+									"query_name": "application",
 
 									"components": [
 										{
@@ -621,21 +633,7 @@
 									"parent_layout": true,
 									"class": "app-editor",
 
-									"query": {
-										"name": "application",
-										"collection": "applications",
-										"find_one": true,
-										"filter": { "_id": ":applicationId" }
-									},
-
-									"queries": [
-										{
-											"name": "metadata",
-											"collection": "metadata",
-											"find_one": true,
-											"options": { "sort": { "version": -1 } }
-										}
-									],
+									"query_name": "application",
 
 									"components": [
 										{
@@ -651,21 +649,7 @@
 									"parent_layout": true,
 									"class": "app-editor",
 
-									"query": {
-										"name": "application",
-										"collection": "applications",
-										"find_one": true,
-										"filter": { "_id": ":applicationId" }
-									},
-
-									"queries": [
-										{
-											"name": "metadata",
-											"collection": "metadata",
-											"find_one": true,
-											"options": { "sort": { "version": -1 } }
-										}
-									],
+									"query_name": "application",
 
 									"components": [
 										{
@@ -681,12 +665,7 @@
 									"parent_layout": true,
 									"class": "app-editor",
 
-									"query": {
-										"name": "application",
-										"collection": "applications",
-										"find_one": true,
-										"filter": { "_id": ":applicationId" }
-									},
+									"query_name": "application",
 
 									"components": [
 										{
@@ -700,25 +679,8 @@
 
 							"components": [
 								{
-									"name": "build_info",
-									"dest_selector": "#title_row",
-									"dest_position": "after",
-									"type": "div",
-									"class": "alert alert-info alert-dismissible build-info",
-									"text": "<button type=\"button\" class=\"close build-local\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>",
-									"components": [
-										{
-											"name": "text",
-											"type": "markdown",
-											"source_file": "files/build_info.md"
-										}
-									]
-								}
-							],
-
-							"menus": [
-								{
 									"name": "left_menu",
+									"type": "menu",
 									"class": "nav navbar-nav",
 									"items": [
 										{
@@ -775,9 +737,25 @@
 								},
 								{
 									"name": "right_menu",
+									"type": "menu",
 									"class": "nav navbar-nav navbar-right",
 									"dest_selector": "#menu",
 									"items": [
+									]
+								},
+								{
+									"name": "build_info",
+									"dest_selector": "#title_row",
+									"dest_position": "after",
+									"type": "div",
+									"class": "alert alert-info alert-dismissible build-info",
+									"text": "<button type=\"button\" class=\"close build-local\"><span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span></button>",
+									"components": [
+										{
+											"name": "text",
+											"type": "markdown",
+											"source_file": "files/build_info.md"
+										}
 									]
 								}
 							],
@@ -799,11 +777,7 @@
 									"type": "data_view",
 									"title": "Users",
 									"text_if_empty": "No users yet",
-									"query": {
-										"name": "admin_users",
-										"collection": "users",
-										"filter": {}
-									},
+									"query_name": "admin_users",
 
 									"fields": [
 										{ "name": "profile.name", "title": "Name"},
@@ -834,11 +808,7 @@
 											"type": "form",
 											"mode": "read_only",
 											"title": "User details",
-											"query": {
-												"name": "admin_user",
-												"collection": "users",
-												"filter": { "_id": ":userId" }
-											},
+											"query_name": "admin_user",
 											"fields": [
 												{ "name": "profile.name", "title": "Name"},
 												{ "name": "profile.email", "title": "E-mail", "type": "email" },
@@ -859,11 +829,7 @@
 											"title": "Add new user",
 											"submit_route": "admin.users",
 											"cancel_route": "admin.users",
-											"query": {
-												"name": "users_null",
-												"collection": "users",
-												"filter": { "_id": null }
-											},
+											"query_name": "users_null",
 											"fields": [
 												{ "name": "profile.name", "title": "Name", "required": true },
 												{ "name": "profile.email", "title": "E-mail", "type": "email", "required": true },
@@ -883,11 +849,7 @@
 											"title": "Edit user",
 											"submit_route": "admin.users",
 											"cancel_route": "admin.users",
-											"query": {
-												"name": "admin_user",
-												"collection": "users",
-												"filter": { "_id": ":userId" }
-											},
+											"query_name": "admin_user",
 											"fields": [
 												{ "name": "profile.name", "title": "Name", "required": true },
 												{ "name": "profile.email", "title": "E-mail", "type": "email", "required": true },
@@ -911,9 +873,10 @@
 
 					],
 
-					"menus": [
+					"components": [
 						{
 							"name": "side_menu",
+							"type": "menu",
 							"class": "nav nav-stacked nav-pills",
 							"items": [
 								{ "title": "Users", "route": "admin.users" }
@@ -934,12 +897,7 @@
 									"mode": "update",
 									"title": "Edit your profile",
 									"submit_route": "user_settings.profile",
-									"query": {
-										"name": "current_user_data",
-										"collection": "users",
-										"filter": { "_id": "Meteor.userId()" },
-										"find_one": true
-									},
+									"query_name": "current_user_data",
 									"fields": [
 										{ "name": "profile.name", "title": "Name", "required": true },
 										{ "name": "profile.email", "title": "E-mail", "type": "email", "required": true }
@@ -951,9 +909,10 @@
 						{ "name": "change_pass", "template": "change_pass" }
 					],
 
-					"menus": [
+					"components": [
 						{
 							"name": "side_menu",
+							"type": "menu",
 							"class": "nav nav-stacked nav-pills",
 							"items": [
 								{ "title": "Profile", "route": "user_settings.profile" },
@@ -966,9 +925,10 @@
 				{ "name": "logout", "template": "logout" }
 			],
 
-			"menus": [
+			"components": [
 				{
 					"name": "left_menu",
+					"type": "menu",
 					"class": "nav navbar-nav",
 					"dest_selector": "#menu",
 					"items": [
@@ -984,6 +944,7 @@
 
 				{
 					"name": "right_menu",
+					"type": "menu",
 					"class": "nav navbar-nav navbar-right",
 					"dest_selector": "#menu",
 					"items": [
@@ -1036,11 +997,12 @@
 			{ "source": "files/images/ribbon-donate-gratipay.png", "dest": "PUBLIC_DIR/images/ribbon-donate-gratipay.png" },
 			{ "source": "files/images/ribbon-donate-bitcoin.png", "dest": "PUBLIC_DIR/images/ribbon-donate-bitcoin.png" },
 
-			{ "source": "files/examples/template-minimal.json", "dest": "PRIVATE_DIR/template-minimal.json" },
-			{ "source": "files/examples/template-accounts.json", "dest": "PRIVATE_DIR/template-accounts.json" },
+			{ "source": "files/examples/example-minimal.json", "dest": "PRIVATE_DIR/example-minimal.json" },
+			{ "source": "files/examples/example-accounts.json", "dest": "PRIVATE_DIR/example-accounts.json" },
+			{ "source": "files/examples/example-admin.json", "dest": "PRIVATE_DIR/example-admin.json" },
 			{ "source": "files/examples/example-dataview.json", "dest": "PRIVATE_DIR/example-dataview.json" },
 			{ "source": "files/examples/example-invoices.json", "dest": "PRIVATE_DIR/example-invoices.json" },
-			{ "source": "files/examples/example-admin.json", "dest": "PRIVATE_DIR/example-admin.json" },
+			{ "source": "files/examples/example-photosharing.json", "dest": "PRIVATE_DIR/example-photosharing.json" },
 			{ "source": "files/examples/example-iot.json", "dest": "PRIVATE_DIR/example-iot.json" },
 			{ "source": "files/examples/example-geiger.json", "dest": "PRIVATE_DIR/example-geiger.json" },
 

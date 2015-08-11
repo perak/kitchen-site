@@ -1,5 +1,5 @@
 {
-	"version": 59,
+	"version": 72,
 	"classList": [
 		{
 			"objectType": "root",
@@ -87,7 +87,7 @@
 						"array",
 						"email"
 					],
-					"description": "Field data type used in form validations. Examples: \"string\", \"integer\", \"float\", \"date\", \"time\", \"array\", \"email\", \"random_string\". Default: \"string\""
+					"description": "Field data type used in form validations. Examples: \"string\", \"integer\", \"float\", \"date\", \"time\", \"bool\", \"array\", \"email\", \"random_string\". Default: \"string\""
 				},
 				{
 					"name": "default",
@@ -186,10 +186,12 @@
 						"radio",
 						"checkbox",
 						"select",
+						"select-multiple",
+						"tags",
 						"crud",
 						"custom"
 					],
-					"description": "Form input control type: \"text\", \"password\", \"datepicker\", \"read-only\", \"textarea\", \"radio\", \"checkbox\", \"select\", \"crud\", \"custom\""
+					"description": "Form input control type: \"text\", \"password\", \"datepicker\", \"read-only\", \"textarea\", \"radio\", \"checkbox\", \"select\", \"crud\", \"file\", \"custom\""
 				},
 				{
 					"name": "input_template",
@@ -222,14 +224,24 @@
 					"description": "Item list for input type \"radio\" and \"select\""
 				},
 				{
-					"name": "lookup_query",
-					"title": "Items query",
-					"type": "query",
+					"name": "lookup_query_name",
+					"title": "Lookup query name",
+					"type": "string",
 					"subType": "",
 					"default": "",
 					"required": false,
+					"input": "select_query",
+					"description": "Query name used for form input type \"select\""
+				},
+				{
+					"name": "lookup_query_params",
+					"title": "Lookup query params",
+					"type": "array",
+					"subType": "param",
+					"default": "",
+					"required": false,
 					"input": "",
-					"description": "Lookup query - data source for input type \"select\" items"
+					"description": "Lookup query params"
 				},
 				{
 					"name": "lookup_key",
@@ -292,6 +304,26 @@
 					"description": "For fields with \"input\": \"crud\" - insert button and insert form title"
 				},
 				{
+					"name": "file_collection",
+					"title": "File collection",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "select_collection",
+					"description": "For fields with \"input\": \"file\". Name of FS.Collection where file is stored."
+				},
+				{
+					"name": "file_container",
+					"title": "File container field",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text",
+					"description": "For fields with \"input\": \"file\". Field name where FS.File object from joined FS.Collection will be stored."
+				},
+				{
 					"name": "join_collection",
 					"title": "Join collection",
 					"type": "string",
@@ -300,6 +332,16 @@
 					"required": false,
 					"input": "select_collection",
 					"description": "Collection name to join. If set then this field acts as foreign key"
+				},
+				{
+					"name": "join_collection_field",
+					"title": "Join collection field",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "",
+					"description": "Used in generic joins only. Field name (from this collection) containing collection name to join with. If set then this field acts as foreign key."
 				},
 				{
 					"name": "join_container",
@@ -446,6 +488,20 @@
 					"description": "Object name"
 				},
 				{
+					"name": "type",
+					"title": "Type",
+					"type": "string",
+					"subType": "",
+					"default": "collection",
+					"required": true,
+					"input": "select",
+					"choice_items": [
+						"collection",
+						"file_collection"
+					],
+					"description": "Collection type. Can be \"collection\" or \"file_collection\" (FS.Collection). Default: \"collection\"."
+				},
+				{
 					"name": "fields",
 					"title": "Fields",
 					"type": "array",
@@ -504,6 +560,16 @@
 					"required": false,
 					"input": "stringlist",
 					"description": "List of user roles that can delete documents. You can also use special roles \"nobody\" and \"owner\"."
+				},
+				{
+					"name": "roles_allowed_to_download",
+					"title": "Roles allowed to Download",
+					"type": "array",
+					"subType": "string",
+					"default": "",
+					"required": false,
+					"input": "stringlist",
+					"description": "For collection of type \"file_collection\": List of user roles that can download files. You can use special roles \"nobody\" (nobody can download) and \"owner\" (only owner/creator can download)."
 				},
 				{
 					"name": "before_insert_code",
@@ -688,6 +754,37 @@
 					"description": "Options parameter passed to collection.find()."
 				},
 				{
+					"name": "related_queries",
+					"title": "Related queries",
+					"type": "array",
+					"subType": "subscription",
+					"default": "",
+					"required": false,
+					"input": "",
+					"description": "Page which subscribes to this query will also subscribe to related queries (for example: this is useful if you are using transform function that uses data from other collection)"
+				}
+			],
+			"hideDerivedClasses": [
+			],
+			"hideThis": false,
+			"description": ""
+		},
+		{
+			"objectType": "subscription",
+			"derivedFrom": [
+			],
+			"members": [
+				{
+					"name": "name",
+					"title": "Publication name",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text",
+					"description": "Query name (from application.queries)"
+				},
+				{
 					"name": "params",
 					"title": "Params",
 					"type": "array",
@@ -695,7 +792,7 @@
 					"default": "",
 					"required": false,
 					"input": "",
-					"description": "Override parameter values passed to \"filter\"."
+					"description": "Query params"
 				}
 			],
 			"hideDerivedClasses": [
@@ -817,14 +914,24 @@
 					"description": ""
 				},
 				{
-					"name": "query",
-					"title": "Query",
-					"type": "query",
+					"name": "query_name",
+					"title": "Query name",
+					"type": "string",
 					"subType": "",
 					"default": "",
 					"required": false,
+					"input": "select_query",
+					"description": "Query (publication) name from application.queries used as main data context. Parent page router will subscribe to this publication automatically"
+				},
+				{
+					"name": "query_params",
+					"title": "Query params",
+					"type": "array",
+					"subType": "param",
+					"default": "",
+					"required": false,
 					"input": "",
-					"description": ""
+					"description": "Query (publication) params"
 				},
 				{
 					"name": "components",
@@ -974,8 +1081,10 @@
 						"",
 						"page_empty",
 						"page_subcontent_sidenav",
+						"page_subcontent_sidenav_collapse",
 						"page_subcontent_tabnav",
 						"page_subcontent_navbar",
+						"page_subcontent_navbar_top",
 						"change_pass",
 						"forgot_password",
 						"login",
@@ -1046,14 +1155,24 @@
 					"description": "Content of Template.TEMLATE_NAME.helpers({ ... });"
 				},
 				{
-					"name": "query",
-					"title": "Query",
-					"type": "query",
+					"name": "query_name",
+					"title": "Query name",
+					"type": "string",
 					"subType": "",
 					"default": "",
 					"required": false,
+					"input": "select_query",
+					"description": "Query (publication) name from application.queries used as main data context. Route controller will subscribe to this publication automatically"
+				},
+				{
+					"name": "query_params",
+					"title": "Query params",
+					"type": "array",
+					"subType": "param",
+					"default": "",
+					"required": false,
 					"input": "",
-					"description": "Query to be added to Template data context"
+					"description": "Query (publication) params"
 				},
 				{
 					"name": "components",
@@ -1176,16 +1295,6 @@
 					"description": "User roles allowed to access this page"
 				},
 				{
-					"name": "menus",
-					"title": "Menus",
-					"type": "array",
-					"subType": "menu",
-					"default": "",
-					"required": false,
-					"input": "",
-					"description": "Menus to be inserted into this page"
-				},
-				{
 					"name": "pages",
 					"title": "Subpages",
 					"type": "array",
@@ -1196,14 +1305,14 @@
 					"description": "Subpages"
 				},
 				{
-					"name": "queries",
-					"title": "Queries",
+					"name": "related_queries",
+					"title": "Related queries",
 					"type": "array",
-					"subType": "query",
+					"subType": "subscription",
 					"default": "",
 					"required": false,
 					"input": "",
-					"description": "List of queries to add into template data context"
+					"description": "List of additional queries (publications) to subscribe"
 				},
 				{
 					"name": "force_yield_subpages",
@@ -1234,6 +1343,26 @@
 					"required": false,
 					"input": "checkbox",
 					"description": "If set to true parent page will be used as layoutTemplate. Default: false"
+				},
+				{
+					"name": "controller_before_action",
+					"title": "Controller onBeforeAction",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text",
+					"description": "Code to execute inside route controller \"onBeforeAction\" hook"
+				},
+				{
+					"name": "controller_after_action",
+					"title": "Controller onAfterAction",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text",
+					"description": "Code to execute inside route controller \"onAfterAction\" hook"
 				}
 			],
 			"hideDerivedClasses": [
@@ -1259,6 +1388,16 @@
 					"description": ""
 				},
 				{
+					"name": "components",
+					"title": "Components",
+					"type": "array",
+					"subType": "component",
+					"default": "",
+					"required": false,
+					"input": "",
+					"description": ""
+				},
+				{
 					"name": "container_class",
 					"title": "Container class",
 					"type": "string",
@@ -1267,16 +1406,6 @@
 					"required": false,
 					"input": "text",
 					"description": "Class to be added to page container. Example: \"container-fluid\". Default \"container\"."
-				},
-				{
-					"name": "menus",
-					"title": "Menus",
-					"type": "array",
-					"subType": "menu",
-					"default": "",
-					"required": false,
-					"input": "",
-					"description": "Menus to be inserted into this page"
 				},
 				{
 					"name": "pages",
@@ -1299,9 +1428,10 @@
 					"choice_items": [
 						"",
 						"navbar",
-						"simple"
+						"sticky_footer",
+						"empty"
 					],
-					"description": "built-in layout template name: \"simple\" or \"navbar\". Default: \"navbar\""
+					"description": "Built-in layout template name: \"empty\", \"navbar\" or \"sticky_footer\". Default: \"navbar\""
 				},
 				{
 					"name": "navbar_class",
@@ -1311,7 +1441,17 @@
 					"default": "",
 					"required": false,
 					"input": "text",
-					"description": "CSS class name to be added to navbar. Default: \"navbar-fixed-top navbar-default\""
+					"description": "CSS class name to be added to navbar."
+				},
+				{
+					"name": "footer_class",
+					"title": "Footer Class",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text",
+					"description": "CSS class name to be added to footer."
 				}
 			],
 			"hideDerivedClasses": [
@@ -1418,17 +1558,18 @@
 					"description": "Default meta_title for pages without meta_title"
 				},
 				{
-					"name": "template",
-					"title": "Template",
+					"name": "frontend",
+					"title": "Frontend",
 					"type": "string",
 					"subType": "",
-					"default": "bootstrap",
+					"default": "bootstrap3",
 					"required": false,
 					"input": "select",
 					"choice_items": [
-						"bootstrap"
+						"bootstrap3",
+						"semantic-ui"
 					],
-					"description": "Default: \"bootstrap\" (you can expect more templates in the future)."
+					"description": "Default: \"bootstrap3\" (you can expect more frontend frameworks in the future)."
 				},
 				{
 					"name": "theme",
@@ -1437,26 +1578,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "select",
-					"choice_items": [
-						"",
-						"bootswatch-amelia",
-						"bootswatch-cerulean",
-						"bootswatch-cosmo",
-						"bootswatch-cyborg",
-						"bootswatch-darkly",
-						"bootswatch-flatly",
-						"bootswatch-journal",
-						"bootswatch-lumen",
-						"bootswatch-paper",
-						"bootswatch-readable",
-						"bootswatch-simplex",
-						"bootswatch-slate",
-						"bootswatch-spacelab",
-						"bootswatch-superhero",
-						"bootswatch-united",
-						"bootswatch-yeti"
-					],
+					"input": "text",
 					"description": "Visual theme name. With \"bootstrap\" template, theme can be one of <a href=\"http:\/\/bootswatch.com\/\" target=\"_blank\">bootswatch<\/a> themes: bootswatch-amelia, bootswatch-cerulean, bootswatch-cosmo, bootswatch-cyborg, bootswatch-darkly, bootswatch-flatly, bootswatch-journal, bootswatch-lumen, bootswatch-paper, bootswatch-readable, bootswatch-simplex, bootswatch-slate, bootswatch-spacelab, bootswatch-superhero, bootswatch-united, bootswatch-yeti"
 				},
 				{
@@ -1510,6 +1632,16 @@
 					"description": "Mongo database collections"
 				},
 				{
+					"name": "queries",
+					"title": "Queries",
+					"type": "array",
+					"subType": "query",
+					"default": "",
+					"required": false,
+					"input": "",
+					"description": "List of database queries (publications)"
+				},
+				{
 					"name": "free_zone",
 					"title": "Free zone",
 					"type": "zone",
@@ -1548,6 +1680,16 @@
 					"required": false,
 					"input": "checkbox",
 					"description": "Allow login with password (for app with user account system only). Default: true"
+				},
+				{
+					"name": "send_verification_email",
+					"title": "Send verification e-mail",
+					"type": "bool",
+					"subType": "",
+					"default": "false",
+					"required": false,
+					"input": "checkbox",
+					"description": "After user account registration, e-mail with verification link will be sent to user. Default: false"
 				},
 				{
 					"name": "login_with_google",
@@ -1819,14 +1961,24 @@
 					"description": "destination position relative to destination element: \"top\", \"bottom\", \"before\" or \"after\". Default: \"bottom\""
 				},
 				{
-					"name": "query",
-					"title": "Query",
-					"type": "query",
+					"name": "query_name",
+					"title": "Query name",
+					"type": "string",
 					"subType": "",
 					"default": "",
 					"required": false,
+					"input": "select_query",
+					"description": "Query (publication) name from application.queries used as main data context. Parent page router will subscribe to this publication automatically"
+				},
+				{
+					"name": "query_params",
+					"title": "Query params",
+					"type": "array",
+					"subType": "param",
+					"default": "",
+					"required": false,
 					"input": "",
-					"description": "Query to be added to Template data context"
+					"description": "Query (publication) params"
 				},
 				{
 					"name": "components",
@@ -1909,6 +2061,16 @@
 					"required": false,
 					"input": "text",
 					"description": "CSS class name to be added to item `li` element"
+				},
+				{
+					"name": "items_container_class",
+					"title": "Items container class",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text",
+					"description": "CSS class for div containing subitems"
 				},
 				{
 					"name": "icon_class",
@@ -2040,14 +2202,24 @@
 					"description": "Content of Template.TEMLATE_NAME.helpers({ ... });"
 				},
 				{
-					"name": "query",
-					"title": "Query",
-					"type": "query",
+					"name": "query_name",
+					"title": "Query name",
+					"type": "string",
 					"subType": "",
 					"default": "",
 					"required": false,
+					"input": "select_query",
+					"description": "Query (publication) name from application.queries used as main data context. Parent page router will subscribe to this publication automatically"
+				},
+				{
+					"name": "query_params",
+					"title": "Query params",
+					"type": "array",
+					"subType": "param",
+					"default": "",
+					"required": false,
 					"input": "",
-					"description": "Query to be added to Template data context"
+					"description": "Query (publication) params"
 				},
 				{
 					"name": "components",
@@ -2078,6 +2250,16 @@
 					"required": false,
 					"input": "",
 					"description": "Menu items"
+				},
+				{
+					"name": "items_container_class",
+					"title": "Items container class",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text",
+					"description": "CSS class for div containing menu items"
 				},
 				{
 					"name": "scroll_spy_selector",
@@ -2199,14 +2381,24 @@
 					"description": "Content of Template.TEMLATE_NAME.helpers({ ... });"
 				},
 				{
-					"name": "query",
-					"title": "Query",
-					"type": "query",
+					"name": "query_name",
+					"title": "Query name",
+					"type": "string",
 					"subType": "",
 					"default": "",
 					"required": false,
+					"input": "select_query",
+					"description": "Query (publication) name from application.queries used as main data context. Parent page router will subscribe to this publication automatically"
+				},
+				{
+					"name": "query_params",
+					"title": "Query params",
+					"type": "array",
+					"subType": "param",
+					"default": "",
+					"required": false,
 					"input": "",
-					"description": "Query to be added to Template data context"
+					"description": "Query (publication) params"
 				},
 				{
 					"name": "components",
@@ -2398,14 +2590,24 @@
 					"description": "Content of Template.TEMLATE_NAME.helpers({ ... });"
 				},
 				{
-					"name": "query",
-					"title": "Query",
-					"type": "query",
+					"name": "query_name",
+					"title": "Query name",
+					"type": "string",
 					"subType": "",
 					"default": "",
 					"required": false,
+					"input": "select_query",
+					"description": "Query (publication) name from application.queries used as main data context. Parent page router will subscribe to this publication automatically"
+				},
+				{
+					"name": "query_params",
+					"title": "Query params",
+					"type": "array",
+					"subType": "param",
+					"default": "",
+					"required": false,
 					"input": "",
-					"description": "Query to be added to Template data context"
+					"description": "Query (publication) params"
 				},
 				{
 					"name": "components",
@@ -2687,14 +2889,24 @@
 					"description": "Content of Template.TEMLATE_NAME.helpers({ ... });"
 				},
 				{
-					"name": "query",
-					"title": "Query",
-					"type": "query",
+					"name": "query_name",
+					"title": "Query name",
+					"type": "string",
 					"subType": "",
 					"default": "",
 					"required": false,
+					"input": "select_query",
+					"description": "Query (publication) name from application.queries used as main data context. Parent page router will subscribe to this publication automatically"
+				},
+				{
+					"name": "query_params",
+					"title": "Query params",
+					"type": "array",
+					"subType": "param",
+					"default": "",
+					"required": false,
 					"input": "",
-					"description": "Query to be added to Template data context"
+					"description": "Query (publication) params"
 				},
 				{
 					"name": "components",
@@ -2956,14 +3168,24 @@
 					"description": "Content of Template.TEMLATE_NAME.helpers({ ... });"
 				},
 				{
-					"name": "query",
-					"title": "Query",
-					"type": "query",
+					"name": "query_name",
+					"title": "Query name",
+					"type": "string",
 					"subType": "",
 					"default": "",
 					"required": false,
+					"input": "select_query",
+					"description": "Query (publication) name from application.queries used as main data context. Parent page router will subscribe to this publication automatically"
+				},
+				{
+					"name": "query_params",
+					"title": "Query params",
+					"type": "array",
+					"subType": "param",
+					"default": "",
+					"required": false,
 					"input": "",
-					"description": "Query to be added to Template data context"
+					"description": "Query (publication) params"
 				},
 				{
 					"name": "components",
@@ -3044,6 +3266,26 @@
 					"required": false,
 					"input": "",
 					"description": "Parameters to be passed to \"item_route\""
+				},
+				{
+					"name": "folder_route",
+					"title": "Folder route",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "select_route",
+					"description": "Navigate to this route when folder is clicked"
+				},
+				{
+					"name": "folder_route_params",
+					"title": "Folder route params",
+					"type": "array",
+					"subType": "param",
+					"default": "",
+					"required": false,
+					"input": "",
+					"description": "Parameters to be passed to \"folder_route\""
 				}
 			],
 			"hideDerivedClasses": [
@@ -3105,14 +3347,24 @@
 					"description": "destination position relative to destination element: \"top\", \"bottom\", \"before\" or \"after\". Default: \"bottom\""
 				},
 				{
-					"name": "query",
-					"title": "Query",
-					"type": "query",
+					"name": "query_name",
+					"title": "Query name",
+					"type": "string",
 					"subType": "",
 					"default": "",
 					"required": false,
+					"input": "select_query",
+					"description": "Query (publication) name from application.queries used as main data context. Parent page router will subscribe to this publication automatically"
+				},
+				{
+					"name": "query_params",
+					"title": "Query params",
+					"type": "array",
+					"subType": "param",
+					"default": "",
+					"required": false,
 					"input": "",
-					"description": "Query to be added to Template data context"
+					"description": "Query (publication) params"
 				},
 				{
 					"name": "components",
@@ -3214,14 +3466,24 @@
 					"description": "CSS class name to be added to component"
 				},
 				{
-					"name": "query",
-					"title": "Query",
-					"type": "query",
+					"name": "query_name",
+					"title": "Query name",
+					"type": "string",
 					"subType": "",
 					"default": "",
 					"required": false,
+					"input": "select_query",
+					"description": "Query (publication) name from application.queries used as main data context. Parent page router will subscribe to this publication automatically"
+				},
+				{
+					"name": "query_params",
+					"title": "Query params",
+					"type": "array",
+					"subType": "param",
+					"default": "",
+					"required": false,
 					"input": "",
-					"description": "Query to be added to Template data context"
+					"description": "Query (publication) params"
 				},
 				{
 					"name": "components",
@@ -3313,14 +3575,24 @@
 					"description": "CSS class name to be added to component"
 				},
 				{
-					"name": "query",
-					"title": "Query",
-					"type": "query",
+					"name": "query_name",
+					"title": "Query name",
+					"type": "string",
 					"subType": "",
 					"default": "",
 					"required": false,
+					"input": "select_query",
+					"description": "Query (publication) name from application.queries used as main data context. Parent page router will subscribe to this publication automatically"
+				},
+				{
+					"name": "query_params",
+					"title": "Query params",
+					"type": "array",
+					"subType": "param",
+					"default": "",
+					"required": false,
 					"input": "",
-					"description": "Query to be added to Template data context"
+					"description": "Query (publication) params"
 				},
 				{
 					"name": "components",
@@ -3402,14 +3674,24 @@
 					"description": ""
 				},
 				{
-					"name": "query",
-					"title": "Query",
-					"type": "query",
+					"name": "query_name",
+					"title": "Query name",
+					"type": "string",
 					"subType": "",
 					"default": "",
 					"required": false,
+					"input": "select_query",
+					"description": "Query (publication) name from application.queries used as main data context. Parent page router will subscribe to this publication automatically"
+				},
+				{
+					"name": "query_params",
+					"title": "Query params",
+					"type": "array",
+					"subType": "param",
+					"default": "",
+					"required": false,
 					"input": "",
-					"description": ""
+					"description": "Query (publication) params"
 				},
 				{
 					"name": "components",

@@ -1,15 +1,43 @@
 {
 	"application": {
 		"title": "Example application",
-		"meta_title": "Example application",
-		"meta_description": "Meteor Kitchen - example application",
+
 		"theme": "bootswatch-flatly",
 
-		"roles": [ "admin", "user", "blocked" ],
+		"roles": [ "admin", "user" ],
 		"default_role": "user",
 		"send_verification_email": true,
 
 		"collections": [
+			{
+				"name": "customers"
+			}
+		],
+
+		"queries": [
+			{
+				"name": "admin_users",
+				"collection": "users",
+				"filter": {}
+			},
+			{
+				"name": "admin_user",
+				"collection": "users",
+				"filter": { "_id": ":userId" },
+				"find_one": true
+			},
+			{
+				"name": "users_null",
+				"collection": "users",
+				"filter": { "_id": null },
+				"find_one": true
+			},
+			{
+				"name": "current_user_data",
+				"collection": "users",
+				"filter": { "_id": "Meteor.userId()" },
+				"find_one": true
+			}
 		],
 
 		"public_zone": {
@@ -35,9 +63,10 @@
 				{ "name": "reset_password", "template": "reset_password", "route_params": ["resetPasswordToken"] }
 			],
 
-			"menus": [
+			"components": [
 				{
 					"name": "left_menu",
+					"type": "menu",
 					"class": "nav navbar-nav",
 					"dest_selector": "#menu",
 					"items": [
@@ -47,6 +76,7 @@
 
 				{
 					"name": "right_menu",
+					"type": "menu",
 					"class": "nav navbar-nav navbar-right",
 					"dest_selector": "#menu",
 					"items": [
@@ -74,11 +104,8 @@
 									"type": "data_view",
 									"title": "Users",
 									"text_if_empty": "No users yet",
-									"query": {
-										"name": "admin_users",
-										"collection": "users",
-										"filter": {}
-									},
+									"query_name": "admin_users",
+									"query_params": [],
 
 									"fields": [
 										{ "name": "profile.name", "title": "Name"},
@@ -109,11 +136,8 @@
 											"type": "form",
 											"mode": "read_only",
 											"title": "User details",
-											"query": {
-												"name": "admin_user",
-												"collection": "users",
-												"filter": { "_id": ":userId" }
-											},
+											"query_name": "admin_user",
+											"query_params": [],
 											"fields": [
 												{ "name": "profile.name", "title": "Name"},
 												{ "name": "profile.email", "title": "E-mail", "type": "email" },
@@ -134,11 +158,8 @@
 											"title": "Add new user",
 											"submit_route": "admin.users",
 											"cancel_route": "admin.users",
-											"query": {
-												"name": "users_null",
-												"collection": "users",
-												"filter": { "_id": null }
-											},
+											"query_name": "users_null",
+											"query_params": [],
 											"fields": [
 												{ "name": "profile.name", "title": "Name", "required": true },
 												{ "name": "profile.email", "title": "E-mail", "type": "email", "required": true },
@@ -158,11 +179,8 @@
 											"title": "Edit user",
 											"submit_route": "admin.users",
 											"cancel_route": "admin.users",
-											"query": {
-												"name": "admin_user",
-												"collection": "users",
-												"filter": { "_id": ":userId" }
-											},
+											"query_name": "admin_user",
+											"query_params": [],
 											"fields": [
 												{ "name": "profile.name", "title": "Name", "required": true },
 												{ "name": "profile.email", "title": "E-mail", "type": "email", "required": true },
@@ -186,9 +204,10 @@
 
 					],
 
-					"menus": [
+					"components": [
 						{
 							"name": "side_menu",
+							"type": "menu",
 							"class": "nav nav-stacked nav-pills",
 							"items": [
 								{ "title": "Users", "route": "admin.users" }
@@ -210,12 +229,8 @@
 									"mode": "update",
 									"title": "Edit your profile",
 									"submit_route": "user_settings.profile",
-									"query": {
-										"name": "current_user_data",
-										"collection": "users",
-										"filter": { "_id": "Meteor.userId()" },
-										"find_one": true
-									},
+									"query_name": "current_user_data",
+									"query_params": [],
 									"fields": [
 										{ "name": "profile.name", "title": "Name", "required": true },
 										{ "name": "profile.email", "title": "E-mail", "type": "email", "required": true },
@@ -231,9 +246,10 @@
 						{ "name": "change_pass", "template": "change_pass" }
 					],
 
-					"menus": [
+					"components": [
 						{
 							"name": "side_menu",
+							"type": "menu",
 							"class": "nav nav-stacked nav-pills",
 							"items": [
 								{ "title": "Profile", "route": "user_settings.profile" },
@@ -246,28 +262,31 @@
 				{ "name": "logout", "template": "logout" }
 			],
 
-			"menus": [
+			"components": [
 				{
 					"name": "left_menu",
+					"type": "menu",
 					"class": "nav navbar-nav",
 					"dest_selector": "#menu",
 					"items": [
-						{ "title": "Home", "route": "home_private" }
+						{ "title": "Home", "route": "home_private", "icon_class": "fa fa-home" }
 					]
 				},
 				{
 					"name": "right_menu",
+					"type": "menu",
 					"class": "nav navbar-nav navbar-right",
 					"dest_selector": "#menu",
 					"items": [
-						{ "title": "Admin", "route": "admin" },
+						{ "title": "Admin", "route": "admin", "icon_class": "fa fa-wrench" },
 
 						{
 							"title": "{{userEmail}}",
 							"items": [
 								{ "title": "Settings", "route": "user_settings" },
 								{ "title": "Logout", "route": "logout" }
-							]
+							],
+							"icon_class": "fa fa-cog"
 						}
 					]
 				}

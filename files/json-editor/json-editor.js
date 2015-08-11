@@ -25,6 +25,7 @@ Template.TEMPLATE_NAME.rendered = function() {
 Template.TEMPLATE_NAME.helpers({
 	"editorOptions": function() {
 		return {
+            styleActiveLine: true,
 			lineNumbers: true,
 			mode: "application/ld+json",
 			keyMap: "sublime",
@@ -58,16 +59,9 @@ Template.TEMPLATE_NAME.events({
 		t.$(".app-editor-error").hide();
 		$(".save-button").button("loading");
 
-		var hasFreeZone = data.application.free_zone;
+		convertToVersion70(data);
 
 		extendWithMetadata(data, "root", this.metadata.data);
-
-		if(hasFreeZone) {
-			delete data.application.public_zone;
-			delete data.application.private_zone;
-		} else {
-			delete data.application.free_zone;
-		}
 
 		Applications.update({ _id: this.application._id }, { $set: { data: data }}, function(e) {
 			$(".save-button").button("reset");

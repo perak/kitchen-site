@@ -500,6 +500,7 @@ Template.DynamicFormJsonEditor.rendered = function() {
 Template.DynamicFormJsonEditor.helpers({
 	"editorOptions": function() {
 		return {
+            styleActiveLine: true,
 			lineNumbers: true,
 			mode: "application/ld+json",
 			keyMap: "sublime",
@@ -562,6 +563,7 @@ Template.DynamicFormJavascriptEditor.rendered = function() {
 Template.DynamicFormJavascriptEditor.helpers({
 	"editorOptions": function() {
 		return {
+            styleActiveLine: true,
 			lineNumbers: true,
 			mode: "javascript",
 			keyMap: "sublime",
@@ -602,6 +604,7 @@ Template.DynamicFormHtmlEditor.rendered = function() {
 Template.DynamicFormHtmlEditor.helpers({
 	"editorOptions": function() {
 		return {
+            styleActiveLine: true,
 			lineNumbers: true,
 			mode: "htmlmixed",
 			keyMap: "sublime"
@@ -639,6 +642,7 @@ Template.DynamicFormHtmlEditor.rendered = function() {
 Template.DynamicFormMarkdownEditor.helpers({
 	"editorOptions": function() {
 		return {
+            styleActiveLine: true,
 			lineNumbers: true,
 			mode: "markdown",
 			keyMap: "sublime"

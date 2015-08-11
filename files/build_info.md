@@ -1,4 +1,4 @@
-To build and run this application locally, open your terminal and type:
+To build and run this application on your local computer, open terminal and type:
 
 ```
 meteor-kitchen {{urlFor 'api.getapp.json' applicationId=application._id}} <dest_dir>

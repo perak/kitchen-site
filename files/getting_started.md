@@ -21,11 +21,11 @@ You **need** to have <a href="https://www.meteor.com" target="_blank">Meteor >=1
 You can download the binary release <a href="/install/install_win.zip" _target="blank">here</a>. Extract it somewhere and make sure `meteor-kitchen.exe` is in your system PATH. See included `windows.txt` for more details.
 
 **Note**
-- Filenames are case sensitive under windows too.
+- Filenames are treated case sensitive.
 - meteor-kitchen uses "curl" to download files. You can find curl for windows <a href="http://www.confusedbycode.com/curl/#downloads" target="_blank">here</a>.
 
 
-Current version is 0.9.44
+Current version is 0.9.48
 =========================
 
 Click <a href="{{pathFor 'version_history'}}">here</a> to see the version history.
@@ -56,16 +56,23 @@ The input file can be <a href="http://www.json.org/" target="_blank">JSON</a> or
 
 ### <span class="label label-danger">New!</span> Human language support
 
-**Experimental feature:** since version 0.9.43, you can write application description in everyday language.
+**Experimental feature:** since version 0.9.43, you can write application description in everyday English language:
 
-Meteor Kitchen uses <a href="https://www.npmjs.com/package/human2machine" target="_blank">human2machine</a> npm module to translate from everyday english to json. See example <a href="https://github.com/perak/kitchen-examples/tree/master/example-human" target="_blank">here</a>.
+```
+meteor-kitchen input_file.txt <output_directory>
+```
+
+You'll need to install <a href="https://www.npmjs.com/package/human2machine" target="_blank">human2machine</a> npm module which translates English text to JSON input for generator.
+There is also **online** human2machine translator available <a href="http://generator-human2machine.meteor.com" target="_blank">here</a>.
+
+Example input file is <a href="https://github.com/perak/kitchen-examples/tree/master/example-human" target="_blank">here</a>.
 
 More info and docs will be added soon.
 
 CoffeeScript
 ------------
 
-With the `--coffee` option the generator will convert all js files to coffee. For this, you need the <a href="http://js2coffee.org/" target="_blank">js2coffee</a> converter to be installed:
+With the `--coffee` option the generator will produce cofee files instead js. For this, you need the <a href="http://js2coffee.org/" target="_blank">js2coffee</a> converter to be installed:
 
 ```
 meteor-kitchen <input_file_or_url> <output_directory> --coffee
@@ -74,7 +81,7 @@ meteor-kitchen <input_file_or_url> <output_directory> --coffee
 Jade
 ----
 
-For <a href="http://jade-lang.com/" target="_blank">Jade</a> lovers, use the `--jade` switch and the generator will convert the html files to jade:
+For <a href="http://jade-lang.com/" target="_blank">Jade</a> lovers, use the `--jade` switch and the generator will produce jade files instead html:
 
 ```
 meteor-kitchen <input_file_or_url> <output_directory> --jade
@@ -103,7 +110,7 @@ You can start with one of the minimal templates below, depending on whether you 
 			"pages": [
 			],
 
-			"menus": [
+			"components": [
 			]
 		}
 	}
@@ -125,7 +132,7 @@ Or:
 			"pages": [
 			],
 
-			"menus": [
+			"components": [
 			]
 		},
 
@@ -134,7 +141,7 @@ Or:
 			"pages": [
 			],
 
-			"menus": [
+			"components": [
 			]
 		}
 	}
@@ -146,7 +153,7 @@ As you can see, the **application** object is at the root and contains **free\_z
 - If the application object has only a **free\_zone** then the generator will create code without a user account system and all pages will be accessible to all users.
 - If the application object has both a **public\_zone** and a **private\_zone**, pages under **public\_zone** will be accessible only for non-authenticated users, and pages under **private\_zone** will be accessible only for authenticated users.
 
-Each zone has **pages** and **menus** arrays containing descriptions of top-level pages and menus under that zone.
+Each zone has **pages** and **components** arrays containing descriptions of top-level pages and components (for example menus) under that zone.
 
 
 Pages and Menus
@@ -163,10 +170,10 @@ Pages and Menus
 				{ "name": "about", "title": "About" }
 			],
 
-			"menus": [
+			"components": [
 				{
 					"name": "main_menu",
-					"class": "nav navbar-nav",
+					"type": "menu",
 					"items": [
 						{ "title": "Home page", "route": "home" },
 						{ "title": "About", "route": "about" }
@@ -264,17 +271,19 @@ Now we can have new menu items linking to the newly-created subpages:
 					]
 				}
 			],
-			"menus": [
+			"components": [
 				{
 					"name": "subpage_1_menu",
+					"type": "menu",
 					"items": [{ "title": "Sub-Sub page 1", route: "home.subpage_1.subsub_1" }]
 				}
 			]
 		}
 	],
-	"menus": [
+	"components": [
 		{
 			"name": "home_menu",
+			"type": "menu",
 			"items": [{ "title": "Subpage 1", route: "home.subpage_1" }]
 		}
 	]
@@ -302,12 +311,45 @@ You can see a live example <a href="http://generator-subpages.meteor.com" target
 **Note:** The source code for all examples can be found <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>
 
 
+Frontend framework
+==================
+
+Currently, the generator can produce markup compatible with <a href="http://getbootstrap.com" target="_blank">bootstrap</a> and <a href="http://semantic-ui.com/" target="_blank">semantic-ui</a>.
+
+**Note:** semantic-ui is not fully implemented yet (currently, you can only build minimal app using semantic).
+
+To choose frontend framework, add "frontend" property to your application object:
+```
+{
+	"application": {
+		"frontend": "bootstrap3"
+		...
+	}
+}
+```
+
+Or:
+
+```
+{
+	"application": {
+		"frontend": "semantic-ui"
+		...
+	}
+}
+```
+
+**Note:** If you don't specify frontend framework, meteor kitchen will use "bootstrap3" by default.
+
+There is "hello world" **example app** using semantic-ui <a href="http://generator-semantic.meteor.com/" target="_blank">here</a>.
+
+**Note:** The source code for all examples can be found <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>.
+
+
 Visual Themes
 =============
 
-Currently, the generator will produce markup compatible with <a href="http://getbootstrap.com" target="_blank">bootstrap</a>.
-
-Also, it comes with <a href="http://bootswatch.com/" target="_blank">bootswatch</a> visual themes.
+If you are using bootstrap, you can choose from one of <a href="http://bootswatch.com/" target="_blank">bootswatch</a> visual themes.
 
 You can easily choose a theme for your application by adding the "theme" property:
 
@@ -317,6 +359,7 @@ You can easily choose a theme for your application by adding the "theme" propert
 
 		"title": "Hello world!",
 
+		"frontend": "bootstrap3",
 		"theme": "bootswatch-amelia",
 
 		"free_zone": {
@@ -324,7 +367,7 @@ You can easily choose a theme for your application by adding the "theme" propert
 			"pages": [
 			],
 
-			"menus": [
+			"components": [
 			]
 		}
 	}
@@ -359,11 +402,15 @@ The list of built-in components currently implemented into generator:
 
 - `data_view` - shows data from collections (with search and sort functions)
 
+- `tree_view` - shows hierarchical data from collections in a tree
+
 - `jumbotron` - cool big heading text with button (usually found in home pages)
 
 - `markdown` - styled text written in <a href="http://daringfireball.net/projects/markdown/" target="_blank">markdown</a>
 
-- `div` - simple div element
+- `div` - simple html `<div>` element
+
+- `section` - simple html `<section>` element
 
 
 The minimal structure of any **component** object is:
@@ -493,14 +540,13 @@ To define collections, add the **collections** array to your **application** obj
 			"pages": [
 			],
 
-			"menus": [
+			"components": [
 			]
 		}
 	}
 }
 
 ```
-Server publication, client subscription and other necessary code related to the collection are also created for you.
 
 Also, you can define collection fields:
 
@@ -538,6 +584,130 @@ You can name a field as `fieldName.subField` and your data will look like this:
 }
 ```
 *(that works in forms and dataviews)*
+
+
+Queries
+=======
+
+Collection definitions are not enough to access data from the client - you need to publish your data from the server and to subscribe at the client.
+Meteor Kitchen automatically generates publish/subscribe code - all you need is to add database queries into `application.queries` array:
+
+```
+{
+	"application": {
+		...
+		"queries": [
+			{
+				"name": "all_customers",
+				"collection": "customers",
+				"filter": {},
+				"options": {}
+			}
+		]
+		...
+	}
+}
+```
+
+- `name` is query name - name it as you wish
+
+- `collection` is name of database collection (defined in `application.collections`)
+
+- `filter` is mongo filter expression - passed as first argument to `Collection.find()` and `Collection.findOne()`. **Note:** this is JSON (not .js) so you need to escape strings etc.
+
+- `options` is second argument to `Collection.find()` and `Collection.findOne()`
+
+This will produce **publication** code at your server. Publications can be restricted to specific [user roles](#user-roles).
+
+**Subscription** code will be automatically created in client side route controllers for each page where you refer to any of these queries.
+
+For example, if your page definition looks like this:
+
+```
+{
+	"name": "customers_page",
+	"title": "Customers",
+
+	"query_name": "all_customers",
+	"query_params": []
+}
+```
+
+Your route controller will subscribe to (and wait for) "all_customers" query. 
+Page controller will also subscribe to all queries used in page's components, for example:
+
+```
+{
+	"name": "customers_page",
+	"title": "Customers",
+
+	"components": [
+		{
+			"name": "view",
+			"type": "dataview",
+			"query_name": "all_customers",
+			"query_params": []
+		}
+	]
+}
+``` 
+
+**To summarize:**
+
+### Publish
+
+Define all database queries in `application.queries` array and that will be published automatically. 
+
+
+### Subscribe 
+
+To subscribe from client refer queries in your pages and/or page components `query_name` property.
+
+
+### Query params
+
+You can use variables (query params) in your query's `filter` and `options` params by prefixing string with `:` like this:
+
+```
+"queries": [
+	{
+		"name": "customer",
+		"collection": "customers",
+		"filter": { "_id": ":customerId" }
+	}
+]
+```
+Here we defined param `:customerId` and you need to provide it's value in your subscriptions, for example:
+
+```
+{
+	"name": "edit_form",
+	"type": "form",
+	"mode": "update",
+	"title": "Edit customer",
+
+	"query_name": "customer",
+	"query_params": [
+		{ "name": "customerId", "value": "this.params.customerId" }
+	]
+
+	"submit_route": "home",
+	"cancel_route": "home"
+}
+```
+
+`query_params` contains param definitions:
+
+- `name` is parameter name. If query contains `:customerId` parameter name is `customerId` (without `:`)
+
+- `value` can be anything - constant value, Session.get('something'), function() { ... } etc.
+
+
+**Note:** 
+
+- subscription code executes in route controller, so `this` in parameter value means RouteController.
+
+- if route have parameter with the same name as query parameter, in that case you don't need to explicitly define it in `query_params` (as we do in this example) - generator assumes undefined query params are route params and will automatically produce `this.params.customerId`.
 
 
 Joins
@@ -580,6 +750,7 @@ Now we want to do `Employees.find()` and get joined document that looks like thi
     }
 }
 ```
+*(note `company` member - it contains joined data)*
 
 Meteor Kitchen uses [perak:joins](https://github.com/perak/meteor-joins) package to perform this.
 
@@ -638,13 +809,15 @@ Your employees publish functions will automatically return employees and compani
 
 **Note:** perak:joins package is experimental and will change in the future (and maybe another package will be used instead).
 
-*Example application that demonstrates using joins will be added soon*
+You can see a **live example** using joins <a href="http://generator-invoices.meteor.com" target="_blank">here</a>
+
+**Note:** The source code for all examples can be found <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>.
 
 
 Dataview Component
 ==================
 
-The component of type `dataview` is used to show data from the database's collection with search and sort functions (other view styles such as "list" and "gallery" are under construction).
+The component of type `dataview` is used to show data from the database's collection with search and sort functions (data appears in a table - other view styles such as "list" and "gallery" are under construction).
 
 A minimal application with a `dataview` component should look like this:
 
@@ -665,6 +838,15 @@ A minimal application with a `dataview` component should look like this:
 			}
 		],
 
+		"queries": [
+			{
+				"name": "customers",
+				"collection": "customers",
+				"filter": {},
+				"options": {}
+			}
+		],
+
 		"free_zone": {
 
 			"pages": [
@@ -680,11 +862,7 @@ A minimal application with a `dataview` component should look like this:
 							"title": "Customers",
 							"text_if_empty": "No customers here :(",
 
-							"query": {
-								"name": "customers",
-								"collection": "customers",
-								"filter": {}
-							},
+							"query_name": "customers",
 
 							"insert_route": "",
 							"insert_route_params": [
@@ -702,9 +880,10 @@ A minimal application with a `dataview` component should look like this:
 				}
 			],
 
-			"menus": [
+			"components": [
 				{
 					"name": "main_menu",
+					"type": "menu",
 					"class": "nav navbar-nav",
 					"items": [
 						{ "title": "Home page", "route": "home" }
@@ -721,7 +900,7 @@ In this example we have a collection of `customers` and a component of type `dat
 Some of the `dataview` component properties are:
 
 - `text_if_empty` - text to be shown instead of an empty table if the collection is empty.
-- `query` - query used to filter data from the collection. Must have "name", "collection" (existing collection name) and "filter" (mongo query being passed as param to `collection.find()`).
+- `query_name` - [query](#queries) name from `application.queries`
 - `insert_route` - route name of an existing page (usually containing a form component) which will be opened when the user clicks the "insert" button.
 - `edit_route` - route name of an existing page (usually containing a form component) which will be opened when the user clicks the "edit" icon.
 - `details_route` - route name of an existing page which will be opened when the user clicks the item.
@@ -746,11 +925,8 @@ The `form` component has the following structure:
 	"mode": "insert",
 	"title": "New customer",
 
-	"query": {
-		"name": "customers",
-		"collection": "customers",
-		"filter": {}
-	},
+	"query_name": "customers",
+	"query_params": [],
 
 	"submit_route": "",
 	"cancel_route": ""
@@ -758,7 +934,7 @@ The `form` component has the following structure:
 ```
 
 - `mode` - `insert`, `update` or `read_only`
-- `query` - query used in `update` and `read_only` mode forms to filter a particular document from the collection to be modified/displayed
+- `query_name` - query from `application.queries` array used in `update` and `read_only` mode forms to filter a particular document from the collection to be modified/displayed
 - `submit_route` - route name of an existing page to be opened when the user hits the "submit" button
 - `cancel_route` - route name of an existing page to be opened when the user hits the "cancel" button
 
@@ -782,6 +958,20 @@ To make it clearer let's see an example application with a dataview and an inser
 			}
 		],
 
+		"queries": [
+			{
+				"name": "customers",
+				"collection": "customers",
+				"filter": {},
+				"options": {}
+			},
+			{
+				"name": "customers_empty",
+				"collection": "customers",
+				"filter": {"_id": null}
+			}
+		],
+
 		"free_zone": {
 
 			"pages": [
@@ -795,11 +985,7 @@ To make it clearer let's see an example application with a dataview and an inser
 							"title": "Customers",
 							"text_if_empty": "No customers here :(",
 
-							"query": {
-								"name": "customers",
-								"collection": "customers",
-								"filter": {}
-							},
+							"query_name": "customers",
 
 							"insert_route": "home.insert",
 							"insert_route_params": [
@@ -824,11 +1010,9 @@ To make it clearer let's see an example application with a dataview and an inser
 									"type": "form",
 									"mode": "insert",
 									"title": "New customer",
-									"query": {
-										"name": "customers_empty",
-										"collection": "customers",
-										"filter": {"_id": null}
-									},
+
+									"query_name": "customers_empty",
+
 									"submit_route": "home",
 									"cancel_route": "home"
 								}
@@ -838,9 +1022,10 @@ To make it clearer let's see an example application with a dataview and an inser
 				}
 			],
 
-			"menus": [
+			"components": [
 				{
 					"name": "main_menu",
+					"type": "menu",
 					"class": "nav navbar-nav",
 					"items": [
 						{ "title": "Customers", "route": "home" }
@@ -858,9 +1043,9 @@ Subpage `insert` has a `form` component named `insert_form`.
 Now look:
 
 - `dataview` component: `insert_route` property is set to `home.insert` (subpage containing the form).
-- `form` component: `submit_route` and `cancel_route` properties are set to `home` (parent page).
+- `form` component: `submit_route` and `cancel_route` properties are set to `home` (parent page containing dataview).
 
-Form has a defined query `customers_empty`: this is the insert form and we don't need any data from this query - `query` is used just to point the generator to which collection to use for the insert.
+Form is using query `customers_empty`: this is the insert form and we don't need any data from this query - `query` is used just to point the generator to which collection to use (and which fields) for the insert.
 
 You can see a **live example** <a href="http://generator-dataview.meteor.com" target="_blank">here</a>
 
@@ -874,7 +1059,25 @@ Sometimes you need to pass route parameters via a page URL. For example, let's s
 On this page you want to implement an Edit button for each customer, which points to something like:
 `/customers/edit/<customer_id_here>`
 
-To do this, first let's add the `route_params` property to your `page` object:
+To do this, first let's define query object:
+
+```
+{
+	"application": {
+		...
+		"queries": [
+			{
+				"name": "customer",
+				"collection": "customers",
+				"filter": { "_id": ":customerId" }
+			}
+		]
+		...
+	}
+}
+```
+
+and then add the `route_params` property to your `page` object:
 
 ```
 ...
@@ -887,13 +1090,11 @@ To do this, first let's add the `route_params` property to your `page` object:
 			"type": "form",
 			"mode": "update",
 			"title": "Edit customer",
+
+			"query_name": "customer",
+
 			"submit_route": "home",
 			"cancel_route": "home",
-			"query": {
-				"name": "customer",
-				"collection": "customers",
-				"filter": { "_id": ":customerId" }
-			}
 		}
 	]
 }
@@ -901,7 +1102,7 @@ To do this, first let's add the `route_params` property to your `page` object:
 ```
 **Note:** property `route_params` is an array of strings.
 
-In this example the `page` object has a param named `customerId` and we are using it inside the `form` component's `query` filter: `:customerId`.
+In this example the `page` object has a param named `customerId` and we are using it inside the `query` filter: `:customerId`.
 
 Now, let's pass this param to our `dataview` component via `edit_route` and `edit_route_params` properties:
 
@@ -953,6 +1154,24 @@ Here is a full example with `insert` and `update` forms:
 			}
 		],
 
+		"queries": [
+			{
+				"name": "customers",
+				"collection": "customers",
+				"filter": {}
+			},
+			{
+				"name": "customers_empty",
+				"collection": "customers",
+				"filter": {"_id": null}
+			},
+			{
+				"name": "customer",
+				"collection": "customers",
+				"filter": { "_id": ":customerId" }
+			}
+		],
+
 		"free_zone": {
 
 			"pages": [
@@ -966,11 +1185,7 @@ Here is a full example with `insert` and `update` forms:
 							"title": "Customers",
 							"text_if_empty": "No customers here :(",
 
-							"query": {
-								"name": "customers",
-								"collection": "customers",
-								"filter": {}
-							},
+							"query_name": "customers",
 
 							"insert_route": "home.insert",
 							"insert_route_params": [
@@ -996,11 +1211,9 @@ Here is a full example with `insert` and `update` forms:
 									"type": "form",
 									"mode": "insert",
 									"title": "New customer",
-									"query": {
-										"name": "customers_empty",
-										"collection": "customers",
-										"filter": {"_id": null}
-									},
+
+									"query_name": "customers_empty",
+
 									"submit_route": "home",
 									"cancel_route": "home"
 								}
@@ -1015,13 +1228,11 @@ Here is a full example with `insert` and `update` forms:
 									"type": "form",
 									"mode": "update",
 									"title": "Edit customer",
+
+									"query_name": "customer",
+
 									"submit_route": "home",
-									"cancel_route": "home",
-									"query": {
-										"name": "customer",
-										"collection": "customers",
-										"filter": { "_id": ":customerId" }
-									}
+									"cancel_route": "home"
 								}
 							]
 						}
@@ -1029,9 +1240,10 @@ Here is a full example with `insert` and `update` forms:
 				}
 			],
 
-			"menus": [
+			"components": [
 				{
 					"name": "main_menu",
+					"type": "menu",
 					"class": "nav navbar-nav",
 					"items": [
 						{ "title": "Customers", "route": "home" }
@@ -1104,7 +1316,7 @@ cd ~/.meteor-kitchen/plugins/example1/
 
 The directory contains two files:
 
-- `plugin.js` is javascript code that is passed to node.js and executed. It should create html and js that the generator will insert into the page.
+- `plugin.js` is javascript code that is passed to node.js and executed by the generator while building the app. It should create html and js that the generator will insert into the page.
 - `plugin.json` is a JSON file with plugin settings: here you can specify which meteor and mrt packages your plugin is using.
 
 You can use plugins in your application by adding a component into a page and setting the component type to the same name as plugin directory:
@@ -1139,10 +1351,10 @@ var kitchen = require("meteor-kitchen");
 // read input
 var component = kitchen.getInput();
 
-// create some static html
+// create some static html or load html template from a file
 component.html = "<p><strong>Hello! I am example plugin No.1:</strong> just a static HTML but I am pretty!</p>";
 
-// this component doesn't need any js
+// this simple component doesn't need any js
 component.js = "";
 
 // write output
@@ -1192,7 +1404,7 @@ You can add the array `server_side_routes` to your `application` object and the 
 			"pages": [
 			],
 
-			"menus": [
+			"components": [
 			]
 		}
 	},
@@ -1293,7 +1505,7 @@ First, you need to add a `roles` array to the application object:
 			"pages": [
 			],
 
-			"menus": [
+			"components": [
 			]
 		},
 
@@ -1302,7 +1514,7 @@ First, you need to add a `roles` array to the application object:
 			"pages": [
 			],
 
-			"menus": [
+			"components": [
 			]
 		}
 	}
@@ -1337,9 +1549,10 @@ You can restrict any page inside a private zone to any set of user roles by addi
 				{ "name": "reset_password", "template": "reset_password", "route_params": ["resetPasswordToken"] }
 			],
 
-			"menus": [
+			"components": [
 				{
 					"name": "left_menu",
+					"type": "menu",
 					"class": "nav navbar-nav",
 					"dest_selector": "#menu",
 					"items": [
@@ -1349,6 +1562,7 @@ You can restrict any page inside a private zone to any set of user roles by addi
 
 				{
 					"name": "right_menu",
+					"type": "menu",
 					"class": "nav navbar-nav navbar-right",
 					"dest_selector": "#menu",
 					"items": [
@@ -1371,9 +1585,10 @@ You can restrict any page inside a private zone to any set of user roles by addi
 				{ "name": "logout", "template": "logout" }
 			],
 
-			"menus": [
+			"components": [
 				{
 					"name": "left_menu",
+					"type": "menu",
 					"class": "nav navbar-nav",
 					"dest_selector": "#menu",
 					"items": [
@@ -1383,6 +1598,7 @@ You can restrict any page inside a private zone to any set of user roles by addi
 				},
 				{
 					"name": "right_menu",
+					"type": "menu",
 					"class": "nav navbar-nav navbar-right",
 					"dest_selector": "#menu",
 					"items": [
@@ -1431,7 +1647,7 @@ You can choose which user roles are allowed to read, update, insert and delete d
 			"pages": [
 			],
 
-			"menus": [
+			"components": [
 			]
 		},
 
@@ -1440,7 +1656,7 @@ You can choose which user roles are allowed to read, update, insert and delete d
 			"pages": [
 			],
 
-			"menus": [
+			"components": [
 			]
 		}
 	}

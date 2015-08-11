@@ -1,8 +1,6 @@
 {
 	"application": {
 		"title": "Example application",
-		"meta_title": "Example application",
-		"meta_description": "Meteor Kitchen - example application",
 
 		"collections": [
 			{
@@ -12,6 +10,15 @@
 					{ "name": "message", "title": "Message", "exportable": true },
 					{ "name": "modifiedAt", "title": "Modified", "exportable": true }
 				]
+			}
+		],
+
+		"queries": [
+			{
+				"name": "sensors",
+				"collection": "sensors",
+				"filter": {},
+				"options": {}
 			}
 		],
 
@@ -27,22 +34,17 @@
 						{
 							"name": "view",
 							"type": "dataview",
-							"query": {
-								"name": "sensors",
-								"collection": "sensors",
-								"filter": {},
-								"options": {}
-							}
+							"query_name": "sensors"
 						}
 					]
 				},
 				{ "name": "about", "title": "About", "text": "This example application is built with <a href=\"http://www.meteorkitchen.com\" target=\"_blank\">Meteor Kitchen</a> - code generator for Meteor.js<br />Source code (input file for generator) is <a href=\"https://github.com/perak/kitchen-examples/tree/master/example-iot\" target=\"_blank\">here</a>." }
 			],
 
-			"menus": [
+			"components": [
 				{ 
 					"name": "main_menu",
-					"class": "nav navbar-nav",
+					"type": "menu",
 					"items": [
 						{ "title": "Home page", "route": "home", "icon_class": "fa fa-home" },
 						{ "title": "About", "route": "about" }

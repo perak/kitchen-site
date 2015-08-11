@@ -67,23 +67,25 @@ this.findObjectById = function(object, objectId) {
 		if(res) {
 			return res;
 		}
+		return null;
 	}
 
 	if(_.isObject(object)) {
 		if(object[idField] == objectId) {
 			return object;
 		}
-	}
 
-	for(var propertyName in object) {
-		var property = object[propertyName];
-		if(_.isObject(property)) {
-			var res = findObjectById(property, objectId);
-			if(res) {
-				return res;
+		for(var propertyName in object) {
+			var property = object[propertyName];
+			if(_.isObject(property)) {
+				var res = findObjectById(property, objectId);
+				if(res) {
+					return res;
+				}
 			}
 		}
 	}
+
 	return null;
 };
 
@@ -115,14 +117,14 @@ this.findDirectParent = function(object, objectId, parent) {
 		return res;
 	}
 
-	if(_.isObject(object) && object[idField]) {
+	if(_.isObject(object)) {
 		if(object[idField] == objectId) {
 			return parent;
 		}
 
 		for(var propertyName in object) {
 			var property = object[propertyName];
-			if(_.isArray(property) || _.isObject(property)) {
+			if(_.isObject(property)) {
 				var res = findDirectParent(property, objectId, object);
 				if(res) {
 					return res;
@@ -149,26 +151,25 @@ this.findObjectParent = function(object, objectId, parent) {
 	if(_.isArray(object)) {
 		var res = null;
 		_.find(object, function(item) { res = findObjectParent(item, objectId, parent); return !!res; });
-		if(res) {
-			return res;
-		}
+		return res;
 	}
 
 	if(_.isObject(object)) {
 		if(object[idField] == objectId) {
 			return parent;
 		}
-	}
 
-	for(var propertyName in object) {
-		var property = object[propertyName];
-		if(_.isObject(property)) {
-			var res = findObjectParent(property, objectId, object);
-			if(res) {
-				return res;
+		for(var propertyName in object) {
+			var property = object[propertyName];
+			if(_.isObject(property)) {
+				var res = findObjectParent(property, objectId, object);
+				if(res) {
+					return res;
+				}
 			}
 		}
 	}
+
 	return null;
 };
 
@@ -383,7 +384,7 @@ this.getAllRoutesInCurrentZone = function(object, objectId) {
 };
 
 this.getObjectMetadata = function(objectType, meta) {
-	if(!meta) {
+	if(!objectType || !meta) {
 		return null;
 	}
 
@@ -587,4 +588,140 @@ this.getDerivedTypes = function(objectType, includeThis, meta) {
 	});
 
 	return derivedTypes;
+};
+
+
+
+// ---
+// convert structure to metadata v70 (kitchen v0.9.48)
+// ---
+var convertFieldToVersion70 = function(app, field) {
+	if(field.lookup_query) {
+		if(field.lookup_query["name"]) {
+			var q = JSON.parse(JSON.stringify(field.lookup_query));
+
+			field.lookup_query_name = q.name;
+			if(q.params) {
+				field.lookup_query_params = JSON.parse(JSON.stringify(q.params));
+				delete q.params;
+			} else {
+				field.lookup_query_params = [];
+			}
+
+			var hasQuery = _.find(app.queries, function(el) { return el.name == q.name; });
+			if(!hasQuery) {
+				app.queries.push(q);
+			}
+		}
+		delete field.lookup_query;
+	}
+};
+
+var convertComponentToVersion70 = function(app, component) {
+	if(component.query) {
+		if(component.query["name"]) {
+			var q = JSON.parse(JSON.stringify(component.query));
+
+			component.query_name = q.name;
+			if(q.params) {
+				component.query_params = JSON.parse(JSON.stringify(q.params));
+				delete q.params;
+			} else {
+				component.query_params = [];
+			}
+
+			var hasQuery = _.find(app.queries, function(el) { return el.name == q.name; });
+			if(!hasQuery) {
+				app.queries.push(q);
+			}
+		}
+		delete component.query;
+	}
+
+	if(component.fields) {
+		_.each(component.fields, function(fi) {
+			convertFieldToVersion70(app, fi);
+		});
+	}
+
+	if(component.components) {
+		_.each(component.components, function(c) {
+			convertComponentToVersion70(app, c);
+		});
+	}
+};
+
+var convertPageToVersion70 = function(app, page) {
+	convertComponentToVersion70(app, page);
+
+	if(page.queries) {
+		if(page.queries.length) {
+			page.related_queries = [];
+			_.each(page.queries, function(query) {
+				var q = JSON.parse(JSON.stringify(query));
+
+				var subscription = {};
+				subscription.name = q.name;
+				if(q.params) {
+					subscription.params = JSON.parse(JSON.stringify(q.params));
+					delete q.params;
+				} else {
+					subscription.params = [];
+				}
+				page.related_queries.push(subscription);
+
+				var hasQuery = _.find(app.queries, function(el) { return el.name == q.name; });
+				if(!hasQuery) {
+					app.queries.push(q);
+				}
+			});
+		}
+		delete page.queries;
+	}
+
+	// move menus to components and remove menus array
+	if(page.menus) {
+		if(page.menus.length) {
+			if(!page.components) page.components = [];
+			_.each(page.menus, function(menu) {
+				var m = JSON.parse(JSON.stringify(menu));
+				m.type = "menu";
+				page.components.push(m);
+			});
+		}
+		delete page.menus;
+	}
+
+	if(page.components) {
+		_.each(page.components, function(c) {
+			convertComponentToVersion70(app, c);
+		});
+	}
+
+	if(page.pages) {
+		_.each(page.pages, function(p) {
+			convertPageToVersion70(app, p);
+		});
+	}
+};
+
+this.convertToVersion70 = function(data) {
+	if(!data.application) return;
+	var application = data.application;
+
+	if(!application.queries) application.queries = [];
+
+	if(application.collections) {
+		_.each(application.collections, function(col) {
+			if(col.fields) {
+				_.each(col.fields, function(fi) {
+					convertFieldToVersion70(application, fi);
+				});
+			}
+		});
+	}
+
+	if(application.free_zone) convertPageToVersion70(application, application.free_zone);
+	if(application.public_zone) convertPageToVersion70(application, application.public_zone);
+	if(application.private_zone) convertPageToVersion70(application, application.private_zone);
 };

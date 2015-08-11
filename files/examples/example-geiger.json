@@ -1,8 +1,6 @@
 {
 	"application": {
 		"title": "Example application",
-		"meta_title": "Example application",
-		"meta_description": "Meteor Kitchen - example application",
 
 		"collections": [
 			{
@@ -12,6 +10,15 @@
 					{ "name": "message", "title": "Message", "exportable": true },
 					{ "name": "modifiedAt", "title": "Modified", "exportable": true }
 				]
+			}
+		],
+
+		"queries": [
+			{
+				"name": "sensors",
+				"collection": "sensors",
+				"filter": {},
+				"options": { "sort": [ ["createdAt", "asc"] ] }
 			}
 		],
 
@@ -28,24 +35,20 @@
 							"name": "chart",
 							"title": "Radiation level (CPM)",
 							"type": "custom_component",
-							"html": "<template name=\"TEMPLATE_NAME\">\n\t<h3>COMPONENT_TITLE</h3>\n\t{{> c3 geigerChart}}\n</template>\n",
+							"html": "<template name=\"TEMPLATE_NAME\">\n\t<h3>COMPONENT_TITLE</h3>\n\t{{> c3 data=geigerChart}}\n</template>\n",
 							"js": "Template.TEMPLATE_NAME.helpers({\n\t\"geigerChart\": function() {\n\t\tvar cols = [];\n\t\tvar col = [\"Radiation\"];\n\t\tvar data = _.pluck(Sensors.find({ topic: \"revspace/sensors/geiger\" }).fetch(), \"message\");\n\t\t_.each(data, function(g) {\n\t\t\tcol.push(parseInt(g));\n\t\t});\n\t\tcols.push(col);\n\t\treturn {\n\t\t\tdata: {\n\t\t\t\tcolumns: cols,\n\t\t\t\ttype: 'spline'\n\t\t\t}\n\t\t};\n\t}\n});\n",
-							"query": {
-								"name": "sensors",
-								"collection": "sensors",
-								"filter": {},
-								"options": { "sort": [ ["createdAt", "asc"] ] }
-							}
+							"query_name": "sensors",
+							"query_params": []
 						}
 					]
 				},
 				{ "name": "about", "title": "About", "text": "This example application is built with <a href=\"http://www.meteorkitchen.com\" target=\"_blank\">Meteor Kitchen</a> - code generator for Meteor.js<br />Source code (input file for generator) is <a href=\"https://github.com/perak/kitchen-examples/tree/master/example-geiger\" target=\"_blank\">here</a>." }
 			],
 
-			"menus": [
+			"components": [
 				{ 
 					"name": "main_menu",
-					"class": "nav navbar-nav",
+					"type": "menu",
 					"items": [
 						{ "title": "Home page", "route": "home", "icon_class": "fa fa-home" },
 						{ "title": "About", "route": "about" }
