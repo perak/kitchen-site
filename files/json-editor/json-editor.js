@@ -27,10 +27,12 @@ Template.TEMPLATE_NAME.helpers({
 		return {
             styleActiveLine: true,
 			lineNumbers: true,
+			extraKeys: {"Ctrl-Q": function(cm){ cm.foldCode(cm.getCursor()); }},
+    		foldGutter: true,
 			mode: "application/ld+json",
 			keyMap: "sublime",
 			theme: "blackboard",
-			gutters: ["CodeMirror-lint-markers"],
+			gutters: ["CodeMirror-lint-markers","CodeMirror-linenumbers","CodeMirror-foldgutter"],
 			lint: true
 		}
 	},
