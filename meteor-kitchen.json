@@ -658,7 +658,7 @@
 												{
 													"name": "left_col",
 													"type": "div",
-													"class": "col-md-4",
+													"class": "col-md-2",
 													"components": [
 														{
 															"name": "tree",
@@ -670,7 +670,7 @@
 												{
 													"name": "right_col",
 													"type": "div",
-													"class": "col-md-8",
+													"class": "col-md-10",
 													"components": [
 														{
 															"name": "form",

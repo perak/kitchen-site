@@ -17,7 +17,7 @@ function expandParents(item) {
 
 function selectInCodeMirror( params ) {
 	
-	console.log("selectInCodeMirror params=",params);
+	// console.log("selectInCodeMirror params=",params);
 	// selectInCodeMirror({ applicationId: this.rootId, objectId: objectId, propertyName: propertyName });
 	
 	var propertyName = params.propertyName;
@@ -39,9 +39,10 @@ function selectInCodeMirror( params ) {
 		var index = line.text.indexOf(propertyName);
 		if( index > -1 ) {
 			var lineNumber = cm.doc.getLineNumber( line );
-			// cm.scrollIntoView( { line: lineNumber}, 400 );
 			cm.doc.setSelection( {line: lineNumber} );
-			cm.doc.markText( {line: lineNumber}, {line: lineNumber }, {clearOnEnter:true} );
+			cm.scrollIntoView( { line: lineNumber}, 200 );
+			
+			// cm.doc.markText( {line: lineNumber}, {line: lineNumber }, {clearOnEnter:true} );
 			return true;	
 		}
 		
@@ -179,9 +180,6 @@ Template.jsonTreeView.helpers({
 				}
 			}
 			
-			if( propertyName == null || propertyName == "") {
-				console.log(property);
-			}
 			
 			if(isArray || isObject) {
 				properties.push({
@@ -220,7 +218,7 @@ Template.jsonTreeView.helpers({
 Template.jsonTreeView.events({
 	"click .object-tree-link": function(e, t) {
 		e.preventDefault();
-		console.log( "sovellus=",self.sovellus );
+		
 		
 		var link = $(e.currentTarget);
 		var objectId = this.objectId || "";
