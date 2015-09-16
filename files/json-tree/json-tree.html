@@ -1,0 +1,64 @@
+<template name="TEMPLATE_NAME">
+		<div id="COMPONENT_ID" class="well object-tree-container">
+			<h2>COMPONENT_TITLE</h2>
+			{{> jsonTreeView rootId=application._id data=application.data meta=metadata.data}}
+		</div>
+</template>
+
+
+<template name="jsonTreeView">
+	
+	<ul class="nav nav-pills nav-stacked object-tree">
+		{{#each objectMembers this.rootId this.data this.meta}}
+			{{#if this.isObject}}
+				{{#if collapsable}}
+					<li class="collapsed">
+						<a href="#" class="object-tree-link object-tree-object {{this.cssClass}}" data-object-id="{{this.objectId}}" data-property-name="{{this.name}}">
+							<span class="fa fa-caret-right"></span>
+							{{this.name}}
+						</a>
+						{{> jsonTreeView rootId=this.rootId data=this.data meta=this.meta}}
+					</li>
+				{{else}}
+					<li>
+						<a href="#" class="object-tree-link {{this.cssClass}}" data-object-id="{{this.objectId}}" data-property-name="{{this.name}}">
+							{{this.name}}
+						</a>
+						{{> jsonTreeView rootId=this.rootId data=this.data meta=this.meta}}
+					</li>
+				{{/if}}
+		
+			{{/if}}
+		
+			{{#if this.isArray}}
+				<li class="collapsed">
+					<a href="#" class="object-tree-link object-tree-array {{this.cssClass}}" data-object-id="{{this.objectId}}" data-property-name="{{this.name}}">
+						<span class="fa fa-caret-right"></span>
+						{{this.name}}
+						<span class="small text-muted">({{arrayItemCount this.data}})</span>
+					</a>
+					<ul class="nav nav-pills nav-stacked object-tree">
+						{{#each objectArray this.rootId this.data this.meta}}
+							{{#if collapsable}}
+								<li class="collapsed">
+									<a href="#" class="object-tree-link object-tree-object {{this.cssClass}}" data-object-id="{{this.objectId}}" data-property-name="{{this.name}}">
+										<span class="fa fa-caret-right"></span>
+										{{this.name}}
+									</a>
+									{{> jsonTreeView rootId=this.rootId data=this.data meta=this.meta}}
+								</li>
+							{{else}}
+								<li>
+									<a href="#" class="object-tree-link {{this.cssClass}}" data-object-id="{{this.objectId}}" data-property-name="{{this.name}}">
+										{{this.name}}
+									</a>
+									{{> jsonTreeView rootId=this.rootId data=this.data meta=this.meta}}
+								</li>
+							{{/if}}
+						{{/each}}
+					</ul>
+				</li>
+			{{/if}}
+		{{/each}}
+	</ul>
+</template>

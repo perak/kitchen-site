@@ -648,16 +648,41 @@
 									"name" : "json_view",
 									"parent_layout": true,
 									"class": "app-editor",
-
 									"query_name": "application",
-
 									"components": [
 										{
-											"name": "editor",
-											"type": "custom_component",
-											"custom_template": "files/json-editor/json-editor"
+											"name": "content_row",
+											"type": "div",
+											"class": "row",
+											"components": [
+												{
+													"name": "left_col",
+													"type": "div",
+													"class": "col-md-4",
+													"components": [
+														{
+															"name": "tree",
+															"type": "custom_component",
+															"custom_template": "files/json-tree/json-tree"
+														}
+													]
+												},
+												{
+													"name": "right_col",
+													"type": "div",
+													"class": "col-md-8",
+													"components": [
+														{
+															"name": "form",
+															"type": "custom_component",
+															"custom_template": "files/json-editor/json-editor"
+														}
+													]
+												}
+											]
 										}
 									]
+									
 								},
 
 								{
