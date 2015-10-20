@@ -1,5 +1,5 @@
 {
-	"version": 72,
+	"version": 75,
 	"classList": [
 		{
 			"objectType": "root",
@@ -189,6 +189,7 @@
 						"select-multiple",
 						"tags",
 						"crud",
+						"file",
 						"custom"
 					],
 					"description": "Form input control type: \"text\", \"password\", \"datepicker\", \"read-only\", \"textarea\", \"radio\", \"checkbox\", \"select\", \"crud\", \"file\", \"custom\""
@@ -500,6 +501,16 @@
 						"file_collection"
 					],
 					"description": "Collection type. Can be \"collection\" or \"file_collection\" (FS.Collection). Default: \"collection\"."
+				},
+				{
+					"name": "storage_adapters",
+					"title": "Storage adapters",
+					"type": "array",
+					"subType": "string",
+					"default": "",
+					"required": false,
+					"input": "stringlist",
+					"description": "For collection of type \"file_collection\": list of CollectionFS storage adapters: \"gridfs\", \"filesystem\", \"s3\" or \"dropbox\". If not specified, generator will assume \"gridfs\"."
 				},
 				{
 					"name": "fields",
@@ -1567,7 +1578,8 @@
 					"input": "select",
 					"choice_items": [
 						"bootstrap3",
-						"semantic-ui"
+						"semantic-ui",
+						"materialize"
 					],
 					"description": "Default: \"bootstrap3\" (you can expect more frontend frameworks in the future)."
 				},
@@ -2634,7 +2646,7 @@
 					"title": "Mode",
 					"type": "string",
 					"subType": "",
-					"default": "insert",
+					"default": "",
 					"required": false,
 					"input": "radio",
 					"choice_items": [
@@ -2718,6 +2730,33 @@
 					"required": false,
 					"input": "javascript",
 					"description": "Custom code to execute on form cancel"
+				},
+				{
+					"name": "submit_button_title",
+					"title": "Submit button title",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "cancel_button_title",
+					"title": "Cancel button title",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
+				},
+				{
+					"name": "close_button_title",
+					"title": "Close button title",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text"
 				},
 				{
 					"name": "submit_route_params",

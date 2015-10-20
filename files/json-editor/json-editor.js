@@ -27,8 +27,6 @@ Template.TEMPLATE_NAME.helpers({
 		return {
             styleActiveLine: true,
 			lineNumbers: true,
-			extraKeys: {"Ctrl-Q": function(cm){ cm.foldCode(cm.getCursor()); }},
-    		foldGutter: true,
 			mode: "application/ld+json",
 			keyMap: "sublime",
 			theme: "blackboard",

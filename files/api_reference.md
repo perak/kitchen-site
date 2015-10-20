@@ -5,7 +5,7 @@ Property | Type | Description
 title | string | Application title
 meta\_title | string | Default meta\_title for pages without meta\_title
 meta\_description | string | Default meta\_description for pages without meta\_description
-frontend | string | "bootstrap3" or "semantic-ui". Default: "bootstrap3". "semantic-ui" is not yet fully implemented.
+frontend | string | "bootstrap3", "semantic-ui" or "materialize". Default: "bootstrap3". "semantic-ui" and "materialize" are not yet fully implemented.
 theme | string | Visual theme name. With "bootstrap" frontend theme can be "flat-ui" or one of bootswatch themes: "bootswatch-amelia", "bootswatch-cerulean", "bootswatch-cosmo", "bootswatch-cyborg", "bootswatch-darkly", "bootswatch-flatly", "bootswatch-journal", "bootswatch-lumen", "bootswatch-paper", "bootswatch-readable", "bootswatch-simplex", "bootswatch-slate", "bootswatch-spacelab", "bootswatch-superhero", "bootswatch-united", "bootswatch-yeti"
 footer\_text | string | Text to show in page footer
 roles | array of string | List of user roles for applications with user account system. There are two predefined roles "nobody" and "owner" (see collection object for more info).
@@ -501,6 +501,9 @@ close\_route\_params | array of [param](#param) | Route params to be passed to "
 back\_route\_params | array of [param](#param) | Route params to be passed to "back\_route"
 submit\_code | string | Custom code to execute on form submit
 cancel\_code | string | Custom code to execute on form cancel
+submit\_button\_title | string | Text to show in submit button, default "Save"
+cancel\_button\_title | string | Text to show in cancel button, default "Cancel"
+close\_button\_title | string | Text to show in close button, default "OK"
 fields | array of [field](#field) | Defainition of form fields. If empty, generator will use fields defined at collection level.
 hidden\_fields | array of [hidden\_field](#hidden\_field) | Fields (not shown in a form) that will be automatically written on submit.
 
@@ -538,6 +541,9 @@ hidden\_fields | array of [hidden\_field](#hidden\_field) | Fields (not shown in
 	],
 	"submit_code": "",
 	"cancel_code": "",
+	"submit_button_title": "",
+	"cancel_button_title": "",
+	"close_button_title": "",
 	"fields": [
 	],
 	"hidden_fields": [

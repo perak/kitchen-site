@@ -1,6 +1,10 @@
 var wsKitchen = null;
 var wsApp = null;
 
+var terminalEyeURL = Meteor.settings.public.terminalEyeURL;
+var buildServerURL = Meteor.settings.public.buildServerURL;
+var kitchenURL = Meteor.absoluteUrl().replace(/\/+$/, "");
+
 var disableControls = function() {
 	$(".command-button").addClass("disabled");
 }
@@ -66,9 +70,7 @@ Template.TEMPLATE_NAME.rendered = function() {
 		resizeFullHeight();
 	});
 
-	var serverURL = "ws://www.meteorfarm.com:1234";
-
-	wsKitchen = new WebSocket(serverURL, "echo-protocol");
+	wsKitchen = new WebSocket(terminalEyeURL, "echo-protocol");
 	wsKitchen.onmessage = function(e) {
 		var data = {};
 		try {
@@ -105,7 +107,7 @@ Template.TEMPLATE_NAME.rendered = function() {
 		enableControls();
 	};
 
-	wsApp = new WebSocket(serverURL, "echo-protocol");
+	wsApp = new WebSocket(terminalEyeURL, "echo-protocol");
 	wsApp.onmessage = function(e) {
 		var data = {};
 		try {
@@ -146,7 +148,8 @@ Template.TEMPLATE_NAME.events({
 			command: "build",
 			args: {
 				user_id: Meteor.userId(),
-				app_id: appId
+				app_id: appId,
+				kitchen_url: kitchenURL
 			}
 		});
 		sendMessageToKitchen(command);
@@ -159,12 +162,14 @@ Template.TEMPLATE_NAME.events({
 			command: "download_js_html",
 			args: {
 				user_id: Meteor.userId(),
-				app_id: appId
+				app_id: appId,
+				kitchen_url: kitchenURL,
+				build_server_url: buildServerURL
 			}
 		});
 
 		sendMessageToKitchen(command, function() {
-			downloadFile("http://www.meteorfarm.com/download/" + appId + ".zip");
+			downloadFile(buildServerURL + "/download/" + appId + ".zip");
 		});
 	},
 
@@ -175,11 +180,13 @@ Template.TEMPLATE_NAME.events({
 			command: "download_js_jade",
 			args: {
 				user_id: Meteor.userId(),
-				app_id: appId
+				app_id: appId,
+				kitchen_url: kitchenURL,
+				build_server_url: buildServerURL
 			}
 		});
 		sendMessageToKitchen(command, function() {
-			downloadFile("http://www.meteorfarm.com/download/" + appId + ".zip");
+			downloadFile(buildServerURL + "/download/" + appId + ".zip");
 		});
 	},
 
@@ -190,11 +197,13 @@ Template.TEMPLATE_NAME.events({
 			command: "download_coffee_html",
 			args: {
 				user_id: Meteor.userId(),
-				app_id: appId
+				app_id: appId,
+				kitchen_url: kitchenURL,
+				build_server_url: buildServerURL
 			}
 		});
 		sendMessageToKitchen(command, function() {
-			downloadFile("http://www.meteorfarm.com/download/" + appId + ".zip");
+			downloadFile(buildServerURL + "/download/" + appId + ".zip");
 		});
 	},
 
@@ -205,11 +214,46 @@ Template.TEMPLATE_NAME.events({
 			command: "download_coffee_jade",
 			args: {
 				user_id: Meteor.userId(),
-				app_id: appId
+				app_id: appId,
+				kitchen_url: kitchenURL,
+				build_server_url: buildServerURL
 			}
 		});
 		sendMessageToKitchen(command, function() {
-			downloadFile("http://www.meteorfarm.com/download/" + appId + ".zip");
+			downloadFile(buildServerURL + "/download/" + appId + ".zip");
+		});
+	},
+
+	"click .download-android": function(e, t) {
+		var serverURL = this.application.destinationURL;
+		var appId = this.application._id;
+		bootbox.prompt({
+			title: "URL where this application is deployed",
+			value: serverURL,
+			callback: function(result) {
+				if (result === null) {
+					return;
+				} else {
+					serverURL = result;
+
+					Applications.update({ _id: appId }, { $set: { destinationURL: serverURL } }, function(e) {
+						var command = JSON.stringify({
+							command: "download_android",
+							args: {
+								user_id: Meteor.userId(),
+								app_id: appId,
+								server_url: serverURL,
+								kitchen_url: kitchenURL,
+								build_server_url: buildServerURL
+							}
+						});
+
+						sendMessageToKitchen(command, function() {
+							downloadFile(buildServerURL + "/download/" + appId + ".apk");
+						});
+					});
+				}
+			}
 		});
 	},
 
@@ -220,7 +264,8 @@ Template.TEMPLATE_NAME.events({
 			command: "start",
 			args: {
 				user_id: Meteor.userId(),
-				app_id: appId
+				app_id: appId,
+				kitchen_url: kitchenURL
 			}
 		});
 		sendMessageToApp(command);
@@ -233,7 +278,8 @@ Template.TEMPLATE_NAME.events({
 			command: "stop",
 			args: {
 				user_id: Meteor.userId(),
-				app_id: appId
+				app_id: appId,
+				kitchen_url: kitchenURL
 			}
 		});
 		sendMessageToApp(command);

@@ -21,11 +21,15 @@ You **need** to have <a href="https://www.meteor.com" target="_blank">Meteor >=1
 You can download the binary release <a href="/install/install_win.zip" _target="blank">here</a>. Extract it somewhere and make sure `meteor-kitchen.exe` is in your system PATH. See included `windows.txt` for more details.
 
 **Note**
+
 - Filenames are treated case sensitive.
-- meteor-kitchen uses "curl" to download files. You can find curl for windows <a href="http://www.confusedbycode.com/curl/#downloads" target="_blank">here</a>.
+
+- meteor-kitchen uses "curl" to download files. You can find "curl" for windows <a href="http://www.confusedbycode.com/curl/#downloads" target="_blank">here</a>.
+
+- **Windows XP & Windows 7**: From version 0.9.53 you don't need "where.exe" anymore. But if you are experiencing problems (if meteor-kitchen cannot execute meteor) try to install "where.exe". You can find instructions on how to download and install "where.exe" <a href="http://superuser.com/questions/249725/where-to-download-where-exe-tool-for-windows-xp" target="_blank">here</a>.
 
 
-Current version is 0.9.48
+Current version is 0.9.54
 =========================
 
 Click <a href="{{pathFor 'version_history'}}">here</a> to see the version history.
@@ -63,6 +67,7 @@ meteor-kitchen input_file.txt <output_directory>
 ```
 
 You'll need to install <a href="https://www.npmjs.com/package/human2machine" target="_blank">human2machine</a> npm module which translates English text to JSON input for generator.
+
 There is also **online** human2machine translator available <a href="http://generator-human2machine.meteor.com" target="_blank">here</a>.
 
 Example input file is <a href="https://github.com/perak/kitchen-examples/tree/master/example-human" target="_blank">here</a>.
@@ -314,9 +319,9 @@ You can see a live example <a href="http://generator-subpages.meteor.com" target
 Frontend framework
 ==================
 
-Currently, the generator can produce markup compatible with <a href="http://getbootstrap.com" target="_blank">bootstrap</a> and <a href="http://semantic-ui.com/" target="_blank">semantic-ui</a>.
+Currently, the generator can produce markup compatible with <a href="http://getbootstrap.com" target="_blank">bootstrap</a>, <a href="http://semantic-ui.com/" target="_blank">semantic-ui</a> or <a href="http://materializecss.com/" target="_blank">materialize</a>.
 
-**Note:** semantic-ui is not fully implemented yet (currently, you can only build minimal app using semantic).
+**Note:** semantic-ui and materialize are not fully implemented yet.
 
 To choose frontend framework, add "frontend" property to your application object:
 ```
@@ -334,6 +339,17 @@ Or:
 {
 	"application": {
 		"frontend": "semantic-ui"
+		...
+	}
+}
+```
+
+Or:
+
+```
+{
+	"application": {
+		"frontend": "materialize"
 		...
 	}
 }

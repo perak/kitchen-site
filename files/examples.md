@@ -66,13 +66,18 @@ Markdown editor
 <a href="http://generator-markdowned.meteor.com" target="_blank" class="btn btn-success">Live example</a> <a href="https://github.com/perak/kitchen-examples/tree/master/example-markdowned" target="_blank" class="btn btn-default">Source code</a>
 
 
+Human2Machine
+-------------
+
+<a href="http://generator-human2machine.meteor.com" target="_blank"><img src="/images/example-human2machine.png" alt="human2machine" class="example-img"></a>
+
+<a href="http://generator-human2machine.meteor.com" target="_blank" class="btn btn-success">Live example</a> <a href="https://github.com/perak/kitchen-examples/tree/master/example-human2machine" target="_blank" class="btn btn-default">Source code</a>
+
+
 Photosharing
 ------------
 
 <a href="http://generator-photosharing.meteor.com" target="_blank"><img src="/images/example-photosharing.png" alt="photosharing" class="example-img"></a>
-
-Video Tutorial:
-<iframe width="400" height="225" src="https://www.youtube.com/embed/7zWBhtE72o4" frameborder="0" allowfullscreen></iframe>
 
 <a href="http://generator-photosharing.meteor.com" target="_blank" class="btn btn-success">Live example</a> <a href="https://github.com/perak/kitchen-examples/tree/master/example-photosharing" target="_blank" class="btn btn-default">Source code</a>
 
@@ -107,6 +112,22 @@ Upload
 <a href="http://generator-upload.meteor.com" target="_blank"><img src="/images/example-upload.png" alt="upload" class="example-img"></a>
 
 <a href="http://generator-upload.meteor.com" target="_blank" class="btn btn-success">Live example</a> <a href="https://github.com/perak/kitchen-examples/tree/master/example-upload" target="_blank" class="btn btn-default">Source code</a>
+
+
+Semantic-UI
+-----------
+
+<a href="http://generator-semantic.meteor.com" target="_blank"><img src="/images/example-semantic.png" alt="upload" class="example-img"></a>
+
+<a href="http://generator-semantic.meteor.com" target="_blank" class="btn btn-success">Live example</a> <a href="https://github.com/perak/kitchen-examples/tree/master/example-semantic" target="_blank" class="btn btn-default">Source code</a>
+
+
+Materialize
+-----------
+
+<a href="http://generator-materialize.meteor.com" target="_blank"><img src="/images/example-materialize.png" alt="upload" class="example-img"></a>
+
+<a href="http://generator-materialize.meteor.com" target="_blank" class="btn btn-success">Live example</a> <a href="https://github.com/perak/kitchen-examples/tree/master/example-materialize" target="_blank" class="btn btn-default">Source code</a>
 
 
 Plugins
