@@ -1,4 +1,4 @@
-	"click #delete-button": function(e, t) {
+	"click .delete-button": function(e, t) {
 		e.preventDefault();
 		var me = this;
 		bootbox.dialog({
@@ -21,7 +21,7 @@
 		});
 		return false;
 	},
-	"click #edit-button": function(e, t) {
+	"click .edit-button": function(e, t) {
 		e.preventDefault();
 		Router.go("applications.edit", {applicationId: this._id});
 		return false;
