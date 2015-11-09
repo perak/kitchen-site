@@ -199,8 +199,9 @@ Template.objectTreeView.events({
 			if(propertyName) {
 				if(redirect) {
 					Router.go("applications.details.form_view", { applicationId: this.rootId, objectId: objectId, propertyName: propertyName });
-				} else {
 					selectItem(link);
+				} else {
+					//selectItem(link);
 				}
 			} else {
 				if(redirect) {
