@@ -1,6 +1,4 @@
 
-var self = this;
-
 function expandParents(item) {
 	var closestLi = item.parent().parents("li.collapsed").first();
 	if(closestLi.length) {
@@ -143,11 +141,11 @@ Template.TEMPLATE_NAME.helpers({
 Template.jsonTreeView.rendered = function() {
 }
 
-Deps.autorun(function() {
-	if(Router.current() && Router.current().url) {
-		selectRequestedOrFirstItem();
-	}
-});
+// Deps.autorun(function() {
+// 	if(Router.current() && Router.current().url) {
+// 		selectRequestedOrFirstItem();
+// 	}
+// });
 
 Template.jsonTreeView.helpers({
 	"objectMembers": function(rootId, object, meta) {

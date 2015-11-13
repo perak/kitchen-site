@@ -1,0 +1,178 @@
+<html>
+
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/styles/default.min.css">
+<script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<body>
+
+<script>
+function escapeRegExp(string) {
+    return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+}
+
+function replaceAll(string, find, replace) {
+  return string.replace(new RegExp(escapeRegExp(find), 'g'), replace);
+}
+
+function sar( ) {
+ 
+ var templateString = $("#template_pre").text();
+ 
+ var newName= $("#newName").val();
+ 
+ var newContents = replaceAll(templateString, "TEMPLATE", newName );
+ $("#template_output").text( newContents);
+ 
+  $('#template_output').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+
+
+}
+
+</script>
+
+New collection name:
+<input id="newName" type="text" name="template_name" onChange="sar();" />
+
+<div id="template">
+<pre><code class="json" id="template_output">
+{ "here" : "it comes" } 
+</code>
+</pre>
+
+<pre id="template_pre" style="display:none;">
+
+// collection
+
+{  
+   "name":"TEMPLATEs",
+   "type":"collection",
+   "fields":[  
+      {  
+         "name":"name",
+         "title":"Name",
+         "type":"string",
+         "exportable":true
+      }
+   ]
+}
+
+
+// queries
+
+{  
+   "name":"TEMPLATEs",
+   "collection":"TEMPLATEs"
+},
+{  
+   "name":"TEMPLATE",
+   "collection":"TEMPLATEs",
+   "find_one":true,
+   "filter":{  
+      "_id":":TEMPLATEId"
+   }
+},
+{  
+   "name":"TEMPLATEs_empty",
+   "collection":"TEMPLATEs",
+   "find_one":true,
+   "filter":{  
+      "_id":null
+   }
+}
+
+// pages
+
+{  
+   "name":"TEMPLATEs",
+   "type":"page",
+   "components":[  
+      {  
+         "name":"view",
+         "query_name":"TEMPLATEs",
+         "insert_route":"TEMPLATEs.insert",
+         "details_route":"TEMPLATEs.details",
+         "edit_route":"TEMPLATEs.edit",
+         "type":"data_view",
+         "details_route_params":[  
+            {  
+               "name":"TEMPLATEId",
+               "value":"this._id"
+            }
+         ],
+         "edit_route_params":[  
+            {  
+               "name":"TEMPLATEId",
+               "value":"this._id"
+            }
+         ]
+      }
+   ],
+   "pages":[  
+      {  
+         "name":"insert",
+         "type":"page",
+         "components":[  
+            {  
+               "name":"insert_form",
+               "title":"New TEMPLATE",
+               "query_name":"TEMPLATEs_empty",
+               "mode":"insert",
+               "submit_route":"TEMPLATEs",
+               "cancel_route":"TEMPLATEs",
+               "type":"form"
+            }
+         ]
+      },
+      {  
+         "name":"details",
+         "route_params":[  
+            "TEMPLATEId"
+         ],
+         "type":"page",
+         "components":[  
+            {  
+               "name":"details_form",
+               "query_name":"TEMPLATE",
+               "mode":"read_only",
+               "close_route":"TEMPLATEs",
+               "back_route":"TEMPLATEs",
+               "type":"form"
+            }
+         ]
+      },
+      {  
+         "name":"edit",
+         "route_params":[  
+            "TEMPLATEId"
+         ],
+         "type":"page",
+         "components":[  
+            {  
+               "name":"edit_form",
+               "title":"Edit TEMPLATE",
+               "query_name":"TEMPLATE",
+               "mode":"update",
+               "submit_route":"TEMPLATEs",
+               "cancel_route":"TEMPLATEs",
+               "type":"form"
+            }
+         ]
+      }
+   ]
+}
+
+</pre>
+
+</div>
+
+</body>
+
+
+</html>
+

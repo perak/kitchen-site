@@ -1,0 +1,88 @@
+<template name="ApplicationsDetailsConsole">
+	<div class="page-container container app-editor" id="content">
+		<div class="row" id="title_row">
+			<div class="col-md-12">
+				<div id="page_menu" class="pull-right">
+				</div>
+			</div>
+		</div>
+		{{> ApplicationsDetailsConsoleConsoleView}}
+	</div>
+</template>
+
+<template name="ApplicationsDetailsConsoleConsoleView">
+	<div class="row">
+		<div class="col-xs-12 col-sm-6">
+			<div class="btn-toolbar" role="toolbar">
+				<div class="btn-group">
+					<button class="btn btn-warning build-cloud command-button" type="button">
+						<span class="fa fa-rocket">
+						</span>
+						&nbsp;Build
+					</button>
+				</div>
+				<div class="btn-group">
+					<button type="button" class="btn btn-primary download_js_html command-button">
+						<span class="fa fa-download">
+						</span>
+						&nbsp;Build & download
+					</button>
+					<button type="button" class="btn btn-primary dropdown-toggle command-button" data-toggle="dropdown" aria-expanded="false">
+						<span class="caret">
+						</span>
+					</button>
+					<ul class="dropdown-menu" role="menu">
+						<li>
+							<a href="#" class="download_js_html">
+								Source (java script + html)
+							</a>
+						</li>
+						<li>
+							<a href="#" class="download_js_jade">
+								Source (java script + jade)
+							</a>
+						</li>
+						<li>
+							<a href="#" class="download_coffee_html">
+								Source (coffee script + html)
+							</a>
+						</li>
+						<li>
+							<a href="#" class="download_coffee_jade">
+								Source (coffee script + jade)
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="btn-group">
+					<button class="btn btn-default build-local" type="button">
+						<span class="fa fa-terminal">
+						</span>
+						&nbsp;Build locally
+					</button>
+				</div>
+			</div>
+			<div id="kitchen-console" class="console-div full-height">
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-6 full-height">
+			<div class="btn-toolbar" role="toolbar">
+				<div class="btn-group">
+					<button class="btn btn-success start-app command-button" type="button">
+						<span class="fa fa-play">
+						</span>
+						Start
+					</button>
+					<button class="btn btn-danger stop-app command-button" type="button">
+						<span class="fa fa-stop">
+						</span>
+						Stop
+					</button>
+				</div>
+			</div>
+			<div id="app-console" class="console-div full-height">
+			</div>
+		</div>
+	</div>
+</template>
+

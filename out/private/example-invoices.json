@@ -1,0 +1,531 @@
+{
+	"application": {
+		"title": "Example application",
+
+		"theme": "bootswatch-paper",
+
+		"on_user_created_code": "Customers.insert({ name: 'Chuck Norris', email: 'internet@chucknorris.com', ownerId: user._id });",
+
+		"collections": [
+			{
+				"name": "customers",
+				"fields": [
+					{ "name": "name", "title": "Name", "required": true, "exportable": true },
+					{ "name": "phone", "title": "Phone", "default": "-", "exportable": true },
+					{ "name": "email", "title": "E-mail", "type": "email", "exportable": true },
+					{ "name": "note", "title": "Note", "input": "textarea", "exportable": true, "show_in_dataview": false },
+					{ "name": "totalAmount", "title": "Invoiced", "type": "float", "show_in_insert_form": false, "show_in_update_form": false, "exportable": true }
+				],
+				"owner_field": "ownerId",
+
+				"roles_allowed_to_read": ["owner"],
+				"roles_allowed_to_update": ["owner"],
+				"roles_allowed_to_delete": ["owner"]
+			},
+
+			{
+				"name": "invoices",
+				"fields": [
+					{ "name": "invoiceNumber", "title": "Invoice number", "default": "{{nextInvoiceNumber}}", "required": true, "exportable": true },
+					{ "name": "date", "title": "Invoice date", "type": "date", "format": "MM-DD-YYYY", "input": "datepicker", "default": "today", "required": true, "exportable": true },
+
+					{
+						"name": "customerId",
+						"title": "Customer",
+						"required": true,
+						"input": "select",
+						"lookup_query_name": "customer_list",
+						"lookup_field": "name",
+						"lookup_key": "_id",
+						"show_in_dataview": false,
+						"show_in_read_only_form": false,
+						"exportable": false,
+
+						"join_collection": "customers",
+						"join_fields": ["name"],
+						"join_container": "customer"
+					},
+
+					{
+						"name": "customer.name",
+						"title": "Customer",
+						"show_in_insert_form": false,
+						"show_in_update_form": false,
+						"exportable": true
+					},
+
+					{
+						"name": "totalAmount",
+						"title": "Total",
+						"type": "float",
+						"show_in_insert_form": false,
+						"show_in_update_form": false,
+						"exportable": true
+					}
+				],
+
+				"owner_field": "ownerId",
+				"roles_allowed_to_read": ["owner"],
+				"roles_allowed_to_update": ["owner"],
+				"roles_allowed_to_delete": ["owner"],
+
+				"before_insert_code": "if(!doc.totalAmount) doc.totalAmount = 0;"
+			},
+
+			{
+				"name": "invoice_items",
+				"fields": [
+					{ "name": "description", "title": "Description", "required": true, "exportable": true },
+					{ "name": "quantity", "title": "Quantity", "type": "float", "default": 1, "required": true, "exportable": true },
+					{ "name": "price", "title": "Price", "type": "float", "default": 0, "required": true, "exportable": true },
+					{ "name": "amount", "title": "Amount", "type": "float", "show_in_insert_form": false, "show_in_update_form": false, "exportable": true }
+				],
+				"owner_field": "ownerId",
+
+				"roles_allowed_to_read": ["owner"],
+				"roles_allowed_to_update": ["owner"],
+				"roles_allowed_to_delete": ["owner"],
+
+				"before_insert_code": "doc.amount = doc.quantity * doc.price;",
+
+				"before_update_code": "if(!modifier.$set) return; var quantity = modifier.$set.quantity || doc.quantity; var price = modifier.$set.price || doc.price; modifier.$set.amount = quantity * price;",
+
+				"after_insert_code": "var sum = 0; InvoiceItems.find({ invoiceId: doc.invoiceId }).map(function(item) { sum += item.amount; }); Invoices.update({ _id: doc.invoiceId }, { $set: { totalAmount: sum }});",
+
+				"after_update_code": "var sum = 0; InvoiceItems.find({ invoiceId: doc.invoiceId }).map(function(item) { sum += item.amount; }); Invoices.update({ _id: doc.invoiceId }, { $set: { totalAmount: sum }});",
+
+				"after_remove_code": "var sum = 0; InvoiceItems.find({ invoiceId: doc.invoiceId }).map(function(item) { sum += item.amount; }); Invoices.update({ _id: doc.invoiceId }, { $set: { totalAmount: sum }});"
+			}
+		],
+
+		"queries": [
+			{
+				"name": "customer_list",
+				"collection": "customers",
+				"filter": {},
+				"options": {
+					"transform": "function(doc) { var sum = 0; Invoices.find({ customerId: doc._id }).map(function(item) { if(item.totalAmount) sum += item.totalAmount; }); doc.totalAmount = sum; return doc; }",
+					"sort": ["name"]
+				},
+				"related_queries": [
+					{ "name": "invoice_list" }
+				]
+			},
+			{
+				"name": "customers_empty",
+				"collection": "customers",
+				"filter": {"_id": null},
+				"find_one": true
+			},
+			{
+				"name": "customer_details",
+				"collection": "customers",
+				"find_one": true,
+				"filter": { "_id": ":customerId" },
+				"options": {
+					"transform": "function(doc) { var sum = 0; Invoices.find({ customerId: doc._id }).map(function(item) { sum += item.totalAmount; }); doc.totalAmount = sum; return doc; }"
+				},
+				"related_queries": [
+					{ "name": "invoice_list" }
+				]
+			},
+			{
+				"name": "invoice_list",
+				"collection": "invoices",
+				"filter": {},
+				"options": {
+					"sort": [[ "invoiceNumber", "desc"]]
+				}
+			},
+			{
+				"name": "invoices_empty",
+				"collection": "invoices",
+				"filter": { "_id": null },
+				"options": {},
+				"find_one": true,
+				"related_queries": [
+					{ "name": "invoice_list" }
+				]
+			},
+			{
+				"name": "invoice_details",
+				"collection": "invoices",
+				"filter": { "_id": ":invoiceId" },
+				"find_one": true
+			},
+			{
+				"name": "invoice_items",
+				"collection": "invoice_items",
+				"filter": { "invoiceId": ":invoiceId" }
+			},
+			{
+				"name": "invoice_items_empty",
+				"collection": "invoice_items",
+				"filter": { "_id": null },
+				"find_one": true
+			},
+			{
+				"name": "invoice_item",
+				"collection": "invoice_items",
+				"filter": { "_id": ":itemId" },
+				"find_one": true
+			},
+			{
+				"name": "current_user_data",
+				"collection": "users",
+				"filter": { "_id": "Meteor.userId()" },
+				"find_one": true
+			}
+		],
+
+		"public_zone": {
+			"pages": [
+				{ 
+					"name": "home_public", 
+					"title": "", 
+					"components": [
+						{
+							"name": "home_jumbotron",
+							"title": "Example application",
+							"type": "jumbotron",
+							"text": "<b>This <a href=\"https://www.meteor.com\" target=\"_blank\">Meteor</a> application is made with <a href=\"http://www.meteorkitchen.com\" target=\"_blank\">meteor-kitchen</a> without manual coding.</b><br />It shows how to work with DataViews, Forms with dates and lookup fields, master-detail relations etc.<br />Source code (input file for generator) is <a href=\"https://github.com/perak/kitchen-examples/tree/master/example-invoices\" target=\"_blank\">here</a>.",
+							"button_title": "Continue &raquo;",
+							"button_route": "login"
+						}
+					]
+				},
+				{ "name": "login", "template": "login" },
+				{ "name": "register", "template": "register" },
+				{ "name": "forgot_password", "template": "forgot_password" },
+				{ "name": "reset_password", "template": "reset_password", "route_params": ["resetPasswordToken"] }
+			],
+
+			"components": [
+				{
+					"name": "left_menu",
+					"type": "menu",
+					"class": "nav navbar-nav",
+					"dest_selector": "#menu",
+					"items": [
+						{ "title": "Home", "route": "home_public" }
+					]
+				},
+
+				{
+					"name": "right_menu",
+					"type": "menu",
+					"class": "nav navbar-nav navbar-right",
+					"dest_selector": "#menu",
+					"items": [
+						{ "title": "Register", "route": "register" },
+						{ "title": "Login", "route": "login" }
+					]
+				}
+			]
+		},
+
+		"private_zone": {
+			"pages": [
+				{
+					"name": "home_private",
+					"title": "Welcome {{userFullName}}!",
+					"text": "Place for dashboard here..."
+				},
+
+				{
+					"name": "customers",
+					"components": [
+						{
+							"name": "view",
+							"type": "data_view",
+							"title": "Customers",
+							"text_if_empty": "No customers :(",
+							"query_name": "customer_list",
+							"insert_route": "customers.insert",
+							"edit_route": "customers.edit",
+							"edit_route_params": [
+								{ "name": "customerId", "value": "this._id" }
+							],
+							"details_route": "customers.details",
+							"details_route_params": [
+								{ "name": "customerId", "value": "this._id" }
+							]
+						}
+					],
+
+					"pages": [
+						{
+							"name": "insert",
+							"components": [
+								{
+									"name": "insert_form",
+									"type": "form",
+									"mode": "insert",
+									"title": "New customer",
+									"query_name": "customers_empty",
+									"submit_route": "customers",
+									"cancel_route": "customers"
+								}
+							]
+						},
+						{
+							"name": "details",
+							"route_params": ["customerId"],
+							"components": [
+								{
+									"name": "details_form",
+									"type": "form",
+									"mode": "read_only",
+									"title": "Details",
+									"query_name": "customer_details",
+									"close_route": "customers",
+									"back_route": "customers"
+								}
+							]
+						},
+
+						{
+							"name": "edit",
+							"route_params": ["customerId"],
+							"components": [
+								{
+									"name": "edit_form",
+									"type": "form",
+									"mode": "update",
+									"title": "Edit customer",
+									"submit_route": "customers",
+									"cancel_route": "customers",
+									"query_name": "customer_details"
+								}
+							]
+						}
+					]
+				},
+
+				{
+					"name": "invoices",
+					"components": [
+						{
+							"name": "view",
+							"type": "data_view",
+							"title": "Invoices",
+							"text_if_empty": "No invoices :(",
+							"query_name": "invoice_list",
+							"insert_route": "invoices.insert",
+							"edit_route": "invoices.edit",
+							"edit_route_params": [
+								{ "name": "invoiceId", "value": "this._id" }
+							],
+							"details_route": "invoices.details",
+							"details_route_params": [
+								{ "name": "invoiceId", "value": "this._id" }
+							]
+						}
+					],
+
+					"pages": [
+						{
+							"name": "insert",
+							"components": [
+								{
+									"name": "insert_form",
+									"type": "form",
+									"mode": "insert",
+									"title": "New invoice",
+
+									"query_name": "invoices_empty",
+
+									"helpers_code": "'nextInvoiceNumber': function() { var max = 0; var invoiceNumbers = Invoices.find({}, { fields: { invoiceNumber: 1 }}).fetch(); _.each(invoiceNumbers, function(doc) { var intNum = parseInt(doc.invoiceNumber); if(!isNaN(intNum) && intNum > max) max = intNum; }); return max + 1; }",
+
+									"submit_route": "invoices.details",
+									"submit_route_params": [
+										{ "name": "invoiceId", "value": "newId"}
+									],
+									"cancel_route": "invoices"
+								}
+							]
+						},
+						{
+							"name": "details",
+							"template": "page_subcontent_tabnav",
+							"route_params": ["invoiceId"],
+							"components": [
+								{
+									"name": "details_form",
+									"type": "form",
+									"mode": "read_only",
+									"title": "Invoice #{{invoice_details.invoiceNumber}}",
+									"layout": "horizontal",
+									"query_name": "invoice_details",
+									"back_route": "invoices"
+								}
+
+							],
+
+							"force_yield_subpages": true,
+							"pages": [
+								{
+									"name": "items",
+									"components": [
+										{
+											"name": "view",
+											"type": "data_view",
+											"text_if_empty": "No items",
+											"query_name": "invoice_items",
+											"insert_button_title": "Add item",
+											"insert_route": "invoices.details.insert",
+											"insert_route_params": [
+												{ "name": "invoiceId", "value": "this.params.invoiceId" }
+											],
+											"edit_route": "invoices.details.edit",
+											"edit_route_params": [
+												{ "name": "invoiceId", "value": "UI._parentData(1).params.invoiceId" },
+												{ "name": "itemId", "value": "this._id" }
+											]
+										}
+									]
+								},
+
+								{
+									"name": "insert",
+									"components": [										
+										{
+											"name": "insert_form",
+											"type": "form",
+											"mode": "insert",
+											"title": "Add item",
+											"query_name": "invoice_items_empty",
+
+											"hidden_fields": [
+												{ "name": "invoiceId", "value": "this.params.invoiceId" }
+											],
+
+											"submit_route": "invoices.details",
+											"submit_route_params": [
+												{ "name": "invoiceId", "value": "this.params.invoiceId"}
+											],
+											"cancel_route": "invoices.details",
+											"cancel_route_params": [
+												{ "name": "invoiceId", "value": "this.params.invoiceId"}
+											]
+										}
+									]
+								},
+
+								{
+									"name": "edit",
+									"route_params": ["itemId"],
+									"components": [
+										{
+											"name": "edit_form",
+											"type": "form",
+											"mode": "update",
+											"title": "Edit item",
+											"query_name": "invoice_item",
+											"submit_route": "invoices.details",
+											"submit_route_params": [
+												{ "name": "invoiceId", "value": "this.params.invoiceId"}
+											],
+											"cancel_route": "invoices.details",
+											"cancel_route_params": [
+												{ "name": "invoiceId", "value": "this.params.invoiceId"}
+											]
+										}
+									]
+								}
+							]
+						},
+
+						{
+							"name": "edit",
+							"route_params": ["invoiceId"],
+							"components": [
+								{
+									"name": "edit_form",
+									"type": "form",
+									"mode": "update",
+									"title": "Edit invoice",
+									"submit_route": "invoices",
+									"cancel_route": "invoices",
+									"query_name": "invoice_details"
+								}
+							]
+						}
+					]
+				},
+
+				{
+					"name": "user_settings",
+					"pages": [
+						{
+							"name": "profile",
+							"components": [
+								{
+									"name": "edit_form",
+									"type": "form",
+									"mode": "update",
+									"title": "Edit your profile",
+									"submit_route": "user_settings.profile",
+									"query_name": "current_user_data",
+									"fields": [
+										{ "name": "profile.name", "title": "Name", "required": true },
+										{ "name": "profile.email", "title": "E-mail", "type": "email", "required": true },
+										{ "name": "profile.facebook", "title": "Facebook URL" },
+										{ "name": "profile.google", "title": "Google+ URL" },
+										{ "name": "profile.twitter", "title": "Twitter ID" },
+										{ "name": "profile.website", "title": "Website URL" }
+									]
+								}
+							]
+						},
+
+						{ "name": "change_pass", "template": "change_pass" }
+					],
+
+					"components": [
+						{
+							"name": "side_menu",
+							"type": "menu",
+							"class": "nav nav-stacked nav-pills",
+							"items": [
+								{ "title": "Profile", "route": "user_settings.profile" },
+								{ "title": "Change password", "route": "user_settings.change_pass" }
+							]
+						}
+					]
+				},
+
+				{ "name": "logout", "template": "logout" }
+			],
+
+			"components": [
+				{
+					"name": "left_menu",
+					"type": "menu",
+					"class": "nav navbar-nav",
+					"dest_selector": "#menu",
+					"items": [
+						{ "title": "Home", "route": "home_private" },
+						{ "title": "Invoices", "route": "invoices" },
+						{ "title": "Customers", "route": "customers" }
+					]
+				},
+				{
+					"name": "right_menu",
+					"type": "menu",
+					"class": "nav navbar-nav navbar-right",
+					"dest_selector": "#menu",
+					"items": [
+						{ 
+							"title": "{{userEmail}}",
+							"items": [
+								{ "title": "Settings", "route": "user_settings" },
+								{ "title": "Logout", "route": "logout" }
+							]
+						}
+					]
+				}
+			]
+		}
+	}
+}

@@ -661,7 +661,7 @@
 													"class": "col-md-2",
 													"components": [
 														{
-															"name": "tree",
+															"name": "json_tree",
 															"type": "custom_component",
 															"custom_template": "files/json-tree/json-tree"
 														}
@@ -1040,7 +1040,7 @@
 		],
 
 		"packages": {
-			"meteor": ["datariot:ganalytics", "perak:codemirror", "d3", "perak:dagre-d3"],
+			"meteor": ["datariot:ganalytics", "perak:codemirror", "d3", "perak:dagre-d3", "meteorhacks:kadira","meteorhacks:zones"],
 			"mrt": []
 		},
 

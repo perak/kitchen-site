@@ -1,0 +1,154 @@
+{
+	"application": {
+
+		"title": "Example application",
+
+		"theme": "bootswatch-darkly",
+
+		"use_collection2": false,
+
+		"collections": [
+			{
+				"name": "customers",
+				"fields": [
+					{ "name": "name", "title": "Name", "required": true, "exportable": true },
+					{ "name": "phone", "title": "Phone", "default": "-", "exportable": true },
+					{ "name": "email", "title": "E-mail", "type": "email", "exportable": true },
+					{ "name": "note", "title": "Note", "input": "textarea", "exportable": true },
+					{ "name": "active", "title": "Active", "type": "bool", "input": "checkbox", "display_helper": "booleanToYesNo", "exportable": true }
+				]
+			}
+		],
+
+		"queries": [
+			{
+				"name": "customers",
+				"collection": "customers",
+				"filter": {}
+			},
+			{
+				"name": "customers_empty",
+				"collection": "customers",
+				"filter": {"_id": null},
+				"find_one": true
+			},
+			{
+				"name": "customer",
+				"collection": "customers",
+				"filter": { "_id": ":customerId" },
+				"find_one": true
+			}
+		],
+
+		"free_zone": {
+
+			"components": [
+				{
+					"name": "main_menu",
+					"type": "menu",
+					"items": [
+						{ "title": "Home page", "route": "home" },
+						{ "title": "Customers", "route": "customers" }
+					]
+				}
+			],
+
+			"pages": [
+				{
+					"name": "home",
+					"title": "",
+					"components": [
+						{
+							"name": "home_jumbotron",
+							"title": "Example application",
+							"type": "jumbotron",
+							"text": "<b>This <a href=\"https://www.meteor.com\" target=\"_blank\">Meteor</a> application is made with <a href=\"http://www.meteorkitchen.com\" target=\"_blank\">meteor-kitchen</a> without manual coding.</b><br />It demonstrates how to use DataView and Form components to create simple database application with view, search, insert, edit and delete functions.<br />Source code (input file for generator) is <a href=\"https://github.com/perak/kitchen-examples/tree/master/example-dataview\" target=\"_blank\">here</a>.",
+							"button_title": "Continue &raquo;",
+							"button_route": "customers"
+						}
+					]
+				},
+				{
+					"name": "customers",
+					"components": [
+						{
+							"name": "view",
+							"type": "data_view",
+							"title": "Customers",
+							"text_if_empty": "No customers :(",
+
+							"query_name": "customers",
+							"query_params": [],
+
+							"insert_route": "customers.insert",
+							"edit_route": "customers.edit",
+							"edit_route_params": [
+								{ "name": "customerId", "value": "this._id" }
+							],
+							"details_route": "customers.details",
+							"details_route_params": [
+								{ "name": "customerId", "value": "this._id" }
+							]
+						}
+					],
+					"pages": [
+						{
+							"name": "insert",
+							"components": [
+								{
+									"name": "insert_form",
+									"type": "form",
+									"mode": "insert",
+									"title": "New customer",
+
+									"query_name": "customers_empty",
+									"query_params": [],
+
+									"submit_route": "customers",
+									"cancel_route": "customers"
+								}
+							]
+						},
+						{
+							"name": "details",
+							"route_params": ["customerId"],
+							"components": [
+								{
+									"name": "details_form",
+									"type": "form",
+									"mode": "read_only",
+									"title": "Details",
+									"layout": "horizontal",
+
+									"query_name": "customer",
+									"query_params": [],
+
+									"close_route": "customers",
+									"back_route": "customers"
+								}
+							]
+						},
+
+						{
+							"name": "edit",
+							"route_params": ["customerId"],
+							"components": [
+								{
+									"name": "edit_form",
+									"type": "form",
+									"mode": "update",
+									"title": "Edit customer",
+									"submit_route": "customers",
+									"cancel_route": "customers",
+
+									"query_name": "customer",
+									"query_params": []
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	}
+}

@@ -101,11 +101,14 @@ Template.TEMPLATE_NAME.helpers({
 Template.objectTreeView.rendered = function() {
 }
 
+/*
 Deps.autorun(function() {
 	if(Router.current() && Router.current().url) {
 		selectRequestedOrFirstItem();
 	}
 });
+
+*/
 
 Template.objectTreeView.helpers({
 	"objectMembers": function(rootId, object, meta) {

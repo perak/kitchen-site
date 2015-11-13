@@ -1,0 +1,100 @@
+<template name="AdminUsers">
+	<div class="page-container container" id="content">
+		<div class="row" id="title_row">
+			<div class="col-md-12">
+				<div id="page_menu" class="pull-right">
+				</div>
+			</div>
+		</div>
+		{{> AdminUsersView}}
+	</div>
+</template>
+
+<template name="AdminUsersView">
+	<div id="data_view" class="">
+		<h2 id="component-title">
+			Users
+		</h2>
+		<form id="dataview-controls" class="form-inline">
+			<div id="dataview-controls-insert" class="form-group ">
+				<button type="submit" id="dataview-insert-button" class="btn btn-success">
+					<span class="fa fa-plus">
+					</span>
+					Add new
+				</button>
+			</div>
+			<div id="dataview-controls-search">
+				{{#if isNotEmpty}}
+				<div id="dataview-controls-search-group" class="form-group">
+					<label class="sr-only" for="search">
+						Search
+					</label>
+					<input type="text" class="form-control" id="dataview-search-input" placeholder="Search" name="search" value="{{searchString}}" autofocus="autofocus">
+					<button type="button" id="dataview-search-button" class="btn btn-primary">
+						<span class="fa fa-search">
+						</span>
+					</button>
+				</div>
+				{{/if}}
+			</div>
+		</form>
+		{{#if isNotEmpty}}	
+			{{#if isNotFound}}
+		<div class="alert alert-warning">
+			"{{searchString}}" not found.
+		</div>
+		{{else}}
+		<div id="dataview-data">
+			{{#if viewAsTable}} {{> AdminUsersViewTable}} {{/if}}
+		</div>
+		{{/if}}	
+		{{else}}
+		<div class="alert alert-info">
+			No users yet
+		</div>
+		{{/if}}
+	</div>
+</template>
+
+<template name="AdminUsersViewTable">
+	<table id="dataview-table" class="table table-striped table-hover">
+		<thead id="dataview-table-header">
+			<tr id="dataview-table-header-row">
+				<th class="th-sortable" data-sort="profile.name">
+					Name
+				</th>
+				<th class="th-sortable" data-sort="profile.email">
+					E-mail
+				</th>
+				<th class="th-sortable" data-sort="roles">
+					Role
+				</th>
+				<th>
+					&nbsp;
+				</th>
+			</tr>
+		</thead>
+		<tbody id="dataview-table-items">
+			{{#each tableItems}} {{> AdminUsersViewTableItems}} {{/each}}
+		</tbody>
+	</table>
+</template>
+
+<template name="AdminUsersViewTableItems">
+	<tr id="dataview-table-items-row">
+		<td>
+			{{profile.name}}
+		</td>
+		<td>
+			{{profile.email}}
+		</td>
+		<td>
+			{{roles}}
+		</td>
+		<td class="td-icon">
+			<span id="edit-button" class="fa fa-pencil {{editButtonClass}}" title="Edit">
+			</span>
+		</td>
+	</tr>
+</template>
+
