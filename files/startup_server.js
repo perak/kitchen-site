@@ -13,4 +13,3 @@
 		Applications.update({ _id: app._id }, { $set: { data: app.data }});
 	});
 */
-
