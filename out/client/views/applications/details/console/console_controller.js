@@ -43,5 +43,6 @@ this.ApplicationsDetailsConsoleController = RouteController.extend({
 	},
 
 	onAfterAction: function() {
+		
 	}
 });

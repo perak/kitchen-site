@@ -43,5 +43,6 @@ this.ApplicationsDetailsSitemapController = RouteController.extend({
 	},
 
 	onAfterAction: function() {
+		
 	}
 });

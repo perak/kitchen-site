@@ -40,5 +40,6 @@ this.ApplicationsInsertController = RouteController.extend({
 	},
 
 	onAfterAction: function() {
+		
 	}
 });

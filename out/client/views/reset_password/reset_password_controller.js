@@ -38,5 +38,6 @@ this.ResetPasswordController = RouteController.extend({
 	},
 
 	onAfterAction: function() {
+		
 	}
 });

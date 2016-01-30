@@ -85,7 +85,7 @@ Helpers.formatDate = function(date, dateFormat) {
 			date = new Date();
 		}
 		if(date.toUpperCase() == "TODAY") {
-			d = new Date();
+			var d = new Date();
 			date = new Date(d.getFullYear(), d.getMonth(), d.getDate(), 0, 0, 0, 0);
 		}
 	}
@@ -118,9 +118,11 @@ Helpers.getArray = function(a) {
 		_.each(array, function(item, i) { array[i] = item.trim(); });
 		return array;
 	}
+
+	/* object... what to return? keys or values?
 	if(_.isObject(a)) {
-		// what to return? keys or values?
 	}
+	*/
 
 	var array = [];
 	array.push(a);

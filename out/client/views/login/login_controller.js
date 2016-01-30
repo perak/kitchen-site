@@ -38,5 +38,6 @@ this.LoginController = RouteController.extend({
 	},
 
 	onAfterAction: function() {
+		
 	}
 });

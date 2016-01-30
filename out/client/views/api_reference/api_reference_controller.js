@@ -38,5 +38,6 @@ this.ApiReferenceController = RouteController.extend({
 	},
 
 	onAfterAction: function() {
+		
 	}
 });

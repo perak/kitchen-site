@@ -39,5 +39,6 @@ this.UserSettingsChangePassController = RouteController.extend({
 	},
 
 	onAfterAction: function() {
+		
 	}
 });

@@ -102,14 +102,16 @@ this.validateForm = function(formObject, validationCallback, errorCallback, subm
 		// hide error message from previous call
 		formGroup.removeClass("has-error");
 		if(errorLabel) {
-			errorLabel.text("");
+			errorLabel.text("").removeClass("visible").addClass("hidden");
+			errorLabel.closest(".field").removeClass("error");
 		}
 
 		function validationError(errorMessage) {
 			formGroup.addClass("has-error");
 			inputObject.focus();
 			if(errorLabel) {
-				errorLabel.text(errorMessage);
+				errorLabel.text(errorMessage).removeClass("hidden").addClass("visible");
+				errorLabel.closest(".field").addClass("error");
 			}
 			if(errorCallback)
 				errorCallback(errorMessage);

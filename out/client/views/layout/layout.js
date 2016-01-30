@@ -25,6 +25,25 @@ Template.layout.rendered = function() {
 	/*TEMPLATE_RENDERED_CODE*/
 };
 
+Template.layout.events({ 
+    "click": function(event) { // Fix Bootstrap Dropdown Menu Collapse on click outside Menu
+        var clickover = $(event.target).closest(".dropdown-toggle").length;
+        var opened = $(".navbar-collapse").hasClass("in");
+        if (opened === true && !clickover) {
+            $('.navbar-collapse').collapse('hide');
+        }
+    },
+
+    "keyup": function(event) {
+        if (event.keyCode === 27) { // Bootstrap Dropdown Menu Collapse on ESC pressed
+            var opened = $(".navbar-collapse").hasClass("in");
+            if (opened === true) {
+                $('.navbar-collapse').collapse('hide');
+            }
+        }
+    }
+});
+
 
 
 Template.PublicLayoutLeftMenu.rendered = function() {

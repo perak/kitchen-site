@@ -43,5 +43,6 @@ this.ApplicationsDetailsDatabaseController = RouteController.extend({
 	},
 
 	onAfterAction: function() {
+		
 	}
 });

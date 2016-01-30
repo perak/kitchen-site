@@ -40,5 +40,6 @@ this.ApplicationsController = RouteController.extend({
 	},
 
 	onAfterAction: function() {
+		
 	}
 });

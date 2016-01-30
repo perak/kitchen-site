@@ -224,6 +224,7 @@ Template.ApplicationsViewTableItems.rendered = function() {
 Template.ApplicationsViewTableItems.events({
 	"click td": function(e, t) {
 		e.preventDefault();
+		
 		Router.go("applications.details", {applicationId: this._id, objectId: null, propertyName: null});
 		return false;
 	},

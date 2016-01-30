@@ -38,5 +38,6 @@ this.ForgotPasswordController = RouteController.extend({
 	},
 
 	onAfterAction: function() {
+		
 	}
 });

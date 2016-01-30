@@ -127,7 +127,7 @@ Meteor.startup(function() {
 */
 
 
-Kadira.connect('3u5LDSjqqvAjaHQfL', 'c735b6e2-f6e4-4c01-b225-4bb58f1c5f41');
+// Kadira.connect('3u5LDSjqqvAjaHQfL', 'c735b6e2-f6e4-4c01-b225-4bb58f1c5f41');
 
 
 });

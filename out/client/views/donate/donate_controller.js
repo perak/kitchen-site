@@ -38,5 +38,6 @@ this.DonateController = RouteController.extend({
 	},
 
 	onAfterAction: function() {
+		
 	}
 });

@@ -222,6 +222,7 @@ Template.AdminUsersViewTableItems.rendered = function() {
 Template.AdminUsersViewTableItems.events({
 	"click td": function(e, t) {
 		e.preventDefault();
+		
 		Router.go("admin.users.details", {userId: this._id});
 		return false;
 	},

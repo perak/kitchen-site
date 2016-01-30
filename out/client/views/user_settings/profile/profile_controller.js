@@ -41,5 +41,6 @@ this.UserSettingsProfileController = RouteController.extend({
 	},
 
 	onAfterAction: function() {
+		
 	}
 });

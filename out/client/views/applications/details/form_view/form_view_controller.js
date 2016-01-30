@@ -43,5 +43,6 @@ this.ApplicationsDetailsFormViewController = RouteController.extend({
 	},
 
 	onAfterAction: function() {
+		
 	}
 });

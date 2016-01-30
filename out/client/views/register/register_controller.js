@@ -38,5 +38,6 @@ this.RegisterController = RouteController.extend({
 	},
 
 	onAfterAction: function() {
+		
 	}
 });

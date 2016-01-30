@@ -31,8 +31,6 @@ mizzao:bootboxjs
 mrt:moment
 rajit:bootstrap3-datepicker
 perak:codemirror
-meteorhacks:kadira
-meteorhacks:zones
 standard-minifiers
 meteor-base
 mobile-experience

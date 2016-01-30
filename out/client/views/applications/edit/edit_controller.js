@@ -42,5 +42,6 @@ this.ApplicationsEditController = RouteController.extend({
 	},
 
 	onAfterAction: function() {
+		
 	}
 });

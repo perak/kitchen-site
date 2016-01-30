@@ -43,5 +43,6 @@ this.ApplicationsDetailsJsonViewController = RouteController.extend({
 	},
 
 	onAfterAction: function() {
+		
 	}
 });

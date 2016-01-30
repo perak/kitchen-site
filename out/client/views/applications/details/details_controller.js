@@ -42,5 +42,6 @@ this.ApplicationsDetailsController = RouteController.extend({
 	},
 
 	onAfterAction: function() {
+		
 	}
 });

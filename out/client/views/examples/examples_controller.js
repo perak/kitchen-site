@@ -38,5 +38,6 @@ this.ExamplesController = RouteController.extend({
 	},
 
 	onAfterAction: function() {
+		
 	}
 });

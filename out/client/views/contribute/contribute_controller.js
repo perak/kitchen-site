@@ -38,5 +38,6 @@ this.ContributeController = RouteController.extend({
 	},
 
 	onAfterAction: function() {
+		
 	}
 });

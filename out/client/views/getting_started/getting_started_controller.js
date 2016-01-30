@@ -38,5 +38,6 @@ this.GettingStartedController = RouteController.extend({
 	},
 
 	onAfterAction: function() {
+		
 	}
 });

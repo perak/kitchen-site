@@ -41,5 +41,6 @@ this.AdminUsersController = RouteController.extend({
 	},
 
 	onAfterAction: function() {
+		
 	}
 });

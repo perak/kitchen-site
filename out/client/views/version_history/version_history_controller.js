@@ -38,5 +38,6 @@ this.VersionHistoryController = RouteController.extend({
 	},
 
 	onAfterAction: function() {
+		
 	}
 });

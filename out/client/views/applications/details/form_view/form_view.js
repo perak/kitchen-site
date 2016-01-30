@@ -14,7 +14,7 @@ Template.ApplicationsDetailsFormView.helpers({
 
 
 
-function expandParents(item) {
+function expandParentsObjectTree(item) {
 	var closestLi = item.parent().parents("li.collapsed").first();
 	if(closestLi.length) {
 		closestLi.removeClass("collapsed");
@@ -24,11 +24,11 @@ function expandParents(item) {
 		span.addClass("fa-caret-down");
 
 		var link = closestLi.find("a").first();
-		expandParents(link);
+		expandParentsObjectTree(link);
 	}
 }
 
-function selectItem(link) {
+function selectItemObjectTree(link) {
 	var li = link.parent();
 	var container = link.closest("div");
 	var span = link.find("span.fa").first();
@@ -49,7 +49,7 @@ function selectItem(link) {
 	}
 }
 
-function selectRequestedOrFirstItem() {
+function selectRequestedOrFirstItemObjectTree() {
 	// highlight object passed as param or first object found in tree
 	if(Router.current() && Router.current().params) {
 		var routeName = Router.current().route.getName();
@@ -69,8 +69,8 @@ function selectRequestedOrFirstItem() {
 			} else {
 				link = $(".object-tree-link[data-object-id='" + objectId + "']").first();
 			}
-			expandParents(link);
-			selectItem(link);
+			expandParentsObjectTree(link);
+			selectItemObjectTree(link);
 		} else {
 			$(".object-tree-link").first().click();
 			return;
@@ -103,7 +103,7 @@ Template.ApplicationsDetailsFormViewTree.rendered = function() {
 	});
 
 	resizeTree();
-	selectRequestedOrFirstItem();
+	selectRequestedOrFirstItemObjectTree();
 };
 
 Template.ApplicationsDetailsFormViewTree.events({
@@ -120,7 +120,7 @@ Template.objectTreeView.rendered = function() {
 /*
 Deps.autorun(function() {
 	if(Router.current() && Router.current().url) {
-		selectRequestedOrFirstItem();
+		selectRequestedOrFirstItemObjectTree();
 	}
 });
 
@@ -217,15 +217,17 @@ Template.objectTreeView.events({
 
 			if(propertyName) {
 				if(redirect) {
+					selectItemObjectTree(link);
 					Router.go("applications.details.form_view", { applicationId: this.rootId, objectId: objectId, propertyName: propertyName });
 				} else {
-					selectItem(link);
+					selectItemObjectTree(link);
 				}
 			} else {
 				if(redirect) {
+					selectItemObjectTree(link);
 					Router.go("applications.details.form_view", { applicationId: this.rootId, objectId: objectId, propertyName: null });
 				} else {
-					selectItem(link);
+					selectItemObjectTree(link);
 				}
 			}
 		}

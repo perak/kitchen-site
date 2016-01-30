@@ -11,7 +11,7 @@
 </template>
 
 <template name="AdminUsersDetailsDetailsForm">
-	<div class="">
+	<div id="admin-users-details-details-form" class="">
 		<h2 id="component-title">
 			<a href="#" id="form-back-button" class="btn btn-default" title="back">
 				<span class="fa fa-chevron-left">
@@ -19,7 +19,7 @@
 			</a>
 			User details
 		</h2>
-		<form id="form" role="form">
+		<form role="form">
 			{{#if errorMessage}}
 			<div class="alert alert-warning">
 				{{errorMessage}}

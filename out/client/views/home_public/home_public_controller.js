@@ -38,5 +38,6 @@ this.HomePublicController = RouteController.extend({
 	},
 
 	onAfterAction: function() {
+		
 	}
 });
