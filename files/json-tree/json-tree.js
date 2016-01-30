@@ -13,41 +13,52 @@ function expandParents(item) {
 	}
 }
 
-function selectInCodeMirror( params ) {
-	
-	// console.log("selectInCodeMirror params=",params);
-	// selectInCodeMirror({ applicationId: this.rootId, objectId: objectId, propertyName: propertyName });
-	
-	var propertyName = params.propertyName;
-	
+function selectInCodeMirror(searchPath) {
+
+	if (!searchPath || !searchPath.length) {
+		console.log("Nothing to search?");
+		return;
+	}
+	searchPath = searchPath.reverse();
+	console.log("searchPath=", searchPath);
+
 	var cm = $("#json-editor").next(".CodeMirror");
-	
-	if( cm == null || cm[0]  == null) {
+
+	if (cm == null || cm[0] == null) {
 		console.log("No CodeMirror found, but that's ok. ");
 		return;
-	} 
-	
-	if( propertyName == null || propertyName == "")
-		return;
-	 
+	}
+
 	cm = cm[0].CodeMirror;
-	
-	cm.eachLine( function f(line) {
-		
-		var index = line.text.indexOf(propertyName);
-		if( index > -1 ) {
-			var lineNumber = cm.doc.getLineNumber( line );
-			cm.doc.setSelection( {line: lineNumber} );
-			cm.scrollIntoView( { line: lineNumber}, 200 );
-			
-			// cm.doc.markText( {line: lineNumber}, {line: lineNumber }, {clearOnEnter:true} );
-			return true;	
+
+	var pos = 0;
+
+	cm.eachLine(function f(line) {
+
+		var index = line.text.indexOf(searchPath[pos]);
+		if (index > -1) {
+			pos++;
+			if (pos === searchPath.length) {
+				var lineNumber = cm.doc.getLineNumber(line);
+				cm.doc.setSelection({
+					line: lineNumber
+				});
+				cm.scrollIntoView({
+					line: lineNumber
+				}, 200);
+
+				// cm.doc.markText( {line: lineNumber}, {line: lineNumber }, {clearOnEnter:true} );
+				return true;
+			}
+
 		}
-		
-	}); 
-	
-	
+
+	});
+
+
 }
+
+
 function selectItem(link) {
 	var li = link.parent();
 	var container = link.closest("div");
@@ -216,47 +227,59 @@ Template.jsonTreeView.helpers({
 Template.jsonTreeView.events({
 	"click .object-tree-link": function(e, t) {
 		e.preventDefault();
-		
-		
+
 		var link = $(e.currentTarget);
 		var objectId = this.objectId || "";
 
-		if(objectId) {
+		// well, this is not the most compact form but it works ;)
+		var parents = $(link).parentsUntil("div", "li");
+		var searchPath = [];
+		_.each(parents, p => {
+			var c = $(p).children("a").first();
+			searchPath.push($(c).attr("data-property-name"));
+		});
+
+		if (objectId) {
 			var propertyName = link.attr("data-property-name") || "";
 
 			var redirect = false;
-			if(Router.current() && Router.current().route) {
+			if (Router.current() && Router.current().route) {
 				var routeName = Router.current().route.getName();
-				if(routeName != "PAGE_ROUTE_NAME") {
+				if (routeName != "applications.details.json_view") {
 					return false;
 				}
 				var currentObjectId = Router.current().params.objectId || "";
 				var currentPropertyName = Router.current().params.propertyName || "";
 
-				if(currentObjectId == "null") currentObjectId = "";
-				if(currentPropertyName == "null") currentPropertyName = "";
+				if (currentObjectId == "null") currentObjectId = "";
+				if (currentPropertyName == "null") currentPropertyName = "";
 
-				if(objectId == currentObjectId && propertyName == currentPropertyName) {
+				if (objectId == currentObjectId && propertyName == currentPropertyName) {
 					redirect = false;
 				}
 			}
 
-			if(propertyName) {
-				if(redirect) {
-					console.log( 'Router.go("applications.details.json_view", { applicationId: this.rootId, objectId: objectId, propertyName: propertyName });');
-				} else {
-					selectItem(link);
-					selectInCodeMirror({ applicationId: this.rootId, objectId: objectId, propertyName: propertyName });
+
+			if (propertyName) {
+				if (redirect) {
+					console.log('Router.go("applications.details.json_view", { applicationId: this.rootId, objectId: objectId, propertyName: propertyName });');
 				}
-			} else {
-				if(redirect) {
-					console.log( 'Router.go("applications.details.json_view", { applicationId: this.rootId, objectId: objectId, propertyName: null });');
-				} else {
+				else {
 					selectItem(link);
-					selectInCodeMirror({ applicationId: this.rootId, objectId: objectId, propertyName: propertyName });
+					selectInCodeMirror(searchPath);
+				}
+			}
+			else {
+				if (redirect) {
+					console.log('Router.go("applications.details.json_view", { applicationId: this.rootId, objectId: objectId, propertyName: null });');
+				}
+				else {
+					selectItem(link);
+					selectInCodeMirror(searchPath);
 				}
 			}
 		}
 		return false;
 	}
 });
+
