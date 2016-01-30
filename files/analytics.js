@@ -1,3 +1,3 @@
 Router.onAfterAction(function() {
-	 GAnalytics.pageview();
+	GAnalytics.pageview();
 });
