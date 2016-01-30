@@ -35,7 +35,7 @@ function selectInCodeMirror(searchPath) {
 
 	cm.eachLine(function f(line) {
 
-		var index = line.text.indexOf(searchPath[pos]);
+		var index = line.text.indexOf('"'+searchPath[pos]+'"');
 		if (index > -1) {
 			pos++;
 			if (pos === searchPath.length) {
