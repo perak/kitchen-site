@@ -1040,7 +1040,7 @@
 		],
 
 		"packages": {
-			"meteor": ["datariot:ganalytics", "perak:codemirror", "d3", "perak:dagre-d3", "meteorhacks:kadira","meteorhacks:zones"],
+			"meteor": ["datariot:ganalytics", "perak:codemirror", "d3", "perak:dagre-d3"],
 			"mrt": []
 		},
 
