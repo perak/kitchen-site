@@ -150,13 +150,14 @@ Template.TEMPLATE_NAME.helpers({
 
 
 Template.jsonTreeView.rendered = function() {
+	console.log("jsonTreeView rendered");
 }
 
-// Deps.autorun(function() {
-// 	if(Router.current() && Router.current().url) {
-// 		selectRequestedOrFirstItem();
-// 	}
-// });
+ //Deps.autorun(function() {
+ //	if(Router.current() && Router.current().url) {
+ //		selectRequestedOrFirstItem();
+ //	}
+ //});
 
 Template.jsonTreeView.helpers({
 	"objectMembers": function(rootId, object, meta) {
