@@ -180,7 +180,7 @@ Pages and Menus
 					"name": "main_menu",
 					"type": "menu",
 					"items": [
-						{ "title": "Home page", "route": "home" },
+						{ "title": "Home page", "route": "home", "icon_class": "fa fa-home" },
 						{ "title": "About", "route": "about" }
 					]
 				}
