@@ -9,9 +9,6 @@
 		"send_verification_email": true,
 
 		"collections": [
-			{
-				"name": "customers"
-			}
 		],
 
 		"queries": [

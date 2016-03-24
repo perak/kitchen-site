@@ -3,11 +3,11 @@ How to contribute?
 
 **Meteor Kitchen** is under development, its new and not fully tested yet, although it is improving. If you find this project interesting, please feel free to:
 
+- **Spread the word** - on your favourite tech blog, <a href="https://twitter.com/MeteorKitchen" target="_blank">twitter</a>, facebook... etc.
+
 - **Report issues or request features** to this <a href="https://github.com/perak/kitchen-site/issues" target="_blank">GitHub page</a>.
 
 - **Ask questions and discuss** in <a href="https://forums.meteor.com/" target="_blank">Meteor forum</a>.
-
-- **Spread the word** - on your favourite tech blog, twitter, facebook... etc.
 
 - **Create screencast videos** explaining how to create application using meteor-kitchen. I'l put your video on this site and add you to the contributors list. Great award, isn't it? :)
 

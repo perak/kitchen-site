@@ -12,6 +12,96 @@ You can cheer for me by adding the star <span class="fa fa-star" style="color: y
 
 Many stars == many thanks!
 
+
+0.9.59
+------
+
+- Generated react app will work with `Meteor 1.3-rc.11`
+
+
+0.9.58
+------
+
+### React (experimental)
+
+- Still under development, but now you can generate (very simple) Meteor+React app (for example, try to build `example-minimal` and `example-accounts` applications).
+
+This is how:
+```
+meteor-kitchen <input_file_or_url> <output_directory> --meteor-release 1.3-rc.11 --react
+```
+
+
+0.9.57
+------
+
+### React (soon!)
+
+- Started adding support for <a href=\"https://facebook.github.io/react/\" target=\"_blank\">React</a>. You can expect something useful in next version 0.9.58 (in a week or two).
+
+
+### New features
+
+Now you can instruct meteor-kitchen which meteor version to use with command line switch `--meteor-release`.
+
+Example:
+```
+meteor-kitchen <input_file> <output_dir> --meteor-release 1.3-modules-beta.8
+```
+
+
+Now you can specify list of npm modules to install:
+
+Example:
+```
+{
+	"application": {
+	    ...
+		"packages": {
+			"meteor": ["random", "check"],
+			"npm": ["react", "react-dom"]
+		}
+		...
+	}
+}
+``` 
+
+### Bugfixes
+
+- Improved `semantic-ui` templates.
+
+- Fixed small bugs in HTML parser.
+
+
+0.9.56
+------
+
+- Now you can set `on_item_clicked_code` in DataView. Code will be executed when table item (row) is clicked. If you have `details_route` set then this code will be executed before redirect to details route.
+
+Example:
+```
+"on_item_clicked_code": "alert(this._id);"
+```
+
+
+0.9.55
+------
+
+- Improved <a href="http://semantic-ui.com/" target="_blank">semantic-ui</a> templates.
+
+- Fixed bugs related to CollectionFS: storage adapters are now properly created for `filesystem`, `S3` and `Dropbox`
+
+- Fixed this bug: (It was showing first time you start app using bootstrap3)
+
+```
+=> Errors prevented startup:
+   
+   While processing files with less (for target web.browser):
+   client/styles/styles/styles.less:1: Unknown import:
+   /client/styles/framework/bootstrap3/custom.bootstrap.less
+```
+
+
 0.9.54
 ------
 
@@ -244,7 +334,7 @@ Once defined, query can be referenced from any page and component just by name:
 
 ### New example
 
-- **IoT - Geiger**: see it <a href="http://generator-geiger.meteor.com" target="_blank">live</a>, source is <a href="https://github.com/perak/kitchen-examples/tree/master/example-geiger" target="_blank">here</a>.
+- **IoT - Geiger**: see it <a href="http://example-geiger.meteorfarm.com" target="_blank">live</a>, source is <a href="https://github.com/perak/kitchen-examples/tree/master/example-geiger" target="_blank">here</a>.
 
 
 0.9.41
@@ -252,7 +342,7 @@ Once defined, query can be referenced from any page and component just by name:
 
 ### New example
 
-- **Minimalistic IDE**: see it <a href="http://generator-ide.meteor.com" target="_blank">live</a>, source is <a href="https://github.com/perak/kitchen-examples/tree/master/example-ide" target="_blank">here</a>. Application demonstrates how to use built-in "tree_view" component (and more).
+- **Minimalistic IDE**: see it <a href="http://example-ide.meteorfarm.com" target="_blank">live</a>, source is <a href="https://github.com/perak/kitchen-examples/tree/master/example-ide" target="_blank">here</a>. Application demonstrates how to use built-in "tree_view" component (and more).
 
 
 0.9.40
@@ -277,7 +367,7 @@ Once defined, query can be referenced from any page and component just by name:
 
 #### New features
 
-- **Upload**: at last! Using <a href="https://github.com/CollectionFS/Meteor-CollectionFS" target="_blank">CollectionFS</a>. See <a href="http://generator-upload.meteor.com" target="_blank">live example</a>, source is <a href="https://github.com/perak/kitchen-examples/tree/master/example-upload" target="_blank">here</a>. See [getting started](/getting_started#file-uploads) for more info.
+- **Upload**: at last! Using <a href="https://github.com/CollectionFS/Meteor-CollectionFS" target="_blank">CollectionFS</a>. See <a href="http://example-upload.meteorfarm.com" target="_blank">live example</a>, source is <a href="https://github.com/perak/kitchen-examples/tree/master/example-upload" target="_blank">here</a>. See [getting started](/getting_started#file-uploads) for more info.
 
 
 0.9.38
@@ -290,7 +380,7 @@ Once defined, query can be referenced from any page and component just by name:
 
 #### New example
 
-- **IoT - Sensors**. See it <a href="http://generator-iot.meteor.com" target="_blank">live</a>, source is <a href="https://github.com/perak/kitchen-examples/tree/master/example-iot" target="_blank">here</a>.
+- **IoT - Sensors**. See it <a href="http://example-iot.meteorfarm.com" target="_blank">live</a>, source is <a href="https://github.com/perak/kitchen-examples/tree/master/example-iot" target="_blank">here</a>.
 
 
 #### Bugfixes
@@ -305,7 +395,7 @@ Once defined, query can be referenced from any page and component just by name:
 
 - **OAuth**: added more OAuth providers, now we got login with **google**, **github**, **linkedin**, **facebook**, **twitter** and **meteor**. See [getting started](/getting_started#oauth) for more info.
 
-- Small but usefull: boolean fields with `"input": "checkbox"` are now shown in dataview (table) as checkbox and user can check/uncheck it directly here. See updated [example-dataview](http://generator-dataview.meteor.com).
+- Small but usefull: boolean fields with `"input": "checkbox"` are now shown in dataview (table) as checkbox and user can check/uncheck it directly here. See updated [example-dataview](http://example-dataview.meteorfarm.com).
 
 
 #### Bugfixes
@@ -459,7 +549,7 @@ Is now automatically drawn - plan is to enable drag&drop to add/remove/move page
 
 - Fixed small bug with "scrollspy" functionality in menus
 
-- Added new example - single-page website. Source code is <a href="https://github.com/perak/kitchen-examples/tree/master/example-onepage" target="_blank">here</a>, live example is <a href="http://generator-onepage.meteor.com" target="_blank">here</a>.
+- Added new example - single-page website. Source code is <a href="https://github.com/perak/kitchen-examples/tree/master/example-onepage" target="_blank">here</a>, live example is <a href="http://example-onepage.meteorfarm.com" target="_blank">here</a>.
 
 - Changed site theme from "bootswatch-amelia" to "bootswatch-superhero"
 
@@ -603,7 +693,7 @@ Meteor.subscribe("example", this.params.theDate);
 
 - Looks like I am close to 1.0 but I am not: Next version will be 0.9.10 :)
 
-- There was bug preventing user to change own profile. Fixed now. Check <a href="http://generator-accounts.meteor.com" target="_blank">example-accounts</a>.
+- There was bug preventing user to change own profile. Fixed now. Check <a href="http://example-accounts.meteorfarm.com" target="_blank">example-accounts</a>.
 
 - Built-in "form" component will show error (if any occurs) while writing data
 
@@ -700,7 +790,7 @@ Meteor.subscribe("example", this.params.theDate);
 0.8.0
 -----
 
-- Added new example: simple **invoicing application**. See it <a href="http://generator-invoices.meteor.com" target="_blank">live</a>, source is <a href="https://github.com/perak/kitchen-examples/tree/master/example-invoices" target="_blank">here</a>.
+- Added new example: simple **invoicing application**. See it <a href="http://example-invoices.meteorfarm.com" target="_blank">live</a>, source is <a href="https://github.com/perak/kitchen-examples/tree/master/example-invoices" target="_blank">here</a>.
 
 - Fixed some bugs
 
@@ -756,13 +846,13 @@ Meteor.subscribe("example", this.params.theDate);
 
 - Added **datepicker input** control into Form component. You need to set `"type": "date"` and `"input": "datepicker"` into field definition.
 
-- Added **export to CSV/TSV/JSON** button into DataView component. You need to set `"exportable": true` into field definitions. Clicking "Export" button will download data currently shown in DataView with fields marked as "exportable". Download is done client side using URI download and HTML5 download attribute (I didn't tested with IE, but I guess it doesn't work). See live example <a href="http://generator-dataview.meteor.com/customers" target="_blank">here</a>.
+- Added **export to CSV/TSV/JSON** button into DataView component. You need to set `"exportable": true` into field definitions. Clicking "Export" button will download data currently shown in DataView with fields marked as "exportable". Download is done client side using URI download and HTML5 download attribute (I didn't tested with IE, but I guess it doesn't work). See live example <a href="http://example-dataview.meteorfarm.com/customers" target="_blank">here</a>.
 
 
 0.7.3
 -----
 
-- Added built-in **change password form**. Now along with "login", "logout", "register" and "forgot_password" pre-built templates, there is also "change_pass". See accounts example <a href="http://generator-accounts.meteor.com" target="_blank">here</a> (login and go to profile settings).
+- Added built-in **change password form**. Now along with "login", "logout", "register" and "forgot_password" pre-built templates, there is also "change_pass". See accounts example <a href="http://example-accounts.meteorfarm.com" target="_blank">here</a> (login and go to profile settings).
 
 - Markup for dropdown menu item (menu item with sub-items) is now properly generated.
 

@@ -29,7 +29,7 @@ You can download the binary release <a href="/install/install_win.zip" _target="
 - **Windows XP & Windows 7**: From version 0.9.53 you don't need "where.exe" anymore. But if you are experiencing problems (if meteor-kitchen cannot execute meteor) try to install "where.exe". You can find instructions on how to download and install "where.exe" <a href="http://superuser.com/questions/249725/where-to-download-where-exe-tool-for-windows-xp" target="_blank">here</a>.
 
 
-Current version is 0.9.54
+Current version is 0.9.59
 =========================
 
 Click <a href="{{pathFor 'version_history'}}">here</a> to see the version history.
@@ -58,6 +58,39 @@ meteor-kitchen <input_file_or_url> <output_directory>
 
 The input file can be <a href="http://www.json.org/" target="_blank">JSON</a> or <a href="http://www.yaml.org/" target="_blank">YAML</a>. If you prefer YAML, you'll need to install the <a href="https://www.npmjs.org/package/js-yaml" target="_blank">js-yaml</a> converter.
 
+
+### <span class="label label-danger">New!</span> React (experimental)
+
+Still under development, but now you can generate (very simple) **Meteor + React + FlowRouter** apps (for example, try to build `example-minimal` or `example-accounts` application).
+
+Use `--react` or `--blaze` command line switch:
+
+```
+meteor-kitchen <input_file_or_url> <output_directory> --meteor-release 1.3-rc.11 --react
+```
+
+**Note:** if you built your app with **blaze** and now you want to build it with **react** (or vice versa) then you need to **clean build** it (into the new directory).
+
+
+### CoffeeScript
+
+With the `--coffee` option the generator will produce cofee files instead js. For this, you need the <a href="http://js2coffee.org/" target="_blank">js2coffee</a> converter to be installed:
+
+```
+meteor-kitchen <input_file_or_url> <output_directory> --coffee
+```
+
+### Jade
+
+For <a href="http://jade-lang.com/" target="_blank">Jade</a> lovers, use the `--jade` switch and the generator will produce jade files instead html:
+
+```
+meteor-kitchen <input_file_or_url> <output_directory> --jade
+```
+
+The Jade converter is experimental (I wrote it in a rush). It's not 100% syntactically clean and will be improved in the future. It is, at least, super fast (long live my good old friend: C++).
+
+
 ### <span class="label label-danger">New!</span> Human language support
 
 **Experimental feature:** since version 0.9.43, you can write application description in everyday English language:
@@ -68,31 +101,11 @@ meteor-kitchen input_file.txt <output_directory>
 
 You'll need to install <a href="https://www.npmjs.com/package/human2machine" target="_blank">human2machine</a> npm module which translates English text to JSON input for generator.
 
-There is also **online** human2machine translator available <a href="http://generator-human2machine.meteor.com" target="_blank">here</a>.
+There is also **online** human2machine translator available <a href="http://example-human2machine.meteorfarm.com" target="_blank">here</a>.
 
 Example input file is <a href="https://github.com/perak/kitchen-examples/tree/master/example-human" target="_blank">here</a>.
 
 More info and docs will be added soon.
-
-CoffeeScript
-------------
-
-With the `--coffee` option the generator will produce cofee files instead js. For this, you need the <a href="http://js2coffee.org/" target="_blank">js2coffee</a> converter to be installed:
-
-```
-meteor-kitchen <input_file_or_url> <output_directory> --coffee
-```
-
-Jade
-----
-
-For <a href="http://jade-lang.com/" target="_blank">Jade</a> lovers, use the `--jade` switch and the generator will produce jade files instead html:
-
-```
-meteor-kitchen <input_file_or_url> <output_directory> --jade
-```
-
-The Jade converter is experimental (I wrote it in a rush). It's not 100% syntactically clean and will be improved in the future. It is, at least, super fast (long live my good old friend: C++).
 
 
 Input file
@@ -198,7 +211,7 @@ meteor-kitchen example-minimal.json ./example-minimal
 
 That will produce a simple application with a navbar and two pages.
 
-You can see a live example <a href="http://generator-minimal.meteor.com" target="_blank">here</a>
+You can see a live example <a href="http://example-minimal.meteorfarm.com" target="_blank">here</a>
 
 **Note:** You can find the source code for all examples <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>
 
@@ -311,7 +324,7 @@ meteor-kitchen --example-subpages ./example-subpages
 
 This will produce an application with pages and subpages.
 
-You can see a live example <a href="http://generator-subpages.meteor.com" target="_blank">here</a>
+You can see a live example <a href="http://example-subpages.meteorfarm.com" target="_blank">here</a>
 
 **Note:** The source code for all examples can be found <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>
 
@@ -357,7 +370,7 @@ Or:
 
 **Note:** If you don't specify frontend framework, meteor kitchen will use "bootstrap3" by default.
 
-There is "hello world" **example app** using semantic-ui <a href="http://generator-semantic.meteor.com/" target="_blank">here</a>.
+There is "hello world" **example app** using semantic-ui <a href="http://example-semantic.meteorfarm.com/" target="_blank">here</a>.
 
 **Note:** The source code for all examples can be found <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>.
 
@@ -825,7 +838,7 @@ Your employees publish functions will automatically return employees and compani
 
 **Note:** perak:joins package is experimental and will change in the future (and maybe another package will be used instead).
 
-You can see a **live example** using joins <a href="http://generator-invoices.meteor.com" target="_blank">here</a>
+You can see a **live example** using joins <a href="http://example-invoices.meteorfarm.com" target="_blank">here</a>
 
 **Note:** The source code for all examples can be found <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>.
 
@@ -923,7 +936,7 @@ Some of the `dataview` component properties are:
 
 Each page route can receive params such as document `_id`. More about that later.
 
-You can see a **live example** (also with form components) <a href="http://generator-dataview.meteor.com" target="_blank">here</a>
+You can see a **live example** (also with form components) <a href="http://example-dataview.meteorfarm.com" target="_blank">here</a>
 
 **Note:** The source code for all examples can be found <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>
 
@@ -1063,7 +1076,7 @@ Now look:
 
 Form is using query `customers_empty`: this is the insert form and we don't need any data from this query - `query` is used just to point the generator to which collection to use (and which fields) for the insert.
 
-You can see a **live example** <a href="http://generator-dataview.meteor.com" target="_blank">here</a>
+You can see a **live example** <a href="http://example-dataview.meteorfarm.com" target="_blank">here</a>
 
 **Note:** Source code for all examples can be found <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>
 
@@ -1399,7 +1412,7 @@ Method `setOutput()` will pass "html" and "js" strings to the generator and thes
 This is a really trivial example that shows how to write a custom component. Note that you can add any custom properties to the component object inside the input file and use them inside the plugin.
 
 
-You can see a live application that uses two example plugins <a href="http://generator-plugins.meteor.com" target="_blank">here</a>
+You can see a live application that uses two example plugins <a href="http://example-plugins.meteorfarm.com" target="_blank">here</a>
 
 **Note:** Source code for all examples can be found <a href="https://github.com/perak/kitchen-examples" target="_blank">here</a>
 
@@ -1795,7 +1808,7 @@ If you set `"input": "file"` in your field definition, the built-in form compone
 
 #### Example
 
-See <a href="http://generator-upload.meteor.com" target="_blank">live example</a>, source is <a href="https://github.com/perak/kitchen-examples/tree/master/example-upload" target="_blank">here</a>.
+See <a href="http://example-upload.meteorfarm.com" target="_blank">live example</a>, source is <a href="https://github.com/perak/kitchen-examples/tree/master/example-upload" target="_blank">here</a>.
 
 
 To be continued...

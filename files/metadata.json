@@ -1,5 +1,5 @@
 {
-	"version": 75,
+	"version": 81,
 	"classList": [
 		{
 			"objectType": "root",
@@ -13,14 +13,12 @@
 					"subType": "",
 					"default": "",
 					"required": true,
-					"input": "",
-					"description": ""
+					"input": ""
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false,
-			"description": ""
+			"hideThis": false
 		},
 		{
 			"objectType": "object",
@@ -35,13 +33,12 @@
 					"default": "",
 					"required": true,
 					"input": "text",
-					"description": ""
+					"description": "Object name"
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false,
-			"description": ""
+			"hideThis": false
 		},
 		{
 			"objectType": "field",
@@ -232,7 +229,7 @@
 					"default": "",
 					"required": false,
 					"input": "select_query",
-					"description": "Query name used for form input type \"select\""
+					"description": "Query name used for form input type \"select\"."
 				},
 				{
 					"name": "lookup_query_params",
@@ -312,7 +309,7 @@
 					"default": "",
 					"required": false,
 					"input": "select_collection",
-					"description": "For fields with \"input\": \"file\". Name of FS.Collection where file is stored."
+					"description": "For fields with \"input\": \"file\". Name of FS.Collection where file is stored. Generator will automatically join this collection with file_collection."
 				},
 				{
 					"name": "file_container",
@@ -332,7 +329,7 @@
 					"default": "",
 					"required": false,
 					"input": "select_collection",
-					"description": "Collection name to join. If set then this field acts as foreign key"
+					"description": "Collection name to join with. If set then this field acts as foreign key. For generic join don't set this field (see \"join_collection_field\" instead)."
 				},
 				{
 					"name": "join_collection_field",
@@ -362,7 +359,7 @@
 					"default": "",
 					"required": false,
 					"input": "stringlist",
-					"description": "Field list to fetch from joined collection. If not set, all fields will be fetched"
+					"description": "Field list to fetch from joined collection. Ignored in generic joins."
 				},
 				{
 					"name": "show_in_dataview",
@@ -407,8 +404,7 @@
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false,
-			"description": ""
+			"hideThis": false
 		},
 		{
 			"objectType": "hidden_field",
@@ -438,8 +434,7 @@
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false,
-			"description": ""
+			"hideThis": false
 		},
 		{
 			"objectType": "input_item",
@@ -469,8 +464,7 @@
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false,
-			"description": ""
+			"hideThis": false
 		},
 		{
 			"objectType": "collection",
@@ -540,7 +534,7 @@
 					"default": "",
 					"required": false,
 					"input": "stringlist",
-					"description": "List of user roles that can subscribe to this collection. You can also use special roles \"nobody\" and \"owner\"."
+					"description": "List of user roles that can subscribe to this collection. You can use special roles \"nobody\" (nobody can read) and \"owner\" (only owner\/creator can read)."
 				},
 				{
 					"name": "roles_allowed_to_insert",
@@ -550,7 +544,7 @@
 					"default": "",
 					"required": false,
 					"input": "stringlist",
-					"description": "List of user roles that can insert documents into this collection. You can also use special role \"nobody\"."
+					"description": "List of user roles that can insert documents into this collection. You can use special role \"nobody\" (nobody can insert)."
 				},
 				{
 					"name": "roles_allowed_to_update",
@@ -560,7 +554,7 @@
 					"default": "",
 					"required": false,
 					"input": "stringlist",
-					"description": "List of user roles that can update documents. You can also use special roles \"nobody\" and \"owner\"."
+					"description": "List of user roles that can update documents. You can use special roles \"nobody\" (nobody can update) and \"owner\" (only owner\/creator can update)."
 				},
 				{
 					"name": "roles_allowed_to_delete",
@@ -570,7 +564,7 @@
 					"default": "",
 					"required": false,
 					"input": "stringlist",
-					"description": "List of user roles that can delete documents. You can also use special roles \"nobody\" and \"owner\"."
+					"description": "List of user roles that can delete documents. You can use special roles \"nobody\" (nobody can remove) and \"owner\" (only owner\/creator can remove)."
 				},
 				{
 					"name": "roles_allowed_to_download",
@@ -580,7 +574,7 @@
 					"default": "",
 					"required": false,
 					"input": "stringlist",
-					"description": "For collection of type \"file_collection\": List of user roles that can download files. You can use special roles \"nobody\" (nobody can download) and \"owner\" (only owner/creator can download)."
+					"description": "For collection of type \"file_collection\": List of user roles that can download files. You can use special roles \"nobody\" (nobody can download) and \"owner\" (only owner\/creator can download)."
 				},
 				{
 					"name": "before_insert_code",
@@ -705,8 +699,7 @@
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false,
-			"description": ""
+			"hideThis": false
 		},
 		{
 			"objectType": "query",
@@ -742,7 +735,7 @@
 					"default": "false",
 					"required": false,
 					"input": "checkbox",
-					"description": "If set to true query will return single document: collection.findOne(). Default: false"
+					"description": "If set to true query will return single document: findOne(). Default: false"
 				},
 				{
 					"name": "filter",
@@ -752,7 +745,7 @@
 					"default": "",
 					"required": false,
 					"input": "json",
-					"description": "Mongo query expression. Will be passed as parameter to collection.find(). Can contain route params in form \":paramName\"."
+					"description": "Mongo query expression. Will be passed as first argument to find() or findOne(). Can contain route params in form \":paramName\"."
 				},
 				{
 					"name": "options",
@@ -762,7 +755,7 @@
 					"default": "",
 					"required": false,
 					"input": "json",
-					"description": "Options parameter passed to collection.find()."
+					"description": "Options parameter passed as second argument to find() or findOne()."
 				},
 				{
 					"name": "related_queries",
@@ -772,13 +765,12 @@
 					"default": "",
 					"required": false,
 					"input": "",
-					"description": "Page which subscribes to this query will also subscribe to related queries (for example: this is useful if you are using transform function that uses data from other collection)"
+					"description": "Page which subscribes to this query will also subscribe to related queries (for example: this is useful if you are using transform function that uses data from other collection)."
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false,
-			"description": ""
+			"hideThis": false
 		},
 		{
 			"objectType": "subscription",
@@ -793,7 +785,7 @@
 					"default": "",
 					"required": false,
 					"input": "text",
-					"description": "Query name (from application.queries)"
+					"description": "Publication name"
 				},
 				{
 					"name": "params",
@@ -803,13 +795,12 @@
 					"default": "",
 					"required": false,
 					"input": "",
-					"description": "Query params"
+					"description": "Params"
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false,
-			"description": ""
+			"hideThis": false
 		},
 		{
 			"objectType": "component",
@@ -825,7 +816,7 @@
 					"default": "",
 					"required": true,
 					"input": "text",
-					"description": ""
+					"description": "Object name"
 				},
 				{
 					"name": "type",
@@ -835,7 +826,7 @@
 					"default": "component",
 					"required": true,
 					"input": "text",
-					"description": ""
+					"description": "Component type name."
 				},
 				{
 					"name": "custom_template",
@@ -845,7 +836,17 @@
 					"default": "",
 					"required": false,
 					"input": "text",
-					"description": ""
+					"description": "Custom html and js template filename (without extension). Path is relative to input JSON file."
+				},
+				{
+					"name": "imports",
+					"title": "Module imports",
+					"type": "array",
+					"subType": "string",
+					"default": "",
+					"required": false,
+					"input": "stringlist",
+					"description": "list of modules to import. Example: `import {X} from \"Y\";` (\"react\" applications only)"
 				},
 				{
 					"name": "dest_selector",
@@ -855,7 +856,7 @@
 					"default": "",
 					"required": false,
 					"input": "text",
-					"description": ""
+					"description": "destination html element selector. Similar to jQuery selector, but only three simple formats are supported: \"tagname\", \"#element_id\" and \".class_name\"."
 				},
 				{
 					"name": "dest_position",
@@ -872,7 +873,7 @@
 						"before",
 						"after"
 					],
-					"description": ""
+					"description": "destination position relative to destination element: \"top\", \"bottom\", \"before\" or \"after\". Default: \"bottom\""
 				},
 				{
 					"name": "class",
@@ -882,7 +883,7 @@
 					"default": "",
 					"required": false,
 					"input": "text",
-					"description": ""
+					"description": "CSS class name to be added to component"
 				},
 				{
 					"name": "title",
@@ -892,7 +893,7 @@
 					"default": "",
 					"required": false,
 					"input": "text",
-					"description": ""
+					"description": "Component title"
 				},
 				{
 					"name": "title_icon_class",
@@ -902,7 +903,7 @@
 					"default": "",
 					"required": false,
 					"input": "text",
-					"description": ""
+					"description": "If present, \"span\" with this class name will be added to title (if title is set)"
 				},
 				{
 					"name": "events_code",
@@ -912,7 +913,7 @@
 					"default": "",
 					"required": false,
 					"input": "javascript",
-					"description": ""
+					"description": "Content of Template.TEMLATE_NAME.events({ ... });"
 				},
 				{
 					"name": "helpers_code",
@@ -922,7 +923,7 @@
 					"default": "",
 					"required": false,
 					"input": "javascript",
-					"description": ""
+					"description": "Content of Template.TEMLATE_NAME.helpers({ ... });"
 				},
 				{
 					"name": "query_name",
@@ -932,7 +933,7 @@
 					"default": "",
 					"required": false,
 					"input": "select_query",
-					"description": "Query (publication) name from application.queries used as main data context. Parent page router will subscribe to this publication automatically"
+					"description": "Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically."
 				},
 				{
 					"name": "query_params",
@@ -945,6 +946,16 @@
 					"description": "Query (publication) params"
 				},
 				{
+					"name": "custom_data_code",
+					"title": "Custom Data Code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Code to execute just before data from database is returned (executes before iron-router `data` function returns or in React apps before `getMeteorData` returns). You can modify `data` variable here."
+				},
+				{
 					"name": "components",
 					"title": "Components",
 					"type": "array",
@@ -952,7 +963,7 @@
 					"default": "",
 					"required": false,
 					"input": "",
-					"description": ""
+					"description": "Component list"
 				},
 				{
 					"name": "template_rendered_code",
@@ -962,14 +973,13 @@
 					"default": "",
 					"required": false,
 					"input": "javascript",
-					"description": ""
+					"description": "Code to be executed once template is rendered"
 				}
 			],
 			"hideDerivedClasses": [
 				"page"
 			],
-			"hideThis": true,
-			"description": "`component` is abstract base class for following types:\n - [custom_component](#custom_component)\n - [data_view](#data_view)\n - [div](#div)\n - [form](#form)\n - [jumbotron](#jumbotron)\n - [markdown](#markdown)\n - [menu](#menu)\n - [section](#section)\n - [tree_view](#tree_view)"
+			"hideThis": true
 		},
 		{
 			"objectType": "param",
@@ -999,8 +1009,7 @@
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false,
-			"description": ""
+			"hideThis": false
 		},
 		{
 			"objectType": "server_side_route",
@@ -1051,8 +1060,7 @@
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false,
-			"description": ""
+			"hideThis": false
 		},
 		{
 			"objectType": "page",
@@ -1078,7 +1086,7 @@
 					"default": "page",
 					"required": false,
 					"input": "static",
-					"description": ""
+					"description": "Component type name."
 				},
 				{
 					"name": "template",
@@ -1114,6 +1122,16 @@
 					"required": false,
 					"input": "text",
 					"description": "Custom html and js template filename (without extension). Path is relative to input JSON file."
+				},
+				{
+					"name": "imports",
+					"title": "Module imports",
+					"type": "array",
+					"subType": "string",
+					"default": "",
+					"required": false,
+					"input": "stringlist",
+					"description": "list of modules to import. Example: `import {X} from \"Y\";` (\"react\" applications only)"
 				},
 				{
 					"name": "class",
@@ -1173,7 +1191,7 @@
 					"default": "",
 					"required": false,
 					"input": "select_query",
-					"description": "Query (publication) name from application.queries used as main data context. Route controller will subscribe to this publication automatically"
+					"description": "Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically."
 				},
 				{
 					"name": "query_params",
@@ -1184,6 +1202,16 @@
 					"required": false,
 					"input": "",
 					"description": "Query (publication) params"
+				},
+				{
+					"name": "custom_data_code",
+					"title": "Custom Data Code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Code to execute just before data from database is returned (executes before iron-router `data` function returns or in React apps before `getMeteorData` returns). You can modify `data` variable here."
 				},
 				{
 					"name": "components",
@@ -1343,7 +1371,7 @@
 					"default": "false",
 					"required": false,
 					"input": "checkbox",
-					"description": "For applications with user account system: make this page visible for both authenticated and non-authenticated users"
+					"description": "Deprecated - will be removed soon. For applications with user account system: make this page visible for both authenticated and non-authenticated users"
 				},
 				{
 					"name": "parent_layout",
@@ -1363,7 +1391,7 @@
 					"default": "",
 					"required": false,
 					"input": "text",
-					"description": "Code to execute inside route controller \"onBeforeAction\" hook"
+					"description": "code to execute inside route controller \"onBeforeAction\" hook"
 				},
 				{
 					"name": "controller_after_action",
@@ -1373,14 +1401,13 @@
 					"default": "",
 					"required": false,
 					"input": "text",
-					"description": "Code to execute inside route controller \"onAfterAction\" hook"
+					"description": "code to execute inside route controller \"onBeforeAction\" hook"
 				}
 			],
 			"hideDerivedClasses": [
 				"zone"
 			],
-			"hideThis": false,
-			"description": ""
+			"hideThis": false
 		},
 		{
 			"objectType": "zone",
@@ -1396,7 +1423,27 @@
 					"default": "zone",
 					"required": false,
 					"input": "static",
-					"description": ""
+					"description": "Component type name."
+				},
+				{
+					"name": "imports",
+					"title": "Module imports",
+					"type": "array",
+					"subType": "string",
+					"default": "",
+					"required": false,
+					"input": "stringlist",
+					"description": "list of modules to import. Example: `import {X} from \"Y\";` (\"react\" applications only)"
+				},
+				{
+					"name": "custom_data_code",
+					"title": "Custom Data Code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Code to execute just before data from database is returned (executes before iron-router `data` function returns or in React apps before `getMeteorData` returns). You can modify `data` variable here."
 				},
 				{
 					"name": "components",
@@ -1406,7 +1453,7 @@
 					"default": "",
 					"required": false,
 					"input": "",
-					"description": ""
+					"description": "Component list"
 				},
 				{
 					"name": "container_class",
@@ -1467,8 +1514,7 @@
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false,
-			"description": ""
+			"hideThis": false
 		},
 		{
 			"objectType": "file_pair",
@@ -1493,13 +1539,12 @@
 					"default": "",
 					"required": true,
 					"input": "text",
-					"description": "Destination file. You can use directory aliases: OUTPUT_DIR, CLIENT_DIR, CLIENT_LIB_DIR, CLIENT_STYLES_DIR, CLIENT_STYLES_DEFAULT_DIR, CLIENT_STYLES_THEME_DIR, CLIENT_VIEWS_DIR, CLIENT_VIEWS_NOT_FOUND_DIR, CLIENT_VIEWS_LOADING_DIR, LIB_DIR, SETTINGS_DIR, BOTH_DIR, BOTH_LIB_DIR, BOTH_COLLECTIONS_DIR, PUBLIC_DIR, PUBLIC_IMAGES_DIR, PRIVATE_DIR, SERVER_DIR, SERVER_LIB_DIR, SERVER_COLLECTIONS_DIR, SERVER_PUBLISH_DIR, SERVER_CONTROLLERS_DIR, SERVER_METHODS_DIR"
+					"description": "Destination file. You can use directory aliases: OUTPUT_DIR, CLIENT_DIR, CLIENT_LIB_DIR, CLIENT_STYLES_DIR, CLIENT_STYLES_DEFAULT_DIR, CLIENT_STYLES_THEME_DIR, CLIENT_VIEWS_DIR, CLIENT_VIEWS_NOT_FOUND_DIR, CLIENT_VIEWS_LOADING_DIR, LIB_DIR, SETTINGS_DIR, BOTH_DIR, BOTH_LIB_DIR, BOTH_COLLECTIONS_DIR, PUBLIC_DIR, PUBLIC_IMAGES_DIR, PUBLIC_FONTS_DIR, PRIVATE_DIR, SERVER_DIR, SERVER_LIB_DIR, SERVER_COLLECTIONS_DIR, SERVER_PUBLISH_DIR, SERVER_CONTROLLERS_DIR, SERVER_METHODS_DIR"
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false,
-			"description": ""
+			"hideThis": false
 		},
 		{
 			"objectType": "packages",
@@ -1514,7 +1559,17 @@
 					"default": "",
 					"required": false,
 					"input": "stringlist",
-					"description": "List of meteor packages"
+					"description": "List of meteor packages. Packages listed here will be added to your application."
+				},
+				{
+					"name": "npm",
+					"title": "NPM",
+					"type": "array",
+					"subType": "string",
+					"default": "",
+					"required": false,
+					"input": "stringlist",
+					"description": "List of npm packages."
 				},
 				{
 					"name": "mrt",
@@ -1524,13 +1579,12 @@
 					"default": "",
 					"required": false,
 					"input": "stringlist",
-					"description": "List of meteorite (atmosphere) packages"
+					"description": "List of meteorite packages (deprecated)"
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false,
-			"description": ""
+			"hideThis": false
 		},
 		{
 			"objectType": "application",
@@ -1569,6 +1623,20 @@
 					"description": "Default meta_title for pages without meta_title"
 				},
 				{
+					"name": "templating",
+					"title": "Templating framework",
+					"type": "string",
+					"subType": "",
+					"default": "blaze",
+					"required": false,
+					"input": "select",
+					"choice_items": [
+						"blaze",
+						"react"
+					],
+					"description": "\"blaze\" or \"react\". Default: \"blaze\". Note: \"react\" is not implemented yet."
+				},
+				{
 					"name": "frontend",
 					"title": "Frontend",
 					"type": "string",
@@ -1581,7 +1649,7 @@
 						"semantic-ui",
 						"materialize"
 					],
-					"description": "Default: \"bootstrap3\" (you can expect more frontend frameworks in the future)."
+					"description": "\"bootstrap3\", \"semantic-ui\" or \"materialize\". Default: \"bootstrap3\". \"semantic-ui\" and \"materialize\" are not fully implemented yet."
 				},
 				{
 					"name": "theme",
@@ -1591,7 +1659,7 @@
 					"default": "",
 					"required": false,
 					"input": "text",
-					"description": "Visual theme name. With \"bootstrap\" template, theme can be one of <a href=\"http:\/\/bootswatch.com\/\" target=\"_blank\">bootswatch<\/a> themes: bootswatch-amelia, bootswatch-cerulean, bootswatch-cosmo, bootswatch-cyborg, bootswatch-darkly, bootswatch-flatly, bootswatch-journal, bootswatch-lumen, bootswatch-paper, bootswatch-readable, bootswatch-simplex, bootswatch-slate, bootswatch-spacelab, bootswatch-superhero, bootswatch-united, bootswatch-yeti"
+					"description": "Visual theme name. With \"bootstrap\" frontend theme can be \"flat-ui\" or one of bootswatch themes: \"bootswatch-amelia\", \"bootswatch-cerulean\", \"bootswatch-cosmo\", \"bootswatch-cyborg\", \"bootswatch-darkly\", \"bootswatch-flatly\", \"bootswatch-journal\", \"bootswatch-lumen\", \"bootswatch-paper\", \"bootswatch-readable\", \"bootswatch-simplex\", \"bootswatch-slate\", \"bootswatch-spacelab\", \"bootswatch-superhero\", \"bootswatch-united\", \"bootswatch-yeti\""
 				},
 				{
 					"name": "footer_text",
@@ -1611,7 +1679,7 @@
 					"default": "",
 					"required": false,
 					"input": "stringlist",
-					"description": "List of user roles for applications with user account system"
+					"description": "List of user roles for applications with user account system. There are two predefined roles \"nobody\" and \"owner\" (see collection object for more info)."
 				},
 				{
 					"name": "default_role",
@@ -1631,7 +1699,7 @@
 					"default": "false",
 					"required": false,
 					"input": "checkbox",
-					"description": "Experimental feature. If set to `true` simple-schema will be generated and resulting code will use collection2. Default: false"
+					"description": "Experimental feature. If set to true, schema will be generated and Collection2 package will be used for collections. Default: false"
 				},
 				{
 					"name": "collections",
@@ -1651,7 +1719,7 @@
 					"default": "",
 					"required": false,
 					"input": "",
-					"description": "List of database queries (publications)"
+					"description": "List of database queries (publications)."
 				},
 				{
 					"name": "free_zone",
@@ -1886,8 +1954,7 @@
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false,
-			"description": ""
+			"hideThis": false
 		},
 		{
 			"objectType": "custom_component",
@@ -1933,7 +2000,7 @@
 					"default": "",
 					"required": false,
 					"input": "html",
-					"description": "Custom HTML code"
+					"description": "Custom HTML code (for \"blaze\" applications only - ignored if \"react\" is used)"
 				},
 				{
 					"name": "js",
@@ -1943,7 +2010,27 @@
 					"default": "",
 					"required": false,
 					"input": "javascript",
-					"description": "Custom JS code"
+					"description": "Custom JS code (for \"blaze\" applications only - ignored if \"react\" is used)"
+				},
+				{
+					"name": "jsx",
+					"title": "JSX code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Custom JSX code (for \"react\" applications only - ignored if \"blaze\" is used)"
+				},
+				{
+					"name": "imports",
+					"title": "Module imports",
+					"type": "array",
+					"subType": "string",
+					"default": "",
+					"required": false,
+					"input": "stringlist",
+					"description": "list of modules to import. Example: `import {X} from \"Y\";` (\"react\" applications only)"
 				},
 				{
 					"name": "dest_selector",
@@ -1980,7 +2067,7 @@
 					"default": "",
 					"required": false,
 					"input": "select_query",
-					"description": "Query (publication) name from application.queries used as main data context. Parent page router will subscribe to this publication automatically"
+					"description": "Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically."
 				},
 				{
 					"name": "query_params",
@@ -1991,6 +2078,16 @@
 					"required": false,
 					"input": "",
 					"description": "Query (publication) params"
+				},
+				{
+					"name": "custom_data_code",
+					"title": "Custom Data Code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Code to execute just before data from database is returned (executes before iron-router `data` function returns or in React apps before `getMeteorData` returns). You can modify `data` variable here."
 				},
 				{
 					"name": "components",
@@ -2005,8 +2102,7 @@
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false,
-			"description": ""
+			"hideThis": false
 		},
 		{
 			"objectType": "menu_item",
@@ -2082,7 +2178,7 @@
 					"default": "",
 					"required": false,
 					"input": "text",
-					"description": "CSS class for div containing subitems"
+					"description": "CSS class for div containing subitems."
 				},
 				{
 					"name": "icon_class",
@@ -2107,8 +2203,7 @@
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false,
-			"description": ""
+			"hideThis": false
 		},
 		{
 			"objectType": "menu",
@@ -2135,6 +2230,16 @@
 					"required": false,
 					"input": "static",
 					"description": "Component type name."
+				},
+				{
+					"name": "imports",
+					"title": "Module imports",
+					"type": "array",
+					"subType": "string",
+					"default": "",
+					"required": false,
+					"input": "stringlist",
+					"description": "list of modules to import. Example: `import {X} from \"Y\";` (\"react\" applications only)"
 				},
 				{
 					"name": "dest_selector",
@@ -2221,7 +2326,7 @@
 					"default": "",
 					"required": false,
 					"input": "select_query",
-					"description": "Query (publication) name from application.queries used as main data context. Parent page router will subscribe to this publication automatically"
+					"description": "Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically."
 				},
 				{
 					"name": "query_params",
@@ -2232,6 +2337,16 @@
 					"required": false,
 					"input": "",
 					"description": "Query (publication) params"
+				},
+				{
+					"name": "custom_data_code",
+					"title": "Custom Data Code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Code to execute just before data from database is returned (executes before iron-router `data` function returns or in React apps before `getMeteorData` returns). You can modify `data` variable here."
 				},
 				{
 					"name": "components",
@@ -2261,7 +2376,7 @@
 					"default": "",
 					"required": false,
 					"input": "",
-					"description": "Menu items"
+					"description": "Menu items."
 				},
 				{
 					"name": "items_container_class",
@@ -2271,7 +2386,7 @@
 					"default": "",
 					"required": false,
 					"input": "text",
-					"description": "CSS class for div containing menu items"
+					"description": "CSS class for div containing menu items."
 				},
 				{
 					"name": "scroll_spy_selector",
@@ -2286,8 +2401,7 @@
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false,
-			"description": ""
+			"hideThis": false
 		},
 		{
 			"objectType": "jumbotron",
@@ -2314,6 +2428,16 @@
 					"required": false,
 					"input": "static",
 					"description": "Component type name."
+				},
+				{
+					"name": "imports",
+					"title": "Module imports",
+					"type": "array",
+					"subType": "string",
+					"default": "",
+					"required": false,
+					"input": "stringlist",
+					"description": "list of modules to import. Example: `import {X} from \"Y\";` (\"react\" applications only)"
 				},
 				{
 					"name": "dest_selector",
@@ -2400,7 +2524,7 @@
 					"default": "",
 					"required": false,
 					"input": "select_query",
-					"description": "Query (publication) name from application.queries used as main data context. Parent page router will subscribe to this publication automatically"
+					"description": "Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically."
 				},
 				{
 					"name": "query_params",
@@ -2411,6 +2535,16 @@
 					"required": false,
 					"input": "",
 					"description": "Query (publication) params"
+				},
+				{
+					"name": "custom_data_code",
+					"title": "Custom Data Code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Code to execute just before data from database is returned (executes before iron-router `data` function returns or in React apps before `getMeteorData` returns). You can modify `data` variable here."
 				},
 				{
 					"name": "components",
@@ -2495,8 +2629,7 @@
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false,
-			"description": ""
+			"hideThis": false
 		},
 		{
 			"objectType": "form",
@@ -2523,6 +2656,16 @@
 					"required": false,
 					"input": "static",
 					"description": "Component type name."
+				},
+				{
+					"name": "imports",
+					"title": "Module imports",
+					"type": "array",
+					"subType": "string",
+					"default": "",
+					"required": false,
+					"input": "stringlist",
+					"description": "list of modules to import. Example: `import {X} from \"Y\";` (\"react\" applications only)"
 				},
 				{
 					"name": "dest_selector",
@@ -2609,7 +2752,7 @@
 					"default": "",
 					"required": false,
 					"input": "select_query",
-					"description": "Query (publication) name from application.queries used as main data context. Parent page router will subscribe to this publication automatically"
+					"description": "Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically."
 				},
 				{
 					"name": "query_params",
@@ -2620,6 +2763,16 @@
 					"required": false,
 					"input": "",
 					"description": "Query (publication) params"
+				},
+				{
+					"name": "custom_data_code",
+					"title": "Custom Data Code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Code to execute just before data from database is returned (executes before iron-router `data` function returns or in React apps before `getMeteorData` returns). You can modify `data` variable here."
 				},
 				{
 					"name": "components",
@@ -2738,7 +2891,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Text to show in submit button, default \"Save\""
 				},
 				{
 					"name": "cancel_button_title",
@@ -2747,7 +2901,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Text to show in cancel button, default \"Cancel\""
 				},
 				{
 					"name": "close_button_title",
@@ -2756,7 +2911,8 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text"
+					"input": "text",
+					"description": "Text to show in close button, default \"OK\""
 				},
 				{
 					"name": "submit_route_params",
@@ -2821,8 +2977,7 @@
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false,
-			"description": ""
+			"hideThis": false
 		},
 		{
 			"objectType": "data_view",
@@ -2849,6 +3004,16 @@
 					"required": false,
 					"input": "static",
 					"description": "Component type name."
+				},
+				{
+					"name": "imports",
+					"title": "Module imports",
+					"type": "array",
+					"subType": "string",
+					"default": "",
+					"required": false,
+					"input": "stringlist",
+					"description": "list of modules to import. Example: `import {X} from \"Y\";` (\"react\" applications only)"
 				},
 				{
 					"name": "dest_selector",
@@ -2935,7 +3100,7 @@
 					"default": "",
 					"required": false,
 					"input": "select_query",
-					"description": "Query (publication) name from application.queries used as main data context. Parent page router will subscribe to this publication automatically"
+					"description": "Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically."
 				},
 				{
 					"name": "query_params",
@@ -2946,6 +3111,16 @@
 					"required": false,
 					"input": "",
 					"description": "Query (publication) params"
+				},
+				{
+					"name": "custom_data_code",
+					"title": "Custom Data Code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Code to execute just before data from database is returned (executes before iron-router `data` function returns or in React apps before `getMeteorData` returns). You can modify `data` variable here."
 				},
 				{
 					"name": "components",
@@ -3078,6 +3253,16 @@
 					"description": "Insert button title"
 				},
 				{
+					"name": "on_item_clicked_code",
+					"title": "OnItemClicked code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Code to execute when item is clicked (before redirect if DetailsRoute is specified)"
+				},
+				{
 					"name": "views",
 					"title": "View styles",
 					"type": "array",
@@ -3100,8 +3285,7 @@
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false,
-			"description": ""
+			"hideThis": false
 		},
 		{
 			"objectType": "tree_view",
@@ -3128,6 +3312,16 @@
 					"required": false,
 					"input": "static",
 					"description": "Component type name."
+				},
+				{
+					"name": "imports",
+					"title": "Module imports",
+					"type": "array",
+					"subType": "string",
+					"default": "",
+					"required": false,
+					"input": "stringlist",
+					"description": "list of modules to import. Example: `import {X} from \"Y\";` (\"react\" applications only)"
 				},
 				{
 					"name": "dest_selector",
@@ -3214,7 +3408,7 @@
 					"default": "",
 					"required": false,
 					"input": "select_query",
-					"description": "Query (publication) name from application.queries used as main data context. Parent page router will subscribe to this publication automatically"
+					"description": "Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically."
 				},
 				{
 					"name": "query_params",
@@ -3225,6 +3419,16 @@
 					"required": false,
 					"input": "",
 					"description": "Query (publication) params"
+				},
+				{
+					"name": "custom_data_code",
+					"title": "Custom Data Code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Code to execute just before data from database is returned (executes before iron-router `data` function returns or in React apps before `getMeteorData` returns). You can modify `data` variable here."
 				},
 				{
 					"name": "components",
@@ -3329,8 +3533,7 @@
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false,
-			"description": ""
+			"hideThis": false
 		},
 		{
 			"objectType": "markdown",
@@ -3359,6 +3562,16 @@
 					"description": "Component type name."
 				},
 				{
+					"name": "imports",
+					"title": "Module imports",
+					"type": "array",
+					"subType": "string",
+					"default": "",
+					"required": false,
+					"input": "stringlist",
+					"description": "list of modules to import. Example: `import {X} from \"Y\";` (\"react\" applications only)"
+				},
+				{
 					"name": "dest_selector",
 					"title": "Dest. selector",
 					"type": "string",
@@ -3393,7 +3606,7 @@
 					"default": "",
 					"required": false,
 					"input": "select_query",
-					"description": "Query (publication) name from application.queries used as main data context. Parent page router will subscribe to this publication automatically"
+					"description": "Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically."
 				},
 				{
 					"name": "query_params",
@@ -3404,6 +3617,16 @@
 					"required": false,
 					"input": "",
 					"description": "Query (publication) params"
+				},
+				{
+					"name": "custom_data_code",
+					"title": "Custom Data Code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Code to execute just before data from database is returned (executes before iron-router `data` function returns or in React apps before `getMeteorData` returns). You can modify `data` variable here."
 				},
 				{
 					"name": "components",
@@ -3423,7 +3646,7 @@
 					"default": "",
 					"required": false,
 					"input": "markdown",
-					"description": "Markdown source"
+					"description": "Markdown here"
 				},
 				{
 					"name": "source_file",
@@ -3433,13 +3656,12 @@
 					"default": "",
 					"required": false,
 					"input": "text",
-					"description": "Path to file containing markup (relative to input file)"
+					"description": "Path to file containing markdown (relative to input file)"
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false,
-			"description": ""
+			"hideThis": false
 		},
 		{
 			"objectType": "div",
@@ -3468,6 +3690,16 @@
 					"description": "Component type name."
 				},
 				{
+					"name": "imports",
+					"title": "Module imports",
+					"type": "array",
+					"subType": "string",
+					"default": "",
+					"required": false,
+					"input": "stringlist",
+					"description": "list of modules to import. Example: `import {X} from \"Y\";` (\"react\" applications only)"
+				},
+				{
 					"name": "dest_selector",
 					"title": "Dest. selector",
 					"type": "string",
@@ -3512,7 +3744,7 @@
 					"default": "",
 					"required": false,
 					"input": "select_query",
-					"description": "Query (publication) name from application.queries used as main data context. Parent page router will subscribe to this publication automatically"
+					"description": "Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically."
 				},
 				{
 					"name": "query_params",
@@ -3523,6 +3755,16 @@
 					"required": false,
 					"input": "",
 					"description": "Query (publication) params"
+				},
+				{
+					"name": "custom_data_code",
+					"title": "Custom Data Code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Code to execute just before data from database is returned (executes before iron-router `data` function returns or in React apps before `getMeteorData` returns). You can modify `data` variable here."
 				},
 				{
 					"name": "components",
@@ -3542,13 +3784,12 @@
 					"default": "",
 					"required": false,
 					"input": "textarea",
-					"description": ""
+					"description": "this text will be added into div"
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false,
-			"description": ""
+			"hideThis": false
 		},
 		{
 			"objectType": "section",
@@ -3577,6 +3818,16 @@
 					"description": "Component type name."
 				},
 				{
+					"name": "imports",
+					"title": "Module imports",
+					"type": "array",
+					"subType": "string",
+					"default": "",
+					"required": false,
+					"input": "stringlist",
+					"description": "list of modules to import. Example: `import {X} from \"Y\";` (\"react\" applications only)"
+				},
+				{
 					"name": "dest_selector",
 					"title": "Dest. selector",
 					"type": "string",
@@ -3621,7 +3872,7 @@
 					"default": "",
 					"required": false,
 					"input": "select_query",
-					"description": "Query (publication) name from application.queries used as main data context. Parent page router will subscribe to this publication automatically"
+					"description": "Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically."
 				},
 				{
 					"name": "query_params",
@@ -3632,6 +3883,16 @@
 					"required": false,
 					"input": "",
 					"description": "Query (publication) params"
+				},
+				{
+					"name": "custom_data_code",
+					"title": "Custom Data Code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Code to execute just before data from database is returned (executes before iron-router `data` function returns or in React apps before `getMeteorData` returns). You can modify `data` variable here."
 				},
 				{
 					"name": "components",
@@ -3651,13 +3912,12 @@
 					"default": "",
 					"required": false,
 					"input": "textarea",
-					"description": ""
+					"description": "this text will be added into section"
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false,
-			"description": ""
+			"hideThis": false
 		},
 		{
 			"objectType": "plugin",
@@ -3673,7 +3933,7 @@
 					"default": "",
 					"required": true,
 					"input": "text",
-					"description": ""
+					"description": "Object name"
 				},
 				{
 					"name": "type",
@@ -3683,7 +3943,17 @@
 					"default": "",
 					"required": true,
 					"input": "text",
-					"description": ""
+					"description": "Component type name."
+				},
+				{
+					"name": "imports",
+					"title": "Module imports",
+					"type": "array",
+					"subType": "string",
+					"default": "",
+					"required": false,
+					"input": "stringlist",
+					"description": "list of modules to import. Example: `import {X} from \"Y\";` (\"react\" applications only)"
 				},
 				{
 					"name": "dest_selector",
@@ -3693,7 +3963,7 @@
 					"default": "",
 					"required": false,
 					"input": "text",
-					"description": ""
+					"description": "destination html element selector. Similar to jQuery selector, but only three simple formats are supported: \"tagname\", \"#element_id\" and \".class_name\"."
 				},
 				{
 					"name": "dest_position",
@@ -3710,7 +3980,7 @@
 						"before",
 						"after"
 					],
-					"description": ""
+					"description": "destination position relative to destination element: \"top\", \"bottom\", \"before\" or \"after\". Default: \"bottom\""
 				},
 				{
 					"name": "query_name",
@@ -3720,7 +3990,7 @@
 					"default": "",
 					"required": false,
 					"input": "select_query",
-					"description": "Query (publication) name from application.queries used as main data context. Parent page router will subscribe to this publication automatically"
+					"description": "Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically."
 				},
 				{
 					"name": "query_params",
@@ -3733,6 +4003,16 @@
 					"description": "Query (publication) params"
 				},
 				{
+					"name": "custom_data_code",
+					"title": "Custom Data Code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Code to execute just before data from database is returned (executes before iron-router `data` function returns or in React apps before `getMeteorData` returns). You can modify `data` variable here."
+				},
+				{
 					"name": "components",
 					"title": "Components",
 					"type": "array",
@@ -3740,7 +4020,7 @@
 					"default": "",
 					"required": false,
 					"input": "",
-					"description": ""
+					"description": "Component list"
 				},
 				{
 					"name": "properties",
@@ -3750,13 +4030,12 @@
 					"default": "",
 					"required": false,
 					"input": "json",
-					"description": ""
+					"description": "Custom properties. This object will be provided to plugin processing code."
 				}
 			],
 			"hideDerivedClasses": [
 			],
-			"hideThis": false,
-			"description": ""
+			"hideThis": false
 		}
 	]
 }

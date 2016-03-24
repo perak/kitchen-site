@@ -5,7 +5,7 @@
 		"meta_description": "Meteor application generator",
 		"template": "bootstrap",
 		"theme": "bootswatch-cyborg-darkly",
-		"footer_text": "Meteor Kitchen &copy; 2015 Petar Korponaić All Rights Reserved",
+		"footer_text": "Meteor Kitchen &copy; 2016 Petar Korponaić All Rights Reserved",
 
 		"roles": [ "admin", "user", "blocked" ],
 		"default_role": "user",
@@ -178,6 +178,7 @@
 					"name": "examples",
 					"meta_title": "Examples",
 					"meta_description": "Example applications created with meteor-kitchen",
+					"template_rendered_code": "$('table').addClass('table');",
 					"components": [
 						{
 							"name": "content",
@@ -209,7 +210,6 @@
 									"items": [
 										{ "title": "application",		"url": "#application" },
 										{ "title": "collection",		"url": "#collection" },
-										{ "title": "component",			"url": "#component" },
 										{ "title": "custom_component",	"url": "#custom_component" },
 										{ "title": "data_view",			"url": "#data_view" },
 										{ "title": "div",				"url": "#div" },

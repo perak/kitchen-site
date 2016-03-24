@@ -1,15 +1,21 @@
 Donate
 ======
 
-You can support my **hard work** with a donation. Your donation will help me **continue** and **improve** this project. At least, you can buy me a beer: it also helps - especially after 12 hours of coding :)
+You can support **Meteor Kitchen project** with a donation. Your donation will help me **continue** and **improve** this project and help me to pay the proper hosting (this project deserves it!).
+
+At least, you can buy me a beer: it also helps - especially after 12 hours of coding :)
 
 <hr />
 
-<a href="https://gratipay.com/perak/" target="_blank"><img src="/images/ribbon-donate-gratipay.png" style="width: 197px; height: auto;"></a>
+PayPal
+------
 
-<a href="https://gratipay.com/perak/" target="_blank"><img src="//img.shields.io/gratipay/perak.svg"></a>
+You can send me some bucks via <a href="https://www.paypal.com/us/webapps/mpp/send-money-online" target="_blank">PayPal</a>. My e-mail registered with <a href="https://www.paypal.com/us/webapps/mpp/send-money-online" target="_blank">PayPal</a> is: `korponaic@gmail.com`
 
 <hr />
+
+Bitcoin
+-------
 
 <a href="https://blockchain.info/address/1CPHmerS2feSLV9VnWsh1X7k3MHeB1NDKY" target="_blank"><img src="/images/ribbon-donate-bitcoin.png" style="width: 197px; height: auto;"></a>
 
