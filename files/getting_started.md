@@ -702,11 +702,12 @@ You can use variables (query params) in your query's `filter` and `options` para
 	{
 		"name": "customer",
 		"collection": "customers",
+		"find_one": true,
 		"filter": { "_id": ":customerId" }
 	}
 ]
 ```
-Here we defined param `:customerId` and you need to provide it's value in your subscriptions, for example:
+Here we set `find_one` to true to only return one customer and defined param `:customerId` and you need to provide it's value in your subscriptions, for example:
 
 ```
 {
