@@ -293,7 +293,7 @@ Now we can have new menu items linking to the newly-created subpages:
 				{
 					"name": "subpage_1_menu",
 					"type": "menu",
-					"items": [{ "title": "Sub-Sub page 1", route: "home.subpage_1.subsub_1" }]
+					"items": [{ "title": "Sub-Sub page 1", "route": "home.subpage_1.subsub_1" }]
 				}
 			]
 		}
@@ -302,7 +302,7 @@ Now we can have new menu items linking to the newly-created subpages:
 		{
 			"name": "home_menu",
 			"type": "menu",
-			"items": [{ "title": "Subpage 1", route: "home.subpage_1" }]
+			"items": [{ "title": "Subpage 1", "route": "home.subpage_1" }]
 		}
 	]
 }
