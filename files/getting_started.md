@@ -29,7 +29,7 @@ You can download the binary release <a href="/install/install_win.zip" _target="
 - **Windows XP & Windows 7**: From version 0.9.53 you don't need "where.exe" anymore. But if you are experiencing problems (if meteor-kitchen cannot execute meteor) try to install "where.exe". You can find instructions on how to download and install "where.exe" <a href="http://superuser.com/questions/249725/where-to-download-where-exe-tool-for-windows-xp" target="_blank">here</a>.
 
 
-Current version is 0.9.59
+Current version is 0.9.64
 =========================
 
 Click <a href="{{pathFor 'version_history'}}">here</a> to see the version history.
@@ -66,10 +66,12 @@ Still under development, but now you can generate (very simple) **Meteor + React
 Use `--react` or `--blaze` command line switch:
 
 ```
-meteor-kitchen <input_file_or_url> <output_directory> --meteor-release 1.3-rc.11 --react
+meteor-kitchen <input_file_or_url> <output_directory> --react
 ```
 
 **Note:** if you built your app with **blaze** and now you want to build it with **react** (or vice versa) then you need to **clean build** it (into the new directory).
+
+React is not fully supported yet - work is in progress. See <a href="{{pathFor 'compatibility'}}">Blaze vs React compatibility table</a>.
 
 
 ### CoffeeScript

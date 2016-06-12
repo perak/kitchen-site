@@ -33,6 +33,8 @@ server\_startup\_source\_file | string | File that contains javascript code to e
 client\_startup\_source\_file | string | File that contains javascript code to execute at client startup (relative to input file)
 on\_user\_created\_source\_file | string | File that contains javascript code to execute when new user is created (relative to input file)
 on\_user\_logged\_source\_file | string | File that contains javascript code to execute when user is logged in (relative to input file)
+mobile\_config | string | If non-empty: will be written to mobile-config.js in app root
+stylesheet | string | CSS/LESS stylesheet. If non-empty, will be written to CLIENT\_STYLES\_DIR/user\_styles.less
 server\_side\_routes | array of <a href="#server_side_route">server\_side\_route</a> | List of server side routes.
 copy\_files | array of <a href="#file_pair">file\_pair</a> | List of files to copy into destination directory. You can use directory aliases. See <a href="#file\_pair">file\_pair</a> for more details.
 packages | <a href="#packages">packages</a> | List of additional meteor and meteorite packages that will be automatically added by generator
@@ -78,6 +80,8 @@ Example:
 	"client_startup_source_file": "",
 	"on_user_created_source_file": "",
 	"on_user_logged_source_file": "",
+	"mobile_config": "",
+	"stylesheet": "",
 	"server_side_routes": [
 	],
 	"copy_files": [
@@ -203,8 +207,8 @@ dest\_position | string | destination position relative to destination element: 
 class | string | CSS class name to be added to component
 title | string | Component title
 title\_icon\_class | string | If present, "span" with this class name will be added to title (if title is set)
-events\_code | string | Content of Template.TEMLATE\_NAME.events({ ... });
-helpers\_code | string | Content of Template.TEMLATE\_NAME.helpers({ ... });
+events\_code | string | Content of Template.TEMPLATE\_NAME.events({ ... });
+helpers\_code | string | Content of Template.TEMPLATE\_NAME.helpers({ ... });
 query\_name | string | Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically.
 query\_params | array of <a href="#param">param</a> | Query (publication) params
 custom\_data\_code | string | Code to execute just before data from database is returned (executes before iron-router `data` function returns or in React apps before `getMeteorData` returns). You can modify `data` variable here.
@@ -322,7 +326,8 @@ sortable | bool | Is field sortable? Default: true
 exportable | bool | If true field will be exported to CSV/JSON (used in dataview component). Default: false
 input | string | Form input control type: "text", "password", "datepicker", "read-only", "textarea", "radio", "checkbox", "select", "crud", "file", "custom"
 input\_template | string | Template for "custom" input field (relative to input file)
-input\_group\_class | string | CSS class to apply to field input group container in forms.
+input\_group\_class | string | This CSS class will be added to field input group container in forms.
+input\_control\_class | string | This CSS class will be added to input control in forms.
 input\_items | array of <a href="#input_item">input\_item</a> | Item list for input type "radio" and "select"
 lookup\_query\_name | string | Query name used for form input type "select".
 lookup\_query\_params | array of <a href="#param">param</a> | Lookup query params
@@ -360,6 +365,7 @@ Example:
 	"input": "text",
 	"input_template": "",
 	"input_group_class": "",
+	"input_control_class": "",
 	"input_items": [
 	],
 	"lookup_query_name": "",
@@ -391,12 +397,14 @@ Example:
 Property | Type | Description
 ---------|------|------------
 source | string | Source file to copy. Path is relative to input JSON.
+source\_content | string | If source file is not specified, this content will be written into destination file.
 dest | string | Destination file. You can use directory aliases: OUTPUT\_DIR, CLIENT\_DIR, CLIENT\_LIB\_DIR, CLIENT\_STYLES\_DIR, CLIENT\_STYLES\_DEFAULT\_DIR, CLIENT\_STYLES\_THEME\_DIR, CLIENT\_VIEWS\_DIR, CLIENT\_VIEWS\_NOT\_FOUND\_DIR, CLIENT\_VIEWS\_LOADING\_DIR, LIB\_DIR, SETTINGS\_DIR, BOTH\_DIR, BOTH\_LIB\_DIR, BOTH\_COLLECTIONS\_DIR, PUBLIC\_DIR, PUBLIC\_IMAGES\_DIR, PUBLIC\_FONTS\_DIR, PRIVATE\_DIR, SERVER\_DIR, SERVER\_LIB\_DIR, SERVER\_COLLECTIONS\_DIR, SERVER\_PUBLISH\_DIR, SERVER\_CONTROLLERS\_DIR, SERVER\_METHODS\_DIR
 
 Example:
 ```json
 {
 	"source": "",
+	"source_content": "",
 	"dest": ""
 }
 ```
@@ -413,8 +421,8 @@ dest\_position | string | destination position relative to destination element: 
 class | string | CSS class name to be added to component
 title | string | Component title
 title\_icon\_class | string | If present, "span" with this class name will be added to title (if title is set)
-events\_code | string | Content of Template.TEMLATE\_NAME.events({ ... });
-helpers\_code | string | Content of Template.TEMLATE\_NAME.helpers({ ... });
+events\_code | string | Content of Template.TEMPLATE\_NAME.events({ ... });
+helpers\_code | string | Content of Template.TEMPLATE\_NAME.helpers({ ... });
 query\_name | string | Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically.
 query\_params | array of <a href="#param">param</a> | Query (publication) params
 custom\_data\_code | string | Code to execute just before data from database is returned (executes before iron-router `data` function returns or in React apps before `getMeteorData` returns). You can modify `data` variable here.
@@ -527,8 +535,8 @@ dest\_position | string | destination position relative to destination element: 
 class | string | CSS class name to be added to component
 title | string | Component title
 title\_icon\_class | string | If present, "span" with this class name will be added to title (if title is set)
-events\_code | string | Content of Template.TEMLATE\_NAME.events({ ... });
-helpers\_code | string | Content of Template.TEMLATE\_NAME.helpers({ ... });
+events\_code | string | Content of Template.TEMPLATE\_NAME.events({ ... });
+helpers\_code | string | Content of Template.TEMPLATE\_NAME.helpers({ ... });
 query\_name | string | Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically.
 query\_params | array of <a href="#param">param</a> | Query (publication) params
 custom\_data\_code | string | Code to execute just before data from database is returned (executes before iron-router `data` function returns or in React apps before `getMeteorData` returns). You can modify `data` variable here.
@@ -620,8 +628,8 @@ dest\_position | string | destination position relative to destination element: 
 class | string | CSS class name to be added to component
 title | string | Component title
 title\_icon\_class | string | If present, "span" with this class name will be added to title (if title is set)
-events\_code | string | Content of Template.TEMLATE\_NAME.events({ ... });
-helpers\_code | string | Content of Template.TEMLATE\_NAME.helpers({ ... });
+events\_code | string | Content of Template.TEMPLATE\_NAME.events({ ... });
+helpers\_code | string | Content of Template.TEMPLATE\_NAME.helpers({ ... });
 query\_name | string | Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically.
 query\_params | array of <a href="#param">param</a> | Query (publication) params
 custom\_data\_code | string | Code to execute just before data from database is returned (executes before iron-router `data` function returns or in React apps before `getMeteorData` returns). You can modify `data` variable here.
@@ -722,8 +730,8 @@ imports | array of string | list of modules to import. Example: `import {X} from
 class | string | CSS class name to be added to component
 title | string | Component title
 title\_icon\_class | string | If present, "span" with this class name will be added to title (if title is set)
-events\_code | string | Content of Template.TEMLATE\_NAME.events({ ... });
-helpers\_code | string | Content of Template.TEMLATE\_NAME.helpers({ ... });
+events\_code | string | Content of Template.TEMPLATE\_NAME.events({ ... });
+helpers\_code | string | Content of Template.TEMPLATE\_NAME.helpers({ ... });
 query\_name | string | Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically.
 query\_params | array of <a href="#param">param</a> | Query (publication) params
 custom\_data\_code | string | Code to execute just before data from database is returned (executes before iron-router `data` function returns or in React apps before `getMeteorData` returns). You can modify `data` variable here.
@@ -954,8 +962,8 @@ dest\_position | string | destination position relative to destination element: 
 class | string | CSS class name to be added to component
 title | string | Component title
 title\_icon\_class | string | If present, "span" with this class name will be added to title (if title is set)
-events\_code | string | Content of Template.TEMLATE\_NAME.events({ ... });
-helpers\_code | string | Content of Template.TEMLATE\_NAME.helpers({ ... });
+events\_code | string | Content of Template.TEMPLATE\_NAME.events({ ... });
+helpers\_code | string | Content of Template.TEMPLATE\_NAME.helpers({ ... });
 query\_name | string | Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically.
 query\_params | array of <a href="#param">param</a> | Query (publication) params
 custom\_data\_code | string | Code to execute just before data from database is returned (executes before iron-router `data` function returns or in React apps before `getMeteorData` returns). You can modify `data` variable here.
@@ -1010,11 +1018,14 @@ Property | Type | Description
 ---------|------|------------
 type | string | Component type name.
 imports | array of string | list of modules to import. Example: `import {X} from "Y";` ("react" applications only)
+query\_name | string | Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically.
+query\_params | array of <a href="#param">param</a> | Query (publication) params
 custom\_data\_code | string | Code to execute just before data from database is returned (executes before iron-router `data` function returns or in React apps before `getMeteorData` returns). You can modify `data` variable here.
 components | array of <a href="#component">component</a> | Component list
 container\_class | string | Class to be added to page container. Example: "container-fluid". Default "container".
 pages | array of <a href="#page">page</a> | Subpages
 layout | string | Built-in layout template name: "empty", "navbar" or "sticky\_footer". Default: "navbar"
+default\_route | string | "home" route for this zone.
 navbar\_class | string | CSS class name to be added to navbar.
 footer\_class | string | CSS class name to be added to footer.
 
@@ -1024,6 +1035,9 @@ Example:
 	"type": "zone",
 	"imports": [
 	],
+	"query_name": "",
+	"query_params": [
+	],
 	"custom_data_code": "",
 	"components": [
 	],
@@ -1031,6 +1045,7 @@ Example:
 	"pages": [
 	],
 	"layout": "",
+	"default_route": "",
 	"navbar_class": "",
 	"footer_class": ""
 }

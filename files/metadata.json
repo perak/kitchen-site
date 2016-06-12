@@ -1,5 +1,5 @@
 {
-	"version": 81,
+	"version": 86,
 	"classList": [
 		{
 			"objectType": "root",
@@ -29,7 +29,7 @@
 					"name": "name",
 					"title": "Name",
 					"type": "string",
-					"subType": "",
+					"subType": "object_name",
 					"default": "",
 					"required": true,
 					"input": "text",
@@ -50,7 +50,7 @@
 					"name": "name",
 					"title": "Name",
 					"type": "string",
-					"subType": "",
+					"subType": "object_name",
 					"default": "",
 					"required": true,
 					"input": "text",
@@ -82,6 +82,7 @@
 						"time",
 						"bool",
 						"array",
+						"object",
 						"email"
 					],
 					"description": "Field data type used in form validations. Examples: \"string\", \"integer\", \"float\", \"date\", \"time\", \"bool\", \"array\", \"email\", \"random_string\". Default: \"string\""
@@ -209,7 +210,17 @@
 					"default": "",
 					"required": false,
 					"input": "text",
-					"description": "CSS class to apply to field input group container in forms."
+					"description": "This CSS class will be added to field input group container in forms."
+				},
+				{
+					"name": "input_control_class",
+					"title": "Input control class",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text",
+					"description": "This CSS class will be added to input control in forms."
 				},
 				{
 					"name": "input_items",
@@ -225,7 +236,7 @@
 					"name": "lookup_query_name",
 					"title": "Lookup query name",
 					"type": "string",
-					"subType": "",
+					"subType": "query_name",
 					"default": "",
 					"required": false,
 					"input": "select_query",
@@ -278,7 +289,18 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "text",
+					"input": "select",
+					"choice_items": [
+						"",
+						"string",
+						"integer",
+						"float",
+						"date",
+						"time",
+						"bool",
+						"object",
+						"email"
+					],
 					"description": "If \"type\" is set to \"array\" then you can define array item type here. Format is the same as for \"type\" property."
 				},
 				{
@@ -305,7 +327,7 @@
 					"name": "file_collection",
 					"title": "File collection",
 					"type": "string",
-					"subType": "",
+					"subType": "collection_name",
 					"default": "",
 					"required": false,
 					"input": "select_collection",
@@ -325,7 +347,7 @@
 					"name": "join_collection",
 					"title": "Join collection",
 					"type": "string",
-					"subType": "",
+					"subType": "collection_name",
 					"default": "",
 					"required": false,
 					"input": "select_collection",
@@ -476,7 +498,7 @@
 					"name": "name",
 					"title": "Name",
 					"type": "string",
-					"subType": "",
+					"subType": "object_name",
 					"default": "",
 					"required": true,
 					"input": "text",
@@ -711,7 +733,7 @@
 					"name": "name",
 					"title": "Name",
 					"type": "string",
-					"subType": "",
+					"subType": "object_name",
 					"default": "",
 					"required": true,
 					"input": "text",
@@ -721,7 +743,7 @@
 					"name": "collection",
 					"title": "Collection name",
 					"type": "string",
-					"subType": "",
+					"subType": "collection_name",
 					"default": "",
 					"required": true,
 					"input": "select_collection",
@@ -812,7 +834,7 @@
 					"name": "name",
 					"title": "Name",
 					"type": "string",
-					"subType": "",
+					"subType": "object_name",
 					"default": "",
 					"required": true,
 					"input": "text",
@@ -840,7 +862,7 @@
 				},
 				{
 					"name": "imports",
-					"title": "Module imports",
+					"title": "Import modules",
 					"type": "array",
 					"subType": "string",
 					"default": "",
@@ -913,7 +935,7 @@
 					"default": "",
 					"required": false,
 					"input": "javascript",
-					"description": "Content of Template.TEMLATE_NAME.events({ ... });"
+					"description": "Content of Template.TEMPLATE_NAME.events({ ... });"
 				},
 				{
 					"name": "helpers_code",
@@ -923,13 +945,13 @@
 					"default": "",
 					"required": false,
 					"input": "javascript",
-					"description": "Content of Template.TEMLATE_NAME.helpers({ ... });"
+					"description": "Content of Template.TEMPLATE_NAME.helpers({ ... });"
 				},
 				{
 					"name": "query_name",
 					"title": "Query name",
 					"type": "string",
-					"subType": "",
+					"subType": "query_name",
 					"default": "",
 					"required": false,
 					"input": "select_query",
@@ -1021,7 +1043,7 @@
 					"name": "name",
 					"title": "Name",
 					"type": "string",
-					"subType": "",
+					"subType": "object_name",
 					"default": "",
 					"required": true,
 					"input": "text",
@@ -1072,7 +1094,7 @@
 					"name": "name",
 					"title": "Name",
 					"type": "string",
-					"subType": "",
+					"subType": "object_name",
 					"default": "",
 					"required": true,
 					"input": "text",
@@ -1125,7 +1147,7 @@
 				},
 				{
 					"name": "imports",
-					"title": "Module imports",
+					"title": "Import modules",
 					"type": "array",
 					"subType": "string",
 					"default": "",
@@ -1145,7 +1167,7 @@
 				},
 				{
 					"name": "title",
-					"title": "Page title",
+					"title": "Title",
 					"type": "string",
 					"subType": "",
 					"default": "",
@@ -1171,7 +1193,7 @@
 					"default": "",
 					"required": false,
 					"input": "javascript",
-					"description": "Content of Template.TEMLATE_NAME.events({ ... });"
+					"description": "Content of Template.TEMPLATE_NAME.events({ ... });"
 				},
 				{
 					"name": "helpers_code",
@@ -1181,13 +1203,13 @@
 					"default": "",
 					"required": false,
 					"input": "javascript",
-					"description": "Content of Template.TEMLATE_NAME.helpers({ ... });"
+					"description": "Content of Template.TEMPLATE_NAME.helpers({ ... });"
 				},
 				{
 					"name": "query_name",
 					"title": "Query name",
 					"type": "string",
-					"subType": "",
+					"subType": "query_name",
 					"default": "",
 					"required": false,
 					"input": "select_query",
@@ -1287,7 +1309,7 @@
 					"name": "close_route",
 					"title": "Close button route",
 					"type": "string",
-					"subType": "",
+					"subType": "route_name",
 					"default": "",
 					"required": false,
 					"input": "select_route",
@@ -1295,7 +1317,7 @@
 				},
 				{
 					"name": "close_route_params",
-					"title": "Close route params",
+					"title": "Close button route params",
 					"type": "array",
 					"subType": "param",
 					"default": "",
@@ -1305,9 +1327,9 @@
 				},
 				{
 					"name": "back_route",
-					"title": "Back route",
+					"title": "Back button route",
 					"type": "string",
-					"subType": "",
+					"subType": "route_name",
 					"default": "",
 					"required": false,
 					"input": "select_route",
@@ -1315,7 +1337,7 @@
 				},
 				{
 					"name": "back_route_params",
-					"title": "Back route params",
+					"title": "Back button route params",
 					"type": "array",
 					"subType": "param",
 					"default": "",
@@ -1427,13 +1449,33 @@
 				},
 				{
 					"name": "imports",
-					"title": "Module imports",
+					"title": "Import modules",
 					"type": "array",
 					"subType": "string",
 					"default": "",
 					"required": false,
 					"input": "stringlist",
 					"description": "list of modules to import. Example: `import {X} from \"Y\";` (\"react\" applications only)"
+				},
+				{
+					"name": "query_name",
+					"title": "Query name",
+					"type": "string",
+					"subType": "query_name",
+					"default": "",
+					"required": false,
+					"input": "select_query",
+					"description": "Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically."
+				},
+				{
+					"name": "query_params",
+					"title": "Query params",
+					"type": "array",
+					"subType": "param",
+					"default": "",
+					"required": false,
+					"input": "",
+					"description": "Query (publication) params"
 				},
 				{
 					"name": "custom_data_code",
@@ -1492,6 +1534,16 @@
 					"description": "Built-in layout template name: \"empty\", \"navbar\" or \"sticky_footer\". Default: \"navbar\""
 				},
 				{
+					"name": "default_route",
+					"title": "Default route",
+					"type": "string",
+					"subType": "route_name",
+					"default": "",
+					"required": false,
+					"input": "select_route",
+					"description": "\"home\" route for this zone."
+				},
+				{
 					"name": "navbar_class",
 					"title": "Navbar Class",
 					"type": "string",
@@ -1530,6 +1582,16 @@
 					"required": true,
 					"input": "text",
 					"description": "Source file to copy. Path is relative to input JSON."
+				},
+				{
+					"name": "source_content",
+					"title": "Source content",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "textarea",
+					"description": "If source file is not specified, this content will be written into destination file."
 				},
 				{
 					"name": "dest",
@@ -1659,6 +1721,26 @@
 					"default": "",
 					"required": false,
 					"input": "text",
+					"choice_items": [
+						"bootswatch-amelia",
+						"bootswatch-cerulean",
+						"bootswatch-cosmo",
+						"bootswatch-cyborg",
+						"bootswatch-cyborg-darkly",
+						"bootswatch-darkly",
+						"bootswatch-flatly",
+						"bootswatch-journal",
+						"bootswatch-lumen",
+						"bootswatch-paper",
+						"bootswatch-readable",
+						"bootswatch-simplex",
+						"bootswatch-slate",
+						"bootswatch-spacelab",
+						"bootswatch-superhero",
+						"bootswatch-united",
+						"bootswatch-yeti",
+						"flat-ui"
+					],
 					"description": "Visual theme name. With \"bootstrap\" frontend theme can be \"flat-ui\" or one of bootswatch themes: \"bootswatch-amelia\", \"bootswatch-cerulean\", \"bootswatch-cosmo\", \"bootswatch-cyborg\", \"bootswatch-darkly\", \"bootswatch-flatly\", \"bootswatch-journal\", \"bootswatch-lumen\", \"bootswatch-paper\", \"bootswatch-readable\", \"bootswatch-simplex\", \"bootswatch-slate\", \"bootswatch-spacelab\", \"bootswatch-superhero\", \"bootswatch-united\", \"bootswatch-yeti\""
 				},
 				{
@@ -1912,6 +1994,26 @@
 					"description": "File that contains javascript code to execute when user is logged in (relative to input file)"
 				},
 				{
+					"name": "mobile_config",
+					"title": "mobile-config.js",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "If non-empty: will be written to mobile-config.js in app root"
+				},
+				{
+					"name": "stylesheet",
+					"title": "CSS/LESS stylesheet",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "css",
+					"description": "CSS\/LESS stylesheet. If non-empty, will be written to CLIENT_STYLES_DIR\/user_styles.less"
+				},
+				{
 					"name": "server_side_routes",
 					"title": "Server side routes",
 					"type": "array",
@@ -1966,7 +2068,7 @@
 					"name": "name",
 					"title": "Name",
 					"type": "string",
-					"subType": "",
+					"subType": "object_name",
 					"default": "",
 					"required": true,
 					"input": "text",
@@ -2024,7 +2126,7 @@
 				},
 				{
 					"name": "imports",
-					"title": "Module imports",
+					"title": "Import modules",
 					"type": "array",
 					"subType": "string",
 					"default": "",
@@ -2063,7 +2165,7 @@
 					"name": "query_name",
 					"title": "Query name",
 					"type": "string",
-					"subType": "",
+					"subType": "query_name",
 					"default": "",
 					"required": false,
 					"input": "select_query",
@@ -2124,7 +2226,7 @@
 					"name": "route",
 					"title": "Route",
 					"type": "string",
-					"subType": "",
+					"subType": "route_name",
 					"default": "",
 					"required": false,
 					"input": "select_route",
@@ -2215,7 +2317,7 @@
 					"name": "name",
 					"title": "Name",
 					"type": "string",
-					"subType": "",
+					"subType": "object_name",
 					"default": "",
 					"required": true,
 					"input": "text",
@@ -2233,7 +2335,7 @@
 				},
 				{
 					"name": "imports",
-					"title": "Module imports",
+					"title": "Import modules",
 					"type": "array",
 					"subType": "string",
 					"default": "",
@@ -2306,7 +2408,7 @@
 					"default": "",
 					"required": false,
 					"input": "javascript",
-					"description": "Content of Template.TEMLATE_NAME.events({ ... });"
+					"description": "Content of Template.TEMPLATE_NAME.events({ ... });"
 				},
 				{
 					"name": "helpers_code",
@@ -2316,13 +2418,13 @@
 					"default": "",
 					"required": false,
 					"input": "javascript",
-					"description": "Content of Template.TEMLATE_NAME.helpers({ ... });"
+					"description": "Content of Template.TEMPLATE_NAME.helpers({ ... });"
 				},
 				{
 					"name": "query_name",
 					"title": "Query name",
 					"type": "string",
-					"subType": "",
+					"subType": "query_name",
 					"default": "",
 					"required": false,
 					"input": "select_query",
@@ -2413,7 +2515,7 @@
 					"name": "name",
 					"title": "Name",
 					"type": "string",
-					"subType": "",
+					"subType": "object_name",
 					"default": "",
 					"required": true,
 					"input": "text",
@@ -2431,7 +2533,7 @@
 				},
 				{
 					"name": "imports",
-					"title": "Module imports",
+					"title": "Import modules",
 					"type": "array",
 					"subType": "string",
 					"default": "",
@@ -2504,7 +2606,7 @@
 					"default": "",
 					"required": false,
 					"input": "javascript",
-					"description": "Content of Template.TEMLATE_NAME.events({ ... });"
+					"description": "Content of Template.TEMPLATE_NAME.events({ ... });"
 				},
 				{
 					"name": "helpers_code",
@@ -2514,13 +2616,13 @@
 					"default": "",
 					"required": false,
 					"input": "javascript",
-					"description": "Content of Template.TEMLATE_NAME.helpers({ ... });"
+					"description": "Content of Template.TEMPLATE_NAME.helpers({ ... });"
 				},
 				{
 					"name": "query_name",
 					"title": "Query name",
 					"type": "string",
-					"subType": "",
+					"subType": "query_name",
 					"default": "",
 					"required": false,
 					"input": "select_query",
@@ -2600,7 +2702,7 @@
 					"name": "button_route",
 					"title": "Button route",
 					"type": "string",
-					"subType": "",
+					"subType": "route_name",
 					"default": "",
 					"required": false,
 					"input": "select_route",
@@ -2641,7 +2743,7 @@
 					"name": "name",
 					"title": "Name",
 					"type": "string",
-					"subType": "",
+					"subType": "object_name",
 					"default": "",
 					"required": true,
 					"input": "text",
@@ -2659,7 +2761,7 @@
 				},
 				{
 					"name": "imports",
-					"title": "Module imports",
+					"title": "Import modules",
 					"type": "array",
 					"subType": "string",
 					"default": "",
@@ -2732,7 +2834,7 @@
 					"default": "",
 					"required": false,
 					"input": "javascript",
-					"description": "Content of Template.TEMLATE_NAME.events({ ... });"
+					"description": "Content of Template.TEMPLATE_NAME.events({ ... });"
 				},
 				{
 					"name": "helpers_code",
@@ -2742,13 +2844,13 @@
 					"default": "",
 					"required": false,
 					"input": "javascript",
-					"description": "Content of Template.TEMLATE_NAME.helpers({ ... });"
+					"description": "Content of Template.TEMPLATE_NAME.helpers({ ... });"
 				},
 				{
 					"name": "query_name",
 					"title": "Query name",
 					"type": "string",
-					"subType": "",
+					"subType": "query_name",
 					"default": "",
 					"required": false,
 					"input": "select_query",
@@ -2801,7 +2903,7 @@
 					"subType": "",
 					"default": "",
 					"required": false,
-					"input": "radio",
+					"input": "select",
 					"choice_items": [
 						"insert",
 						"update",
@@ -2816,7 +2918,7 @@
 					"subType": "",
 					"default": "default",
 					"required": false,
-					"input": "radio",
+					"input": "select",
 					"choice_items": [
 						"default",
 						"horizontal",
@@ -2828,7 +2930,7 @@
 					"name": "submit_route",
 					"title": "Submit route",
 					"type": "string",
-					"subType": "",
+					"subType": "route_name",
 					"default": "",
 					"required": false,
 					"input": "select_route",
@@ -2838,7 +2940,7 @@
 					"name": "cancel_route",
 					"title": "Cancel route",
 					"type": "string",
-					"subType": "",
+					"subType": "route_name",
 					"default": "",
 					"required": false,
 					"input": "select_route",
@@ -2848,7 +2950,7 @@
 					"name": "close_route",
 					"title": "Close route",
 					"type": "string",
-					"subType": "",
+					"subType": "route_name",
 					"default": "",
 					"required": false,
 					"input": "select_route",
@@ -2858,7 +2960,7 @@
 					"name": "back_route",
 					"title": "Back route",
 					"type": "string",
-					"subType": "",
+					"subType": "route_name",
 					"default": "",
 					"required": false,
 					"input": "select_route",
@@ -2989,7 +3091,7 @@
 					"name": "name",
 					"title": "Name",
 					"type": "string",
-					"subType": "",
+					"subType": "object_name",
 					"default": "",
 					"required": true,
 					"input": "text",
@@ -3007,7 +3109,7 @@
 				},
 				{
 					"name": "imports",
-					"title": "Module imports",
+					"title": "Import modules",
 					"type": "array",
 					"subType": "string",
 					"default": "",
@@ -3080,7 +3182,7 @@
 					"default": "",
 					"required": false,
 					"input": "javascript",
-					"description": "Content of Template.TEMLATE_NAME.events({ ... });"
+					"description": "Content of Template.TEMPLATE_NAME.events({ ... });"
 				},
 				{
 					"name": "helpers_code",
@@ -3090,13 +3192,13 @@
 					"default": "",
 					"required": false,
 					"input": "javascript",
-					"description": "Content of Template.TEMLATE_NAME.helpers({ ... });"
+					"description": "Content of Template.TEMPLATE_NAME.helpers({ ... });"
 				},
 				{
 					"name": "query_name",
 					"title": "Query name",
 					"type": "string",
-					"subType": "",
+					"subType": "query_name",
 					"default": "",
 					"required": false,
 					"input": "select_query",
@@ -3166,7 +3268,7 @@
 					"name": "insert_route",
 					"title": "Insert route",
 					"type": "string",
-					"subType": "",
+					"subType": "route_name",
 					"default": "",
 					"required": false,
 					"input": "select_route",
@@ -3176,7 +3278,7 @@
 					"name": "details_route",
 					"title": "Details route",
 					"type": "string",
-					"subType": "",
+					"subType": "route_name",
 					"default": "",
 					"required": false,
 					"input": "select_route",
@@ -3186,7 +3288,7 @@
 					"name": "edit_route",
 					"title": "Edit route",
 					"type": "string",
-					"subType": "",
+					"subType": "route_name",
 					"default": "",
 					"required": false,
 					"input": "select_route",
@@ -3196,7 +3298,7 @@
 					"name": "delete_route",
 					"title": "Delete route",
 					"type": "string",
-					"subType": "",
+					"subType": "route_name",
 					"default": "",
 					"required": false,
 					"input": "select_route",
@@ -3297,7 +3399,7 @@
 					"name": "name",
 					"title": "Name",
 					"type": "string",
-					"subType": "",
+					"subType": "object_name",
 					"default": "",
 					"required": true,
 					"input": "text",
@@ -3315,7 +3417,7 @@
 				},
 				{
 					"name": "imports",
-					"title": "Module imports",
+					"title": "Import modules",
 					"type": "array",
 					"subType": "string",
 					"default": "",
@@ -3388,7 +3490,7 @@
 					"default": "",
 					"required": false,
 					"input": "javascript",
-					"description": "Content of Template.TEMLATE_NAME.events({ ... });"
+					"description": "Content of Template.TEMPLATE_NAME.events({ ... });"
 				},
 				{
 					"name": "helpers_code",
@@ -3398,13 +3500,13 @@
 					"default": "",
 					"required": false,
 					"input": "javascript",
-					"description": "Content of Template.TEMLATE_NAME.helpers({ ... });"
+					"description": "Content of Template.TEMPLATE_NAME.helpers({ ... });"
 				},
 				{
 					"name": "query_name",
 					"title": "Query name",
 					"type": "string",
-					"subType": "",
+					"subType": "query_name",
 					"default": "",
 					"required": false,
 					"input": "select_query",
@@ -3494,7 +3596,7 @@
 					"name": "item_route",
 					"title": "Item route",
 					"type": "string",
-					"subType": "",
+					"subType": "route_name",
 					"default": "",
 					"required": false,
 					"input": "select_route",
@@ -3514,7 +3616,7 @@
 					"name": "folder_route",
 					"title": "Folder route",
 					"type": "string",
-					"subType": "",
+					"subType": "route_name",
 					"default": "",
 					"required": false,
 					"input": "select_route",
@@ -3545,7 +3647,7 @@
 					"name": "name",
 					"title": "Name",
 					"type": "string",
-					"subType": "",
+					"subType": "object_name",
 					"default": "",
 					"required": true,
 					"input": "text",
@@ -3563,7 +3665,7 @@
 				},
 				{
 					"name": "imports",
-					"title": "Module imports",
+					"title": "Import modules",
 					"type": "array",
 					"subType": "string",
 					"default": "",
@@ -3602,7 +3704,7 @@
 					"name": "query_name",
 					"title": "Query name",
 					"type": "string",
-					"subType": "",
+					"subType": "query_name",
 					"default": "",
 					"required": false,
 					"input": "select_query",
@@ -3673,7 +3775,7 @@
 					"name": "name",
 					"title": "Name",
 					"type": "string",
-					"subType": "",
+					"subType": "object_name",
 					"default": "",
 					"required": true,
 					"input": "text",
@@ -3691,7 +3793,7 @@
 				},
 				{
 					"name": "imports",
-					"title": "Module imports",
+					"title": "Import modules",
 					"type": "array",
 					"subType": "string",
 					"default": "",
@@ -3740,7 +3842,7 @@
 					"name": "query_name",
 					"title": "Query name",
 					"type": "string",
-					"subType": "",
+					"subType": "query_name",
 					"default": "",
 					"required": false,
 					"input": "select_query",
@@ -3801,7 +3903,7 @@
 					"name": "name",
 					"title": "Name",
 					"type": "string",
-					"subType": "",
+					"subType": "object_name",
 					"default": "",
 					"required": true,
 					"input": "text",
@@ -3819,7 +3921,7 @@
 				},
 				{
 					"name": "imports",
-					"title": "Module imports",
+					"title": "Import modules",
 					"type": "array",
 					"subType": "string",
 					"default": "",
@@ -3868,7 +3970,7 @@
 					"name": "query_name",
 					"title": "Query name",
 					"type": "string",
-					"subType": "",
+					"subType": "query_name",
 					"default": "",
 					"required": false,
 					"input": "select_query",
@@ -3929,7 +4031,7 @@
 					"name": "name",
 					"title": "Name",
 					"type": "string",
-					"subType": "",
+					"subType": "object_name",
 					"default": "",
 					"required": true,
 					"input": "text",
@@ -3947,7 +4049,7 @@
 				},
 				{
 					"name": "imports",
-					"title": "Module imports",
+					"title": "Import modules",
 					"type": "array",
 					"subType": "string",
 					"default": "",
@@ -3986,7 +4088,7 @@
 					"name": "query_name",
 					"title": "Query name",
 					"type": "string",
-					"subType": "",
+					"subType": "query_name",
 					"default": "",
 					"required": false,
 					"input": "select_query",

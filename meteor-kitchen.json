@@ -29,6 +29,17 @@
 				"fields": [
 					{ "name": "name", "title": "Application name", "type": "string", "required": true },
 					{
+						"name": "public",
+						"title": "This project will be public in the new kitchen-GUI",
+						"type": "bool",
+						"default": true,
+						"input": "checkbox",
+						"show_in_dataview": false,
+						"show_in_read_only_form": true,
+						"show_in_insert_form": true,
+						"show_in_update_form": true
+					},
+					{
 						"name": "initialTemplate",
 						"title": "Initial template",
 						"type": "string",
@@ -184,6 +195,19 @@
 							"name": "content",
 							"type": "markdown",
 							"source_file": "files/examples.md"
+						}
+					]
+				},
+				{
+					"name": "compatibility",
+					"meta_title": "Compatibility table",
+					"meta_description": "Blaze vs React compatibility table",
+					"template_rendered_code": "$('table').addClass('table');",
+					"components": [
+						{
+							"name": "content",
+							"type": "markdown",
+							"source_file": "files/compatibility.md"
 						}
 					]
 				},
@@ -484,11 +508,16 @@
 			"pages": [
 				{
 					"name": "applications",
+					"title": "My applications",
 					"components": [
+						{
+							"name": "privacy_warning",
+							"type": "custom",
+							"custom_template": "files/privacy-warning/privacy-warning"
+						},
 						{
 							"name": "view",
 							"type": "data_view",
-							"title": "My applications",
 							"text_if_empty": "No applications here",
 							"query_name": "applications",
 							"insert_route": "applications.insert",

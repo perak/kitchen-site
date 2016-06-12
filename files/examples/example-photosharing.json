@@ -267,7 +267,7 @@
 		},
 
 		"packages": {
-			"meteor": [ "mdg:camera", "copleykj:livestamp" ]
+			"meteor": [ "mdg:camera", "copleykj:livestamp", "session" ]
 		}
 	}
 }

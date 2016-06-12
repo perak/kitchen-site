@@ -1,9 +1,18 @@
-Version History
-===============
+What's Up?
+==========
 
 ### Latest News
 
-Preparing to open meteor-kitchen CLI source code. Now cleaning up the code and writing docs - stay tuned. 
+#### New GUI is comming soon!
+
+**See preview video:**
+
+<iframe width="420" height="315" src="https://www.youtube.com/embed/NBtFs1c4qhQ" frameborder="0" allowfullscreen></iframe>
+
+
+#### Preparing to open meteor-kitchen CLI source code.
+
+**Currently, cleaning up the code and writing docs - stay tuned.**
 
 You can cheer for me by adding the star <span class="fa fa-star" style="color: yellow"></span> to this repositories:
 
@@ -11,6 +20,43 @@ You can cheer for me by adding the star <span class="fa fa-star" style="color: y
 - <a href="https://github.com/perak/kitchen-site" target="_blank">https://github.com/perak/kitchen-site</a>
 
 Many stars == many thanks!
+
+
+Version History
+===============
+
+0.9.64
+------
+
+- Fixed few bugs and added some internal features required by the new GUI
+
+
+0.9.63
+------
+
+- Fixed few bugs and added some internal features required by the new GUI
+
+
+0.9.62
+------
+
+- Fixed few minor bugs and added some internal features required by the new GUI
+
+
+0.9.61
+------
+
+- Both Blaze and React app works with `Meteor 1.3`
+
+
+0.9.60
+------
+
+- Both Blaze and React app works with `Meteor 1.3-rc.11`
+
+- Markdown component implemented for React (and now React version of `example-subpages` can be built)
+
+- Added <a href="{{pathFor 'compatibility'}}">Blaze vs React compatibility table</a>.
 
 
 0.9.59

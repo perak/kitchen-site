@@ -1,6 +1,10 @@
 Example Applications
 ====================
 
+All examples can be built with "Blaze", but not all examples can be built with "React" yet.
+See "Blaze vs React compatibility table" <a href="{{pathFor 'compatibility'}}">here</a>.
+
+<hr>
 
 Minimal
 -------
@@ -136,26 +140,3 @@ Plugins
 <a href="http://example-plugins.meteorfarm.com" target="_blank"><img src="/images/example-plugins.png" alt="plugins" class="example-img"></a>
 
 <a href="http://example-plugins.meteorfarm.com" target="_blank" class="btn btn-success">Live example</a> <a href="https://github.com/perak/kitchen-examples/tree/master/example-plugins" target="_blank" class="btn btn-default">Source code</a>
-
-<hr />
-
-### Blaze vs React compatibility table
-
-Example  | Blaze | React
----------|------|------------
-example-minimal | x | x
-example-subpages | x | 
-example-dataview | x | 
-example-accounts | x | 
-example-admin | x | 
-example-invoices | x | 
-example-onepage | x | 
-example-markdown | x | 
-example-human2machine | x | 
-example-photosharing | x | 
-example-iot | x | 
-example-geiger | x | 
-example-ide | x | 
-example-upload | x | 
-example-semantic | x | 
-example-materialize | x | 

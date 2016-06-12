@@ -23,6 +23,8 @@ Contributors
 
 <a href="https://github.com/perak" target="_blank"><b>Petar Korponaić</b></a> - original author
 
+<a href="https://github.com/ljack" target="_blank"><b>Jarkko Lietolahti</b></a> - helped with many things... list is too long! :)
+
 <a href="https://github.com/kadirerdogan" target="_blank"><b>Kadir Erdogan</b></a> - created "semantic-ui" and "materialize" templates
 
 <a href="https://github.com/mikkelking" target="_blank"><b>Mike King</b></a> - created <a href="https://www.youtube.com/watch?v=4onSUkj4hKc" target="_blank">perfect presentation</a> in Melbourne. Also testing js-yaml (replacement for yaml2json, and some English fixes).
