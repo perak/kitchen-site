@@ -17,8 +17,8 @@
 			{
 				"name": "sensors",
 				"collection": "sensors",
-				"filter": {},
-				"options": { "sort": [ ["createdAt", "asc"] ] }
+				"filter": "{}",
+				"options": "{ \"sort\": [ [\"createdAt\", \"asc\"] ] }"
 			}
 		],
 
@@ -42,7 +42,7 @@
 						}
 					]
 				},
-				{ "name": "about", "title": "About", "text": "This example application is built with <a href=\"http://www.meteorkitchen.com\" target=\"_blank\">Meteor Kitchen</a> - code generator for Meteor.js<br />Source code (input file for generator) is <a href=\"https://github.com/perak/kitchen-examples/tree/master/example-geiger\" target=\"_blank\">here</a>." }
+				{ "name": "about", "title": "About", "text": "This example application is built with <a href=\"http://www.meteorkitchen.com\" target=\"_blank\">Meteor Kitchen</a> - source code generator for Meteor.js<br />Source code (input file for generator) is <a href=\"https://github.com/perak/kitchen-examples/tree/master/example-geiger\" target=\"_blank\">here</a>." }
 			],
 
 			"components": [

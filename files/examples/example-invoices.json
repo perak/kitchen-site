@@ -102,11 +102,8 @@
 			{
 				"name": "customer_list",
 				"collection": "customers",
-				"filter": {},
-				"options": {
-					"transform": "function(doc) { var sum = 0; Invoices.find({ customerId: doc._id }).map(function(item) { if(item.totalAmount) sum += item.totalAmount; }); doc.totalAmount = sum; return doc; }",
-					"sort": ["name"]
-				},
+				"filter": "{}",
+				"options": "{ \"transform\": \"function(doc) { var sum = 0; Invoices.find({ customerId: doc._id }).map(function(item) { if(item.totalAmount) sum += item.totalAmount; }); doc.totalAmount = sum; return doc; }\", \"sort\": [\"name\"] }",
 				"related_queries": [
 					{ "name": "invoice_list" }
 				]
@@ -114,17 +111,15 @@
 			{
 				"name": "customers_empty",
 				"collection": "customers",
-				"filter": {"_id": null},
+				"filter": "{\"_id\": null}",
 				"find_one": true
 			},
 			{
 				"name": "customer_details",
 				"collection": "customers",
 				"find_one": true,
-				"filter": { "_id": ":customerId" },
-				"options": {
-					"transform": "function(doc) { var sum = 0; Invoices.find({ customerId: doc._id }).map(function(item) { sum += item.totalAmount; }); doc.totalAmount = sum; return doc; }"
-				},
+				"filter": "{ \"_id\": \":customerId\" }",
+				"options": "{ \"transform\": \"function(doc) { var sum = 0; Invoices.find({ customerId: doc._id }).map(function(item) { sum += item.totalAmount; }); doc.totalAmount = sum; return doc; }\" }",
 				"related_queries": [
 					{ "name": "invoice_list" }
 				]
@@ -133,15 +128,13 @@
 				"name": "invoice_list",
 				"collection": "invoices",
 				"filter": {},
-				"options": {
-					"sort": [[ "invoiceNumber", "desc"]]
-				}
+				"options": "{ \"sort\": [[ \"invoiceNumber\", \"desc\"]] }"
 			},
 			{
 				"name": "invoices_empty",
 				"collection": "invoices",
-				"filter": { "_id": null },
-				"options": {},
+				"filter": "{ \"_id\": null }",
+				"options": "{}",
 				"find_one": true,
 				"related_queries": [
 					{ "name": "invoice_list" }
@@ -150,30 +143,30 @@
 			{
 				"name": "invoice_details",
 				"collection": "invoices",
-				"filter": { "_id": ":invoiceId" },
+				"filter": "{ \"_id\": \":invoiceId\" }",
 				"find_one": true
 			},
 			{
 				"name": "invoice_items",
 				"collection": "invoice_items",
-				"filter": { "invoiceId": ":invoiceId" }
+				"filter": "{ \"invoiceId\": \":invoiceId\" }"
 			},
 			{
 				"name": "invoice_items_empty",
 				"collection": "invoice_items",
-				"filter": { "_id": null },
+				"filter": "{ \"_id\": null }",
 				"find_one": true
 			},
 			{
 				"name": "invoice_item",
 				"collection": "invoice_items",
-				"filter": { "_id": ":itemId" },
+				"filter": "{ \"_id\": \":itemId\" }",
 				"find_one": true
 			},
 			{
 				"name": "current_user_data",
 				"collection": "users",
-				"filter": { "_id": "Meteor.userId()" },
+				"filter": "{ \"_id\": \"Meteor.userId()\" }",
 				"find_one": true
 			}
 		],

@@ -25,6 +25,28 @@ Many stars == many thanks!
 Version History
 ===============
 
+0.9.67
+------
+
+- Fixed compatibility issues with Meteor 1.4
+
+
+0.9.66
+------
+
+- Compatible with Meteor 1.4
+
+
+0.9.65
+------
+
+- CLI creates file `.meteor-kitchen.json` in the root directory of generated application. It contains list of all generated files with checksums. Using this file, CLI is able to remove files generated in previous iteration which are not required anymore. Also, this file will be used to detect manually changed files to avoid overwriting and possibly allow merging (but this feature is not implemented yet).
+
+- query.filter and query.options are now strings (stringified JSON). CLI still accepts object for backward compatibility.
+
+- Preparing psychophysically to replace this site with the new "kitchen-GUI"...
+
+
 0.9.64
 ------
 

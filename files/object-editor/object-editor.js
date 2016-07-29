@@ -256,7 +256,7 @@ Template.TEMPLATE_NAME.helpers({
 
 				case "json": {
 					control = "json";
-					dataType = "json";
+					dataType = member.type == "object" ? "json" : member.type;
 				}; break;
 
 				case "javascript": {
@@ -444,7 +444,7 @@ Template.TEMPLATE_NAME.helpers({
 
 				case "json": {
 					control = "json";
-					dataType = "json";
+					dataType = member.type == "object" ? "json" : member.type;
 				}; break;
 
 				case "javascript": {

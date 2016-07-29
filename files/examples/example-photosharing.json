@@ -22,30 +22,22 @@
 				"name": "notes",
 				"collection": "notes",
 				"find_one": false,
-				"filter": {},
-				"options": {
-					"sort": {
-						"createdAt": -1
-					}
-				}
+				"filter": "{}",
+				"options": "{ \"sort\": { \"createdAt\": -1 } }"
 			},
 			{
 				"name": "notes_empty",
 				"collection": "notes",
 				"find_one": true,
-				"filter": {
-					"_id": null
-				},
-				"options": {}
+				"filter": "{ \"_id\": null }",
+				"options": "{}"
 			},
 			{
 				"name": "current_user_data",
 				"collection": "users",
-				"filter": {
-					"_id": "Meteor.userId()"
-				},
-				"find_one": true,
-				"options": {}
+				"filter": "{ \"_id\": \"Meteor.userId()\" }",
+				"options": "{}",
+				"find_one": true
 			}
 		],
 

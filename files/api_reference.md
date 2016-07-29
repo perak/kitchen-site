@@ -752,6 +752,7 @@ related\_queries | array of <a href="#subscription">subscription</a> | List of a
 force\_yield\_subpages | bool | Subpages will be rendered in "subcontent" area even if this page doesn't contains menu pointing to subpages
 zoneless | bool | Deprecated - will be removed soon. For applications with user account system: make this page visible for both authenticated and non-authenticated users
 parent\_layout | bool | If set to true parent page will be used as layoutTemplate. Default: false
+layout\_template | string | Custom layout template name
 controller\_before\_action | string | code to execute inside route controller "onBeforeAction" hook
 controller\_after\_action | string | code to execute inside route controller "onBeforeAction" hook
 
@@ -797,6 +798,7 @@ Example:
 	"force_yield_subpages": false,
 	"zoneless": false,
 	"parent_layout": false,
+	"layout_template": "",
 	"controller_before_action": "",
 	"controller_after_action": ""
 }
@@ -859,8 +861,8 @@ Property | Type | Description
 name | string | Object name
 collection | string | Name of existing collection
 find\_one | bool | If set to true query will return single document: findOne(). Default: false
-filter | <a href="#object">object</a> | Mongo query expression. Will be passed as first argument to find() or findOne(). Can contain route params in form ":paramName".
-options | <a href="#object">object</a> | Options parameter passed as second argument to find() or findOne().
+filter | string | Mongo query expression. Will be passed as first argument to find() or findOne(). Can contain route params in form ":paramName".
+options | string | Options parameter passed as second argument to find() or findOne().
 related\_queries | array of <a href="#subscription">subscription</a> | Page which subscribes to this query will also subscribe to related queries (for example: this is useful if you are using transform function that uses data from other collection).
 
 Example:
@@ -869,10 +871,8 @@ Example:
 	"name": "",
 	"collection": "",
 	"find_one": false,
-	"filter": {
-	},
-	"options": {
-	},
+	"filter": "",
+	"options": "",
 	"related_queries": [
 	]
 }
@@ -922,6 +922,7 @@ name | string | Object name
 route\_params | array of string | Route params to be passed via URL
 path | string | Route path. Not mandatory: if ommited path is constructed from route name and route\_params.
 source\_file | string | path to external file containing route action code (relative to input JSON file).
+source\_content | string | path to external file containing route action code (relative to input JSON file).
 
 Example:
 ```json
@@ -930,7 +931,8 @@ Example:
 	"route_params": [
 	],
 	"path": "",
-	"source_file": ""
+	"source_file": "",
+	"source_content": ""
 }
 ```
 
@@ -1024,6 +1026,7 @@ custom\_data\_code | string | Code to execute just before data from database is 
 components | array of <a href="#component">component</a> | Component list
 container\_class | string | Class to be added to page container. Example: "container-fluid". Default "container".
 pages | array of <a href="#page">page</a> | Subpages
+layout\_template | string | Custom layout template name
 layout | string | Built-in layout template name: "empty", "navbar" or "sticky\_footer". Default: "navbar"
 default\_route | string | "home" route for this zone.
 navbar\_class | string | CSS class name to be added to navbar.
@@ -1044,6 +1047,7 @@ Example:
 	"container_class": "",
 	"pages": [
 	],
+	"layout_template": "",
 	"layout": "",
 	"default_route": "",
 	"navbar_class": "",

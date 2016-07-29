@@ -24,18 +24,18 @@
 			{
 				"name": "customers",
 				"collection": "customers",
-				"filter": {}
+				"filter": "{}"
 			},
 			{
 				"name": "customers_empty",
 				"collection": "customers",
-				"filter": {"_id": null},
+				"filter": "{ \"_id\": null }",
 				"find_one": true
 			},
 			{
 				"name": "customer",
 				"collection": "customers",
-				"filter": { "_id": ":customerId" },
+				"filter": "{ \"_id\": \":customerId\" }",
 				"find_one": true
 			}
 		],

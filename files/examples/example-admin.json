@@ -15,24 +15,24 @@
 			{
 				"name": "admin_users",
 				"collection": "users",
-				"filter": {}
+				"filter": "{}"
 			},
 			{
 				"name": "admin_user",
 				"collection": "users",
-				"filter": { "_id": ":userId" },
+				"filter": "{ \"_id\": \":userId\" }",
 				"find_one": true
 			},
 			{
 				"name": "users_null",
 				"collection": "users",
-				"filter": { "_id": null },
+				"filter": "{ \"_id\": null }",
 				"find_one": true
 			},
 			{
 				"name": "current_user_data",
 				"collection": "users",
-				"filter": { "_id": "Meteor.userId()" },
+				"filter": "{ \"_id\": \"Meteor.userId()\" }",
 				"find_one": true
 			}
 		],

@@ -1055,7 +1055,16 @@
 			{ "source": "files/metadata.json", "dest": "PRIVATE_DIR/metadata.json" },
 			{ "source": "files/metadata_utils.js", "dest": "LIB_DIR/metadata_utils.js" },
 			{ "source": "files/dynamic-form/dynamic-form.html", "dest": "CLIENT_LIB_DIR/dynamic-form.html" },
-			{ "source": "files/dynamic-form/dynamic-form.js", "dest": "CLIENT_LIB_DIR/dynamic-form.js" }
+			{ "source": "files/dynamic-form/dynamic-form.js", "dest": "CLIENT_LIB_DIR/dynamic-form.js" },
+
+			{ "source": "../kitchen-cli/install/install.sh", "dest": "PRIVATE_DIR/install.sh" },
+			{ "source": "../kitchen-cli/install/install_linux.tar.gz", "dest": "PUBLIC_DIR/install/install_linux.tar.gz" },
+			{ "source": "../kitchen-cli/install/install_mac.tar.gz", "dest": "PUBLIC_DIR/install/install_mac.tar.gz" },
+			{ "source": "../kitchen-cli/install/install_win.zip", "dest": "PUBLIC_DIR/install/install_win.zip" },
+			{ "source": "../kitchen-cli/install/google6ed5a62f5bad68d0.html", "dest": "PUBLIC_DIR/google6ed5a62f5bad68d0.html" },
+
+			{ "source": "files/settings.json", "dest": "OUTPUT_DIR/settings.json" },
+			{ "source": "files/mup.json", "dest": "OUTPUT_DIR/mup.json" }
 		],
 
 		"packages": {

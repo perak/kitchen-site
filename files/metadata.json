@@ -1,5 +1,5 @@
 {
-	"version": 86,
+	"version": 89,
 	"classList": [
 		{
 			"objectType": "root",
@@ -762,7 +762,7 @@
 				{
 					"name": "filter",
 					"title": "Filter",
-					"type": "object",
+					"type": "string",
 					"subType": "",
 					"default": "",
 					"required": false,
@@ -772,7 +772,7 @@
 				{
 					"name": "options",
 					"title": "Options",
-					"type": "object",
+					"type": "string",
 					"subType": "",
 					"default": "",
 					"required": false,
@@ -1077,6 +1077,16 @@
 					"default": "",
 					"required": false,
 					"input": "text",
+					"description": "path to external file containing route action code (relative to input JSON file)."
+				},
+				{
+					"name": "source_content",
+					"title": "Source content",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
 					"description": "path to external file containing route action code (relative to input JSON file)."
 				}
 			],
@@ -1406,6 +1416,16 @@
 					"description": "If set to true parent page will be used as layoutTemplate. Default: false"
 				},
 				{
+					"name": "layout_template",
+					"title": "Layout template name",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text",
+					"description": "Custom layout template name"
+				},
+				{
 					"name": "controller_before_action",
 					"title": "Controller onBeforeAction",
 					"type": "string",
@@ -1516,6 +1536,16 @@
 					"required": false,
 					"input": "",
 					"description": "Subpages"
+				},
+				{
+					"name": "layout_template",
+					"title": "Layout template name",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text",
+					"description": "Custom layout template name"
 				},
 				{
 					"name": "layout",

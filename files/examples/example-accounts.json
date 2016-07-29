@@ -11,7 +11,7 @@
 			{
 				"name": "current_user_data",
 				"collection": "users",
-				"filter": { "_id": "Meteor.userId()" },
+				"filter": "{ \"_id\": \"Meteor.userId()\" }",
 				"find_one": true
 			}
 		],

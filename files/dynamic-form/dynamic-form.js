@@ -525,6 +525,28 @@ Template.DynamicFormJsonEditor.helpers({
 			return this.data[this.field.name];
 		}
 
+		if(this.field.dataType == "string") {
+			if(_.isObject(this.data[this.field.name]) && typeof this.data[this.field.name] != "string") {
+				var stringified = "";
+				try {
+					stringified = JSON.stringify(this.data[this.field.name], null, "\t");
+				} catch(err) {
+
+				}
+				return stringified;		
+			} else {
+				if(!this.data[this.field.name] || typeof this.data[this.field.name] == "string") {
+					var stringified = "{}";
+					try {
+						stringified = JSON.stringify(JSON.parse(this.data[this.field.name] || "{}"), null, "\t");
+					} catch(err) {
+
+					}
+					return stringified;
+				}
+			}
+		}
+
 		if(this.field.dataType == "array") {
 			if(_.isArray(this.data[this.field.name])) {
 				var tmp = "";

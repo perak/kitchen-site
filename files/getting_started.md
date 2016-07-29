@@ -29,7 +29,7 @@ You can download the binary release <a href="/install/install_win.zip" _target="
 - **Windows XP & Windows 7**: From version 0.9.53 you don't need "where.exe" anymore. But if you are experiencing problems (if meteor-kitchen cannot execute meteor) try to install "where.exe". You can find instructions on how to download and install "where.exe" <a href="http://superuser.com/questions/249725/where-to-download-where-exe-tool-for-windows-xp" target="_blank">here</a>.
 
 
-Current version is 0.9.64
+Current version is 0.9.67
 =========================
 
 Click <a href="{{pathFor 'version_history'}}">here</a> to see the version history.
