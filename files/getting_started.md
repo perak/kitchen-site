@@ -554,7 +554,7 @@ The following example shows how to add a bootstrap row with two columns into a p
 ...
 ```
 
-Before we continue with components `data_view` and `form`, let's add some **mongo** collections into your program:
+Before we continue with components `dataview` and `form`, let's add some **mongo** collections into your program:
 
 Collections
 ===========
@@ -597,7 +597,7 @@ Also, you can define collection fields:
 }
 ```
 
-Fields are used by components such as `form` and `data_view` (the generator will "know" what input fields to generate in forms, what columns to show in the dataview etc.).
+Fields are used by components such as `form` and `dataview` (the generator will "know" what input fields to generate in forms, what columns to show in the dataview etc.).
 
 - `name` - field name
 - `title` - field title shown in form labels, table headers etc.
@@ -606,7 +606,7 @@ Fields are used by components such as `form` and `data_view` (the generator will
 - `type` - field datatype - used in form validations
 *...and many more properties, see <a href="{{pathFor 'api_reference'}}">field object</a>*
 
-**Note** that defining fields at the collection level is not mandatory - fields can be also set/overriden inside the `form` and `data_view` components.
+**Note** that defining fields at the collection level is not mandatory - fields can be also set/overriden inside the `form` and `dataview` components.
 
 **Nested objects**
 
@@ -680,7 +680,7 @@ Page controller will also subscribe to all queries used in page's components, fo
 	"components": [
 		{
 			"name": "view",
-			"type": "data_view",
+			"type": "dataview",
 			"query_name": "all_customers",
 			"query_params": []
 		}
@@ -709,12 +709,11 @@ You can use variables (query params) in your query's `filter` and `options` para
 	{
 		"name": "customer",
 		"collection": "customers",
-		"find_one": true,
 		"filter": { "_id": ":customerId" }
 	}
 ]
 ```
-Here we set `find_one` to true to only return one customer and defined param `:customerId` and you need to provide it's value in your subscriptions, for example:
+Here we defined param `:customerId` and you need to provide it's value in your subscriptions, for example:
 
 ```
 {
@@ -854,9 +853,9 @@ You can see a **live example** using joins <a href="http://example-invoices.mete
 Dataview Component
 ==================
 
-The component of type `data_view` is used to show data from the database's collection with search and sort functions (data appears in a table - other view styles such as "list" and "gallery" are under construction).
+The component of type `dataview` is used to show data from the database's collection with search and sort functions (data appears in a table - other view styles such as "list" and "gallery" are under construction).
 
-A minimal application with a `data_view` component should look like this:
+A minimal application with a `dataview` component should look like this:
 
 ```
 {
@@ -932,9 +931,9 @@ A minimal application with a `data_view` component should look like this:
 }
 ```
 
-In this example we have a collection of `customers` and a component of type `data_view` inside the `home` page.
+In this example we have a collection of `customers` and a component of type `dataview` inside the `home` page.
 
-Some of the `data_view` component properties are:
+Some of the `dataview` component properties are:
 
 - `text_if_empty` - text to be shown instead of an empty table if the collection is empty.
 - `query_name` - [query](#queries) name from `application.queries`
@@ -975,7 +974,7 @@ The `form` component has the following structure:
 - `submit_route` - route name of an existing page to be opened when the user hits the "submit" button
 - `cancel_route` - route name of an existing page to be opened when the user hits the "cancel" button
 
-**Common usage** of the form component is to put a subpage into the page containing the `data_view` component, add a `form` into that subpage and then in the dataview component specify `insert_route`, `edit_route` or `details_route` to point to the subpage containing the form.
+**Common usage** of the form component is to put a subpage into the page containing the `dataview` component, add a `form` into that subpage and then in the dataview component specify `insert_route`, `edit_route` or `details_route` to point to the subpage containing the form.
 To make it clearer let's see an example application with a dataview and an insert form:
 
 ```
@@ -1074,12 +1073,12 @@ To make it clearer let's see an example application with a dataview and an inser
 }
 ```
 
-In this example we have a page named `home` with a `data_view` component and a subpage named `insert`.
+In this example we have a page named `home` with a `dataview` component and a subpage named `insert`.
 Subpage `insert` has a `form` component named `insert_form`.
 
 Now look:
 
-- `data_view` component: `insert_route` property is set to `home.insert` (subpage containing the form).
+- `dataview` component: `insert_route` property is set to `home.insert` (subpage containing the form).
 - `form` component: `submit_route` and `cancel_route` properties are set to `home` (parent page containing dataview).
 
 Form is using query `customers_empty`: this is the insert form and we don't need any data from this query - `query` is used just to point the generator to which collection to use (and which fields) for the insert.
@@ -1141,7 +1140,7 @@ and then add the `route_params` property to your `page` object:
 
 In this example the `page` object has a param named `customerId` and we are using it inside the `query` filter: `:customerId`.
 
-Now, let's pass this param to our `data_view` component via `edit_route` and `edit_route_params` properties:
+Now, let's pass this param to our `dataview` component via `edit_route` and `edit_route_params` properties:
 
 ```
 {
@@ -1335,7 +1334,7 @@ To see custom components in action check the <a href="https://github.com/perak/k
 Plugins
 =======
 
-In addition to built-in components (such as `form`, `data_view` etc.) you can write your own components called **plugins** using javascript (node.js).
+In addition to built-in components (such as `form`, `dataview` etc.) you can write your own components called **plugins** using javascript (node.js).
 
 Plugins are stored in the `plugins` subdirectory inside the meteor-kitchen installation dir. By default this is located in:
 
