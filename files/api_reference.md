@@ -324,7 +324,7 @@ format | string | Currently used only with data types "date" and "time". Contain
 searchable | bool | Is field searchable? Default: true
 sortable | bool | Is field sortable? Default: true
 exportable | bool | If true field will be exported to CSV/JSON (used in dataview component). Default: false
-input | string | Form input control type: "text", "password", "datepicker", "read-only", "textarea", "radio", "checkbox", "select", "crud", "file", "custom"
+input | string | Form input control type: "text", "password", "datepicker", "read-only", "textarea", "radio", "checkbox", "select", "select-multiple", "crud", "file", "custom"
 input\_template | string | Template for "custom" input field (relative to input file)
 input\_group\_class | string | This CSS class will be added to field input group container in forms.
 input\_control\_class | string | This CSS class will be added to input control in forms.
