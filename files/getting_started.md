@@ -18,7 +18,8 @@ You **need** to have <a href="https://www.meteor.com" target="_blank">Meteor >=1
 
 ### Windows
 
-You can download the binary release <a href="/install/install_win.zip" _target="blank">here</a>. Extract it somewhere and make sure `meteor-kitchen.exe` is in your system PATH. See included `windows.txt` for more details.
+You can download windows installer <a href="/install/install_win.exe" _target="blank">here</a>.
+
 
 **Note**
 
@@ -26,10 +27,8 @@ You can download the binary release <a href="/install/install_win.zip" _target="
 
 - meteor-kitchen uses "curl" to download files. You can find "curl" for windows <a href="http://www.confusedbycode.com/curl/#downloads" target="_blank">here</a>.
 
-- **Windows XP & Windows 7**: From version 0.9.53 you don't need "where.exe" anymore. But if you are experiencing problems (if meteor-kitchen cannot execute meteor) try to install "where.exe". You can find instructions on how to download and install "where.exe" <a href="http://superuser.com/questions/249725/where-to-download-where-exe-tool-for-windows-xp" target="_blank">here</a>.
 
-
-Current version is 0.9.67
+Current version is 0.9.70
 =========================
 
 Click <a href="{{pathFor 'version_history'}}">here</a> to see the version history.
@@ -38,7 +37,7 @@ Click <a href="{{pathFor 'version_history'}}">here</a> to see the version histor
 Upgrade to latest version
 =========================
 
-Just install it again. The installation will replace all the files with the new versions.
+Just install it again. The installation script will replace all the files with the new versions. If you experience any problems then simply delete old meteor-kitchen directory and do clean install again.
 
 
 CLI
@@ -57,22 +56,6 @@ meteor-kitchen <input_file_or_url> <output_directory>
 ```
 
 The input file can be <a href="http://www.json.org/" target="_blank">JSON</a> or <a href="http://www.yaml.org/" target="_blank">YAML</a>. If you prefer YAML, you'll need to install the <a href="https://www.npmjs.org/package/js-yaml" target="_blank">js-yaml</a> converter.
-
-
-### <span class="label label-danger">New!</span> React (experimental)
-
-Still under development, but now you can generate (very simple) **Meteor + React + FlowRouter** apps (for example, try to build `example-minimal` or `example-accounts` application).
-
-Use `--react` or `--blaze` command line switch:
-
-```
-meteor-kitchen <input_file_or_url> <output_directory> --react
-```
-
-**Note:** if you built your app with **blaze** and now you want to build it with **react** (or vice versa) then you need to **clean build** it (into the new directory).
-
-React is not fully supported yet - work is in progress. See <a href="{{pathFor 'compatibility'}}">Blaze vs React compatibility table</a>.
-
 
 ### CoffeeScript
 
@@ -93,7 +76,29 @@ meteor-kitchen <input_file_or_url> <output_directory> --jade
 The Jade converter is experimental (I wrote it in a rush). It's not 100% syntactically clean and will be improved in the future. It is, at least, super fast (long live my good old friend: C++).
 
 
-### <span class="label label-danger">New!</span> Human language support
+### React (experimental)
+
+Still under development, but now you can generate (very simple) **Meteor + React + FlowRouter** apps (for example, try to build `example-minimal` or `example-accounts` application).
+
+Use `--react` or `--blaze` command line switch:
+
+```
+meteor-kitchen <input_file_or_url> <output_directory> --react
+```
+
+**Note:** if you built your app with **blaze** and now you want to build it with **react** (or vice versa) then you need to **clean build** it (into the new directory).
+
+React is not fully supported yet - work is in progress. See <a href="{{pathFor 'compatibility'}}">Blaze vs React compatibility table</a>.
+
+
+### <span class="label label-danger">New!</span> Virtual Reality (experimental)
+
+Just playing around with A-Frame + React. Now you can generate (very simple) **Meteor + React + FlowRouter + A-Frame** application.
+
+See <a href="http://example-aframe-iss.meteorfarm.com" target="_blank">live example</a>  - it's International Space Station mini virtual tour. Source code is <a href="https://github.com/perak/kitchen-examples/tree/master/example-aframe-iss" target="_blank">here</a>.
+
+
+### Human language support
 
 **Experimental feature:** since version 0.9.43, you can write application description in everyday English language:
 

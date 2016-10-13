@@ -5,8 +5,8 @@ Property | Type | Description
 title | string | Application title
 meta\_description | string | Default meta\_description for pages without meta\_description
 meta\_title | string | Default meta\_title for pages without meta\_title
-templating | string | "blaze" or "react". Default: "blaze". Note: "react" is not implemented yet.
-frontend | string | "bootstrap3", "semantic-ui" or "materialize". Default: "bootstrap3". "semantic-ui" and "materialize" are not fully implemented yet.
+templating | string | "blaze" or "react". Default: "blaze". Note: "react" is not fully implemented yet.
+frontend | string | "bootstrap3", "semantic-ui", "materialize" or "aframe". Default: "bootstrap3". "semantic-ui", "materialize" and "aframe" are not fully implemented yet. "aframe" can only be used with "react" app.
 theme | string | Visual theme name. With "bootstrap" frontend theme can be "flat-ui" or one of bootswatch themes: "bootswatch-amelia", "bootswatch-cerulean", "bootswatch-cosmo", "bootswatch-cyborg", "bootswatch-darkly", "bootswatch-flatly", "bootswatch-journal", "bootswatch-lumen", "bootswatch-paper", "bootswatch-readable", "bootswatch-simplex", "bootswatch-slate", "bootswatch-spacelab", "bootswatch-superhero", "bootswatch-united", "bootswatch-yeti"
 footer\_text | string | Text to show in page footer
 roles | array of string | List of user roles for applications with user account system. There are two predefined roles "nobody" and "owner" (see collection object for more info).
@@ -740,6 +740,7 @@ template\_rendered\_code | string | Code to be executed once template is rendere
 meta\_description | string | Meta description
 meta\_title | string | Head title tag and meta title
 text | string | Text to be inserted into page
+background\_image | string | Background image URL
 container\_class | string | Class to be added to page container. Example: "container-fluid". Default "container".
 route\_params | array of string | Route params to be passed via URL
 close\_route | string | If specified, page will have close button routing to this route
@@ -780,6 +781,7 @@ Example:
 	"meta_description": "",
 	"meta_title": "",
 	"text": "",
+	"background_image": "",
 	"container_class": "",
 	"route_params": [
 	],
@@ -1024,6 +1026,7 @@ query\_name | string | Query (publication) name from application.queries used as
 query\_params | array of <a href="#param">param</a> | Query (publication) params
 custom\_data\_code | string | Code to execute just before data from database is returned (executes before iron-router `data` function returns or in React apps before `getMeteorData` returns). You can modify `data` variable here.
 components | array of <a href="#component">component</a> | Component list
+background\_image | string | Background image URL
 container\_class | string | Class to be added to page container. Example: "container-fluid". Default "container".
 pages | array of <a href="#page">page</a> | Subpages
 layout\_template | string | Custom layout template name
@@ -1044,6 +1047,7 @@ Example:
 	"custom_data_code": "",
 	"components": [
 	],
+	"background_image": "",
 	"container_class": "",
 	"pages": [
 	],

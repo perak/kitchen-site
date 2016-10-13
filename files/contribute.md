@@ -23,6 +23,8 @@ Contributors
 
 <a href="https://github.com/perak" target="_blank"><b>Petar Korponaić</b></a> - original author
 
+<a href="https://github.com/milanromic" target="_blank"><b>Milan Romić</b></a> - helped with many things... list is too long! :)
+
 <a href="https://github.com/ljack" target="_blank"><b>Jarkko Lietolahti</b></a> - helped with many things... list is too long! :)
 
 <a href="https://github.com/kadirerdogan" target="_blank"><b>Kadir Erdogan</b></a> - created "semantic-ui" and "materialize" templates

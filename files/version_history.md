@@ -25,6 +25,24 @@ Many stars == many thanks!
 Version History
 ===============
 
+0.9.70
+------
+
+- Added experimental support for A-Frame (Virtial Reality). See <a href="http://example-aframe-iss.meteorfarm.com" target="_blank">live example</a>  - it's International Space Station mini virtual tour. Source code is <a href="https://github.com/perak/kitchen-examples/tree/master/example-aframe-iss" target="_blank">here</a>.
+
+
+0.9.69
+------
+
+- Added windows installer. You can download it <a href="/install/install_win.exe" _target="blank">here</a>.
+
+
+0.9.68
+------
+
+- Fixed bug with FlowRouter and user roles (react app)
+
+
 0.9.67
 ------
 

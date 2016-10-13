@@ -1,5 +1,5 @@
 {
-	"version": 89,
+	"version": 90,
 	"classList": [
 		{
 			"objectType": "root",
@@ -1296,6 +1296,16 @@
 					"description": "Text to be inserted into page"
 				},
 				{
+					"name": "background_image",
+					"title": "Background Image URL",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text",
+					"description": "Background image URL"
+				},
+				{
 					"name": "container_class",
 					"title": "Container class",
 					"type": "string",
@@ -1518,6 +1528,16 @@
 					"description": "Component list"
 				},
 				{
+					"name": "background_image",
+					"title": "Background Image URL",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text",
+					"description": "Background image URL"
+				},
+				{
 					"name": "container_class",
 					"title": "Container class",
 					"type": "string",
@@ -1726,7 +1746,7 @@
 						"blaze",
 						"react"
 					],
-					"description": "\"blaze\" or \"react\". Default: \"blaze\". Note: \"react\" is not implemented yet."
+					"description": "\"blaze\" or \"react\". Default: \"blaze\". Note: \"react\" is not fully implemented yet."
 				},
 				{
 					"name": "frontend",
@@ -1739,9 +1759,10 @@
 					"choice_items": [
 						"bootstrap3",
 						"semantic-ui",
-						"materialize"
+						"materialize",
+						"aframe"
 					],
-					"description": "\"bootstrap3\", \"semantic-ui\" or \"materialize\". Default: \"bootstrap3\". \"semantic-ui\" and \"materialize\" are not fully implemented yet."
+					"description": "\"bootstrap3\", \"semantic-ui\", \"materialize\" or \"aframe\". Default: \"bootstrap3\". \"semantic-ui\", \"materialize\" and \"aframe\" are not fully implemented yet. \"aframe\" can only be used with \"react\" app."
 				},
 				{
 					"name": "theme",
