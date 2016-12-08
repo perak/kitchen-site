@@ -1,5 +1,5 @@
 {
-	"version": 90,
+	"version": 92,
 	"classList": [
 		{
 			"objectType": "root",
@@ -526,6 +526,12 @@
 					"default": "",
 					"required": false,
 					"input": "stringlist",
+					"choice_items": [
+						"gridfs",
+						"filesystem",
+						"s3",
+						"dropbox"
+					],
 					"description": "For collection of type \"file_collection\": list of CollectionFS storage adapters: \"gridfs\", \"filesystem\", \"s3\" or \"dropbox\". If not specified, generator will assume \"gridfs\"."
 				},
 				{
@@ -1631,7 +1637,7 @@
 					"default": "",
 					"required": true,
 					"input": "text",
-					"description": "Source file to copy. Path is relative to input JSON."
+					"description": "Source file to copy. Can be path to local file relative to input JSON or URL (starts with \"http:\/\/\" or \"https:\/\/\")."
 				},
 				{
 					"name": "source_content",
@@ -1651,7 +1657,7 @@
 					"default": "",
 					"required": true,
 					"input": "text",
-					"description": "Destination file. You can use directory aliases: OUTPUT_DIR, CLIENT_DIR, CLIENT_LIB_DIR, CLIENT_STYLES_DIR, CLIENT_STYLES_DEFAULT_DIR, CLIENT_STYLES_THEME_DIR, CLIENT_VIEWS_DIR, CLIENT_VIEWS_NOT_FOUND_DIR, CLIENT_VIEWS_LOADING_DIR, LIB_DIR, SETTINGS_DIR, BOTH_DIR, BOTH_LIB_DIR, BOTH_COLLECTIONS_DIR, PUBLIC_DIR, PUBLIC_IMAGES_DIR, PUBLIC_FONTS_DIR, PRIVATE_DIR, SERVER_DIR, SERVER_LIB_DIR, SERVER_COLLECTIONS_DIR, SERVER_PUBLISH_DIR, SERVER_CONTROLLERS_DIR, SERVER_METHODS_DIR"
+					"description": "Destination file. You can use directory aliases: OUTPUT_DIR, CLIENT_DIR, CLIENT_LIB_DIR, CLIENT_COMPONENTS_DIR, CLIENT_STYLES_DIR, CLIENT_STYLES_DEFAULT_DIR, CLIENT_STYLES_THEME_DIR, CLIENT_VIEWS_DIR, CLIENT_VIEWS_NOT_FOUND_DIR, CLIENT_VIEWS_LOADING_DIR, LIB_DIR, SETTINGS_DIR, BOTH_DIR, BOTH_LIB_DIR, BOTH_COLLECTIONS_DIR, PUBLIC_DIR, PUBLIC_IMAGES_DIR, PUBLIC_FONTS_DIR, PRIVATE_DIR, SERVER_DIR, SERVER_LIB_DIR, SERVER_COLLECTIONS_DIR, SERVER_PUBLISH_DIR, SERVER_ROUTER_DIR, SERVER_METHODS_DIR"
 				}
 			],
 			"hideDerivedClasses": [
@@ -1793,6 +1799,16 @@
 						"flat-ui"
 					],
 					"description": "Visual theme name. With \"bootstrap\" frontend theme can be \"flat-ui\" or one of bootswatch themes: \"bootswatch-amelia\", \"bootswatch-cerulean\", \"bootswatch-cosmo\", \"bootswatch-cyborg\", \"bootswatch-darkly\", \"bootswatch-flatly\", \"bootswatch-journal\", \"bootswatch-lumen\", \"bootswatch-paper\", \"bootswatch-readable\", \"bootswatch-simplex\", \"bootswatch-slate\", \"bootswatch-spacelab\", \"bootswatch-superhero\", \"bootswatch-united\", \"bootswatch-yeti\""
+				},
+				{
+					"name": "animate",
+					"title": "Animate",
+					"type": "bool",
+					"subType": "",
+					"default": "false",
+					"required": false,
+					"input": "checkbox",
+					"description": "If set to true, animate.css will be included and all elements with \"animated\" css class will be animated when they reach viewport (on scroll and on resize)"
 				},
 				{
 					"name": "footer_text",
@@ -2003,6 +2019,16 @@
 					"required": false,
 					"input": "javascript",
 					"description": "javascript code to execute when user is logged in (Accounts.onLogin)"
+				},
+				{
+					"name": "global_on_rendered_code",
+					"title": "Global onRendered code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "javascript code to execute when any page is rendered"
 				},
 				{
 					"name": "server_startup_source_file",
@@ -3423,7 +3449,12 @@
 					"default": "",
 					"required": false,
 					"input": "stringlist",
-					"description": "View styles: \"table\", \"list\" or \"gallery\". Default: \"table\"."
+					"choice_items": [
+						"table",
+						"list",
+						"cards"
+					],
+					"description": "View styles: \"table\", \"list\" or \"cards\". Default: \"table\"."
 				},
 				{
 					"name": "fields",

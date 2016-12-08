@@ -28,7 +28,7 @@ You can download windows installer <a href="/install/install_win.exe" _target="b
 - meteor-kitchen uses "curl" to download files. You can find "curl" for windows <a href="http://www.confusedbycode.com/curl/#downloads" target="_blank">here</a>.
 
 
-Current version is 0.9.70
+Current version is 0.9.73
 =========================
 
 Click <a href="{{pathFor 'version_history'}}">here</a> to see the version history.
@@ -78,7 +78,7 @@ The Jade converter is experimental (I wrote it in a rush). It's not 100% syntact
 
 ### React (experimental)
 
-Still under development, but now you can generate (very simple) **Meteor + React + FlowRouter** apps (for example, try to build `example-minimal` or `example-accounts` application).
+Still under development, but now you can generate (very simple) **Meteor + <a href="https://facebook.github.io/react/" target="_blank">React</a> + FlowRouter** apps (for example, try to build `example-minimal` or `example-accounts` application).
 
 Use `--react` or `--blaze` command line switch:
 
@@ -91,11 +91,12 @@ meteor-kitchen <input_file_or_url> <output_directory> --react
 React is not fully supported yet - work is in progress. See <a href="{{pathFor 'compatibility'}}">Blaze vs React compatibility table</a>.
 
 
-### <span class="label label-danger">New!</span> Virtual Reality (experimental)
 
-Just playing around with A-Frame + React. Now you can generate (very simple) **Meteor + React + FlowRouter + A-Frame** application.
+### <span class="label label-danger">New!</span> Virtual Reality: A-Frame (experimental)
 
-See <a href="http://example-aframe-iss.meteorfarm.com" target="_blank">live example</a>  - it's International Space Station mini virtual tour. Source code is <a href="https://github.com/perak/kitchen-examples/tree/master/example-aframe-iss" target="_blank">here</a>.
+Just playing around with <a href="https://aframe.io/" target="_blank">A-Frame</a> + React. Now you can generate (very simple) **Meteor + React + FlowRouter + A-Frame** application.
+
+See <a href="http://example-aframe-iss.meteorfarm.com" target="_blank">live example</a>  - it's International Space Station mini tour. Source code is <a href="https://github.com/perak/kitchen-examples/tree/master/example-aframe-iss" target="_blank">here</a>.
 
 
 ### Human language support

@@ -8,6 +8,7 @@ meta\_title | string | Default meta\_title for pages without meta\_title
 templating | string | "blaze" or "react". Default: "blaze". Note: "react" is not fully implemented yet.
 frontend | string | "bootstrap3", "semantic-ui", "materialize" or "aframe". Default: "bootstrap3". "semantic-ui", "materialize" and "aframe" are not fully implemented yet. "aframe" can only be used with "react" app.
 theme | string | Visual theme name. With "bootstrap" frontend theme can be "flat-ui" or one of bootswatch themes: "bootswatch-amelia", "bootswatch-cerulean", "bootswatch-cosmo", "bootswatch-cyborg", "bootswatch-darkly", "bootswatch-flatly", "bootswatch-journal", "bootswatch-lumen", "bootswatch-paper", "bootswatch-readable", "bootswatch-simplex", "bootswatch-slate", "bootswatch-spacelab", "bootswatch-superhero", "bootswatch-united", "bootswatch-yeti"
+animate | bool | If set to true, animate.css will be included and all elements with "animated" css class will be animated when they reach viewport (on scroll and on resize)
 footer\_text | string | Text to show in page footer
 roles | array of string | List of user roles for applications with user account system. There are two predefined roles "nobody" and "owner" (see collection object for more info).
 default\_role | string | Default role for new users
@@ -29,6 +30,7 @@ server\_startup\_code | string | javascript code to execute at server startup
 client\_startup\_code | string | javascript code to execute at client startup
 on\_user\_created\_code | string | javascript code to execute when new user is created (Accounts.onCreateUser)
 on\_user\_logged\_code | string | javascript code to execute when user is logged in (Accounts.onLogin)
+global\_on\_rendered\_code | string | javascript code to execute when any page is rendered
 server\_startup\_source\_file | string | File that contains javascript code to execute at server startup (relative to input file)
 client\_startup\_source\_file | string | File that contains javascript code to execute at client startup (relative to input file)
 on\_user\_created\_source\_file | string | File that contains javascript code to execute when new user is created (relative to input file)
@@ -49,6 +51,7 @@ Example:
 	"templating": "blaze",
 	"frontend": "bootstrap3",
 	"theme": "",
+	"animate": false,
 	"footer_text": "",
 	"roles": [
 	],
@@ -76,6 +79,7 @@ Example:
 	"client_startup_code": "",
 	"on_user_created_code": "",
 	"on_user_logged_code": "",
+	"global_on_rendered_code": "",
 	"server_startup_source_file": "",
 	"client_startup_source_file": "",
 	"on_user_created_source_file": "",
@@ -226,7 +230,7 @@ edit\_route\_params | array of <a href="#param">param</a> | Parameters to be pas
 delete\_route\_params | array of <a href="#param">param</a> | Parameters to be passed to "delete\_route"
 insert\_button\_title | string | Insert button title
 on\_item\_clicked\_code | string | Code to execute when item is clicked (before redirect if DetailsRoute is specified)
-views | array of string | View styles: "table", "list" or "gallery". Default: "table".
+views | array of string | View styles: "table", "list" or "cards". Default: "table".
 fields | array of <a href="#field">field</a> | Defainition of table columns. If empty, generator will use fields defined at collection level.
 
 Example:
@@ -396,9 +400,9 @@ Example:
 
 Property | Type | Description
 ---------|------|------------
-source | string | Source file to copy. Path is relative to input JSON.
+source | string | Source file to copy. Can be path to local file relative to input JSON or URL (starts with "http://" or "https://").
 source\_content | string | If source file is not specified, this content will be written into destination file.
-dest | string | Destination file. You can use directory aliases: OUTPUT\_DIR, CLIENT\_DIR, CLIENT\_LIB\_DIR, CLIENT\_STYLES\_DIR, CLIENT\_STYLES\_DEFAULT\_DIR, CLIENT\_STYLES\_THEME\_DIR, CLIENT\_VIEWS\_DIR, CLIENT\_VIEWS\_NOT\_FOUND\_DIR, CLIENT\_VIEWS\_LOADING\_DIR, LIB\_DIR, SETTINGS\_DIR, BOTH\_DIR, BOTH\_LIB\_DIR, BOTH\_COLLECTIONS\_DIR, PUBLIC\_DIR, PUBLIC\_IMAGES\_DIR, PUBLIC\_FONTS\_DIR, PRIVATE\_DIR, SERVER\_DIR, SERVER\_LIB\_DIR, SERVER\_COLLECTIONS\_DIR, SERVER\_PUBLISH\_DIR, SERVER\_CONTROLLERS\_DIR, SERVER\_METHODS\_DIR
+dest | string | Destination file. You can use directory aliases: OUTPUT\_DIR, CLIENT\_DIR, CLIENT\_LIB\_DIR, CLIENT\_COMPONENTS\_DIR, CLIENT\_STYLES\_DIR, CLIENT\_STYLES\_DEFAULT\_DIR, CLIENT\_STYLES\_THEME\_DIR, CLIENT\_VIEWS\_DIR, CLIENT\_VIEWS\_NOT\_FOUND\_DIR, CLIENT\_VIEWS\_LOADING\_DIR, LIB\_DIR, SETTINGS\_DIR, BOTH\_DIR, BOTH\_LIB\_DIR, BOTH\_COLLECTIONS\_DIR, PUBLIC\_DIR, PUBLIC\_IMAGES\_DIR, PUBLIC\_FONTS\_DIR, PRIVATE\_DIR, SERVER\_DIR, SERVER\_LIB\_DIR, SERVER\_COLLECTIONS\_DIR, SERVER\_PUBLISH\_DIR, SERVER\_ROUTER\_DIR, SERVER\_METHODS\_DIR
 
 Example:
 ```json

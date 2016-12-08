@@ -15,7 +15,7 @@
 					{ "name": "phone", "title": "Phone", "default": "-", "exportable": true },
 					{ "name": "email", "title": "E-mail", "type": "email", "exportable": true },
 					{ "name": "note", "title": "Note", "input": "textarea", "exportable": true },
-					{ "name": "active", "title": "Active", "type": "bool", "input": "checkbox", "display_helper": "booleanToYesNo", "exportable": true }
+					{ "name": "active", "title": "Active", "type": "bool", "input": "checkbox", "exportable": true }
 				]
 			}
 		],
@@ -24,7 +24,8 @@
 			{
 				"name": "customers",
 				"collection": "customers",
-				"filter": "{}"
+				"filter": "{}",
+				"options": "{ \"sort\": { \"name\": 1 } }"
 			},
 			{
 				"name": "customers_empty",

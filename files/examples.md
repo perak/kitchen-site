@@ -86,6 +86,14 @@ Photosharing
 <a href="http://example-photosharing.meteorfarm.com" target="_blank" class="btn btn-success">Live example</a> <a href="https://github.com/perak/kitchen-examples/tree/master/example-photosharing" target="_blank" class="btn btn-default">Source code</a>
 
 
+Virtual Reality: A-Frame - ISS Mini Tour
+----------------------------------------
+
+<a href="http://example-aframe-iss.meteorfarm.com" target="_blank"><img src="/images/example-aframe-iss.png" alt="photosharing" class="example-img"></a>
+
+<a href="http://example-aframe-iss.meteorfarm.com" target="_blank" class="btn btn-success">Live example</a> <a href="https://github.com/perak/kitchen-examples/tree/master/example-aframe-iss" target="_blank" class="btn btn-default">Source code</a>
+
+
 IoT (Internet of Things) - Sensors
 ----------------------------------
 

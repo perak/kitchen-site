@@ -25,10 +25,34 @@ Many stars == many thanks!
 Version History
 ===============
 
-0.9.70
+0.9.73
 ------
 
-- Added experimental support for A-Frame (Virtial Reality). See <a href="http://example-aframe-iss.meteorfarm.com" target="_blank">live example</a>  - it's International Space Station mini virtual tour. Source code is <a href="https://github.com/perak/kitchen-examples/tree/master/example-aframe-iss" target="_blank">here</a>.
+- Fixed multiple bugs related to <a href="https://facebook.github.io/react/" target="_blank">React</a>
+
+- Added `animate` property to application object. If you set `"animate": true` then <a href="https://daneden.github.io/animate.css/" target="_blank">animate.css</a> will be included into project. You can use standard animate.css classes, but if you set `animate` class instead `animated` with effects prefixed with `a-` then elements will animate on window scroll and resize. For example `<h1 class="animate a-bounce">Hello World</h1>` will animate when visible (scrolled into view), but `<h1 class="animated bounce">Hello World</h1>` will animate when page is rendered (animate.css default behavior). See <a href="http://example-onepage.meteorfarm.com" target="_blank">One Page Site</a> example.
+
+
+0.9.72
+------
+
+- Added more support for <a href="https://facebook.github.io/react/" target="_blank">React</a> - "dataview" component is now implemented and functional (except search and sort functions). See <a href="{{pathFor 'compatibility'}}">Blaze vs React compatibility table</a> for example apps.
+
+- Improved support for A-Frame (actually nothing spectacular: "Enter VR" control is now visible)
+
+- When kitchen creates new meteor app it automatically executes "meteor npm install".
+
+- Fixed few bugs and produced few new bugs ;)
+
+
+0.9.71
+------
+
+- Implementing support for react - almost there! Most of examples now can be built without errors (with `--react` switch) but not all of them works... work still in progress...
+
+## 0.9.70 <span class="label label-danger">New!</span>
+
+- Added experimental support for <a href="https://aframe.io/" target="_blank">A-Frame</a> (Virtial Reality). See <a href="http://example-aframe-iss.meteorfarm.com" target="_blank">live example</a>  - it's International Space Station mini tour. Source code is <a href="https://github.com/perak/kitchen-examples/tree/master/example-aframe-iss" target="_blank">here</a>.
 
 
 0.9.69

@@ -106,11 +106,9 @@
 
 									"fields": [
 										{ "name": "profile.name", "title": "Name"},
-										{ "name": "profile.email", "title": "E-mail" },
+										{ "name": "profile.email", "title": "E-mail"},
 										{ "name": "roles", "title": "Role" }
 									],
-
-									"insert_route": "admin.users.insert",
 
 									"edit_route": "admin.users.edit",
 									"edit_route_params": [
@@ -146,26 +144,6 @@
 									]
 								},
 								{
-									"name": "insert",
-									"components": [
-										{
-											"name": "insert_form",
-											"type": "form",
-											"mode": "insert",
-											"title": "Add new user",
-											"submit_route": "admin.users",
-											"cancel_route": "admin.users",
-											"query_name": "users_null",
-											"query_params": [],
-											"fields": [
-												{ "name": "profile.name", "title": "Name", "required": true },
-												{ "name": "profile.email", "title": "E-mail", "type": "email", "required": true },
-												{ "name": "password", "title": "Password", "input": "password", "required": true }
-											]
-										}
-									]
-								},
-								{
 									"name": "edit",
 									"route_params": ["userId"],
 									"components": [
@@ -180,7 +158,7 @@
 											"query_params": [],
 											"fields": [
 												{ "name": "profile.name", "title": "Name", "required": true },
-												{ "name": "profile.email", "title": "E-mail", "type": "email", "required": true },
+												{ "name": "profile.email", "title": "E-mail", "type": "email", "input": "read-only" },
 												{
 													"name": "roles",
 													"type": "array",
@@ -230,7 +208,6 @@
 									"query_params": [],
 									"fields": [
 										{ "name": "profile.name", "title": "Name", "required": true },
-										{ "name": "profile.email", "title": "E-mail", "type": "email", "required": true },
 										{ "name": "profile.facebook", "title": "Facebook URL" },
 										{ "name": "profile.google", "title": "Google+ URL" },
 										{ "name": "profile.twitter", "title": "Twitter ID" },

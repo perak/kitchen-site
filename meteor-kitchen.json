@@ -548,7 +548,7 @@
 									"query_name": "applications_empty",
 									"submit_route": "applications.details",
 									"submit_route_params": [
-										{ "name": "applicationId", "value": "newId" },
+										{ "name": "applicationId", "value": "result" },
 										{ "name": "objectId", "value": null },
 										{ "name": "propertyName", "value": null }
 									],
@@ -1037,6 +1037,7 @@
 			{ "source": "files/images/example-human2machine.png", "dest": "PUBLIC_DIR/images/example-human2machine.png" },
 			{ "source": "files/images/example-semantic.png", "dest": "PUBLIC_DIR/images/example-semantic.png" },
 			{ "source": "files/images/example-materialize.png", "dest": "PUBLIC_DIR/images/example-materialize.png" },
+			{ "source": "files/images/example-aframe-iss.png", "dest": "PUBLIC_DIR/images/example-aframe-iss.png" },
 			{ "source": "files/images/ribbon-donate-gratipay.png", "dest": "PUBLIC_DIR/images/ribbon-donate-gratipay.png" },
 			{ "source": "files/images/ribbon-donate-bitcoin.png", "dest": "PUBLIC_DIR/images/ribbon-donate-bitcoin.png" },
 

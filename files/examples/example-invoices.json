@@ -4,8 +4,6 @@
 
 		"theme": "bootswatch-paper",
 
-		"on_user_created_code": "Customers.insert({ name: 'Chuck Norris', email: 'internet@chucknorris.com', ownerId: user._id });",
-
 		"collections": [
 			{
 				"name": "customers",
@@ -332,7 +330,7 @@
 
 									"submit_route": "invoices.details",
 									"submit_route_params": [
-										{ "name": "invoiceId", "value": "newId"}
+										{ "name": "invoiceId", "value": "result"}
 									],
 									"cancel_route": "invoices"
 								}

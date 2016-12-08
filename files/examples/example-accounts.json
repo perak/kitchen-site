@@ -86,7 +86,6 @@
 									"query_params": [],
 									"fields": [
 										{ "name": "profile.name", "title": "Name", "required": true },
-										{ "name": "profile.email", "title": "E-mail", "type": "email", "required": true },
 										{ "name": "profile.facebook", "title": "Facebook URL" },
 										{ "name": "profile.google", "title": "Google+ URL" },
 										{ "name": "profile.twitter", "title": "Twitter ID" },
