@@ -15,3 +15,4 @@ meteor-kitchen ./meteor-kitchen.json ./meteor-kitchen
 cd ./meteor-kitchen
 meteor
 ```
+kodklasdasdklasdklasdklasdklödasklö
