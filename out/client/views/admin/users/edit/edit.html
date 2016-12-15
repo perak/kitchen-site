@@ -1,0 +1,98 @@
+<template name="AdminUsersEdit">
+	<div class="page-container container" id="content">
+		<div class="row" id="title_row">
+			<div class="col-md-12">
+				<div id="page_menu" class="pull-right">
+				</div>
+			</div>
+		</div>
+		{{> AdminUsersEditEditForm}}
+	</div>
+</template>
+
+<template name="AdminUsersEditEditForm">
+	<div class="">
+		<h2 id="component-title">
+			Edit user
+		</h2>
+		<form id="form" role="form">
+			{{#if errorMessage}}
+			<div class="alert alert-warning">
+				{{errorMessage}}
+			</div>
+			{{/if}}		
+		
+			{{#if infoMessage}}
+			<div class="alert alert-success">
+				{{infoMessage}}
+			</div>
+			{{/if}}
+			<div class="form-group  field-profile-name">
+				<label for="profile.name">
+					Name
+				</label>
+				<div class="input-div">
+					<input type="text" name="profile.name" value="{{admin_user.profile.name}}" class="form-control" autofocus="autofocus" required="required">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-profile-email">
+				<label for="profile.email">
+					E-mail
+				</label>
+				<div class="input-div">
+					<input type="text" name="profile.email" value="{{admin_user.profile.email}}" class="form-control" required="required" data-type="email">
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group  field-roles">
+				<label for="roles">
+					Role
+				</label>
+				<div class="input-div">
+					<div class="radio">
+						<label>
+							<input type="radio" value="user" name="roles" data-type="array" {{itemIsChecked admin_user.roles "user"}}>
+							User
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input type="radio" value="admin" name="roles" data-type="array" {{itemIsChecked admin_user.roles "admin"}}>
+							Admin
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input type="radio" value="blocked" name="roles" data-type="array" {{itemIsChecked admin_user.roles "blocked"}}>
+							Blocked
+						</label>
+					</div>
+					<span id="help-text" class="help-block">
+					</span>
+					<span id="error-text" class="help-block">
+					</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="submit-div">
+					<button id="form-submit-button" class="btn btn-success" type="submit">
+						<span class="fa fa-check">
+						</span>
+						Save
+					</button>
+					<a href="#" id="form-cancel-button" class="btn btn-default">
+						Cancel
+					</a>
+				</div>
+			</div>
+		</form>
+	</div>
+</template>
+

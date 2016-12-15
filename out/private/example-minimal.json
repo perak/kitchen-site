@@ -1,0 +1,25 @@
+{
+	"application": {
+		"title": "Example application",
+
+		"free_zone": {
+
+			"pages": [
+				{ "name": "home", "title": "Home page", "text": "Hello world!" },
+				{ "name": "about", "title": "About", "text": "This example application is built with <a href=\"http://www.meteorkitchen.com\" target=\"_blank\">Meteor Kitchen</a> - code generator for <a href=\"https://www.meteor.com\" target=\"_blank\">Meteor.js</a>" }
+			],
+
+			"components": [
+				{ 
+					"name": "main_menu",
+					"type": "menu",
+					"items": [
+						{ "title": "Home page", "route": "home", "icon_class": "fa fa-home" },
+						{ "title": "About", "route": "about" }
+					]
+				}
+			]
+
+		}
+	}
+}

@@ -1,0 +1,158 @@
+<template name="DynamicForm">
+	{{#with formDescription}}
+
+		<form role="form" id="{{id}}" class="dynamic-form {{formClass}}">
+			{{#if title}}
+				<h3>
+					{{title}}
+					{{#if hasButtons}}
+						<div class="pull-right">
+							{{#if submitButton}}
+								<button type="submit" class="btn btn-sm btn-success submit-button" data-loading-text="Please wait...">{{submitButton}}</button>
+							{{/if}}
+
+							{{#if cancelButton}}
+								<button type="button" class="btn btn-sm btn-default cancel-button">{{cancelButton}}</button>
+							{{/if}}
+						</div>
+					{{/if}}
+				</h3>
+			{{/if}}
+
+			{{#if isHorizontal}}
+
+				{{#each fields}}
+					{{> DynamicFormGroupHorizontal field=this description=..}}
+				{{/each}}
+
+				{{#if hasButtons}}
+					<div class="form-group">
+						<div class="col-sm-9 col-sm-offset-3">
+							{{#if submitButton}}
+								<button type="submit" class="btn btn-success submit-button" data-loading-text="Please wait...">{{submitButton}}</button>
+							{{/if}}
+
+							{{#if cancelButton}}
+								<button type="button" class="btn btn-default cancel-button">{{cancelButton}}</button>
+							{{/if}}
+						</div>
+					</div>
+				{{/if}}
+
+			{{else}}
+
+				{{#each fields}}
+					{{> DynamicFormGroupDefault field=this description=..}}
+				{{/each}}
+
+				{{#if hasButtons}}
+					<div class="form-group">
+						{{#if submitButton}}
+							<button type="submit" class="btn btn-success submit-button" data-loading-text="Please wait...">{{submitButton}}</button>
+						{{/if}}
+
+						{{#if cancelButton}}
+							<button type="button" class="btn btn-default cancel-button">{{cancelButton}}</button>
+						{{/if}}
+					</div>
+				{{/if}}
+
+			{{/if}}
+		</form>
+	{{/with}}
+</template>
+
+<template name="DynamicFormGroupDefault">
+	<div class="form-group {{errorClass}}">
+		<label for="{{field.name}}" class="control-label">
+			{{#if field.description}}
+				<span class="fa fa-question-circle text-muted" data-toggle="popover" style="cursor: pointer;" data-trigger="hover" title="{{field.title}}" data-content="{{field.description}}"></span>&nbsp;
+			{{/if}}
+			{{field.title}}
+		</label>
+		{{> formInput data=this.description.data field=this.field}}
+		<span class="help-block"></span>
+	</div>
+</template>
+
+<template name="DynamicFormGroupHorizontal">
+	<div class="form-group {{errorClass}}">
+		<label for="{{field.name}}" class="col-sm-3 control-label">
+			{{#if field.description}}
+				<span class="fa fa-question-circle text-muted" data-toggle="popover" style="cursor: pointer;" data-trigger="hover" title="{{field.title}}" data-content="{{field.description}}"></span>&nbsp;
+			{{/if}}
+			{{field.title}}
+		</label>
+		<div class="col-sm-9">
+			{{> formInput data=this.description.data field=this.field}}
+			<span class="help-block"></span>
+		</div>
+	</div>
+</template>
+
+<template name="DynamicFormInput">
+	<input type="{{inputType}}" name="{{field.name}}" value="{{value}}" {{autofocus}} class="form-control" data-type="{{dataType}}">
+</template>
+
+<template name="DynamicFormStatic">
+	<p class="form-control-static">{{value}}</p>
+	<span class="help-block"></span>
+</template>
+
+<template name="DynamicFormTextArea">
+	<textarea name="{{field.name}}" {{autofocus}} class="form-control" data-type="{{dataType}}">{{value}}</textarea>
+</template>
+
+<template name="DynamicFormJsonEditor">
+	{{> CodeMirror name=field.name code=value options=editorOptions data=data field=field}}
+</template>
+
+<template name="DynamicFormJavascriptEditor">
+	{{> CodeMirror name=field.name code=value options=editorOptions data=data field=field}}
+</template>
+
+<template name="DynamicFormHtmlEditor">
+	{{> CodeMirror name=field.name code=value options=editorOptions data=data field=field}}
+</template>
+
+<template name="DynamicFormMarkdownEditor">
+	{{> CodeMirror name=field.name code=value options=editorOptions data=data field=field}}
+</template>
+
+<template name="DynamicFormSelect">
+	<select class="form-control" {{autofocus}} name="{{field.name}}" data-type="{{dataType}}">
+		{{#each field.items}}
+			<option value="{{value}}" {{selected ..}}>{{title}}</option>
+		{{/each}}
+	</select>
+</template>
+
+<template name="DynamicFormSelectMulti">
+	<select class="form-control" name="{{field.name}}" {{autofocus}} multiple data-type="{{dataType}}">
+		{{#each field.items}}
+			<option value="{{value}}" {{selected ..}}>{{title}}</option>
+		{{/each}}
+	</select>
+</template>
+
+<template name="DynamicFormCheckbox">
+	{{#each field.items}}
+		<div class="checkbox">
+			<label>
+				<input type="checkbox" value="{{value}}" name="{{../field.name}}" {{checked ..}} data-type="{{dataType}}">
+				{{title}}
+			</label>
+		</div>		
+	{{/each}}
+</template>
+
+<template name="DynamicFormRadio">
+	{{#each field.items}}
+		<div class="radio">
+			<label>
+				<input type="radio" value="{{value}}" name="{{../field.name}}" {{checked ..}} data-type="{{dataType}}">
+				{{title}}
+			</label>
+		</div>		
+	{{/each}}
+</template>

@@ -1,0 +1,117 @@
+<template name="ApplicationsDetails">
+	<div id="wrap">
+		<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+			<div class="navbar-container container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">
+							Toggle navigation
+						</span>
+						<span class="icon-bar">
+						</span>
+						<span class="icon-bar">
+						</span>
+						<span class="icon-bar">
+						</span>
+					</button>
+					<a class="navbar-brand" id="page-back-button" title="back" href="#">
+						<span class="fa fa-chevron-left">
+						</span>
+					</a>
+					<a class="navbar-brand" id="page-title" href="#">
+						{{application.name}}
+					</a>
+				</div>
+				<div id="menu" class="collapse navbar-collapse">
+					{{> ApplicationsDetailsLeftMenu}}{{> ApplicationsDetailsRightMenu}}
+				</div>
+			</div>
+		</div>
+		<div class="navbar-spacer">
+		</div>
+		<div id="content" class="page-container container-fluid app-editor-container">
+			<div id="title_row">
+			</div>
+			<div id="build_info" class="alert alert-info alert-dismissible build-info">
+				<button type="button" class="close build-local"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>{{> ApplicationsDetailsText}}
+			</div>
+			<div id="subcontent">
+				{{> yield region='ApplicationsDetailsSubcontent'}}
+			</div>
+		</div>
+	</div>
+	<div id="footer">
+		<div class="footer-container container-fluid">
+			<p class="text-muted">
+				Meteor Kitchen &copy; 2014 Petar Korponaić All Rights Reserved
+			</p>
+		</div>
+	</div>
+</template>
+
+<template name="ApplicationsDetailsLeftMenu">
+	<ul id="menu-items" class="nav navbar-nav">
+		<li id="menu-item-simple" class="{{menuItemClass 'applications.details.form_view'}}">
+			<a href="{{pathFor 'applications.details.form_view' applicationId=application._id objectId=null propertyName=null}}">
+				<span class="fa fa-edit">
+				</span>
+				<span class="item-title">
+					&nbsp;Designer
+				</span>
+			</a>
+		</li>
+		<li id="menu-item-simple" class="{{menuItemClass 'applications.details.sitemap'}}">
+			<a href="{{pathFor 'applications.details.sitemap' applicationId=application._id objectId=null propertyName=null}}">
+				<span class="fa fa-sitemap">
+				</span>
+				<span class="item-title">
+					&nbsp;Sitemap
+				</span>
+			</a>
+		</li>
+		<li id="menu-item-simple" class="{{menuItemClass 'applications.details.database'}}">
+			<a href="{{pathFor 'applications.details.database' applicationId=application._id objectId=null propertyName=null}}">
+				<span class="fa fa-database">
+				</span>
+				<span class="item-title">
+					&nbsp;Database
+				</span>
+			</a>
+		</li>
+		<li id="menu-item-simple" class="{{menuItemClass 'applications.details.json_view'}}">
+			<a href="{{pathFor 'applications.details.json_view' applicationId=application._id objectId=null propertyName=null}}">
+				<span class="fa fa-code">
+				</span>
+				<span class="item-title">
+					&nbsp;Edit Source
+				</span>
+			</a>
+		</li>
+		<li id="menu-item-simple" class="{{menuItemClass 'applications.details.console'}}">
+			<a href="{{pathFor 'applications.details.console' applicationId=application._id objectId=null propertyName=null}}">
+				<span class="fa fa-rocket">
+				</span>
+				<span class="item-title">
+					&nbsp;Build & Run
+				</span>
+			</a>
+		</li>
+	</ul>
+</template>
+
+<template name="ApplicationsDetailsRightMenu">
+	<ul id="menu-items" class="nav navbar-nav navbar-right">
+	</ul>
+</template>
+
+<template name="ApplicationsDetailsText">
+	{{#markdown}}To build and run this application on your local computer, open terminal and type:
+
+```
+meteor-kitchen {{urlFor 'api.getapp.json' applicationId=application._id}} <dest_dir>
+cd <dest_dir>
+meteor
+```
+{{/markdown}}
+</template>
+

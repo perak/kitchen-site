@@ -1,0 +1,304 @@
+@import "../framework/bootstrap3/custom.bootstrap.less";
+
+@navbar_height: 50px;
+@footer_height: 60px;
+
+@import "theme/theme.import.less";
+
+// **** LAYOUT ****
+
+html,
+body {
+  height: 100%;
+}
+
+h1 a, h1 a:hover,
+h2 a, h2 a:hover,
+h3 a, h3 a:hover,
+h4 a, h4 a:hover,
+h5 a, h5 a:hover,
+h6 a, h6 a:hover {
+	text-decoration: none;
+}
+
+/* Wrapper for page content to push down footer */
+.sticky-wrapper {
+  min-height: 100%;
+  height: auto;
+  /* Negative indent footer by its height */
+  margin: 0 auto (@footer_height * -1);
+  /* Pad bottom by footer height */
+  padding: 0 0 @footer_height;
+}
+
+/* Fixed height of the footer */
+.sticky-footer {
+  height: @footer_height;
+}
+
+.navbar-spacer {
+	height: @navbar_height;
+}
+
+.nav-stacked li {
+	margin-top: 2px;
+}
+
+#footer .text-muted {
+  margin: 19px 0;
+}
+
+#content .container, #subcontent .container {
+	max-width: 100%;
+}
+
+p {
+	font-size: 16px;
+}
+
+#jumbotron-image {
+	width: auto;
+	height: 1em;
+	margin-right: 20px;
+}
+
+.jumbotron {
+	-webkit-background-repeat: no-repeat;
+	-webkit-background-position: center;
+	-webkit-background-size: cover;
+	-webkit-background-attachment: fixed;
+
+	-moz-background-repeat: no-repeat;
+	-moz-background-position: center;
+	-moz-background-size: cover;
+	-moz-background-attachment: fixed;
+
+	-o-background-repeat: no-repeat;
+	-o-background-position: center;
+	-o-background-size: cover;
+	-o-background-attachment: fixed;
+
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+.nav-tabs {
+	margin-bottom: 10px;
+}
+
+.modal-backdrop {
+	z-index: @zindex-modal - 1;
+}
+
+.form-horizontal .control-label {
+	text-align: left;
+}
+
+.modal-body #component-title {
+	margin-top: 0;
+}
+
+.menu-container {
+	margin: 20px auto;
+}
+
+// **** SIDEBAR ***
+
+.sidebar {
+	position: fixed;
+	top: @navbar_height;
+	bottom: 0;
+	left: 0;
+	z-index: 1000;
+	display: block;
+	padding: 20px;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.menu-item-collapse div.collapse {
+	padding-left: 10px;
+}
+
+.menu-item-collapse div.collapse li a {
+	padding-right: 5px;	
+}
+
+.menu-hide-text .item-title {
+	display: none;
+}
+
+// **** ACCOUNT ****
+
+.account-form {
+	max-width: 400px;
+	padding: 15px;
+	margin: 0 auto;
+}
+
+.account-form .form-control {
+	margin-bottom: 15px;
+	height: 42px;
+	padding: 10px 10px;
+	font-size: 16px;
+}
+
+.account-form-text-after {
+	margin-top: 10px;
+	font-size: 14px;
+}
+
+.accounts-info-box {
+	max-width: 400px;
+	padding: 15px;
+	margin: 0 auto;	
+}
+
+/* ------------------ */
+
+.td-icon {
+	width: 30px;
+}
+
+.td-icon .fa {
+	cursor: pointer;
+	color: @text-muted;
+}
+
+.td-icon .fa:hover {
+	color: @text-color;
+}
+
+.th-sortable {
+	cursor: pointer;	
+}
+
+.table-hover tr {
+	cursor: pointer;
+}
+
+#dataview-controls {
+	margin-bottom: 10px;
+}
+
+#dataview-controls-search {
+	display: inline;
+}
+
+
+// **** OBJECT TREE ****
+
+.well.object-tree-container h2,
+.well.object-tree-container h3 {
+	margin-top: 0;
+}
+
+.well.object-tree-container {
+	width: 100%;
+	overflow-y: auto;
+	padding: 5px;
+}
+
+ul.object-tree li a {
+	display: inline-block;
+}
+
+ul.object-tree {
+	padding-left: 10px;	
+}
+
+ul.object-tree ul.object-tree {
+	padding-left: 20px;	
+}
+
+li.collapsed ul {
+	display: none;	
+}
+
+li.active > a > span.text-muted {
+	color: inherit;
+}
+
+.object-tree.nav > li > a {
+	padding: 5px 10px;
+}
+
+// **** OBJECT FORM ****
+
+.well.object-form-container {
+	width: 100%;
+	padding: 10px 15px;
+}
+
+.well.object-form-container h2,
+.well.object-form-container h3 {
+	margin-top: 0;
+}
+
+.datepicker-dropdown {
+	z-index: 10000 !important;
+	padding: 4px;
+}
+
+// examples page - should be moved to custom.less
+
+.example-img {
+	width: 400px;
+	height: auto;
+}
+
+// --
+
+#page-close-button {
+	margin: 21px 0 10px 0;
+}
+
+// -- bootbox
+
+.bootbox-body .container {
+	width: auto;
+}
+
+/* TREE VIEW */
+
+ul.tree-view ul.tree-view {
+	padding-left: 20px;
+}
+
+.tree-view-submenu {
+	display: inline-block;
+}
+
+.tree-view-dir-submenu,
+.tree-view-item-submenu {
+	opacity: 0;
+}
+
+.tree-view-dir-link:hover .tree-view-dir-submenu,
+.tree-view-item-link:hover .tree-view-item-submenu {
+	opacity: 1;
+}
+
+// **** LOADING ****
+
+.loading {
+	display: relative;
+	vertical-align: middle;
+	padding: 50px 0; // to avoid seeing it top when loading main pages
+	text-align: center;
+	i {
+		color: @gray-lighter;
+	}
+}
+
+// ****
+
+.t-row {
+	display: table-row; white-space: nowrap;
+};
+
+.t-cell {
+	display: table-cell; vertical-align: top;
+}

@@ -1,0 +1,44 @@
+<template name="UserSettings">
+	<div class="page-container container">
+		<div class="row">
+			<div class="col-md-12" id="content">
+				<div class="row" id="title_row">
+					<div class="col-md-12">
+						<div id="page_menu" class="pull-right">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div id="menu" class="col-sm-3 col-md-2">
+				<h2>
+				</h2>
+				{{> UserSettingsSideMenu}}
+			</div>
+			<div id="subcontent" class="col-sm-9 col-md-10">
+				{{> yield region='UserSettingsSubcontent'}}
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="UserSettingsSideMenu">
+	<ul id="menu-items" class="nav nav-stacked nav-pills">
+		<li id="menu-item-simple" class="{{menuItemClass 'user_settings.profile'}}">
+			<a href="{{pathFor 'user_settings.profile'}}">
+				<span class="item-title">
+					Profile
+				</span>
+			</a>
+		</li>
+		<li id="menu-item-simple" class="{{menuItemClass 'user_settings.change_pass'}}">
+			<a href="{{pathFor 'user_settings.change_pass'}}">
+				<span class="item-title">
+					Change password
+				</span>
+			</a>
+		</li>
+	</ul>
+</template>
+
