@@ -24,7 +24,7 @@
 			{
 				"name": "invoices",
 				"fields": [
-					{ "name": "invoiceNumber", "title": "Invoice number", "default": "{{nextInvoiceNumber}}", "required": true, "exportable": true },
+					{ "name": "invoiceNumber", "title": "Invoice number", "default": "", "required": true, "exportable": true },
 					{ "name": "date", "title": "Invoice date", "type": "date", "format": "MM-DD-YYYY", "input": "datepicker", "default": "today", "required": true, "exportable": true },
 
 					{
@@ -345,7 +345,7 @@
 									"name": "details_form",
 									"type": "form",
 									"mode": "read_only",
-									"title": "Invoice #{{invoice_details.invoiceNumber}}",
+									"title": "Invoice details",
 									"layout": "horizontal",
 									"query_name": "invoice_details",
 									"back_route": "invoices"

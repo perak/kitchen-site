@@ -22,7 +22,9 @@ Videos
 Many thanks to <a href="https://github.com/bartonhammond" target="_blank"><b>Barton Hammond</b></a> who recorded excellent screencasts:
 
 <h3>Meteor Kitchen: Todo App - Insert Delete</h3>
-[![Meteor Kitchen: Todo App - Insert Delete](https://img.youtube.com/vi/RjDitvJudTc/0.jpg)](https://www.youtube.com/watch?v=RjDitvJudTc)
 
-<h3>Meteor Kitchen: Todo App & Collection</h3>
-[![Meteor Kitchen: Todo App & Collection](https://img.youtube.com/vi/KANRgb1eTrg/0.jpg)](https://www.youtube.com/watch?v=KANRgb1eTrg)
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=RjDitvJudTc" target="_blank"><img src="http://img.youtube.com/vi/RjDitvJudTc/0.jpg" alt="Meteor Kitchen: Todo App - Insert Delete" width="240" height="180" border="10" /></a>
+
+<h3>Meteor Kitchen: Todo App &amp; Collection</h3>
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=KANRgb1eTrg" target="_blank"><img src="http://img.youtube.com/vi/KANRgb1eTrg/0.jpg" alt="Meteor Kitchen: Todo App & Collection" width="240" height="180" border="10" /></a>

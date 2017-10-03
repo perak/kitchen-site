@@ -6,8 +6,8 @@ title | string | Application title
 meta\_description | string | Default meta\_description for pages without meta\_description
 meta\_title | string | Default meta\_title for pages without meta\_title
 templating | string | "blaze" or "react". Default: "blaze". Note: "react" is not fully implemented yet.
-frontend | string | "bootstrap3", "semantic-ui", "materialize" or "aframe". Default: "bootstrap3". "semantic-ui", "materialize" and "aframe" are not fully implemented yet. "aframe" can only be used with "react" app.
-theme | string | Visual theme name. With "bootstrap" frontend theme can be "flat-ui" or one of bootswatch themes: "bootswatch-amelia", "bootswatch-cerulean", "bootswatch-cosmo", "bootswatch-cyborg", "bootswatch-darkly", "bootswatch-flatly", "bootswatch-journal", "bootswatch-lumen", "bootswatch-paper", "bootswatch-readable", "bootswatch-simplex", "bootswatch-slate", "bootswatch-spacelab", "bootswatch-superhero", "bootswatch-united", "bootswatch-yeti"
+frontend | string | "bootstrap3", "semantic-ui", "materialize" or "aframe". Default: "bootstrap3". "materialize" and "aframe" are not fully implemented yet. "aframe" works only with "react".
+theme | string | Visual theme name. With "bootstrap" frontend theme can be "flat-ui" or one of bootswatch themes: "bootswatch-amelia", "bootswatch-cerulean", "bootswatch-cosmo", "bootswatch-cyborg", "bootswatch-darkly", "bootswatch-flatly", "bootswatch-journal", "bootswatch-lumen", "bootswatch-paper", "bootswatch-readable", "bootswatch-sandstone", "bootswatch-simplex", "bootswatch-slate", "bootswatch-solar", "bootswatch-spacelab", "bootswatch-superhero", "bootswatch-united", "bootswatch-yeti"
 animate | bool | If set to true, animate.css will be included and all elements with "animated" css class will be animated when they reach viewport (on scroll and on resize)
 footer\_text | string | Text to show in page footer
 roles | array of string | List of user roles for applications with user account system. There are two predefined roles "nobody" and "owner" (see collection object for more info).
@@ -104,6 +104,7 @@ Property | Type | Description
 name | string | Object name
 type | string | Collection type. Can be "collection" or "file\_collection" (FS.Collection). Default: "collection".
 storage\_adapters | array of string | For collection of type "file\_collection": list of CollectionFS storage adapters: "gridfs", "filesystem", "s3" or "dropbox". If not specified, generator will assume "gridfs".
+storage\_adapter\_options | string | For collection of type "file\_collection": list of CollectionFS storage adapters and their options. Example: `{ "s3": { "bucket": "mybucket" }, "gridfs": { } }`.
 fields | array of <a href="#field">field</a> | Field list. Not mandatory, used by components such as form, dataview etc.
 owner\_field | string | Field name used to store user ID of document owner. Only for apps using user accounts. Value of this field will be automatically set server side by "before.insert" hook.
 roles\_allowed\_to\_read | array of string | List of user roles that can subscribe to this collection. You can use special roles "nobody" (nobody can read) and "owner" (only owner/creator can read).
@@ -131,6 +132,7 @@ Example:
 	"type": "collection",
 	"storage_adapters": [
 	],
+	"storage_adapter_options": "",
 	"fields": [
 	],
 	"owner_field": "",
@@ -169,6 +171,8 @@ custom\_template | string | Custom html and js template filename (without extens
 html | string | Custom HTML code (for "blaze" applications only - ignored if "react" is used)
 js | string | Custom JS code (for "blaze" applications only - ignored if "react" is used)
 jsx | string | Custom JSX code (for "react" applications only - ignored if "blaze" is used)
+gasoline | <a href="#gasoline">gasoline</a> | Input for gasoline-turbo (generates both blaze and react from the same input)
+use\_gasoline | bool | If set to true, generator will ignore HTML, JS and JSX members, and will use gasoline-turbo to build template(s)
 imports | array of string | list of modules to import. Example: `import {X} from "Y";` ("react" applications only)
 dest\_selector | string | destination html element selector. Similar to jQuery selector, but only three simple formats are supported: "tagname", "#element\_id" and ".class\_name".
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
@@ -186,6 +190,9 @@ Example:
 	"html": "",
 	"js": "",
 	"jsx": "",
+	"gasoline": {
+	},
+	"use_gasoline": false,
 	"imports": [
 	],
 	"dest_selector": "",
@@ -217,9 +224,12 @@ query\_name | string | Query (publication) name from application.queries used as
 query\_params | array of <a href="#param">param</a> | Query (publication) params
 custom\_data\_code | string | Code to execute just before data from database is returned (executes before iron-router `data` function returns or in React apps before `getMeteorData` returns). You can modify `data` variable here.
 components | array of <a href="#component">component</a> | Component list
-template\_rendered\_code | string | Code to be executed once template is rendered
+template\_created\_code | string | Code to be executed when template is created (before it is rendered)
+template\_rendered\_code | string | Code to be executed when template is rendered
+template\_destroyed\_code | string | Code to be executed before template is destroyed
 text\_if\_empty | string | Text to show if collection is empty.
 text\_if\_not\_found | string | Text to show if search string is not found.
+delete\_confirmation\_message | string | Text to show in delete confirmation box.
 insert\_route | string | Route name of page containing insert form
 details\_route | string | Route name of page showing selected item details (usually page containing form of type "read\_only").
 edit\_route | string | Route name of page containing edit form. Makes edit\_route\_params field mandatory in most cases to be functional.
@@ -253,9 +263,12 @@ Example:
 	"custom_data_code": "",
 	"components": [
 	],
+	"template_created_code": "",
 	"template_rendered_code": "",
+	"template_destroyed_code": "",
 	"text_if_empty": "No data here",
 	"text_if_not_found": "",
+	"delete_confirmation_message": "",
 	"insert_route": "",
 	"details_route": "",
 	"edit_route": "",
@@ -313,6 +326,32 @@ Example:
 }
 ```
 
+# editable_content
+
+Property | Type | Description
+---------|------|------------
+name | string | Object name
+type | string | Component type name.
+imports | array of string | list of modules to import. Example: `import {X} from "Y";` ("react" applications only)
+dest\_selector | string | destination html element selector. Similar to jQuery selector, but only three simple formats are supported: "tagname", "#element\_id" and ".class\_name".
+dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
+class | string | CSS class name to be added to component
+text\_if\_empty | string | text to show if no content
+
+Example:
+```json
+{
+	"name": "",
+	"type": "editable_content",
+	"imports": [
+	],
+	"dest_selector": "",
+	"dest_position": "",
+	"class": "",
+	"text_if_empty": ""
+}
+```
+
 # field
 
 Property | Type | Description
@@ -351,6 +390,7 @@ show\_in\_dataview | bool | If set to "false", field will not be shown in datavi
 show\_in\_insert\_form | bool | If set to "false", field will not be included in forms with mode "insert". Default: true
 show\_in\_update\_form | bool | If set to "false", field will not be included in forms with mode "update". Default: true
 show\_in\_read\_only\_form | bool | If set to "false", field will not be included in forms with mode "read\_only". Default: true
+role\_in\_blog | string | Specify which role this field will have in dataview ("view\_style": "blog"). Can be one of: "title", "subtitle", "text", "date".
 
 Example:
 ```json
@@ -392,7 +432,8 @@ Example:
 	"show_in_dataview": true,
 	"show_in_insert_form": true,
 	"show_in_update_form": true,
-	"show_in_read_only_form": true
+	"show_in_read_only_form": true,
+	"role_in_blog": ""
 }
 ```
 
@@ -431,9 +472,12 @@ query\_name | string | Query (publication) name from application.queries used as
 query\_params | array of <a href="#param">param</a> | Query (publication) params
 custom\_data\_code | string | Code to execute just before data from database is returned (executes before iron-router `data` function returns or in React apps before `getMeteorData` returns). You can modify `data` variable here.
 components | array of <a href="#component">component</a> | Component list
-template\_rendered\_code | string | Code to be executed once template is rendered
+template\_created\_code | string | Code to be executed when template is created (before it is rendered)
+template\_rendered\_code | string | Code to be executed when template is rendered
+template\_destroyed\_code | string | Code to be executed before template is destroyed
 mode | string | "insert", "update" or "read\_only"
 layout | string | "default", "horizontal" or "inline"
+autofocus | bool | If set to true, first focusable input element will have "autofocus" attribute set
 submit\_route | string | Route name of page to navigate after successfull submit. Mandatory field for submit button to appear
 cancel\_route | string | Route name of page to navigate on form cancelation. Mandatory field for cancel button to appear
 close\_route | string | Route name of page to navigate when user clicks "OK" button in "read\_only" form. Mandatory field for close button to appear
@@ -470,9 +514,12 @@ Example:
 	"custom_data_code": "",
 	"components": [
 	],
+	"template_created_code": "",
 	"template_rendered_code": "",
+	"template_destroyed_code": "",
 	"mode": "",
 	"layout": "default",
+	"autofocus": true,
 	"submit_route": "",
 	"cancel_route": "",
 	"close_route": "",
@@ -493,6 +540,253 @@ Example:
 	"fields": [
 	],
 	"hidden_fields": [
+	]
+}
+```
+
+# gas_condition
+
+Property | Type | Description
+---------|------|------------
+children | array of <a href="#gas_node">gas\_node</a> | 
+type | string | 
+condition | string | 
+
+Example:
+```json
+{
+	"children": [
+	],
+	"type": "condition",
+	"condition": ""
+}
+```
+
+# gas_condition_false
+
+Property | Type | Description
+---------|------|------------
+children | array of <a href="#gas_node">gas\_node</a> | 
+type | string | 
+
+Example:
+```json
+{
+	"children": [
+	],
+	"type": "condition-false"
+}
+```
+
+# gas_condition_true
+
+Property | Type | Description
+---------|------|------------
+children | array of <a href="#gas_node">gas\_node</a> | 
+type | string | 
+
+Example:
+```json
+{
+	"children": [
+	],
+	"type": "condition-true"
+}
+```
+
+# gas_element
+
+Property | Type | Description
+---------|------|------------
+name | string | Object name
+children | array of <a href="#gas_node">gas\_node</a> | 
+
+Example:
+```json
+{
+	"name": "",
+	"children": [
+	]
+}
+```
+
+# gas_event
+
+Property | Type | Description
+---------|------|------------
+type | string | 
+event | string | 
+handler | string | 
+
+Example:
+```json
+{
+	"type": "event",
+	"event": "",
+	"handler": ""
+}
+```
+
+# gas_handler
+
+Property | Type | Description
+---------|------|------------
+name | string | Object name
+type | string | 
+code | string | 
+
+Example:
+```json
+{
+	"name": "",
+	"type": "handler",
+	"code": ""
+}
+```
+
+# gas_helper
+
+Property | Type | Description
+---------|------|------------
+name | string | Object name
+type | string | 
+code | string | 
+
+Example:
+```json
+{
+	"name": "",
+	"type": "helper",
+	"code": ""
+}
+```
+
+# gas_html
+
+Property | Type | Description
+---------|------|------------
+children | array of <a href="#gas_node">gas\_node</a> | 
+type | string | 
+element | string | 
+selector | string | 
+attributes | array of <a href="#param">param</a> | 
+events | array of <a href="#gas_event">gas\_event</a> | 
+
+Example:
+```json
+{
+	"children": [
+	],
+	"type": "html",
+	"element": "div",
+	"selector": "",
+	"attributes": [
+	],
+	"events": [
+	]
+}
+```
+
+# gas_inclusion
+
+Property | Type | Description
+---------|------|------------
+children | array of <a href="#gas_node">gas\_node</a> | 
+type | string | 
+template | string | 
+
+Example:
+```json
+{
+	"children": [
+	],
+	"type": "inclusion",
+	"template": ""
+}
+```
+
+# gas_loop
+
+Property | Type | Description
+---------|------|------------
+children | array of <a href="#gas_node">gas\_node</a> | 
+type | string | 
+dataset | string | 
+
+Example:
+```json
+{
+	"children": [
+	],
+	"type": "loop",
+	"dataset": ""
+}
+```
+
+# gas_node
+
+Property | Type | Description
+---------|------|------------
+name | string | Object name
+
+Example:
+```json
+{
+	"name": ""
+}
+```
+
+# gas_template
+
+Property | Type | Description
+---------|------|------------
+name | string | Object name
+children | array of <a href="#gas_node">gas\_node</a> | 
+type | string | 
+handlers | array of <a href="#gas_handler">gas\_handler</a> | 
+helpers | array of <a href="#gas_helper">gas\_helper</a> | 
+
+Example:
+```json
+{
+	"name": "",
+	"children": [
+	],
+	"type": "template",
+	"handlers": [
+	],
+	"helpers": [
+	]
+}
+```
+
+# gas_text
+
+Property | Type | Description
+---------|------|------------
+type | string | 
+text | string | 
+
+Example:
+```json
+{
+	"type": "text",
+	"text": ""
+}
+```
+
+# gasoline
+
+Property | Type | Description
+---------|------|------------
+type | string | 
+templates | array of <a href="#gas_template">gas\_template</a> | 
+
+Example:
+```json
+{
+	"type": "gasoline",
+	"templates": [
 	]
 }
 ```
@@ -545,7 +839,9 @@ query\_name | string | Query (publication) name from application.queries used as
 query\_params | array of <a href="#param">param</a> | Query (publication) params
 custom\_data\_code | string | Code to execute just before data from database is returned (executes before iron-router `data` function returns or in React apps before `getMeteorData` returns). You can modify `data` variable here.
 components | array of <a href="#component">component</a> | Component list
-template\_rendered\_code | string | Code to be executed once template is rendered
+template\_created\_code | string | Code to be executed when template is created (before it is rendered)
+template\_rendered\_code | string | Code to be executed when template is rendered
+template\_destroyed\_code | string | Code to be executed before template is destroyed
 text | string | Text to be shown in jumbotron
 image\_url | string | Background image URL
 button\_title | string | Jumbotron button title
@@ -573,7 +869,9 @@ Example:
 	"custom_data_code": "",
 	"components": [
 	],
+	"template_created_code": "",
 	"template_rendered_code": "",
+	"template_destroyed_code": "",
 	"text": "",
 	"image_url": "",
 	"button_title": "",
@@ -638,7 +936,9 @@ query\_name | string | Query (publication) name from application.queries used as
 query\_params | array of <a href="#param">param</a> | Query (publication) params
 custom\_data\_code | string | Code to execute just before data from database is returned (executes before iron-router `data` function returns or in React apps before `getMeteorData` returns). You can modify `data` variable here.
 components | array of <a href="#component">component</a> | Component list
-template\_rendered\_code | string | Code to be executed once template is rendered
+template\_created\_code | string | Code to be executed when template is created (before it is rendered)
+template\_rendered\_code | string | Code to be executed when template is rendered
+template\_destroyed\_code | string | Code to be executed before template is destroyed
 items | array of <a href="#menu_item">menu\_item</a> | Menu items.
 items\_container\_class | string | CSS class for div containing menu items.
 scroll\_spy\_selector | string | "scrollspy" selector for menus with anchor links, usually "body".
@@ -663,7 +963,9 @@ Example:
 	"custom_data_code": "",
 	"components": [
 	],
+	"template_created_code": "",
 	"template_rendered_code": "",
+	"template_destroyed_code": "",
 	"items": [
 	],
 	"items_container_class": "",
@@ -730,6 +1032,11 @@ name | string | Object name
 type | string | Component type name.
 template | string | Built-in html and js template file name (without extension) contained in kitchen templates directory.
 custom\_template | string | Custom html and js template filename (without extension). Path is relative to input JSON file.
+html | string | Custom HTML code (for "blaze" applications only - ignored if "react" is used)
+js | string | Custom JS code (for "blaze" applications only - ignored if "react" is used)
+jsx | string | Custom JSX code (for "react" applications only - ignored if "blaze" is used)
+gasoline | <a href="#gasoline">gasoline</a> | Input for gasoline-turbo (generates both blaze and react from the same input)
+use\_gasoline | bool | If set to true, generator will ignore HTML, JS and JSX members, and will use gasoline-turbo to build template(s)
 imports | array of string | list of modules to import. Example: `import {X} from "Y";` ("react" applications only)
 class | string | CSS class name to be added to component
 title | string | Component title
@@ -740,7 +1047,10 @@ query\_name | string | Query (publication) name from application.queries used as
 query\_params | array of <a href="#param">param</a> | Query (publication) params
 custom\_data\_code | string | Code to execute just before data from database is returned (executes before iron-router `data` function returns or in React apps before `getMeteorData` returns). You can modify `data` variable here.
 components | array of <a href="#component">component</a> | Component list
-template\_rendered\_code | string | Code to be executed once template is rendered
+template\_created\_code | string | Code to be executed when template is created (before it is rendered)
+template\_rendered\_code | string | Code to be executed when template is rendered
+template\_destroyed\_code | string | Code to be executed before template is destroyed
+user\_defined\_template | bool | If set to true then built-in template will be ignored and "html", "js" and "jsx" properties will be used.
 meta\_description | string | Meta description
 meta\_title | string | Head title tag and meta title
 text | string | Text to be inserted into page
@@ -768,6 +1078,12 @@ Example:
 	"type": "page",
 	"template": "",
 	"custom_template": "",
+	"html": "",
+	"js": "",
+	"jsx": "",
+	"gasoline": {
+	},
+	"use_gasoline": false,
 	"imports": [
 	],
 	"class": "",
@@ -781,7 +1097,10 @@ Example:
 	"custom_data_code": "",
 	"components": [
 	],
+	"template_created_code": "",
 	"template_rendered_code": "",
+	"template_destroyed_code": "",
+	"user_defined_template": false,
 	"meta_description": "",
 	"meta_title": "",
 	"text": "",
@@ -867,7 +1186,7 @@ Property | Type | Description
 name | string | Object name
 collection | string | Name of existing collection
 find\_one | bool | If set to true query will return single document: findOne(). Default: false
-filter | string | Mongo query expression. Will be passed as first argument to find() or findOne(). Can contain route params in form ":paramName".
+filter | string | Mongo query expression. Will be passed as first argument to find() or findOne(). Can contain route params in form ":paramName". String "Meteor.userId()" is treated in special way: at the client it remains `Meteor.userId()` but at the server (in publication) it will be converted to `this.userId`.
 options | string | Options parameter passed as second argument to find() or findOne().
 related\_queries | array of <a href="#subscription">subscription</a> | Page which subscribes to this query will also subscribe to related queries (for example: this is useful if you are using transform function that uses data from other collection).
 
@@ -976,7 +1295,9 @@ query\_name | string | Query (publication) name from application.queries used as
 query\_params | array of <a href="#param">param</a> | Query (publication) params
 custom\_data\_code | string | Code to execute just before data from database is returned (executes before iron-router `data` function returns or in React apps before `getMeteorData` returns). You can modify `data` variable here.
 components | array of <a href="#component">component</a> | Component list
-template\_rendered\_code | string | Code to be executed once template is rendered
+template\_created\_code | string | Code to be executed when template is created (before it is rendered)
+template\_rendered\_code | string | Code to be executed when template is rendered
+template\_destroyed\_code | string | Code to be executed before template is destroyed
 item\_name\_field | string | Collection field shown as folder and item title
 item\_type\_field | string | Collection field that stores item type. Can be "dir" or "item".
 collapsed\_icon\_class | string | CSS class for collapsed folder icon. Default: "fa fa-caret-right"
@@ -1006,7 +1327,9 @@ Example:
 	"custom_data_code": "",
 	"components": [
 	],
+	"template_created_code": "",
 	"template_rendered_code": "",
+	"template_destroyed_code": "",
 	"item_name_field": "",
 	"item_type_field": "",
 	"collapsed_icon_class": "",
@@ -1025,16 +1348,22 @@ Example:
 Property | Type | Description
 ---------|------|------------
 type | string | Component type name.
+html | string | Custom HTML code (for "blaze" applications only - ignored if "react" is used)
+js | string | Custom JS code (for "blaze" applications only - ignored if "react" is used)
+jsx | string | Custom JSX code (for "react" applications only - ignored if "blaze" is used)
+gasoline | <a href="#gasoline">gasoline</a> | Input for gasoline-turbo (generates both blaze and react from the same input)
+use\_gasoline | bool | If set to true, generator will ignore HTML, JS and JSX members, and will use gasoline-turbo to build template(s)
 imports | array of string | list of modules to import. Example: `import {X} from "Y";` ("react" applications only)
 query\_name | string | Query (publication) name from application.queries used as main data context. Page's router will subscribe to this publication automatically.
 query\_params | array of <a href="#param">param</a> | Query (publication) params
 custom\_data\_code | string | Code to execute just before data from database is returned (executes before iron-router `data` function returns or in React apps before `getMeteorData` returns). You can modify `data` variable here.
 components | array of <a href="#component">component</a> | Component list
+user\_defined\_template | bool | If set to true then built-in template will be ignored and "html", "js" and "jsx" properties will be used.
 background\_image | string | Background image URL
 container\_class | string | Class to be added to page container. Example: "container-fluid". Default "container".
 pages | array of <a href="#page">page</a> | Subpages
 layout\_template | string | Custom layout template name
-layout | string | Built-in layout template name: "empty", "navbar" or "sticky\_footer". Default: "navbar"
+layout | string | Built-in layout template name: "navbar", "sidenav", "sticky\_footer" or "empty". Default: "navbar"
 default\_route | string | "home" route for this zone.
 navbar\_class | string | CSS class name to be added to navbar.
 footer\_class | string | CSS class name to be added to footer.
@@ -1043,6 +1372,12 @@ Example:
 ```json
 {
 	"type": "zone",
+	"html": "",
+	"js": "",
+	"jsx": "",
+	"gasoline": {
+	},
+	"use_gasoline": false,
 	"imports": [
 	],
 	"query_name": "",
@@ -1051,6 +1386,7 @@ Example:
 	"custom_data_code": "",
 	"components": [
 	],
+	"user_defined_template": false,
 	"background_image": "",
 	"container_class": "",
 	"pages": [

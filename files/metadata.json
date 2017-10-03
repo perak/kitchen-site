@@ -1,5 +1,5 @@
 {
-	"version": 93,
+	"version": 103,
 	"classList": [
 		{
 			"objectType": "root",
@@ -422,6 +422,23 @@
 					"required": false,
 					"input": "checkbox",
 					"description": "If set to \"false\", field will not be included in forms with mode \"read_only\". Default: true"
+				},
+				{
+					"name": "role_in_blog",
+					"title": "Role in Blog",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "select",
+					"choice_items": [
+						"",
+						"title",
+						"subtitle",
+						"text",
+						"date"
+					],
+					"description": "Specify which role this field will have in dataview (\"view_style\": \"blog\"). Can be one of: \"title\", \"subtitle\", \"text\", \"date\"."
 				}
 			],
 			"hideDerivedClasses": [
@@ -533,6 +550,16 @@
 						"dropbox"
 					],
 					"description": "For collection of type \"file_collection\": list of CollectionFS storage adapters: \"gridfs\", \"filesystem\", \"s3\" or \"dropbox\". If not specified, generator will assume \"gridfs\"."
+				},
+				{
+					"name": "storage_adapter_options",
+					"title": "Storage adapter options",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "json",
+					"description": "For collection of type \"file_collection\": list of CollectionFS storage adapters and their options. Example: `{ \"s3\": { \"bucket\": \"mybucket\" }, \"gridfs\": { } }`."
 				},
 				{
 					"name": "fields",
@@ -773,7 +800,7 @@
 					"default": "",
 					"required": false,
 					"input": "json",
-					"description": "Mongo query expression. Will be passed as first argument to find() or findOne(). Can contain route params in form \":paramName\"."
+					"description": "Mongo query expression. Will be passed as first argument to find() or findOne(). Can contain route params in form \":paramName\". String \"Meteor.userId()\" is treated in special way: at the client it remains `Meteor.userId()` but at the server (in publication) it will be converted to `this.userId`."
 				},
 				{
 					"name": "options",
@@ -994,6 +1021,16 @@
 					"description": "Component list"
 				},
 				{
+					"name": "template_created_code",
+					"title": "Template created code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Code to be executed when template is created (before it is rendered)"
+				},
+				{
 					"name": "template_rendered_code",
 					"title": "Template rendered code",
 					"type": "string",
@@ -1001,7 +1038,17 @@
 					"default": "",
 					"required": false,
 					"input": "javascript",
-					"description": "Code to be executed once template is rendered"
+					"description": "Code to be executed when template is rendered"
+				},
+				{
+					"name": "template_destroyed_code",
+					"title": "Template destroyed code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Code to be executed before template is destroyed"
 				}
 			],
 			"hideDerivedClasses": [
@@ -1162,6 +1209,56 @@
 					"description": "Custom html and js template filename (without extension). Path is relative to input JSON file."
 				},
 				{
+					"name": "html",
+					"title": "HTML code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "html",
+					"description": "Custom HTML code (for \"blaze\" applications only - ignored if \"react\" is used)"
+				},
+				{
+					"name": "js",
+					"title": "JS code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Custom JS code (for \"blaze\" applications only - ignored if \"react\" is used)"
+				},
+				{
+					"name": "jsx",
+					"title": "JSX code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Custom JSX code (for \"react\" applications only - ignored if \"blaze\" is used)"
+				},
+				{
+					"name": "gasoline",
+					"title": "Generic Template",
+					"type": "gasoline",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "",
+					"description": "Input for gasoline-turbo (generates both blaze and react from the same input)"
+				},
+				{
+					"name": "use_gasoline",
+					"title": "Use visual designer",
+					"type": "bool",
+					"subType": "",
+					"default": "false",
+					"required": false,
+					"input": "checkbox",
+					"description": "If set to true, generator will ignore HTML, JS and JSX members, and will use gasoline-turbo to build template(s)"
+				},
+				{
 					"name": "imports",
 					"title": "Import modules",
 					"type": "array",
@@ -1262,6 +1359,16 @@
 					"description": "Component list"
 				},
 				{
+					"name": "template_created_code",
+					"title": "Template created code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Code to be executed when template is created (before it is rendered)"
+				},
+				{
 					"name": "template_rendered_code",
 					"title": "Template rendered code",
 					"type": "string",
@@ -1269,7 +1376,27 @@
 					"default": "",
 					"required": false,
 					"input": "javascript",
-					"description": "Code to be executed once template is rendered"
+					"description": "Code to be executed when template is rendered"
+				},
+				{
+					"name": "template_destroyed_code",
+					"title": "Template destroyed code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Code to be executed before template is destroyed"
+				},
+				{
+					"name": "user_defined_template",
+					"title": "User defined template",
+					"type": "bool",
+					"subType": "",
+					"default": "false",
+					"required": false,
+					"input": "checkbox",
+					"description": "If set to true then built-in template will be ignored and \"html\", \"js\" and \"jsx\" properties will be used."
 				},
 				{
 					"name": "meta_description",
@@ -1484,6 +1611,56 @@
 					"description": "Component type name."
 				},
 				{
+					"name": "html",
+					"title": "HTML code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "html",
+					"description": "Custom HTML code (for \"blaze\" applications only - ignored if \"react\" is used)"
+				},
+				{
+					"name": "js",
+					"title": "JS code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Custom JS code (for \"blaze\" applications only - ignored if \"react\" is used)"
+				},
+				{
+					"name": "jsx",
+					"title": "JSX code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Custom JSX code (for \"react\" applications only - ignored if \"blaze\" is used)"
+				},
+				{
+					"name": "gasoline",
+					"title": "Generic Template",
+					"type": "gasoline",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "",
+					"description": "Input for gasoline-turbo (generates both blaze and react from the same input)"
+				},
+				{
+					"name": "use_gasoline",
+					"title": "Use visual designer",
+					"type": "bool",
+					"subType": "",
+					"default": "false",
+					"required": false,
+					"input": "checkbox",
+					"description": "If set to true, generator will ignore HTML, JS and JSX members, and will use gasoline-turbo to build template(s)"
+				},
+				{
 					"name": "imports",
 					"title": "Import modules",
 					"type": "array",
@@ -1532,6 +1709,16 @@
 					"required": false,
 					"input": "",
 					"description": "Component list"
+				},
+				{
+					"name": "user_defined_template",
+					"title": "User defined template",
+					"type": "bool",
+					"subType": "",
+					"default": "false",
+					"required": false,
+					"input": "checkbox",
+					"description": "If set to true then built-in template will be ignored and \"html\", \"js\" and \"jsx\" properties will be used."
 				},
 				{
 					"name": "background_image",
@@ -1584,10 +1771,12 @@
 					"choice_items": [
 						"",
 						"navbar",
+						"sidenav",
+						"landing",
 						"sticky_footer",
 						"empty"
 					],
-					"description": "Built-in layout template name: \"empty\", \"navbar\" or \"sticky_footer\". Default: \"navbar\""
+					"description": "Built-in layout template name: \"navbar\", \"sidenav\", \"sticky_footer\" or \"empty\". Default: \"navbar\""
 				},
 				{
 					"name": "default_route",
@@ -1768,7 +1957,7 @@
 						"materialize",
 						"aframe"
 					],
-					"description": "\"bootstrap3\", \"semantic-ui\", \"materialize\" or \"aframe\". Default: \"bootstrap3\". \"semantic-ui\", \"materialize\" and \"aframe\" are not fully implemented yet. \"aframe\" can only be used with \"react\" app."
+					"description": "\"bootstrap3\", \"semantic-ui\", \"materialize\" or \"aframe\". Default: \"bootstrap3\". \"materialize\" and \"aframe\" are not fully implemented yet. \"aframe\" works only with \"react\"."
 				},
 				{
 					"name": "theme",
@@ -1790,15 +1979,17 @@
 						"bootswatch-lumen",
 						"bootswatch-paper",
 						"bootswatch-readable",
+						"bootswatch-sandstone",
 						"bootswatch-simplex",
 						"bootswatch-slate",
+						"bootswatch-solar",
 						"bootswatch-spacelab",
 						"bootswatch-superhero",
 						"bootswatch-united",
 						"bootswatch-yeti",
 						"flat-ui"
 					],
-					"description": "Visual theme name. With \"bootstrap\" frontend theme can be \"flat-ui\" or one of bootswatch themes: \"bootswatch-amelia\", \"bootswatch-cerulean\", \"bootswatch-cosmo\", \"bootswatch-cyborg\", \"bootswatch-darkly\", \"bootswatch-flatly\", \"bootswatch-journal\", \"bootswatch-lumen\", \"bootswatch-paper\", \"bootswatch-readable\", \"bootswatch-simplex\", \"bootswatch-slate\", \"bootswatch-spacelab\", \"bootswatch-superhero\", \"bootswatch-united\", \"bootswatch-yeti\""
+					"description": "Visual theme name. With \"bootstrap\" frontend theme can be \"flat-ui\" or one of bootswatch themes: \"bootswatch-amelia\", \"bootswatch-cerulean\", \"bootswatch-cosmo\", \"bootswatch-cyborg\", \"bootswatch-darkly\", \"bootswatch-flatly\", \"bootswatch-journal\", \"bootswatch-lumen\", \"bootswatch-paper\", \"bootswatch-readable\", \"bootswatch-sandstone\", \"bootswatch-simplex\", \"bootswatch-slate\", \"bootswatch-solar\", \"bootswatch-spacelab\", \"bootswatch-superhero\", \"bootswatch-united\", \"bootswatch-yeti\""
 				},
 				{
 					"name": "animate",
@@ -2202,6 +2393,26 @@
 					"description": "Custom JSX code (for \"react\" applications only - ignored if \"blaze\" is used)"
 				},
 				{
+					"name": "gasoline",
+					"title": "Generic Template",
+					"type": "gasoline",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "",
+					"description": "Input for gasoline-turbo (generates both blaze and react from the same input)"
+				},
+				{
+					"name": "use_gasoline",
+					"title": "Use visual designer",
+					"type": "bool",
+					"subType": "",
+					"default": "false",
+					"required": false,
+					"input": "checkbox",
+					"description": "If set to true, generator will ignore HTML, JS and JSX members, and will use gasoline-turbo to build template(s)"
+				},
+				{
 					"name": "imports",
 					"title": "Import modules",
 					"type": "array",
@@ -2538,6 +2749,16 @@
 					"description": "Component list"
 				},
 				{
+					"name": "template_created_code",
+					"title": "Template created code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Code to be executed when template is created (before it is rendered)"
+				},
+				{
 					"name": "template_rendered_code",
 					"title": "Template rendered code",
 					"type": "string",
@@ -2545,7 +2766,17 @@
 					"default": "",
 					"required": false,
 					"input": "javascript",
-					"description": "Code to be executed once template is rendered"
+					"description": "Code to be executed when template is rendered"
+				},
+				{
+					"name": "template_destroyed_code",
+					"title": "Template destroyed code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Code to be executed before template is destroyed"
 				},
 				{
 					"name": "items",
@@ -2736,6 +2967,16 @@
 					"description": "Component list"
 				},
 				{
+					"name": "template_created_code",
+					"title": "Template created code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Code to be executed when template is created (before it is rendered)"
+				},
+				{
 					"name": "template_rendered_code",
 					"title": "Template rendered code",
 					"type": "string",
@@ -2743,7 +2984,17 @@
 					"default": "",
 					"required": false,
 					"input": "javascript",
-					"description": "Code to be executed once template is rendered"
+					"description": "Code to be executed when template is rendered"
+				},
+				{
+					"name": "template_destroyed_code",
+					"title": "Template destroyed code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Code to be executed before template is destroyed"
 				},
 				{
 					"name": "text",
@@ -2964,6 +3215,16 @@
 					"description": "Component list"
 				},
 				{
+					"name": "template_created_code",
+					"title": "Template created code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Code to be executed when template is created (before it is rendered)"
+				},
+				{
 					"name": "template_rendered_code",
 					"title": "Template rendered code",
 					"type": "string",
@@ -2971,7 +3232,17 @@
 					"default": "",
 					"required": false,
 					"input": "javascript",
-					"description": "Code to be executed once template is rendered"
+					"description": "Code to be executed when template is rendered"
+				},
+				{
+					"name": "template_destroyed_code",
+					"title": "Template destroyed code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Code to be executed before template is destroyed"
 				},
 				{
 					"name": "mode",
@@ -3002,6 +3273,16 @@
 						"inline"
 					],
 					"description": "\"default\", \"horizontal\" or \"inline\""
+				},
+				{
+					"name": "autofocus",
+					"title": "Autofocus",
+					"type": "bool",
+					"subType": "",
+					"default": "true",
+					"required": false,
+					"input": "checkbox",
+					"description": "If set to true, first focusable input element will have \"autofocus\" attribute set"
 				},
 				{
 					"name": "submit_route",
@@ -3312,6 +3593,16 @@
 					"description": "Component list"
 				},
 				{
+					"name": "template_created_code",
+					"title": "Template created code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Code to be executed when template is created (before it is rendered)"
+				},
+				{
 					"name": "template_rendered_code",
 					"title": "Template rendered code",
 					"type": "string",
@@ -3319,7 +3610,17 @@
 					"default": "",
 					"required": false,
 					"input": "javascript",
-					"description": "Code to be executed once template is rendered"
+					"description": "Code to be executed when template is rendered"
+				},
+				{
+					"name": "template_destroyed_code",
+					"title": "Template destroyed code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Code to be executed before template is destroyed"
 				},
 				{
 					"name": "text_if_empty",
@@ -3340,6 +3641,16 @@
 					"required": false,
 					"input": "text",
 					"description": "Text to show if search string is not found."
+				},
+				{
+					"name": "delete_confirmation_message",
+					"title": "Delete confirmation message",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text",
+					"description": "Text to show in delete confirmation box."
 				},
 				{
 					"name": "insert_route",
@@ -3451,6 +3762,7 @@
 					"input": "stringlist",
 					"choice_items": [
 						"table",
+						"blog",
 						"list",
 						"cards"
 					],
@@ -3625,6 +3937,16 @@
 					"description": "Component list"
 				},
 				{
+					"name": "template_created_code",
+					"title": "Template created code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Code to be executed when template is created (before it is rendered)"
+				},
+				{
 					"name": "template_rendered_code",
 					"title": "Template rendered code",
 					"type": "string",
@@ -3632,7 +3954,17 @@
 					"default": "",
 					"required": false,
 					"input": "javascript",
-					"description": "Code to be executed once template is rendered"
+					"description": "Code to be executed when template is rendered"
+				},
+				{
+					"name": "template_destroyed_code",
+					"title": "Template destroyed code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Code to be executed before template is destroyed"
 				},
 				{
 					"name": "item_name_field",
@@ -4104,6 +4436,94 @@
 			"hideThis": false
 		},
 		{
+			"objectType": "editable_content",
+			"derivedFrom": [
+				"component"
+			],
+			"members": [
+				{
+					"name": "name",
+					"title": "Name",
+					"type": "string",
+					"subType": "object_name",
+					"default": "",
+					"required": true,
+					"input": "text",
+					"description": "Object name"
+				},
+				{
+					"name": "type",
+					"title": "Type",
+					"type": "string",
+					"subType": "",
+					"default": "editable_content",
+					"required": false,
+					"input": "static",
+					"description": "Component type name."
+				},
+				{
+					"name": "imports",
+					"title": "Import modules",
+					"type": "array",
+					"subType": "string",
+					"default": "",
+					"required": false,
+					"input": "stringlist",
+					"description": "list of modules to import. Example: `import {X} from \"Y\";` (\"react\" applications only)"
+				},
+				{
+					"name": "dest_selector",
+					"title": "Dest. selector",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text",
+					"description": "destination html element selector. Similar to jQuery selector, but only three simple formats are supported: \"tagname\", \"#element_id\" and \".class_name\"."
+				},
+				{
+					"name": "dest_position",
+					"title": "Dest. position",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "select",
+					"choice_items": [
+						"",
+						"top",
+						"bottom",
+						"before",
+						"after"
+					],
+					"description": "destination position relative to destination element: \"top\", \"bottom\", \"before\" or \"after\". Default: \"bottom\""
+				},
+				{
+					"name": "class",
+					"title": "CSS class",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text",
+					"description": "CSS class name to be added to component"
+				},
+				{
+					"name": "text_if_empty",
+					"title": "Text if empty",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "textarea",
+					"description": "text to show if no content"
+				}
+			],
+			"hideDerivedClasses": [
+			],
+			"hideThis": false
+		},
+		{
 			"objectType": "plugin",
 			"derivedFrom": [
 				"component"
@@ -4215,6 +4635,548 @@
 					"required": false,
 					"input": "json",
 					"description": "Custom properties. This object will be provided to plugin processing code."
+				}
+			],
+			"hideDerivedClasses": [
+			],
+			"hideThis": false
+		},
+		{
+			"objectType": "gasoline",
+			"derivedFrom": [
+				"object"
+			],
+			"members": [
+				{
+					"name": "type",
+					"title": "Gasoline Type",
+					"type": "string",
+					"subType": "",
+					"default": "gasoline",
+					"required": true,
+					"input": "static"
+				},
+				{
+					"name": "templates",
+					"title": "Templates",
+					"type": "array",
+					"subType": "gas_template",
+					"default": "",
+					"required": false,
+					"input": "",
+					"description": ""
+				}
+			],
+			"hideDerivedClasses": [
+			],
+			"hideThis": false
+		},
+		{
+			"objectType": "gas_event",
+			"derivedFrom": [
+				"object"
+			],
+			"members": [
+				{
+					"name": "type",
+					"title": "Gasoline Type",
+					"type": "string",
+					"subType": "",
+					"default": "event",
+					"required": true,
+					"input": "static"
+				},
+				{
+					"name": "event",
+					"title": "Event name",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text",
+					"description": ""
+				},
+				{
+					"name": "handler",
+					"title": "Handler name",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text",
+					"description": ""
+				}
+			],
+			"hideDerivedClasses": [
+			],
+			"hideThis": false
+		},
+		{
+			"objectType": "gas_node",
+			"derivedFrom": [
+				"object"
+			],
+			"members": [
+				{
+					"name": "name",
+					"title": "Name",
+					"type": "string",
+					"subType": "object_name",
+					"default": "",
+					"required": true,
+					"input": "text",
+					"description": "Object name"
+				}
+			],
+			"hideDerivedClasses": [
+			],
+			"hideThis": false
+		},
+		{
+			"objectType": "gas_text",
+			"derivedFrom": [
+				"gas_node"
+			],
+			"members": [
+				{
+					"name": "type",
+					"title": "Gasoline Type",
+					"type": "string",
+					"subType": "",
+					"default": "text",
+					"required": true,
+					"input": "static"
+				},
+				{
+					"name": "text",
+					"title": "Text",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "textarea",
+					"description": ""
+				}
+			],
+			"hideDerivedClasses": [
+			],
+			"hideThis": false
+		},
+		{
+			"objectType": "gas_element",
+			"derivedFrom": [
+				"gas_node"
+			],
+			"members": [
+				{
+					"name": "name",
+					"title": "Name",
+					"type": "string",
+					"subType": "object_name",
+					"default": "",
+					"required": true,
+					"input": "text",
+					"description": "Object name"
+				},
+				{
+					"name": "children",
+					"title": "Children",
+					"type": "array",
+					"subType": "gas_node",
+					"default": "",
+					"required": false,
+					"input": "",
+					"description": ""
+				}
+			],
+			"hideDerivedClasses": [
+			],
+			"hideThis": false
+		},
+		{
+			"objectType": "gas_handler",
+			"derivedFrom": [
+				"object"
+			],
+			"members": [
+				{
+					"name": "name",
+					"title": "Name",
+					"type": "string",
+					"subType": "object_name",
+					"default": "",
+					"required": true,
+					"input": "text",
+					"description": "Object name"
+				},
+				{
+					"name": "type",
+					"title": "Gasoline Type",
+					"type": "string",
+					"subType": "",
+					"default": "handler",
+					"required": true,
+					"input": "static"
+				},
+				{
+					"name": "code",
+					"title": "Code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": ""
+				}
+			],
+			"hideDerivedClasses": [
+			],
+			"hideThis": false
+		},
+		{
+			"objectType": "gas_helper",
+			"derivedFrom": [
+				"object"
+			],
+			"members": [
+				{
+					"name": "name",
+					"title": "Name",
+					"type": "string",
+					"subType": "object_name",
+					"default": "",
+					"required": true,
+					"input": "text",
+					"description": "Object name"
+				},
+				{
+					"name": "type",
+					"title": "Gasoline Type",
+					"type": "string",
+					"subType": "",
+					"default": "helper",
+					"required": true,
+					"input": "static"
+				},
+				{
+					"name": "code",
+					"title": "Code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": ""
+				}
+			],
+			"hideDerivedClasses": [
+			],
+			"hideThis": false
+		},
+		{
+			"objectType": "gas_template",
+			"derivedFrom": [
+				"gas_element"
+			],
+			"members": [
+				{
+					"name": "name",
+					"title": "Name",
+					"type": "string",
+					"subType": "object_name",
+					"default": "",
+					"required": true,
+					"input": "text",
+					"description": "Object name"
+				},
+				{
+					"name": "children",
+					"title": "Children",
+					"type": "array",
+					"subType": "gas_node",
+					"default": "",
+					"required": false,
+					"input": "",
+					"description": ""
+				},
+				{
+					"name": "type",
+					"title": "Gasoline Type",
+					"type": "string",
+					"subType": "",
+					"default": "template",
+					"required": true,
+					"input": "static"
+				},
+				{
+					"name": "handlers",
+					"title": "Event handlers",
+					"type": "array",
+					"subType": "gas_handler",
+					"default": "",
+					"required": false,
+					"input": "",
+					"description": ""
+				},
+				{
+					"name": "helpers",
+					"title": "Helpers",
+					"type": "array",
+					"subType": "gas_helper",
+					"default": "",
+					"required": false,
+					"input": "",
+					"description": ""
+				}
+			],
+			"hideDerivedClasses": [
+			],
+			"hideThis": false
+		},
+		{
+			"objectType": "gas_html",
+			"derivedFrom": [
+				"gas_element"
+			],
+			"members": [
+				{
+					"name": "children",
+					"title": "Children",
+					"type": "array",
+					"subType": "gas_node",
+					"default": "",
+					"required": false,
+					"input": "",
+					"description": ""
+				},
+				{
+					"name": "type",
+					"title": "Gasoline Type",
+					"type": "string",
+					"subType": "",
+					"default": "html",
+					"required": true,
+					"input": "static"
+				},
+				{
+					"name": "element",
+					"title": "Element",
+					"type": "string",
+					"subType": "",
+					"default": "div",
+					"required": true,
+					"input": "static",
+					"description": ""
+				},
+				{
+					"name": "selector",
+					"title": "Selector",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text",
+					"description": ""
+				},
+				{
+					"name": "attributes",
+					"title": "Attributes",
+					"type": "array",
+					"subType": "param",
+					"default": "",
+					"required": false,
+					"input": "",
+					"description": ""
+				},
+				{
+					"name": "events",
+					"title": "Events",
+					"type": "array",
+					"subType": "gas_event",
+					"default": "",
+					"required": false,
+					"input": "",
+					"description": ""
+				}
+			],
+			"hideDerivedClasses": [
+			],
+			"hideThis": false
+		},
+		{
+			"objectType": "gas_loop",
+			"derivedFrom": [
+				"gas_element"
+			],
+			"members": [
+				{
+					"name": "children",
+					"title": "Children",
+					"type": "array",
+					"subType": "gas_node",
+					"default": "",
+					"required": false,
+					"input": "",
+					"description": ""
+				},
+				{
+					"name": "type",
+					"title": "Gasoline Type",
+					"type": "string",
+					"subType": "",
+					"default": "loop",
+					"required": true,
+					"input": "static"
+				},
+				{
+					"name": "dataset",
+					"title": "Dataset",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text",
+					"description": ""
+				}
+			],
+			"hideDerivedClasses": [
+			],
+			"hideThis": false
+		},
+		{
+			"objectType": "gas_condition",
+			"derivedFrom": [
+				"gas_element"
+			],
+			"members": [
+				{
+					"name": "children",
+					"title": "Children",
+					"type": "array",
+					"subType": "gas_node",
+					"default": "",
+					"required": false,
+					"input": "",
+					"description": ""
+				},
+				{
+					"name": "type",
+					"title": "Gasoline Type",
+					"type": "string",
+					"subType": "",
+					"default": "condition",
+					"required": true,
+					"input": "static"
+				},
+				{
+					"name": "condition",
+					"title": "Condition",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text",
+					"description": ""
+				}
+			],
+			"hideDerivedClasses": [
+			],
+			"hideThis": false
+		},
+		{
+			"objectType": "gas_condition_true",
+			"derivedFrom": [
+				"gas_element"
+			],
+			"members": [
+				{
+					"name": "children",
+					"title": "Children",
+					"type": "array",
+					"subType": "gas_node",
+					"default": "",
+					"required": false,
+					"input": "",
+					"description": ""
+				},
+				{
+					"name": "type",
+					"title": "Gasoline Type",
+					"type": "string",
+					"subType": "",
+					"default": "condition-true",
+					"required": true,
+					"input": "static"
+				}
+			],
+			"hideDerivedClasses": [
+			],
+			"hideThis": false
+		},
+		{
+			"objectType": "gas_condition_false",
+			"derivedFrom": [
+				"gas_element"
+			],
+			"members": [
+				{
+					"name": "children",
+					"title": "Children",
+					"type": "array",
+					"subType": "gas_node",
+					"default": "",
+					"required": false,
+					"input": "",
+					"description": ""
+				},
+				{
+					"name": "type",
+					"title": "Gasoline Type",
+					"type": "string",
+					"subType": "",
+					"default": "condition-false",
+					"required": true,
+					"input": "static"
+				}
+			],
+			"hideDerivedClasses": [
+			],
+			"hideThis": false
+		},
+		{
+			"objectType": "gas_inclusion",
+			"derivedFrom": [
+				"gas_element"
+			],
+			"members": [
+				{
+					"name": "children",
+					"title": "Children",
+					"type": "array",
+					"subType": "gas_node",
+					"default": "",
+					"required": false,
+					"input": "",
+					"description": ""
+				},
+				{
+					"name": "type",
+					"title": "Gasoline Type",
+					"type": "string",
+					"subType": "",
+					"default": "inclusion",
+					"required": true,
+					"input": "static"
+				},
+				{
+					"name": "template",
+					"title": "Template name",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text",
+					"description": ""
 				}
 			],
 			"hideDerivedClasses": [

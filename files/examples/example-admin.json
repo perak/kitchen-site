@@ -37,7 +37,7 @@
 			}
 		],
 
-		"public_zone": {
+		"free_zone": {
 			"pages": [
 				{
 					"name": "home_public",
@@ -50,9 +50,21 @@
 							"text": "<b>This is example application built with <a href=\"http://www.meteorkitchen.com\" target=\"_blank\">meteor-kitchen</a> code generator without manual coding.</b><br />It demonstrates simple application with user account system and admin panel.<br />Source code (input file for generator) is <a href=\"https://github.com/perak/kitchen-examples/tree/master/example-admin\" target=\"_blank\">here</a>.",
 							"button_title": "Continue &raquo;",
 							"button_route": "login"
+						},
+						{
+							"name": "home_cms_box",
+							"type": "editable_content",
+							"content_name": "home_cms_box",
+							"text_if_empty": "Micro CMS - Admin can change this text"
 						}
 					]
 				},
+			]
+		},
+
+		"public_zone": {
+			"default_route": "home_public",
+			"pages": [
 				{ "name": "login", "template": "login" },
 				{ "name": "register", "template": "register" },
 				{ "name": "verify_email", "template": "verify_email", "route_params": ["verifyEmailToken"] },
@@ -64,8 +76,6 @@
 				{
 					"name": "left_menu",
 					"type": "menu",
-					"class": "nav navbar-nav",
-					"dest_selector": "#menu",
 					"items": [
 						{ "title": "Home", "route": "home_public" }
 					]
@@ -74,8 +84,6 @@
 				{
 					"name": "right_menu",
 					"type": "menu",
-					"class": "nav navbar-nav navbar-right",
-					"dest_selector": "#menu",
 					"items": [
 						{ "title": "Register", "route": "register" },
 						{ "title": "Login", "route": "login" }
@@ -240,8 +248,6 @@
 				{
 					"name": "left_menu",
 					"type": "menu",
-					"class": "nav navbar-nav",
-					"dest_selector": "#menu",
 					"items": [
 						{ "title": "Home", "route": "home_private", "icon_class": "fa fa-home" }
 					]
@@ -249,8 +255,6 @@
 				{
 					"name": "right_menu",
 					"type": "menu",
-					"class": "nav navbar-nav navbar-right",
-					"dest_selector": "#menu",
 					"items": [
 						{ "title": "Admin", "route": "admin", "icon_class": "fa fa-wrench" },
 
