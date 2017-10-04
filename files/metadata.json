@@ -1,5 +1,5 @@
 {
-	"version": 103,
+	"version": 105,
 	"classList": [
 		{
 			"objectType": "root",
@@ -531,9 +531,10 @@
 					"input": "select",
 					"choice_items": [
 						"collection",
-						"file_collection"
+						"file_collection",
+						"bigchaindb"
 					],
-					"description": "Collection type. Can be \"collection\" or \"file_collection\" (FS.Collection). Default: \"collection\"."
+					"description": "Collection type. Can be \"collection\", \"file_collection\" (FS.Collection) or \"bigchaindb\". Default: \"collection\"."
 				},
 				{
 					"name": "storage_adapters",

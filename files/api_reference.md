@@ -102,7 +102,7 @@ Example:
 Property | Type | Description
 ---------|------|------------
 name | string | Object name
-type | string | Collection type. Can be "collection" or "file\_collection" (FS.Collection). Default: "collection".
+type | string | Collection type. Can be "collection", "file\_collection" (FS.Collection) or "bigchaindb". Default: "collection".
 storage\_adapters | array of string | For collection of type "file\_collection": list of CollectionFS storage adapters: "gridfs", "filesystem", "s3" or "dropbox". If not specified, generator will assume "gridfs".
 storage\_adapter\_options | string | For collection of type "file\_collection": list of CollectionFS storage adapters and their options. Example: `{ "s3": { "bucket": "mybucket" }, "gridfs": { } }`.
 fields | array of <a href="#field">field</a> | Field list. Not mandatory, used by components such as form, dataview etc.

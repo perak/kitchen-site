@@ -1,0 +1,183 @@
+{
+	"application": {
+		"title": "Example application",
+		"theme": "bootswatch-solar",
+		"collections": [
+			{
+				"name": "fruits",
+				"type": "bigchaindb",
+				"fields": [
+					{
+						"name": "name",
+						"title": "Fruit Name",
+						"type": "string",
+						"required": true,
+						"exportable": true
+					},
+					{
+						"name": "_transactionId",
+						"title": "Transaction ID",
+						"type": "string",
+						"input": "read-only",
+						"show_in_insert_form": false,
+						"show_in_update_form": false
+					},
+					{
+						"name": "_transactionStatus",
+						"title": "Transaction Status",
+						"type": "string",
+						"input": "read-only",
+						"show_in_insert_form": false,
+						"show_in_update_form": false
+					}
+				]
+			}
+		],
+		"queries": [
+			{
+				"name": "fruit_list",
+				"collection": "fruits",
+				"filter": "{}"
+			},
+			{
+				"name": "fruits_null",
+				"collection": "fruits",
+				"find_one": true,
+				"filter": "{\"_id\":null}"
+			},
+			{
+				"name": "fruit",
+				"collection": "fruits",
+				"find_one": true,
+				"filter": "{\"_id\":\":fruitId\"}"
+			}
+		],
+		"free_zone": {
+			"type": "zone",
+			"components": [
+				{
+					"name": "main_menu",
+					"type": "menu",
+					"items": [
+						{
+							"title": "Home page",
+							"route": "home"
+						},
+						{
+							"title": "Fruits",
+							"route": "fruits"
+						}
+					],
+					"object_type": "menu"
+				}
+			],
+			"pages": [
+				{
+					"name": "home",
+					"type": "page",
+					"components": [
+						{
+							"name": "home_jumbotron",
+							"type": "jumbotron",
+							"title": "Example application",
+							"text": "<b>This <a href=\"https://www.meteor.com\" target=\"_blank\">Meteor</a> application is made with <a href=\"http://www.meteorkitchen.com\" target=\"_blank\">meteor-kitchen</a> without manual coding.</b><br />It demonstrates how to use <a href=\"https://www.bigchaindb.com/\" target=\"_blank\">BigchainDB</a> database with meteor application.<br />Source code (input file for generator) is <a href=\"https://github.com/perak/kitchen-examples/tree/master/example-bigchaindb\" target=\"_blank\">here</a>.",
+							"button_title": "Continue &raquo;",
+							"button_route": "fruits",
+							"object_type": "jumbotron"
+						}
+					]
+				},
+				{
+					"name": "fruits",
+					"type": "page",
+					"components": [
+						{
+							"name": "view",
+							"type": "data_view",
+							"title": "Fruits",
+							"query_name": "fruit_list",
+							"insert_route": "fruits.insert",
+							"details_route": "fruits.details",
+							"edit_route": "fruits.update",
+							"details_route_params": [
+								{
+									"name": "fruitId",
+									"value": "this._id"
+								}
+							],
+							"edit_route_params": [
+								{
+									"name": "fruitId",
+									"value": "this._id"
+								}
+							],
+							"object_type": "data_view"
+						}
+					],
+					"pages": [
+						{
+							"name": "details",
+							"type": "page",
+							"components": [
+								{
+									"name": "form",
+									"type": "form",
+									"title": "Fruit Details",
+									"query_name": "fruit",
+									"mode": "read_only",
+									"close_route": "fruits",
+									"back_route": "fruits",
+									"object_type": "form"
+								}
+							],
+							"route_params": [
+								"fruitId"
+							]
+						},
+						{
+							"name": "insert",
+							"type": "page",
+							"components": [
+								{
+									"name": "form",
+									"type": "form",
+									"title": "New Fruit",
+									"query_name": "fruits_null",
+									"mode": "insert",
+									"submit_route": "fruits",
+									"cancel_route": "fruits",
+									"object_type": "form"
+								}
+							]
+						},
+						{
+							"name": "update",
+							"type": "page",
+							"components": [
+								{
+									"name": "form",
+									"type": "form",
+									"title": "Edit Fruit",
+									"query_name": "fruit",
+									"mode": "update",
+									"submit_route": "fruits",
+									"cancel_route": "fruits",
+									"object_type": "form"
+								}
+							],
+							"route_params": [
+								"fruitId"
+							]
+						}
+					]
+				}
+			]
+		},
+		"copy_files": [
+			{
+				"source_content": "{\n    \"bigchain\": {\n        \"url\": \"http://localhost:9984/api/v1/\",\n        \"publicKey\": \"HyBFv87h28JuVE1vT3f1EWBadnza7gg2pG298LWnhy2P\",\n        \"privateKey\": \"6KWcJUaf3mAd3yEoxyAfECxeCKYrL4ZEq2e7GDEW4kEQ\"\n    }\n}\n",
+				"dest": "SETTINGS_DIR/settings.json"
+			}
+		]
+	}
+}
