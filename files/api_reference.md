@@ -1,3 +1,29 @@
+# action
+
+Property | Type | Description
+---------|------|------------
+name | string | Action name
+title | string | Action title
+icon\_class | string | Icon class
+route | string | Redirect to route
+route\_params | array of <a href="#param">param</a> | Parameters to be passed to "route"
+action\_code | string | Custom code to execute
+rule | string | JavaScript expression. Action will be hidden in UI if expression evaluates false
+
+Example:
+```json
+{
+	"name": "",
+	"title": "",
+	"icon_class": "",
+	"route": "",
+	"route_params": [
+	],
+	"action_code": "",
+	"rule": ""
+}
+```
+
 # application
 
 Property | Type | Description
@@ -97,6 +123,32 @@ Example:
 }
 ```
 
+# cms_content
+
+Property | Type | Description
+---------|------|------------
+name | string | Object name
+type | string | Component type name.
+imports | array of string | list of modules to import. Example: `import {X} from "Y";` ("react" applications only)
+dest\_selector | string | destination html element selector. Similar to jQuery selector, but only three simple formats are supported: "tagname", "#element\_id" and ".class\_name".
+dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
+class | string | CSS class name to be added to component
+text\_if\_empty | string | 
+
+Example:
+```json
+{
+	"name": "",
+	"type": "cms_content",
+	"imports": [
+	],
+	"dest_selector": "",
+	"dest_position": "",
+	"class": "",
+	"text_if_empty": ""
+}
+```
+
 # collection
 
 Property | Type | Description
@@ -112,6 +164,8 @@ roles\_allowed\_to\_insert | array of string | List of user roles that can inser
 roles\_allowed\_to\_update | array of string | List of user roles that can update documents. You can use special roles "nobody" (nobody can update) and "owner" (only owner/creator can update).
 roles\_allowed\_to\_delete | array of string | List of user roles that can delete documents. You can use special roles "nobody" (nobody can remove) and "owner" (only owner/creator can remove).
 roles\_allowed\_to\_download | array of string | For collection of type "file\_collection": List of user roles that can download files. You can use special roles "nobody" (nobody can download) and "owner" (only owner/creator can download).
+update\_rule | string | Update will be restricted if this expression evaluates false. You can use two variables here: "userId" and "doc". Note that this expression is added ( AND ) to user role check, so if user's role is not allowed to update, evaluating this expression to true will not allow update.
+delete\_rule | string | Delete will be restricted if this expression evaluates false. You can use two variables here: "userId" and "doc". Note that this expression is added ( AND ) to user role check, so if user's role is not allowed to delete, evaluating this expression to true will not allow delete.
 before\_insert\_code | string | Code to be executed before new document is inserted into collection. Should be only body of a function with args: (userId, doc). See <a href="https://github.com/matb33/meteor-collection-hooks" target="_blank">meteor-collection-hooks</a> package for more details.
 before\_update\_code | string | Code to be executed before document is updated. Should be only body of a function with args: (userId, doc, fieldNames, modifier, options)
 before\_remove\_code | string | Code to be executed before document is removed. Should be only body of a function with args: (userId, doc)
@@ -146,6 +200,8 @@ Example:
 	],
 	"roles_allowed_to_download": [
 	],
+	"update_rule": "",
+	"delete_rule": "",
 	"before_insert_code": "",
 	"before_update_code": "",
 	"before_remove_code": "",
@@ -238,6 +294,7 @@ insert\_route\_params | array of <a href="#param">param</a> | Parameters to be p
 details\_route\_params | array of <a href="#param">param</a> | Parameters to be passed to "details\_route"
 edit\_route\_params | array of <a href="#param">param</a> | Parameters to be passed to "edit\_route"
 delete\_route\_params | array of <a href="#param">param</a> | Parameters to be passed to "delete\_route"
+item\_actions | array of <a href="#action">action</a> | Custom item actions (method call and/or redirect to route)
 insert\_button\_title | string | Insert button title
 on\_item\_clicked\_code | string | Code to execute when item is clicked (before redirect if DetailsRoute is specified)
 views | array of string | View styles: "table", "list" or "cards". Default: "table".
@@ -280,6 +337,8 @@ Example:
 	"edit_route_params": [
 	],
 	"delete_route_params": [
+	],
+	"item_actions": [
 	],
 	"insert_button_title": "",
 	"on_item_clicked_code": "",
@@ -369,6 +428,7 @@ sortable | bool | Is field sortable? Default: true
 exportable | bool | If true field will be exported to CSV/JSON (used in dataview component). Default: false
 input | string | Form input control type: "text", "password", "datepicker", "read-only", "textarea", "radio", "checkbox", "select", "crud", "file", "custom"
 input\_template | string | Template for "custom" input field (relative to input file)
+input\_template\_code | string | Source code (markup) for "custom" input field. If you need any initialization (e.g. jQuery) here, you can put that into form's template\_rendered\_code
 input\_group\_class | string | This CSS class will be added to field input group container in forms.
 input\_control\_class | string | This CSS class will be added to input control in forms.
 input\_items | array of <a href="#input_item">input\_item</a> | Item list for input type "radio" and "select"
@@ -408,6 +468,7 @@ Example:
 	"exportable": false,
 	"input": "text",
 	"input_template": "",
+	"input_template_code": "",
 	"input_group_class": "",
 	"input_control_class": "",
 	"input_items": [
@@ -924,6 +985,7 @@ Property | Type | Description
 ---------|------|------------
 name | string | Object name
 type | string | Component type name.
+template | string | Built-in html and js template file name (without extension) contained in kitchen templates directory.
 imports | array of string | list of modules to import. Example: `import {X} from "Y";` ("react" applications only)
 dest\_selector | string | destination html element selector. Similar to jQuery selector, but only three simple formats are supported: "tagname", "#element\_id" and ".class\_name".
 dest\_position | string | destination position relative to destination element: "top", "bottom", "before" or "after". Default: "bottom"
@@ -948,6 +1010,7 @@ Example:
 {
 	"name": "",
 	"type": "menu",
+	"template": "",
 	"imports": [
 	],
 	"dest_selector": "",
@@ -1064,7 +1127,8 @@ back\_route\_params | array of <a href="#param">param</a> | Route params to be p
 roles | array of string | User roles allowed to access this page
 pages | array of <a href="#page">page</a> | Subpages
 related\_queries | array of <a href="#subscription">subscription</a> | List of additional queries (publications) to subscribe
-force\_yield\_subpages | bool | Subpages will be rendered in "subcontent" area even if this page doesn't contains menu pointing to subpages
+force\_yield\_subpages | bool | Deprecated. Please use "render\_subpages" property instead.
+render\_subpages | string | Should page render subpages in "subcontent" area? "auto" = only if page has menu pointing to subpages. "never" - never, "always" - always
 zoneless | bool | Deprecated - will be removed soon. For applications with user account system: make this page visible for both authenticated and non-authenticated users
 parent\_layout | bool | If set to true parent page will be used as layoutTemplate. Default: false
 layout\_template | string | Custom layout template name
@@ -1121,6 +1185,7 @@ Example:
 	"related_queries": [
 	],
 	"force_yield_subpages": false,
+	"render_subpages": "",
 	"zoneless": false,
 	"parent_layout": false,
 	"layout_template": "",
@@ -1189,6 +1254,7 @@ find\_one | bool | If set to true query will return single document: findOne(). 
 filter | string | Mongo query expression. Will be passed as first argument to find() or findOne(). Can contain route params in form ":paramName". String "Meteor.userId()" is treated in special way: at the client it remains `Meteor.userId()` but at the server (in publication) it will be converted to `this.userId`.
 options | string | Options parameter passed as second argument to find() or findOne().
 related\_queries | array of <a href="#subscription">subscription</a> | Page which subscribes to this query will also subscribe to related queries (for example: this is useful if you are using transform function that uses data from other collection).
+variables | array of <a href="#variable">variable</a> | Filter and Options object can contain variable (string value starting with "%" sign is treated as variable). You can specify value for each variable here (value can also be a function).
 
 Example:
 ```json
@@ -1199,6 +1265,8 @@ Example:
 	"filter": "",
 	"options": "",
 	"related_queries": [
+	],
+	"variables": [
 	]
 }
 ```
@@ -1265,7 +1333,7 @@ Example:
 
 Property | Type | Description
 ---------|------|------------
-name | string | Publication name
+name | string | Publication name (Query name)
 params | array of <a href="#param">param</a> | Params
 
 Example:
@@ -1343,6 +1411,23 @@ Example:
 }
 ```
 
+# variable
+
+Property | Type | Description
+---------|------|------------
+name | string | Variable name
+value | string | Variable value
+query\_name | string | External query name. Set field name to "Value" field of this variable and result will be array of values from that field (pluck)
+
+Example:
+```json
+{
+	"name": "",
+	"value": "",
+	"query_name": ""
+}
+```
+
 # zone
 
 Property | Type | Description
@@ -1362,6 +1447,8 @@ user\_defined\_template | bool | If set to true then built-in template will be i
 background\_image | string | Background image URL
 container\_class | string | Class to be added to page container. Example: "container-fluid". Default "container".
 pages | array of <a href="#page">page</a> | Subpages
+related\_queries | array of <a href="#subscription">subscription</a> | List of additional queries (publications) to subscribe
+render\_subpages | string | Should page render subpages in "subcontent" area? "auto" = only if page has menu pointing to subpages. "never" - never, "always" - always
 layout\_template | string | Custom layout template name
 layout | string | Built-in layout template name: "navbar", "sidenav", "sticky\_footer" or "empty". Default: "navbar"
 default\_route | string | "home" route for this zone.
@@ -1391,6 +1478,9 @@ Example:
 	"container_class": "",
 	"pages": [
 	],
+	"related_queries": [
+	],
+	"render_subpages": "",
 	"layout_template": "",
 	"layout": "",
 	"default_route": "",

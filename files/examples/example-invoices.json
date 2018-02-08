@@ -353,7 +353,7 @@
 
 							],
 
-							"force_yield_subpages": true,
+							"render_subpages": "always",
 							"pages": [
 								{
 									"name": "items",

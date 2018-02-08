@@ -1,5 +1,5 @@
 {
-	"version": 105,
+	"version": 110,
 	"classList": [
 		{
 			"objectType": "root",
@@ -201,6 +201,16 @@
 					"required": false,
 					"input": "text",
 					"description": "Template for \"custom\" input field (relative to input file)"
+				},
+				{
+					"name": "input_template_code",
+					"title": "Input template code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Source code (markup) for \"custom\" input field. If you need any initialization (e.g. jQuery) here, you can put that into form's template_rendered_code"
 				},
 				{
 					"name": "input_group_class",
@@ -633,6 +643,26 @@
 					"description": "For collection of type \"file_collection\": List of user roles that can download files. You can use special roles \"nobody\" (nobody can download) and \"owner\" (only owner\/creator can download)."
 				},
 				{
+					"name": "update_rule",
+					"title": "Update rule",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Update will be restricted if this expression evaluates false. You can use two variables here: \"userId\" and \"doc\". Note that this expression is added ( AND ) to user role check, so if user's role is not allowed to update, evaluating this expression to true will not allow update."
+				},
+				{
+					"name": "delete_rule",
+					"title": "Delete rule",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Delete will be restricted if this expression evaluates false. You can use two variables here: \"userId\" and \"doc\". Note that this expression is added ( AND ) to user role check, so if user's role is not allowed to delete, evaluating this expression to true will not allow delete."
+				},
+				{
 					"name": "before_insert_code",
 					"title": "Before insert code",
 					"type": "string",
@@ -822,6 +852,16 @@
 					"required": false,
 					"input": "",
 					"description": "Page which subscribes to this query will also subscribe to related queries (for example: this is useful if you are using transform function that uses data from other collection)."
+				},
+				{
+					"name": "variables",
+					"title": "Variables",
+					"type": "array",
+					"subType": "variable",
+					"default": "",
+					"required": false,
+					"input": "",
+					"description": "Filter and Options object can contain variable (string value starting with \"%\" sign is treated as variable). You can specify value for each variable here (value can also be a function)."
 				}
 			],
 			"hideDerivedClasses": [
@@ -841,7 +881,7 @@
 					"default": "",
 					"required": false,
 					"input": "text",
-					"description": "Publication name"
+					"description": "Publication name (Query name)"
 				},
 				{
 					"name": "params",
@@ -1088,6 +1128,126 @@
 			"hideThis": false
 		},
 		{
+			"objectType": "variable",
+			"derivedFrom": [
+			],
+			"members": [
+				{
+					"name": "name",
+					"title": "Name",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": true,
+					"input": "text",
+					"description": "Variable name"
+				},
+				{
+					"name": "value",
+					"title": "Value",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": true,
+					"input": "text",
+					"description": "Variable value"
+				},
+				{
+					"name": "query_name",
+					"title": "Query name",
+					"type": "string",
+					"subType": "query_name",
+					"default": "",
+					"required": false,
+					"input": "select_query",
+					"description": "External query name. Set field name to \"Value\" field of this variable and result will be array of values from that field (pluck)"
+				}
+			],
+			"hideDerivedClasses": [
+			],
+			"hideThis": false
+		},
+		{
+			"objectType": "action",
+			"derivedFrom": [
+			],
+			"members": [
+				{
+					"name": "name",
+					"title": "Name",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": true,
+					"input": "text",
+					"description": "Action name"
+				},
+				{
+					"name": "title",
+					"title": "Title",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text",
+					"description": "Action title"
+				},
+				{
+					"name": "icon_class",
+					"title": "Icon class",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text",
+					"description": "Icon class"
+				},
+				{
+					"name": "route",
+					"title": "Route name",
+					"type": "string",
+					"subType": "route_name",
+					"default": "",
+					"required": false,
+					"input": "select_route",
+					"description": "Redirect to route"
+				},
+				{
+					"name": "route_params",
+					"title": "Route params",
+					"type": "array",
+					"subType": "param",
+					"default": "",
+					"required": false,
+					"input": "",
+					"description": "Parameters to be passed to \"route\""
+				},
+				{
+					"name": "action_code",
+					"title": "Action Code",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "Custom code to execute"
+				},
+				{
+					"name": "rule",
+					"title": "Rule",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "javascript",
+					"description": "JavaScript expression. Action will be hidden in UI if expression evaluates false"
+				}
+			],
+			"hideDerivedClasses": [
+			],
+			"hideThis": false
+		},
+		{
 			"objectType": "server_side_route",
 			"derivedFrom": [
 				"object"
@@ -1188,6 +1348,7 @@
 						"page_subcontent_sidenav",
 						"page_subcontent_sidenav_collapse",
 						"page_subcontent_tabnav",
+						"page_subcontent_tabnav_2col",
 						"page_subcontent_navbar",
 						"page_subcontent_navbar_top",
 						"change_pass",
@@ -1195,7 +1356,8 @@
 						"login",
 						"logout",
 						"register",
-						"reset_password"
+						"reset_password",
+						"verify_email"
 					],
 					"description": "Built-in html and js template file name (without extension) contained in kitchen templates directory."
 				},
@@ -1537,7 +1699,22 @@
 					"default": "false",
 					"required": false,
 					"input": "checkbox",
-					"description": "Subpages will be rendered in \"subcontent\" area even if this page doesn't contains menu pointing to subpages"
+					"description": "Deprecated. Please use \"render_subpages\" property instead."
+				},
+				{
+					"name": "render_subpages",
+					"title": "Render subpages",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "select",
+					"choice_items": [
+						"auto",
+						"never",
+						"always"
+					],
+					"description": "Should page render subpages in \"subcontent\" area? \"auto\" = only if page has menu pointing to subpages. \"never\" - never, \"always\" - always"
 				},
 				{
 					"name": "zoneless",
@@ -1750,6 +1927,31 @@
 					"required": false,
 					"input": "",
 					"description": "Subpages"
+				},
+				{
+					"name": "related_queries",
+					"title": "Related queries",
+					"type": "array",
+					"subType": "subscription",
+					"default": "",
+					"required": false,
+					"input": "",
+					"description": "List of additional queries (publications) to subscribe"
+				},
+				{
+					"name": "render_subpages",
+					"title": "Render subpages",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "select",
+					"choice_items": [
+						"auto",
+						"never",
+						"always"
+					],
+					"description": "Should page render subpages in \"subcontent\" area? \"auto\" = only if page has menu pointing to subpages. \"never\" - never, \"always\" - always"
 				},
 				{
 					"name": "layout_template",
@@ -2623,6 +2825,20 @@
 					"description": "Component type name."
 				},
 				{
+					"name": "template",
+					"title": "Template",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "select",
+					"choice_items": [
+						"menu",
+						"menu_buttons"
+					],
+					"description": "Built-in html and js template file name (without extension) contained in kitchen templates directory."
+				},
+				{
 					"name": "imports",
 					"title": "Import modules",
 					"type": "array",
@@ -3251,7 +3467,7 @@
 					"type": "string",
 					"subType": "",
 					"default": "",
-					"required": false,
+					"required": true,
 					"input": "select",
 					"choice_items": [
 						"insert",
@@ -3732,6 +3948,16 @@
 					"required": false,
 					"input": "",
 					"description": "Parameters to be passed to \"delete_route\""
+				},
+				{
+					"name": "item_actions",
+					"title": "Custom Item Actions",
+					"type": "array",
+					"subType": "action",
+					"default": "",
+					"required": false,
+					"input": "",
+					"description": "Custom item actions (method call and\/or redirect to route)"
 				},
 				{
 					"name": "insert_button_title",
@@ -4518,6 +4744,93 @@
 					"required": false,
 					"input": "textarea",
 					"description": "text to show if no content"
+				}
+			],
+			"hideDerivedClasses": [
+			],
+			"hideThis": false
+		},
+		{
+			"objectType": "cms_content",
+			"derivedFrom": [
+				"component"
+			],
+			"members": [
+				{
+					"name": "name",
+					"title": "Name",
+					"type": "string",
+					"subType": "object_name",
+					"default": "",
+					"required": true,
+					"input": "text",
+					"description": "Object name"
+				},
+				{
+					"name": "type",
+					"title": "Type",
+					"type": "string",
+					"subType": "",
+					"default": "cms_content",
+					"required": false,
+					"input": "static",
+					"description": "Component type name."
+				},
+				{
+					"name": "imports",
+					"title": "Import modules",
+					"type": "array",
+					"subType": "string",
+					"default": "",
+					"required": false,
+					"input": "stringlist",
+					"description": "list of modules to import. Example: `import {X} from \"Y\";` (\"react\" applications only)"
+				},
+				{
+					"name": "dest_selector",
+					"title": "Dest. selector",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text",
+					"description": "destination html element selector. Similar to jQuery selector, but only three simple formats are supported: \"tagname\", \"#element_id\" and \".class_name\"."
+				},
+				{
+					"name": "dest_position",
+					"title": "Dest. position",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "select",
+					"choice_items": [
+						"",
+						"top",
+						"bottom",
+						"before",
+						"after"
+					],
+					"description": "destination position relative to destination element: \"top\", \"bottom\", \"before\" or \"after\". Default: \"bottom\""
+				},
+				{
+					"name": "class",
+					"title": "CSS class",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "text",
+					"description": "CSS class name to be added to component"
+				},
+				{
+					"name": "text_if_empty",
+					"title": "Text if empty",
+					"type": "string",
+					"subType": "",
+					"default": "",
+					"required": false,
+					"input": "textarea"
 				}
 			],
 			"hideDerivedClasses": [

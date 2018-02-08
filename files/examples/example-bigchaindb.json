@@ -37,19 +37,22 @@
 			{
 				"name": "fruit_list",
 				"collection": "fruits",
-				"filter": "{}"
+				"filter": "{}",
+				"options": "{}"
 			},
 			{
 				"name": "fruits_null",
 				"collection": "fruits",
 				"find_one": true,
-				"filter": "{\"_id\":null}"
+				"filter": "{\"_id\":null}",
+				"options": "{}"
 			},
 			{
 				"name": "fruit",
 				"collection": "fruits",
 				"find_one": true,
-				"filter": "{\"_id\":\":fruitId\"}"
+				"filter": "{\"_id\":\":fruitId\"}",
+				"options": "{}"
 			}
 		],
 		"free_zone": {
@@ -98,7 +101,6 @@
 							"query_name": "fruit_list",
 							"insert_route": "fruits.insert",
 							"details_route": "fruits.details",
-							"edit_route": "fruits.update",
 							"details_route_params": [
 								{
 									"name": "fruitId",
@@ -149,25 +151,6 @@
 									"object_type": "form"
 								}
 							]
-						},
-						{
-							"name": "update",
-							"type": "page",
-							"components": [
-								{
-									"name": "form",
-									"type": "form",
-									"title": "Edit Fruit",
-									"query_name": "fruit",
-									"mode": "update",
-									"submit_route": "fruits",
-									"cancel_route": "fruits",
-									"object_type": "form"
-								}
-							],
-							"route_params": [
-								"fruitId"
-							]
 						}
 					]
 				}
@@ -175,7 +158,7 @@
 		},
 		"copy_files": [
 			{
-				"source_content": "{\n    \"bigchain\": {\n        \"url\": \"http://localhost:9984/api/v1/\",\n        \"publicKey\": \"HyBFv87h28JuVE1vT3f1EWBadnza7gg2pG298LWnhy2P\",\n        \"privateKey\": \"6KWcJUaf3mAd3yEoxyAfECxeCKYrL4ZEq2e7GDEW4kEQ\"\n    }\n}\n",
+				"source_content": "{\n    \"bigchaindb\": {\n        \"url\": \"http://localhost:9984/api/v1/\",\n        \"eventsUrl\": \"ws://0.0.0.0:9985/api/v1/streams/valid_transactions\",\n        \"appId\": \"\",\n        \"appKey\": \"\",\n        \"namespace\": \"example-bigchaindb\"\n    }\n}\n",
 				"dest": "SETTINGS_DIR/settings.json"
 			}
 		]
