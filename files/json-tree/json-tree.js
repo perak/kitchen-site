@@ -1,4 +1,5 @@
-function expandParentsObjectTree(item) {
+
+function expandParents(item) {
 	var closestLi = item.parent().parents("li.collapsed").first();
 	if(closestLi.length) {
 		closestLi.removeClass("collapsed");
@@ -8,11 +9,57 @@ function expandParentsObjectTree(item) {
 		span.addClass("fa-caret-down");
 
 		var link = closestLi.find("a").first();
-		expandParentsObjectTree(link);
+		expandParents(link);
 	}
 }
 
-function selectItemObjectTree(link) {
+function selectInCodeMirror(searchPath) {
+
+	if (!searchPath || !searchPath.length) {
+		console.log("Nothing to search?");
+		return;
+	}
+	searchPath = searchPath.reverse();
+	console.log("searchPath=", searchPath);
+
+	var cm = $("#json-editor").next(".CodeMirror");
+
+	if (cm == null || cm[0] == null) {
+		console.log("No CodeMirror found, but that's ok. ");
+		return;
+	}
+
+	cm = cm[0].CodeMirror;
+
+	var pos = 0;
+
+	cm.eachLine(function f(line) {
+
+		var index = line.text.indexOf('"'+searchPath[pos]+'"');
+		if (index > -1) {
+			pos++;
+			if (pos === searchPath.length) {
+				var lineNumber = cm.doc.getLineNumber(line);
+				cm.doc.setSelection({
+					line: lineNumber
+				});
+				cm.scrollIntoView({
+					line: lineNumber
+				}, 200);
+
+				// cm.doc.markText( {line: lineNumber}, {line: lineNumber }, {clearOnEnter:true} );
+				return true;
+			}
+
+		}
+
+	});
+
+
+}
+
+
+function selectItem(link) {
 	var li = link.parent();
 	var container = link.closest("div");
 	var span = link.find("span.fa").first();
@@ -31,9 +78,13 @@ function selectItemObjectTree(link) {
 		container.find("li.active").removeClass("active");
 		li.addClass("active");
 	}
+	
+	
+	
+	
 }
 
-function selectRequestedOrFirstItemObjectTree() {
+function selectRequestedOrFirstItem() {
 	// highlight object passed as param or first object found in tree
 	if(Router.current() && Router.current().params) {
 		var routeName = Router.current().route.getName();
@@ -53,8 +104,8 @@ function selectRequestedOrFirstItemObjectTree() {
 			} else {
 				link = $(".object-tree-link[data-object-id='" + objectId + "']").first();
 			}
-			expandParentsObjectTree(link);
-			selectItemObjectTree(link);
+			expandParents(link);
+			selectItem(link);
 		} else {
 			$(".object-tree-link").first().click();
 			return;
@@ -87,7 +138,7 @@ Template.TEMPLATE_NAME.rendered = function() {
 	});
 
 	resizeTree();
-	selectRequestedOrFirstItemObjectTree();
+	selectRequestedOrFirstItem();
 };
 
 Template.TEMPLATE_NAME.events({
@@ -98,21 +149,19 @@ Template.TEMPLATE_NAME.helpers({
 });
 
 
-Template.objectTreeView.rendered = function() {
+Template.jsonTreeView.rendered = function() {
+	console.log("jsonTreeView rendered");
 }
 
-/*
-Deps.autorun(function() {
-	if(Router.current() && Router.current().url) {
-		selectRequestedOrFirstItemObjectTree();
-	}
-});
+ //Deps.autorun(function() {
+ //	if(Router.current() && Router.current().url) {
+ //		selectRequestedOrFirstItem();
+ //	}
+ //});
 
-*/
-
-Template.objectTreeView.helpers({
+Template.jsonTreeView.helpers({
 	"objectMembers": function(rootId, object, meta) {
-
+	
 		var properties = [];
 		for(var propertyName in object) {
 			var property = object[propertyName];
@@ -135,9 +184,13 @@ Template.objectTreeView.helpers({
 					id = property._id || "";
 					var type = property.objectType || "";
 					isObject = type != "";
+					// make everything collapsable
+					collapsable = true;
+					cssClass = "collapsable-item";
 				}
 			}
-
+			
+			
 			if(isArray || isObject) {
 				properties.push({
 					rootId: rootId,
@@ -172,49 +225,62 @@ Template.objectTreeView.helpers({
 	}
 });
 
-Template.objectTreeView.events({
+Template.jsonTreeView.events({
 	"click .object-tree-link": function(e, t) {
 		e.preventDefault();
 
 		var link = $(e.currentTarget);
 		var objectId = this.objectId || "";
 
-		if(objectId) {
+		// well, this is not the most compact form but it works ;)
+		var parents = $(link).parentsUntil("div", "li");
+		var searchPath = [];
+		_.each(parents, p => {
+			var c = $(p).children("a").first();
+			searchPath.push($(c).attr("data-property-name"));
+		});
+
+		if (objectId) {
 			var propertyName = link.attr("data-property-name") || "";
 
-			var redirect = true;
-			if(Router.current() && Router.current().route) {
+			var redirect = false;
+			if (Router.current() && Router.current().route) {
 				var routeName = Router.current().route.getName();
-				if(routeName != "PAGE_ROUTE_NAME") {
+				if (routeName != "applications.details.json_view") {
 					return false;
 				}
 				var currentObjectId = Router.current().params.objectId || "";
 				var currentPropertyName = Router.current().params.propertyName || "";
 
-				if(currentObjectId == "null") currentObjectId = "";
-				if(currentPropertyName == "null") currentPropertyName = "";
+				if (currentObjectId == "null") currentObjectId = "";
+				if (currentPropertyName == "null") currentPropertyName = "";
 
-				if(objectId == currentObjectId && propertyName == currentPropertyName) {
+				if (objectId == currentObjectId && propertyName == currentPropertyName) {
 					redirect = false;
 				}
 			}
 
-			if(propertyName) {
-				if(redirect) {
-					selectItemObjectTree(link);
-					Router.go("applications.details.form_view", { applicationId: this.rootId, objectId: objectId, propertyName: propertyName });
-				} else {
-					selectItemObjectTree(link);
+
+			if (propertyName) {
+				if (redirect) {
+					console.log('Router.go("applications.details.json_view", { applicationId: this.rootId, objectId: objectId, propertyName: propertyName });');
 				}
-			} else {
-				if(redirect) {
-					selectItemObjectTree(link);
-					Router.go("applications.details.form_view", { applicationId: this.rootId, objectId: objectId, propertyName: null });
-				} else {
-					selectItemObjectTree(link);
+				else {
+					selectItem(link);
+					selectInCodeMirror(searchPath);
+				}
+			}
+			else {
+				if (redirect) {
+					console.log('Router.go("applications.details.json_view", { applicationId: this.rootId, objectId: objectId, propertyName: null });');
+				}
+				else {
+					selectItem(link);
+					selectInCodeMirror(searchPath);
 				}
 			}
 		}
 		return false;
 	}
 });
+

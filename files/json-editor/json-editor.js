@@ -65,11 +65,15 @@ Template.TEMPLATE_NAME.events({
 
 		Applications.update({ _id: this.application._id }, { $set: { data: data }}, function(e) {
 			$(".save-button").button("reset");
+			
 			if(e) {
 				t.$("#app-editor-error-title").text("Error saving data:");
 				t.$("#app-editor-error-message").text(e.message);
 				t.$(".app-editor-error").show();
 				return;
+			} else {
+				// TODO FIXME this is just a hack to fixed json-tree going blank on save
+				window.location.reload();
 			}
 		});
 	},
